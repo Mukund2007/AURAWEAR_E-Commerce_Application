@@ -1,0 +1,115 @@
+package com.aurawear.controller;
+
+import com.aurawear.dao.UserDAO;
+import com.aurawear.model.User;
+
+import java.io.IOException;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.*;
+
+@WebServlet("/otp-verify")
+public class VerifyOTPServlet extends HttpServlet {
+
+    @Override
+    protected void doGet(
+        HttpServletRequest request,
+        HttpServletResponse response)
+        throws ServletException, IOException {
+
+        response.sendRedirect("register");
+    }
+
+
+    @Override
+    protected void doPost(
+        HttpServletRequest request,
+        HttpServletResponse response)
+        throws ServletException, IOException {
+
+        String enteredOtp =
+            request.getParameter("otp");
+
+        HttpSession session =
+            request.getSession();
+
+        String realOtp =
+            (String) session.getAttribute("otp");
+
+
+        /* verify otp */
+        if(
+           enteredOtp != null &&
+           realOtp != null &&
+           enteredOtp.equals(realOtp)
+        ){
+
+            // pull pending registration data
+            String name =
+                (String) session.getAttribute("pendingName");
+
+            String email =
+                (String) session.getAttribute("pendingEmail");
+
+            String password =
+                (String) session.getAttribute("pendingPassword");
+
+
+            /* save user AFTER verification */
+            User user =
+                new User(name,email,password);
+
+            UserDAO dao =
+                new UserDAO();
+
+            boolean saved =
+            		dao.registerUser(user);
+
+            		if(saved){
+
+            		User createdUser =
+            		dao.getUserByEmail(email);
+
+            		session.setAttribute(
+            		"userId",
+            		createdUser.getId()
+            		);
+
+            		System.out.println(
+            		"User saved successfully"
+            		);
+
+            		session.removeAttribute("otp");
+            		session.removeAttribute("pendingName");
+            		session.removeAttribute("pendingEmail");
+            		session.removeAttribute("pendingPassword");
+
+            		response.sendRedirect(
+            		"complete-profile"
+            		);
+
+            		}else{
+
+            		response.getWriter().println(
+            		"Registration failed."
+            		);
+
+            		}
+
+        } else {
+
+            // wrong otp -> stay on verify screen
+            request.setAttribute("showOtp", true);
+
+            request.setAttribute(
+                "otpError",
+                "Invalid verification code"
+            );
+
+            request.getRequestDispatcher(
+                "/WEB-INF/views/auth/register.jsp"
+            ).forward(request,response);
+        }
+    }
+}

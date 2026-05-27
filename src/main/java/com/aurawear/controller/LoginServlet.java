@@ -1,0 +1,57 @@
+package com.aurawear.controller;
+import com.aurawear.dao.UserDAO;
+import com.aurawear.model.User;
+import com.aurawear.dao.LoginDAO;
+import java.io.IOException;
+
+import jakarta.servlet.*;
+import jakarta.servlet.http.*;
+import jakarta.servlet.annotation.WebServlet;
+
+@WebServlet("/login")
+public class LoginServlet extends HttpServlet {
+
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+	        throws ServletException, IOException {
+	    
+	    response.sendRedirect(request.getContextPath() + "/home");
+	}
+
+	
+	@Override
+	protected void doPost(
+			HttpServletRequest request,
+			HttpServletResponse response)
+					throws ServletException, IOException {
+
+		String email =
+				request.getParameter("email");
+
+		String password =
+				request.getParameter("password");
+
+		
+
+		LoginDAO dao = new LoginDAO();
+
+		if (dao.validateUser(email, password)) {
+
+		    HttpSession session = request.getSession();
+
+		    UserDAO userDAO = new UserDAO();          // ✅ ADD THIS
+		    User user = userDAO.getUserByEmail(email); // ✅ FETCH USER
+
+		    session.setAttribute("user", user);        // ✅ STORE OBJECT
+
+		    response.sendRedirect("home");
+		}
+		else{
+
+			request.setAttribute("loginError", "Invalid email or password");
+			response.sendRedirect(request.getContextPath() + "/home");
+
+		}
+
+	}
+}
