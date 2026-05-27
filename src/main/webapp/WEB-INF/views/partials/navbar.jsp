@@ -4,7 +4,7 @@
 
 <script>
     (function() {
-        const savedTheme = localStorage.getItem('auraTheme') || 'canvas';
+        var savedTheme = localStorage.getItem('auraTheme') || 'canvas';
         if (savedTheme !== 'canvas') {
             document.documentElement.classList.add('theme-' + savedTheme);
         }
@@ -1682,7 +1682,7 @@ function closeMenuOverlay() {
 
 function initAuraInteractive() {
     // ── Swatch Active UI Initialization
-    const savedTheme = localStorage.getItem('auraTheme') || 'canvas';
+    var savedTheme = localStorage.getItem('auraTheme') || 'canvas';
     updateSwatchUI(savedTheme);
 
     // ── Preloader Progress Counter
