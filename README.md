@@ -9,9 +9,18 @@
   </a>
 </div>
 
-<br>
-
 AuraWear is a highly polished, editorial, and design-forward e-commerce web application inspired by high-end boutique storefront design systems. Built on a robust **Java EE Enterprise Stack** (Tomcat, Servlets, JSTL, Relational Aiven MySQL Database), it merges architectural backend logic with rich, cinematic frontend micro-interactions.
+
+---
+
+## 🎥 Live Platform Demo & User Interactions
+
+<p align="center">
+  <video src="src/main/webapp/assets/images/AURAWEAR.mp4" width="100%" autoplay loop muted controls></video>
+</p>
+
+> [!NOTE]
+> *This high-fidelity walkthrough demonstrates our custom physics-based cursor follower expanding on hover interactions, dynamic theme toggling persisted via `localStorage`, robust database-backed session-cart integrations, and our slide-up real-time tracking drawer dashboard.*
 
 ---
 
