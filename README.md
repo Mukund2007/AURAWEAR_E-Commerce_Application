@@ -20,12 +20,6 @@ AuraWear is a highly polished, editorial, and design-forward e-commerce web appl
     <img src="https://img.shields.io/badge/Watch_Walkthrough_on_LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="Watch on LinkedIn" />
   </a>
 </p>
-
-https://github.com/Mukund2007/AURAWEAR_E-Commerce_Application/raw/main/src/main/webapp/assets/images/AURAWEAR.mp4
-
-> [!NOTE]
-> *This high-fidelity walkthrough demonstrates our custom physics-based cursor follower expanding on hover interactions, dynamic theme toggling persisted via `localStorage`, robust database-backed session-cart integrations, and our slide-up real-time tracking drawer dashboard.*
-
 ---
 
 ## 🎨 Creative Interaction & Design Systems
