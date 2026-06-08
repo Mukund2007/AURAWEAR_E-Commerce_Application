@@ -15,6 +15,11 @@ FROM tomcat:10.0-jdk17
 RUN rm -rf /usr/local/tomcat/webapps/ROOT
 COPY --from=builder /app/target/AuraWear.war /usr/local/tomcat/webapps/ROOT.war
 
-EXPOSE 8080
-CMD ["catalina.sh", "run"]
+# Change Tomcat's default port from 8080 to 7860 for Hugging Face compatibility
+RUN sed -i 's/port="8080"/port="7860"/g' /usr/local/tomcat/conf/server.xml
 
+# Dynamic JVM memory optimization (automatically adjusts to 75% of container RAM)
+ENV CATALINA_OPTS="-XX:MaxRAMPercentage=75.0 -XX:+UseG1GC"
+
+EXPOSE 7860
+CMD ["catalina.sh", "run"]
