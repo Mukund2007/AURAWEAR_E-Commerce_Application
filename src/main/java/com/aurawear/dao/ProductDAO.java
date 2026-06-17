@@ -189,6 +189,25 @@ public class ProductDAO {
         return list;
     }
 
+    // ================= RELATED PRODUCTS =================
+    public List<Product> getRelatedProducts(String category, int excludeId) {
+        List<Product> list = new ArrayList<>();
+        String sql = "SELECT * FROM products WHERE category = ? AND id != ? LIMIT 4";
+        try (Connection con = DBConnection.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, category);
+            ps.setInt(2, excludeId);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    list.add(map(rs));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
     // ================= HELPERS =================
     private void appendPlaceholders(StringBuilder sql, int count) {
         for (int i = 0; i < count; i++) {
@@ -209,6 +228,11 @@ public class ProductDAO {
         p.setRating(rs.getDouble("rating"));
         p.setReviews(rs.getInt("reviews"));
         p.setImage(rs.getString("image"));
+        
+        p.setOriginalPrice(rs.getDouble("original_price"));
+        p.setDiscount(rs.getInt("discount"));
+        p.setBrand(rs.getString("brand"));
+        p.setType(rs.getString("type"));
         return p;
     }
 }

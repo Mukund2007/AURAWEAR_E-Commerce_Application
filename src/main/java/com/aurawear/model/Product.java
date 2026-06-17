@@ -12,6 +12,10 @@ public class Product {
     private double rating;
     private int    reviews;
     private String image;
+    private double originalPrice;
+    private int    discount;
+    private String brand;
+    private String type;
 
     public Product() {}
 
@@ -46,6 +50,18 @@ public class Product {
 
     public String getImage() { return image; }
     public void setImage(String image) { this.image = image; }
+
+    public double getOriginalPrice() { return originalPrice; }
+    public void setOriginalPrice(double originalPrice) { this.originalPrice = originalPrice; }
+
+    public int getDiscount() { return discount; }
+    public void setDiscount(int discount) { this.discount = discount; }
+
+    public String getBrand() { return brand; }
+    public void setBrand(String brand) { this.brand = brand; }
+
+    public String getType() { return type; }
+    public void setType(String type) { this.type = type; }
 
     // ===== STAR HELPERS =====
     public int getFullStars() { return (int) rating; }

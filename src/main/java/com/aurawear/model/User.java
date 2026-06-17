@@ -7,6 +7,7 @@ private String name;
 private String email;
 private String password;
 private boolean verified;
+private String role = "customer";
 
 public User(){}
 
@@ -54,6 +55,14 @@ return verified;
 
 public void setVerified(boolean verified) {
 this.verified=verified;
+}
+
+public String getRole() {
+return role;
+}
+
+public void setRole(String role) {
+this.role = role;
 }
 
 }

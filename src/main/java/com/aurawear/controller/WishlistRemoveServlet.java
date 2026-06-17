@@ -22,16 +22,20 @@ public class WishlistRemoveServlet extends HttpServlet {
 
         User user  = (User) session.getAttribute("user");
         String email = user.getEmail();
-        String name  = request.getParameter("name");
+        String idParam = request.getParameter("id");
 
-        if (name == null || name.trim().isEmpty()) {
+        if (idParam == null || idParam.trim().isEmpty()) {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             return;
         }
 
-        WishlistDAO dao = new WishlistDAO();
-        dao.removeFromWishlist(email, name);
-
-        response.setStatus(HttpServletResponse.SC_OK);
+        try {
+            int productId = Integer.parseInt(idParam.trim());
+            WishlistDAO dao = new WishlistDAO();
+            dao.removeFromWishlist(email, productId);
+            response.setStatus(HttpServletResponse.SC_OK);
+        } catch (NumberFormatException e) {
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+        }
     }
 }

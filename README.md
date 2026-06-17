@@ -80,6 +80,32 @@ AuraWear/
 *   **IDE**: Eclipse IDE for Enterprise Java Developers.
 *   **Server**: Apache Tomcat 9.0+.
 *   **Database**: HSQLDB / Relational SQLite (included).
+*   **Environment Variables**: Set up environment variables to supply Razorpay keys (refer to the settings below).
+
+### ⚙️ Razorpay Integration & Configuration
+The project loads Razorpay payment gateway credentials dynamically at runtime to prevent secret leakages. The following 5 environment variables must be configured on your local Tomcat environment:
+
+*   `RAZORPAY_LIVE_MODE` (set to `true` or `false`)
+*   `RAZORPAY_TEST_KEY_ID`
+*   `RAZORPAY_TEST_KEY_SECRET`
+*   `RAZORPAY_LIVE_KEY_ID`
+*   `RAZORPAY_LIVE_KEY_SECRET`
+
+**Local Setup (Tomcat `bin/setenv.sh`)**:
+Create a file named `setenv.sh` (or `setenv.bat` on Windows) inside your Tomcat's `bin/` directory with the following exports (note: `setenv.sh` is excluded from git):
+```sh
+export RAZORPAY_LIVE_MODE="false"
+export RAZORPAY_TEST_KEY_ID="rzp_test_..."
+export RAZORPAY_TEST_KEY_SECRET="your_test_secret"
+export RAZORPAY_LIVE_KEY_ID="rzp_live_..."
+export RAZORPAY_LIVE_KEY_SECRET="your_live_secret"
+```
+
+**Eclipse IDE Launch Configuration**:
+If launching Tomcat through Eclipse:
+1. Double-click your **Tomcat Server** in the Eclipse **Servers** panel.
+2. Click **Open launch configuration** under *General Information*.
+3. Go to the **Environment** tab, click **New...**, and add all 5 variables.
 
 ### Local Deployment Steps
 1.  **Clone the Repository**:

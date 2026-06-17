@@ -1,27 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>
-<%@ page import="java.util.*, com.aurawear.model.CartItem" %>
 <%@ taglib prefix="c"   uri="jakarta.tags.core" %>
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 
-<%
-    List<CartItem> cart = (List<CartItem>) request.getAttribute("cartItems");
-    int total     = 0;
-    int itemCount = 0;
-    if (cart != null) {
-        itemCount = cart.size();
-        for (CartItem item : cart) {
-            total += item.getPrice() * item.getQuantity();
-        }
-    }
-    int shipping   = total >= 999 ? 0 : 99;
-    int grandTotal = total + shipping;
-%>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout — AuraWear</title>
@@ -30,7 +14,6 @@
     <link rel="stylesheet" href="${ctx}/assets/css/home.css">
     <link rel="stylesheet" href="${ctx}/assets/css/orders.css">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-
 </head>
 <body>
 
@@ -40,149 +23,95 @@
 
         <div class="checkout-grid">
 
-            <!-- ===== LEFT: FORM ===== -->
+            <!-- ===== LEFT: BILLING & PAYMENT GATEWAY TRIGGER ===== -->
             <div class="checkout-left">
-
                 <h1 class="checkout-title">Checkout</h1>
 
-                <form action="${ctx}/checkout" method="post" id="checkoutForm">
-
-                    <!-- DELIVERY -->
-                    <div class="checkout-section">
-                        <h3 class="section-title">
-                            <i class="fa-solid fa-location-dot"></i> Delivery Address
-                        </h3>
-
-                        <div class="form-row two-col">
-                            <div class="form-group">
-                                <label>First Name</label>
-                                <input type="text" name="firstName" placeholder="John" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Last Name</label>
-                                <input type="text" name="lastName" placeholder="Doe" required>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label>Email</label>
-                            <input type="email" name="email" placeholder="john@example.com" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label>Phone</label>
-                            <input type="tel" name="phone" placeholder="+91 98765 43210" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label>Street Address</label>
-                            <input type="text" name="address" placeholder="123 Main Street, Apt 4B" required>
-                        </div>
-
-                        <div class="form-row two-col">
-                            <div class="form-group">
-                                <label>City</label>
-                                <input type="text" name="city" placeholder="Mumbai" required>
-                            </div>
-                            <div class="form-group">
-                                <label>PIN Code</label>
-                                <input type="text" name="pincode" placeholder="400001" required>
-                            </div>
-                        </div>
+                <c:if test="${not empty errorMsg}">
+                    <div class="error-banner" style="background: rgba(255, 0, 1, 0.1); border: 1.5px solid var(--accent-color); color: var(--text-color); padding: 16px; font-weight: 800; text-transform: uppercase; font-size: 12px; margin-bottom: 24px; letter-spacing: 0.5px;">
+                        <i class="fa-solid fa-triangle-exclamation"></i> ${errorMsg}
                     </div>
+                </c:if>
 
-                    <!-- PAYMENT -->
-                    <div class="checkout-section">
-                        <h3 class="section-title">
-                            <i class="fa-solid fa-credit-card"></i> Payment
-                        </h3>
-
-                        <div class="payment-options">
-                            <label class="payment-option selected">
-                                <input type="radio" name="payment" value="card" checked>
-                                <i class="fa-solid fa-credit-card"></i>
-                                <span>Credit / Debit Card</span>
-                            </label>
-                            <label class="payment-option">
-                                <input type="radio" name="payment" value="upi">
-                                <i class="fa-solid fa-mobile-screen"></i>
-                                <span>UPI</span>
-                            </label>
-                            <label class="payment-option">
-                                <input type="radio" name="payment" value="cod">
-                                <i class="fa-solid fa-truck"></i>
-                                <span>Cash on Delivery</span>
-                            </label>
-                        </div>
-
-                        <div id="cardFields">
-                            <div class="form-group">
-                                <label>Card Number</label>
-                                <input type="text" name="cardNumber" placeholder="1234 5678 9012 3456"
-                                       maxlength="19" oninput="formatCard(this)">
-                            </div>
-                            <div class="form-row two-col">
-                                <div class="form-group">
-                                    <label>Expiry Date</label>
-                                    <input type="text" name="expiry" placeholder="MM / YY" maxlength="7">
-                                </div>
-                                <div class="form-group">
-                                    <label>CVV</label>
-                                    <input type="password" name="cvv" placeholder="•••" maxlength="4">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <button type="submit" class="place-order-btn">
-                        Place Order — ₹<%= grandTotal %>
-                    </button>
-
-                    <p class="secure-label">
-                        <i class="fa fa-lock"></i> Secure & encrypted checkout
+                <div class="checkout-section">
+                    <h3 class="section-title">
+                        <i class="fa-solid fa-shield-halved"></i> Secure Payment Gateway
+                    </h3>
+                    
+                    <p style="font-size: 13px; opacity: 0.7; margin-bottom: 20px; line-height: 1.5; text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px;">
+                        AuraWear integrates with Razorpay to provide secure, encrypted transactions. You can pay using Card, Netbanking, UPI, or popular wallets.
                     </p>
 
-                </form>
+                    <!-- PREFILLED BILLING SUMMARY -->
+                    <div style="background: var(--card-bg); border: 1.5px solid var(--border-color-solid); padding: 20px; margin-bottom: 30px; display: flex; flex-direction: column; gap: 12px;">
+                        <h4 style="font-size: 12px; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; border-bottom: 1px solid var(--border-color); padding-bottom: 8px;">Customer Information</h4>
+                        <div style="display: flex; justify-content: space-between; font-size: 13px; font-weight: 700; text-transform: uppercase;">
+                            <span style="opacity: 0.5;">Name</span>
+                            <span>${user.name}</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; font-size: 13px; font-weight: 700;">
+                            <span style="opacity: 0.5; text-transform: uppercase;">Email</span>
+                            <span>${user.email}</span>
+                        </div>
+                    </div>
 
+                    <!-- PAYMENT BUTTON -->
+                    <c:choose>
+                        <c:when test="${not empty razorpayOrderId}">
+                            <button type="button" id="payNowBtn" class="place-order-btn" style="width: 100%; border-radius: 0px !important;">
+                                <i class="fa-solid fa-lock"></i> Pay Now — ₹<fmt:formatNumber value="${grandTotal}" maxFractionDigits="0"/>
+                            </button>
+                        </c:when>
+                        <c:otherwise>
+                            <button type="button" class="place-order-btn" style="width: 100%; border-radius: 0px !important; opacity: 0.5; cursor: not-allowed;" disabled>
+                                Checkout Unavailable
+                            </button>
+                        </c:otherwise>
+                    </c:choose>
+
+                    <p class="secure-label" style="margin-top: 16px; text-align: center; text-transform: uppercase; font-size: 11px; font-weight: 800; letter-spacing: 1px;">
+                        <i class="fa fa-lock"></i> Secure 256-bit encrypted SSL checkout
+                    </p>
+                </div>
             </div>
-
 
             <!-- ===== RIGHT: ORDER SUMMARY ===== -->
             <div class="checkout-summary">
-
                 <h3 class="summary-heading">Order Summary</h3>
 
                 <div class="summary-items">
-                    <% if (cart != null) {
-                        for (CartItem item : cart) { %>
+                    <c:forEach var="item" items="${cartItems}">
                         <div class="summary-item">
-                            <img src="${ctx}/assets/images/<%= item.getImage() %>"
+                            <img src="${ctx}/assets/images/${item.image}"
                                  onerror="this.src='${ctx}/assets/images/fallback.jpg'"
-                                 alt="<%= item.getProductName() %>">
+                                 alt="${item.productName}">
                             <div class="summary-item-info">
-                                <p class="summary-item-name"><%= item.getProductName() %></p>
-                                <p class="summary-item-meta">Size: <%= item.getSize() %> · Qty: <%= item.getQuantity() %></p>
+                                <p class="summary-item-name">${item.productName}</p>
+                                <p class="summary-item-meta">Size: ${item.size} · Qty: ${item.quantity}</p>
                             </div>
-                            <p class="summary-item-price">₹<%= item.getPrice() * item.getQuantity() %></p>
+                            <p class="summary-item-price">₹<fmt:formatNumber value="${item.price * item.quantity}" maxFractionDigits="0"/></p>
                         </div>
-                    <% } } %>
+                    </c:forEach>
                 </div>
 
                 <div class="summary-divider"></div>
 
                 <div class="summary-row">
-                    <span>Subtotal (<%= itemCount %> items)</span>
-                    <span>₹<%= total %></span>
+                    <span>Subtotal</span>
+                    <span>₹<fmt:formatNumber value="${subtotal}" maxFractionDigits="0"/></span>
                 </div>
 
                 <div class="summary-row">
                     <span>Shipping</span>
                     <span>
-                        <% if (shipping == 0) { %>
-                            <span class="free-badge">FREE</span>
-                        <% } else { %>
-                            ₹<%= shipping %>
-                        <% } %>
+                        <c:choose>
+                            <c:when test="${shipping == 0}">
+                                <span class="free-badge" style="background: var(--accent-color); color: var(--bg-color); font-size: 9px; font-weight: 800; padding: 2px 6px;">FREE</span>
+                            </c:when>
+                            <c:otherwise>
+                                ₹<fmt:formatNumber value="${shipping}" maxFractionDigits="0"/>
+                            </c:otherwise>
+                        </c:choose>
                     </span>
                 </div>
 
@@ -190,40 +119,77 @@
 
                 <div class="summary-total-row">
                     <span>Total</span>
-                    <span>₹<%= grandTotal %></span>
+                    <span>₹<fmt:formatNumber value="${grandTotal}" maxFractionDigits="0"/></span>
                 </div>
-
             </div>
 
         </div>
 
     </div>
 
-
+    <!-- RAZORPAY SCRIPT -->
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <script>
-    // Payment option toggle
-    document.querySelectorAll(".payment-option").forEach(option => {
-        option.addEventListener("click", function () {
-            document.querySelectorAll(".payment-option").forEach(o => o.classList.remove("selected"));
-            this.classList.add("selected");
-
-            const val = this.querySelector("input").value;
-            document.getElementById("cardFields").style.display =
-                val === "card" ? "block" : "none";
-        });
-    });
-
-    // Card number formatter
-    function formatCard(input) {
-        let val = input.value.replace(/\D/g, "").substring(0, 16);
-        input.value = val.replace(/(.{4})/g, "$1 ").trim();
-    }
-
-    // Navbar scroll
+    // Navbar scroll effect
     window.addEventListener("scroll", function () {
         const nav = document.querySelector(".navbar");
         if (nav) nav.classList.toggle("scrolled", window.scrollY > 80);
     });
+
+    // Razorpay Integration
+    <c:if test="${not empty razorpayOrderId}">
+    const payNowBtn = document.getElementById("payNowBtn");
+    
+    const options = {
+        "key": "${razorpayKeyId}",
+        "amount": "${amountInPaise}",
+        "currency": "INR",
+        "name": "AuraWear",
+        "description": "Premium Streetwear Checkout",
+        "order_id": "${razorpayOrderId}",
+        "handler": function (response) {
+            // Create a form programmatically and submit payment credentials
+            const form = document.createElement("form");
+            form.method = "POST";
+            form.action = "${ctx}/payment-success";
+
+            const pId = document.createElement("input");
+            pId.type = "hidden";
+            pId.name = "razorpay_payment_id";
+            pId.value = response.razorpay_payment_id;
+            form.appendChild(pId);
+
+            const oId = document.createElement("input");
+            oId.type = "hidden";
+            oId.name = "razorpay_order_id";
+            oId.value = response.razorpay_order_id;
+            form.appendChild(oId);
+
+            const sig = document.createElement("input");
+            sig.type = "hidden";
+            sig.name = "razorpay_signature";
+            sig.value = response.razorpay_signature;
+            form.appendChild(sig);
+
+            document.body.appendChild(form);
+            form.submit();
+        },
+        "prefill": {
+            "name": "${user.name}",
+            "email": "${user.email}"
+        },
+        "theme": {
+            "color": "#ff0001" // matching AuraWear red theme variable
+        }
+    };
+
+    const rzp = new Razorpay(options);
+    
+    payNowBtn.onclick = function(e) {
+        rzp.open();
+        e.preventDefault();
+    };
+    </c:if>
     </script>
 
 </body>

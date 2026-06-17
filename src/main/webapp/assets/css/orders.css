@@ -218,7 +218,11 @@
     overflow: hidden;
     box-shadow: 0 4px 24px rgba(0, 0, 0, 0.03);
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: pointer;
 }
+
+/* Utility class for clickable elements */
+.cursor-pointer { cursor: pointer; }
 
 .order-card:hover {
     transform: translateY(-4px) scale(1.005);

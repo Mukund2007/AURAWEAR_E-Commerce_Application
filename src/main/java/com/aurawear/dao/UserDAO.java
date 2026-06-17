@@ -73,7 +73,8 @@ DBConnection.getConnection();
 
 PreparedStatement ps=
 con.prepareStatement(
-"INSERT INTO user_profiles(user_id,username,style_preference,clothing_size,fit_preference,interests) VALUES(?,?,?,?,?,?)"
+"INSERT INTO user_profiles(user_id,username,style_preference,clothing_size,fit_preference,interests) VALUES(?,?,?,?,?,?) " +
+"ON DUPLICATE KEY UPDATE username=VALUES(username), style_preference=VALUES(style_preference), clothing_size=VALUES(clothing_size), fit_preference=VALUES(fit_preference), interests=VALUES(interests)"
 );
 
 ps.setInt(1,p.getUserId());
@@ -120,6 +121,7 @@ rs.getString("password")
 user.setId(
 rs.getInt("id")
 );
+user.setRole(rs.getString("role"));
 
 return user;
 }

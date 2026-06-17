@@ -104,10 +104,10 @@
             <div class="summary-row">
                 <span>Shipping</span>
                 <span>
-                    <% if (total >= 999) { %>
+                    <% if (total >= com.aurawear.util.SettingsUtil.getFreeShippingThreshold()) { %>
                         <span class="free-badge">FREE</span>
                     <% } else { %>
-                        ₹99
+                        ₹<%= com.aurawear.util.SettingsUtil.getShippingCharge() %>
                     <% } %>
                 </span>
             </div>
@@ -116,7 +116,7 @@
 
             <div class="summary-total">
                 <span>Total</span>
-                <span class="total">₹<%= total >= 999 ? total : total + 99 %></span>
+                <span class="total">₹<%= total >= com.aurawear.util.SettingsUtil.getFreeShippingThreshold() ? total : total + com.aurawear.util.SettingsUtil.getShippingCharge() %></span>
             </div>
 
             <div class="coupon-box">
@@ -167,15 +167,17 @@
 
         document.querySelector(".subtotal").innerText = "₹" + subtotal;
 
-        const freeShipping = subtotal >= 999;
-        document.querySelector(".total").innerText = "₹" + (freeShipping ? subtotal : subtotal + 99);
+        const freeThreshold = <%= com.aurawear.util.SettingsUtil.getFreeShippingThreshold() %>;
+        const charge = <%= com.aurawear.util.SettingsUtil.getShippingCharge() %>;
+        const freeShipping = subtotal >= freeThreshold;
+        document.querySelector(".total").innerText = "₹" + (freeShipping ? subtotal : subtotal + charge);
 
         // Update shipping badge
         const shippingEl = document.querySelector(".summary-row:nth-child(3) span:last-child");
         if (shippingEl) {
             shippingEl.innerHTML = freeShipping
                 ? '<span class="free-badge">FREE</span>'
-                : '₹99';
+                : '₹' + charge;
         }
     }
 

@@ -8,49 +8,48 @@ import com.aurawear.util.DBConnection;
 public class WishlistDAO {
 
     /* ADD */
-    public void addToWishlist(String email, String productName, double price) {
+    public void addToWishlist(String email, int productId) {
         try (Connection conn = DBConnection.getConnection()) {
-            String checkSql = "SELECT * FROM wishlist WHERE user_email=? AND product_name=?";
+            String checkSql = "SELECT * FROM wishlist WHERE user_email=? AND product_id=?";
             PreparedStatement check = conn.prepareStatement(checkSql);
             check.setString(1, email);
-            check.setString(2, productName);
+            check.setInt(2, productId);
             ResultSet rs = check.executeQuery();
             if (rs.next()) return; // already exists
 
-            String sql = "INSERT INTO wishlist(user_email, product_name, price) VALUES(?,?,?)";
+            String sql = "INSERT INTO wishlist(user_email, product_id) VALUES(?,?)";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, email);
-            ps.setString(2, productName);
-            ps.setDouble(3, price);
+            ps.setInt(2, productId);
             ps.executeUpdate();
-            System.out.println("Wishlist added: " + productName);
+            System.out.println("Wishlist added: " + productId);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    /* REMOVE BY NAME */
-    public void removeFromWishlist(String email, String productName) {
+    /* REMOVE */
+    public void removeFromWishlist(String email, int productId) {
         try (Connection conn = DBConnection.getConnection()) {
-            String sql = "DELETE FROM wishlist WHERE user_email=? AND product_name=?";
+            String sql = "DELETE FROM wishlist WHERE user_email=? AND product_id=?";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, email);
-            ps.setString(2, productName);
+            ps.setInt(2, productId);
             ps.executeUpdate();
-            System.out.println("Wishlist removed: " + productName);
+            System.out.println("Wishlist removed: " + productId);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    /* WISHLIST PAGE — JOIN with products to get id, size, image */
+    /* WISHLIST PAGE — JOIN with products to get name, price, size, image */
     public List<WishlistItem> getWishlistByEmail(String email) {
         List<WishlistItem> list = new ArrayList<>();
         try (Connection conn = DBConnection.getConnection()) {
             String sql =
-                "SELECT w.product_name, w.price, p.id, p.size, p.image " +
+                "SELECT p.name AS product_name, p.price, p.id, p.size, p.image " +
                 "FROM wishlist w " +
-                "LEFT JOIN products p ON p.name = w.product_name " +
+                "JOIN products p ON p.id = w.product_id " +
                 "WHERE w.user_email = ?";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, email);
@@ -75,15 +74,12 @@ public class WishlistDAO {
     public Set<Integer> getWishlistProductIds(String email) {
         Set<Integer> ids = new HashSet<>();
         try (Connection conn = DBConnection.getConnection()) {
-            String sql = 
-                "SELECT p.id FROM wishlist w " +
-                "JOIN products p ON p.name = w.product_name " +
-                "WHERE w.user_email = ?";
+            String sql = "SELECT product_id FROM wishlist WHERE user_email = ?";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, email);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                ids.add(rs.getInt("id"));
+                ids.add(rs.getInt("product_id"));
             }
         } catch (Exception e) {
             e.printStackTrace();

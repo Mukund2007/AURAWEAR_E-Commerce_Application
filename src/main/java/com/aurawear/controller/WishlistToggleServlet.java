@@ -61,10 +61,10 @@ public class WishlistToggleServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
 
         if (exists) {
-            wishlistDAO.removeFromWishlist(email, p.getName());
+            wishlistDAO.removeFromWishlist(email, productId);
             out.print("removed");
         } else {
-            wishlistDAO.addToWishlist(email, p.getName(), p.getPrice());
+            wishlistDAO.addToWishlist(email, productId);
             out.print("added");
         }
         out.flush();

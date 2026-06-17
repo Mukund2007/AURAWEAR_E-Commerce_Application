@@ -4,4 +4,74 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+
+  <servlet>
+    <servlet-name>CheckoutServlet</servlet-name>
+    <servlet-class>com.aurawear.controller.CheckoutServlet</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>PaymentSuccessServlet</servlet-name>
+    <servlet-class>com.aurawear.controller.PaymentSuccessServlet</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>AdminLoginServlet</servlet-name>
+    <servlet-class>com.aurawear.controller.AdminLoginServlet</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>AdminDashboardServlet</servlet-name>
+    <servlet-class>com.aurawear.controller.AdminDashboardServlet</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>AdminOrdersServlet</servlet-name>
+    <servlet-class>com.aurawear.controller.AdminOrdersServlet</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>AdminProductsServlet</servlet-name>
+    <servlet-class>com.aurawear.controller.AdminProductsServlet</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>AdminSettingsServlet</servlet-name>
+    <servlet-class>com.aurawear.controller.AdminSettingsServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>CheckoutServlet</servlet-name>
+    <url-pattern>/checkout</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>PaymentSuccessServlet</servlet-name>
+    <url-pattern>/payment-success</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>AdminLoginServlet</servlet-name>
+    <url-pattern>/admin/login</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>AdminDashboardServlet</servlet-name>
+    <url-pattern>/admin/dashboard</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>AdminOrdersServlet</servlet-name>
+    <url-pattern>/admin/orders</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>AdminProductsServlet</servlet-name>
+    <url-pattern>/admin/products</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>AdminSettingsServlet</servlet-name>
+    <url-pattern>/admin/settings</url-pattern>
+  </servlet-mapping>
 </web-app>

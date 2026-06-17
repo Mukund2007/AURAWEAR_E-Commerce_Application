@@ -67,7 +67,7 @@
                                 </button>
 
                                 <div class="wl-image-wrap"
-                                     onclick="window.location.href='${ctx}/product-details?id=${item.productId}'">
+                                     onclick="window.location.href='${ctx}/product?id=${item.productId}'">
                                     <c:choose>
                                         <c:when test="${not empty item.image}">
                                             <img src="${ctx}/assets/images/${item.image}"

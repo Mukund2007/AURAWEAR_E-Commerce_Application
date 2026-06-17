@@ -40,7 +40,10 @@ DBConnection.getConnection();
 
 PreparedStatement ps=
 con.prepareStatement(
-"SELECT * FROM orders WHERE user_email=?"
+"SELECT o.id, oi.price, oi.quantity, o.status, oi.product_name, o.created_at, oi.product_id, oi.size " +
+"FROM orders o " +
+"JOIN order_items oi ON oi.order_id = o.id " +
+"WHERE o.user_email = ? ORDER BY o.id DESC, oi.id ASC"
 );
 
 ps.setString(1,email);
@@ -50,14 +53,18 @@ ps.executeQuery();
 
 while(rs.next()){
 
+    double price = rs.getDouble("price");
+    int qty = rs.getInt("quantity");
 	orders.add(
 			new String[]{
 			String.valueOf(rs.getInt("id")),
-			String.valueOf(rs.getDouble("total")),
+			String.valueOf(price * qty),
 			rs.getString("status"),
 			rs.getString("product_name"),
 			rs.getString("created_at"),
-			String.valueOf(rs.getInt("product_id"))
+			String.valueOf(rs.getInt("product_id")),
+			rs.getString("size"),
+			String.valueOf(qty)
 			}
 			);
 

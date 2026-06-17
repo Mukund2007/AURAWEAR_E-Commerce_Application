@@ -162,7 +162,7 @@
                     <c:choose>
                         <c:when test="${empty products}">
                             <div class="no-products">
-                                <i class="fa fa-magnifying-glass" style="font-size:32px; display:block; margin-bottom:14px; opacity:0.3;"></i>
+                                <i class="fa fa-magnifying-glass no-products-icon"></i>
                                 No products found. Try adjusting your filters.
                             </div>
                         </c:when>
@@ -250,7 +250,7 @@
     }
 
     function goToProduct(id) {
-        window.location.href = ctx + "/product-details?id=" + id;
+        window.location.href = ctx + "/product?id=" + id;
     }
 
     /* ── QUICK ADD ──────────    function quickAdd(e) {

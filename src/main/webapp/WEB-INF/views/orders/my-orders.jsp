@@ -102,9 +102,9 @@
                         <c:forEach var="order" items="${orders}" varStatus="loop">
                             <c:set var="status" value="${order[2]}" />
 
-                            <div class="order-card status-${status.toLowerCase()}"
-                                 onclick="window.location.href='${ctx}/product-details?id=${order[5]}'"
-                                 style="cursor:pointer;">
+                            <div class="order-card status-${status.toLowerCase()} cursor-pointer"
+                                 onclick="window.location.href='${ctx}/product?id=${order[5]}'"
+                                 >
 
                                 <!-- STATUS STRIP ACCENT (via class) -->
                                 <div class="order-status-strip"></div>
@@ -128,6 +128,14 @@
                                             <c:if test="${not empty order[4]}">
                                                 <span class="order-id-divider">·</span>
                                                 <span class="order-id-label">${order[4]}</span>
+                                            </c:if>
+                                            <c:if test="${not empty order[6]}">
+                                                <span class="order-id-divider">·</span>
+                                                <span class="order-id-label">Size: ${order[6]}</span>
+                                            </c:if>
+                                            <c:if test="${not empty order[7]}">
+                                                <span class="order-id-divider">·</span>
+                                                <span class="order-id-label">Qty: ${order[7]}</span>
                                             </c:if>
                                         </div>
                                     </div>

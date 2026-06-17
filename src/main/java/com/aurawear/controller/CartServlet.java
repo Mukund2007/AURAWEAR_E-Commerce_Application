@@ -36,7 +36,40 @@ public class CartServlet extends HttpServlet {
 
         RequestDispatcher dispatcher =
                 request.getRequestDispatcher("/WEB-INF/views/cart/cart.jsp");
-
         dispatcher.forward(request, response);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        HttpSession session = request.getSession(false);
+        if (session == null || session.getAttribute("user") == null) {
+            response.sendRedirect(request.getContextPath() + "/login");
+            return;
+        }
+
+        User user = (User) session.getAttribute("user");
+        String email = user.getEmail();
+
+        String idParam = request.getParameter("productId");
+        if (idParam == null) {
+            idParam = request.getParameter("id");
+        }
+        String size = request.getParameter("size");
+        String priceParam = request.getParameter("price");
+
+        if (idParam != null && size != null && priceParam != null) {
+            try {
+                int productId = Integer.parseInt(idParam);
+                // Convert price to int (in case it comes with decimal places, e.g., 2999.0)
+                int price = (int) Double.parseDouble(priceParam);
+                CartDAO dao = new CartDAO();
+                dao.addToCart(email, productId, size, price);
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+            }
+        }
+
+        response.sendRedirect(request.getContextPath() + "/cart");
     }
 }

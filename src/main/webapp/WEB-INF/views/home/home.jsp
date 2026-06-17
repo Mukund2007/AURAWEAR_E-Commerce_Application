@@ -330,7 +330,7 @@
     });
 
     function goToProduct(id) {
-        window.location.href = ctx + "/product-details?id=" + id;
+        window.location.href = ctx + "/product?id=" + id;
     }
 
     function toggleWishlist(e, el) {
