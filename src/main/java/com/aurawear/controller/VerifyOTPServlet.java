@@ -76,6 +76,11 @@ public class VerifyOTPServlet extends HttpServlet {
             		createdUser.getId()
             		);
 
+            		session.setAttribute(
+            		"user",
+            		createdUser
+            		);
+
             		System.out.println(
             		"User saved successfully"
             		);

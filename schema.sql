@@ -161,6 +161,7 @@ CREATE TABLE `users` (
   `email` varchar(100) DEFAULT NULL,
   `password` varchar(100) DEFAULT NULL,
   `verified` tinyint(1) DEFAULT '0',
+  `role` varchar(50) DEFAULT 'customer',
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -172,7 +173,8 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Mukund','mukundamadhavareddy540@gmail.com','Mukund2004',0),(2,NULL,'mukundamadhavareddy@gmail.com','Mukund',0),(9,'mukund reddy','mukundmadhavareddy@gmail.com','Muund',0),(10,'Mukund 433','mukundamadhavared@gmail.com','37843',0),(11,'Muk37 ewwe','dewdewd@gmail.com','dewewd',0),(12,NULL,NULL,NULL,0),(13,'mukund reddy','mukundamadhav@gmail.com','423432',0),(14,'ueruie rwehew','ewrgwegh@gmail.co','dhsbdasd',0),(15,'vghffd dsd','jshdj@gmail.com','sds',0),(16,'mukund reddy','mukunday540@gmail.com','36784384',0),(17,'mukund reddy','mukueddy540@gmail.com','Mukwfde',0),(18,'mukund reddy','mukundamad540@gmail.com','hgfu',0),(19,'mukund reddy','mukuvareddy540@gmail.com','zereew',0),(20,'Mukunda reddy','mukeddy540@gmail.com','Mukund',0),(21,'mukund reddy','mukuneddy540@gmail.com','eqwqer',0),(22,'Mukunda reddy','ewareddy540@gmail.com','djwuyeuwewee',0),(23,'Mukunda reddy','mukundawemaewewewdewvareddy540@gmail.com','erw',0),(24,'Hari  Charan','haricharan@gmail.com','Hari@2630',0),(25,'mukund reddy','kummathi00@gmail.com','Mukund',0),(26,'gova  reddy','govardhanreddyt78@gmail.com','govardhan1234',0),(27,'Nani Narne','naninarne12@gmail.com','mWQfOjujzuHYKUOAQ/KGcQ==:v+rTlEKSIInUiTGVhPzrxX0dDIgQePwnoDhfL+NiPgY=',0);
+INSERT INTO `users` (`id`, `name`, `email`, `password`, `verified`) VALUES (1,'Mukund','mukundamadhavareddy540@gmail.com','Mukund2004',0),(2,NULL,'mukundamadhavareddy@gmail.com','Mukund',0),(9,'mukund reddy','mukundmadhavareddy@gmail.com','Muund',0),(10,'Mukund 433','mukundamadhavared@gmail.com','37843',0),(11,'Muk37 ewwe','dewdewd@gmail.com','dewewd',0),(12,NULL,NULL,NULL,0),(13,'mukund reddy','mukundamadhav@gmail.com','423432',0),(14,'ueruie rwehew','ewrgwegh@gmail.co','dhsbdasd',0),(15,'vghffd dsd','jshdj@gmail.com','sds',0),(16,'mukund reddy','mukunday540@gmail.com','36784384',0),(17,'mukund reddy','mukueddy540@gmail.com','Mukwfde',0),(18,'mukund reddy','mukundamad540@gmail.com','hgfu',0),(19,'mukund reddy','mukuvareddy540@gmail.com','zereew',0),(20,'Mukunda reddy','mukeddy540@gmail.com','Mukund',0),(21,'mukund reddy','mukuneddy540@gmail.com','eqwqer',0),(22,'Mukunda reddy','ewareddy540@gmail.com','djwuyeuwewee',0),(23,'Mukunda reddy','mukundawemaewewewdewvareddy540@gmail.com','erw',0),(24,'Hari  Charan','haricharan@gmail.com','Hari@2630',0),(25,'mukund reddy','kummathi00@gmail.com','Mukund',0),(26,'gova  reddy','govardhanreddyt78@gmail.com','govardhan1234',0),(27,'Nani Narne','naninarne12@gmail.com','mWQfOjujzuHYKUOAQ/KGcQ==:v+rTlEKSIInUiTGVhPzrxX0dDIgQePwnoDhfL+NiPgY=',0);
+UPDATE `users` SET `role` = 'admin' WHERE `email` = 'mukundamadhavareddy540@gmail.com';
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -201,6 +203,22 @@ LOCK TABLES `wishlist` WRITE;
 INSERT INTO `wishlist` VALUES (75,'govardhanreddyt78@gmail.com','Linen Overshirt',1499),(77,'govardhanreddyt78@gmail.com','Biker Short',599),(94,'mukundamadhavareddy540@gmail.com','Leather Cap',799),(95,'mukundamadhavareddy540@gmail.com','Biker Short',599),(96,'naninarne12@gmail.com','Classic Sneaker White',2999);
 /*!40000 ALTER TABLE `wishlist` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `shop_settings`
+--
+
+DROP TABLE IF EXISTS `shop_settings`;
+CREATE TABLE `shop_settings` (
+  `setting_key` varchar(50) NOT NULL,
+  `setting_value` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`setting_key`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+LOCK TABLES `shop_settings` WRITE;
+INSERT INTO `shop_settings` VALUES ('free_shipping_threshold','999'),('shipping_charge','99');
+UNLOCK TABLES;
+
 -- SET @@SESSION.SQL_LOG_BIN = @MYSQLDUMP_TEMP_LOG_BIN;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

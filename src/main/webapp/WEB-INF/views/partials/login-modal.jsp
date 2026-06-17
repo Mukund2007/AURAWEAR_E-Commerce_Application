@@ -22,7 +22,11 @@
         <h2 class="modal-title">Welcome Back</h2>
         <p class="modal-sub">Sign in to your account</p>
 
-        <div class="modal-error" id="modalError" style="display:none;"></div>
+        <div class="modal-error" id="modalError" <c:if test="${empty param.loginError}">style="display:none;"</c:if>>
+            <c:if test="${not empty param.loginError}">
+                Invalid email or password.
+            </c:if>
+        </div>
 
         <form action="${ctx}/login" method="post">
             <div class="modal-field">
@@ -70,6 +74,14 @@ document.addEventListener("keydown", function(e) {
     if (e.key === "Escape") {
         document.getElementById("loginOverlay").classList.remove("active");
         document.body.style.overflow = "";
+    }
+});
+
+// Auto-open modal on redirect from LoginFilter or LoginServlet errors
+document.addEventListener("DOMContentLoaded", function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has('login') || urlParams.has('loginError')) {
+        openLoginModal();
     }
 });
 </script>

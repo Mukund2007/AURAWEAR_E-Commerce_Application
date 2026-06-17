@@ -15,7 +15,7 @@ public class LoginServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 	        throws ServletException, IOException {
 	    
-	    response.sendRedirect(request.getContextPath() + "/home");
+	    response.sendRedirect(request.getContextPath() + "/home?login=true");
 	}
 
 	
@@ -44,12 +44,11 @@ public class LoginServlet extends HttpServlet {
 
 		    session.setAttribute("user", user);        // ✅ STORE OBJECT
 
-		    response.sendRedirect("home");
+		    response.sendRedirect(request.getContextPath() + "/home");
 		}
 		else{
 
-			request.setAttribute("loginError", "Invalid email or password");
-			response.sendRedirect(request.getContextPath() + "/home");
+			response.sendRedirect(request.getContextPath() + "/home?loginError=true");
 
 		}
 
