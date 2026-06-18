@@ -21,6 +21,8 @@ public class EmailUtil {
         props.put("mail.smtp.port",            "587");
         props.put("mail.smtp.auth",            "true");
         props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.connectiontimeout", "4000");
+        props.put("mail.smtp.timeout",           "4000");
 
         Session session = Session.getInstance(props, new Authenticator() {
             @Override
@@ -79,6 +81,8 @@ public class EmailUtil {
         props.put("mail.smtp.port",            "587");
         props.put("mail.smtp.auth",            "true");
         props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.connectiontimeout", "4000");
+        props.put("mail.smtp.timeout",           "4000");
 
         Session session = Session.getInstance(props, new Authenticator() {
             @Override
