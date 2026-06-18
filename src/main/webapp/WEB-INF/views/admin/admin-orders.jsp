@@ -149,6 +149,22 @@
             font-weight: 700;
             margin-left: 5px;
         }
+        /* Shipping address cell */
+        .shipping-cell {
+            font-size: 12px;
+            line-height: 1.6;
+            color: #cccccc;
+        }
+        .shipping-cell .ship-name {
+            font-weight: 700;
+            color: var(--text-color);
+            display: block;
+            margin-bottom: 2px;
+        }
+        .shipping-cell .ship-phone {
+            color: var(--accent-color);
+            font-weight: 600;
+        }
         /* Status selector form */
         .status-select {
             background-color: var(--input-bg);
@@ -216,6 +232,7 @@
                     <th>User Email</th>
                     <th>Date</th>
                     <th>Items Details</th>
+                    <th>Shipping Address</th>
                     <th>Total</th>
                     <th>Status Actions</th>
                 </tr>
@@ -224,7 +241,7 @@
                 <c:choose>
                     <c:when test="${empty orders}">
                         <tr>
-                            <td colspan="6" style="text-align: center; color: #888;">No orders placed yet.</td>
+                            <td colspan="7" style="text-align: center; color: #888;">No orders placed yet.</td>
                         </tr>
                     </c:when>
                     <c:otherwise>
@@ -246,6 +263,21 @@
                                             </li>
                                         </c:forEach>
                                     </ul>
+                                </td>
+                                <td>
+                                    <c:choose>
+                                        <c:when test="${not empty order.shippingName}">
+                                            <div class="shipping-cell">
+                                                <span class="ship-name">${order.shippingName}</span>
+                                                <span class="ship-phone"><i class="fa-solid fa-phone" style="font-size:10px;"></i> ${order.shippingPhone}</span><br>
+                                                ${order.shippingAddress}<br>
+                                                ${order.shippingCity}, ${order.shippingState} - ${order.shippingPincode}
+                                            </div>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <span style="color: #555;">—</span>
+                                        </c:otherwise>
+                                    </c:choose>
                                 </td>
                                 <td><strong>₹<fmt:formatNumber value="${order.total}" type="number" maxFractionDigits="0" /></strong></td>
                                 <td>

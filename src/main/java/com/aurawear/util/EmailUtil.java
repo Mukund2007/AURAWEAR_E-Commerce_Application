@@ -76,10 +76,16 @@ public class EmailUtil {
     }
 
     public static void sendOrderConfirmation(String toEmail, String orderId, java.util.List<com.aurawear.model.CartItem> items, double totalAmount) throws MessagingException, java.io.UnsupportedEncodingException {
-        sendOrderConfirmation(toEmail, orderId, items, totalAmount, false);
+        sendOrderConfirmation(toEmail, orderId, items, totalAmount, false, null, null, null, null, null, null);
     }
 
     public static void sendOrderConfirmation(String toEmail, String orderId, java.util.List<com.aurawear.model.CartItem> items, double totalAmount, boolean isCOD) throws MessagingException, java.io.UnsupportedEncodingException {
+        sendOrderConfirmation(toEmail, orderId, items, totalAmount, isCOD, null, null, null, null, null, null);
+    }
+
+    public static void sendOrderConfirmation(String toEmail, String orderId, java.util.List<com.aurawear.model.CartItem> items, double totalAmount, boolean isCOD,
+                                             String shippingName, String shippingPhone, String shippingAddress,
+                                             String shippingCity, String shippingState, String shippingPincode) throws MessagingException, java.io.UnsupportedEncodingException {
         Properties props = new Properties();
         props.put("mail.smtp.host",            "smtp.gmail.com");
         props.put("mail.smtp.port",            "587");
@@ -99,13 +105,15 @@ public class EmailUtil {
         message.setFrom(new InternetAddress(FROM_EMAIL, "AuraWear"));
         message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail));
         message.setSubject(isCOD ? "Your AuraWear Order Confirmation (COD) - #" + orderId : "Your AuraWear Order Confirmation - #" + orderId);
-        message.setContent(buildOrderEmailHTML(orderId, items, totalAmount, isCOD), "text/html; charset=utf-8");
+        message.setContent(buildOrderEmailHTML(orderId, items, totalAmount, isCOD, shippingName, shippingPhone, shippingAddress, shippingCity, shippingState, shippingPincode), "text/html; charset=utf-8");
 
         Transport.send(message);
         System.out.println("Order confirmation email sent to: " + toEmail + " for order: " + orderId + " (COD=" + isCOD + ")");
     }
 
-    private static String buildOrderEmailHTML(String orderId, java.util.List<com.aurawear.model.CartItem> items, double totalAmount, boolean isCOD) {
+    private static String buildOrderEmailHTML(String orderId, java.util.List<com.aurawear.model.CartItem> items, double totalAmount, boolean isCOD,
+                                              String shippingName, String shippingPhone, String shippingAddress,
+                                              String shippingCity, String shippingState, String shippingPincode) {
         StringBuilder sb = new StringBuilder();
         sb.append("<!DOCTYPE html>")
           .append("<html><head><meta charset='UTF-8'></head><body style='margin:0;padding:0;background:#f5f2ee;font-family:Arial,sans-serif;'>")
@@ -136,10 +144,25 @@ public class EmailUtil {
         sb.append("<div style='background:#faf9f6;padding:16px 20px;margin-bottom:24px;border-left:4px solid #ff0001;'>")
           .append("<span style='font-size:12px;font-weight:700;text-transform:uppercase;color:#888888;'>Order Number</span><br>")
           .append("<span style='font-size:16px;font-weight:800;color:#111111;'>#").append(orderId).append("</span>")
-          .append("</div>")
+          .append("</div>");
           
-          // ITEMS TABLE
-          .append("<table width='100%' cellpadding='0' cellspacing='0' style='border-collapse:collapse;'>")
+        // DELIVERY ADDRESS BLOCK
+        if (shippingName != null && !shippingName.trim().isEmpty()) {
+            sb.append("<div style='background:#f8f6f3;padding:16px 20px;margin-bottom:24px;border-left:4px solid #111111;'>")
+              .append("<span style='font-size:12px;font-weight:700;text-transform:uppercase;color:#888888;'>Delivery Address</span><br>")
+              .append("<span style='font-size:14px;font-weight:700;color:#111111;'>").append(shippingName).append("</span><br>")
+              .append("<span style='font-size:13px;color:#555555;'>").append(shippingPhone != null ? shippingPhone : "").append("</span><br>")
+              .append("<span style='font-size:13px;color:#555555;'>").append(shippingAddress != null ? shippingAddress : "").append("</span><br>")
+              .append("<span style='font-size:13px;color:#555555;'>")
+              .append(shippingCity != null ? shippingCity : "").append(", ")
+              .append(shippingState != null ? shippingState : "").append(" - ")
+              .append(shippingPincode != null ? shippingPincode : "")
+              .append("</span>")
+              .append("</div>");
+        }
+          
+        // ITEMS TABLE
+        sb.append("<table width='100%' cellpadding='0' cellspacing='0' style='border-collapse:collapse;'>")
           .append("<thead><tr style='border-bottom:2px solid #111111;text-align:left;'>")
           .append("<th style='padding:8px 0;font-size:11px;font-weight:700;text-transform:uppercase;color:#111111;'>Item</th>")
           .append("<th style='padding:8px 0;font-size:11px;font-weight:700;text-transform:uppercase;color:#111111;text-align:center;'>Qty</th>")

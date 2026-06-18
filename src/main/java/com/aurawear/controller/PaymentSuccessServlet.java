@@ -99,7 +99,8 @@ public class PaymentSuccessServlet extends HttpServlet {
                 new Thread(() -> {
                     try {
                         System.out.println("[PaymentSuccessServlet] Initiating asynchronous order confirmation email for order: " + finalOrderId);
-                        com.aurawear.util.EmailUtil.sendOrderConfirmation(finalEmail, String.valueOf(finalOrderId), cartItems, grandTotal);
+                        com.aurawear.util.EmailUtil.sendOrderConfirmation(finalEmail, String.valueOf(finalOrderId), cartItems, grandTotal, false,
+                                                                         shippingName, shippingPhone, shippingAddress, shippingCity, shippingState, shippingPincode);
                     } catch (Exception e) {
                         System.err.println("[PaymentSuccessServlet] Error sending asynchronous order confirmation email: " + e.getMessage());
                         e.printStackTrace();

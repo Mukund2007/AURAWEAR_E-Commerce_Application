@@ -34,6 +34,59 @@
                     </div>
                 </c:if>
 
+                <!-- ===== SHIPPING ADDRESS SECTION ===== -->
+                <div class="checkout-section">
+                    <h3 class="section-title">
+                        <i class="fa-solid fa-truck-fast"></i> Shipping Address
+                    </h3>
+                    
+                    <p style="font-size: 13px; opacity: 0.7; margin-bottom: 20px; line-height: 1.5; text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px;">
+                        Where should we deliver your premium selection?
+                    </p>
+
+                    <div class="form-row two-col">
+                        <div class="form-group">
+                            <label for="shipping_name">Full Name *</label>
+                            <input type="text" id="shipping_name" placeholder="Recipient name" required value="${user.name}">
+                        </div>
+                        <div class="form-group">
+                            <label for="shipping_phone">Phone Number *</label>
+                            <input type="tel" id="shipping_phone" placeholder="10-digit mobile number" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="shipping_address">Street Address *</label>
+                        <input type="text" id="shipping_address" placeholder="House / Flat No., Street, Locality" required>
+                    </div>
+
+                    <div class="form-row two-col">
+                        <div class="form-group">
+                            <label for="shipping_city">City *</label>
+                            <input type="text" id="shipping_city" placeholder="City" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="shipping_state">State *</label>
+                            <input type="text" id="shipping_state" placeholder="State" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row two-col">
+                        <div class="form-group">
+                            <label for="shipping_pincode">PIN Code *</label>
+                            <input type="text" id="shipping_pincode" placeholder="6-digit PIN code" maxlength="6" required>
+                        </div>
+                        <div class="form-group">
+                            <!-- empty spacer for alignment -->
+                        </div>
+                    </div>
+
+                    <div id="shippingError" style="display: none; background: rgba(255, 0, 1, 0.1); border: 1.5px solid var(--accent-color); color: var(--text-color); padding: 12px; font-weight: 800; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px; margin-top: 8px;">
+                        <i class="fa-solid fa-triangle-exclamation"></i> Please complete all shipping address fields.
+                    </div>
+                </div>
+
+                <!-- ===== PAYMENT METHOD SECTION ===== -->
                 <div class="checkout-section">
                     <h3 class="section-title">
                         <i class="fa-solid fa-credit-card"></i> Payment Method
@@ -91,7 +144,13 @@
 
                     <!-- COD PAYMENT FLOW -->
                     <div id="codPaymentFlow" style="display: none;">
-                        <form action="${ctx}/checkout/cod" method="POST">
+                        <form id="codForm" action="${ctx}/checkout/cod" method="POST">
+                            <input type="hidden" name="shipping_name" id="cod_shipping_name">
+                            <input type="hidden" name="shipping_phone" id="cod_shipping_phone">
+                            <input type="hidden" name="shipping_address" id="cod_shipping_address">
+                            <input type="hidden" name="shipping_city" id="cod_shipping_city">
+                            <input type="hidden" name="shipping_state" id="cod_shipping_state">
+                            <input type="hidden" name="shipping_pincode" id="cod_shipping_pincode">
                             <button type="submit" class="place-order-btn" style="width: 100%; border-radius: 0px !important;">
                                 <i class="fa-solid fa-truck"></i> Place Order (COD) — ₹<fmt:formatNumber value="${grandTotal}" maxFractionDigits="0"/>
                             </button>
@@ -166,7 +225,41 @@
         if (nav) nav.classList.toggle("scrolled", window.scrollY > 80);
     });
 
-    // Toggle payment method flow
+    // --- Shipping validation helper ---
+    function getShippingFields() {
+        return {
+            shipping_name:    document.getElementById("shipping_name").value.trim(),
+            shipping_phone:   document.getElementById("shipping_phone").value.trim(),
+            shipping_address: document.getElementById("shipping_address").value.trim(),
+            shipping_city:    document.getElementById("shipping_city").value.trim(),
+            shipping_state:   document.getElementById("shipping_state").value.trim(),
+            shipping_pincode: document.getElementById("shipping_pincode").value.trim()
+        };
+    }
+
+    function validateShipping() {
+        const fields = getShippingFields();
+        const errorDiv = document.getElementById("shippingError");
+        for (const key in fields) {
+            if (!fields[key]) {
+                errorDiv.style.display = "block";
+                // Scroll to the error
+                errorDiv.scrollIntoView({ behavior: "smooth", block: "center" });
+                return false;
+            }
+        }
+        errorDiv.style.display = "none";
+        return true;
+    }
+
+    // Hide shipping error when user starts typing
+    document.querySelectorAll('#shipping_name, #shipping_phone, #shipping_address, #shipping_city, #shipping_state, #shipping_pincode').forEach(function(input) {
+        input.addEventListener('input', function() {
+            document.getElementById("shippingError").style.display = "none";
+        });
+    });
+
+    // --- Toggle payment method flow ---
     const optOnline = document.getElementById("opt-online");
     const optCod = document.getElementById("opt-cod");
     const onlinePaymentFlow = document.getElementById("onlinePaymentFlow");
@@ -208,7 +301,25 @@
         };
     }
 
-    // Razorpay Integration
+    // --- COD: populate hidden fields and validate before submit ---
+    const codForm = document.getElementById("codForm");
+    if (codForm) {
+        codForm.addEventListener("submit", function(e) {
+            if (!validateShipping()) {
+                e.preventDefault();
+                return;
+            }
+            const fields = getShippingFields();
+            document.getElementById("cod_shipping_name").value    = fields.shipping_name;
+            document.getElementById("cod_shipping_phone").value   = fields.shipping_phone;
+            document.getElementById("cod_shipping_address").value = fields.shipping_address;
+            document.getElementById("cod_shipping_city").value    = fields.shipping_city;
+            document.getElementById("cod_shipping_state").value   = fields.shipping_state;
+            document.getElementById("cod_shipping_pincode").value = fields.shipping_pincode;
+        });
+    }
+
+    // --- Razorpay Integration ---
     <c:if test="${not empty razorpayOrderId}">
     const payNowBtn = document.getElementById("payNowBtn");
     
@@ -220,28 +331,30 @@
         "description": "Premium Streetwear Checkout",
         "order_id": "${razorpayOrderId}",
         "handler": function (response) {
-            // Create a form programmatically and submit payment credentials
             const form = document.createElement("form");
             form.method = "POST";
             form.action = "${ctx}/payment-success";
 
+            // Payment credentials
             const pId = document.createElement("input");
-            pId.type = "hidden";
-            pId.name = "razorpay_payment_id";
-            pId.value = response.razorpay_payment_id;
+            pId.type = "hidden"; pId.name = "razorpay_payment_id"; pId.value = response.razorpay_payment_id;
             form.appendChild(pId);
 
             const oId = document.createElement("input");
-            oId.type = "hidden";
-            oId.name = "razorpay_order_id";
-            oId.value = response.razorpay_order_id;
+            oId.type = "hidden"; oId.name = "razorpay_order_id"; oId.value = response.razorpay_order_id;
             form.appendChild(oId);
 
             const sig = document.createElement("input");
-            sig.type = "hidden";
-            sig.name = "razorpay_signature";
-            sig.value = response.razorpay_signature;
+            sig.type = "hidden"; sig.name = "razorpay_signature"; sig.value = response.razorpay_signature;
             form.appendChild(sig);
+
+            // Append shipping fields
+            const shipFields = getShippingFields();
+            for (const key in shipFields) {
+                const inp = document.createElement("input");
+                inp.type = "hidden"; inp.name = key; inp.value = shipFields[key];
+                form.appendChild(inp);
+            }
 
             document.body.appendChild(form);
             form.submit();
@@ -251,15 +364,16 @@
             "email": "${user.email}"
         },
         "theme": {
-            "color": "#ff0001" // matching AuraWear red theme variable
+            "color": "#ff0001"
         }
     };
 
     const rzp = new Razorpay(options);
     
     payNowBtn.onclick = function(e) {
-        rzp.open();
         e.preventDefault();
+        if (!validateShipping()) return;
+        rzp.open();
     };
     </c:if>
     </script>

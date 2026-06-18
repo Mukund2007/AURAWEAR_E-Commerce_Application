@@ -97,7 +97,8 @@ public class CheckoutCODServlet extends HttpServlet {
                 new Thread(() -> {
                     try {
                         System.out.println("[CheckoutCODServlet] Initiating asynchronous COD order confirmation email for order: " + finalOrderId);
-                        com.aurawear.util.EmailUtil.sendOrderConfirmation(finalEmail, String.valueOf(finalOrderId), finalCartItems, finalGrandTotal, true);
+                        com.aurawear.util.EmailUtil.sendOrderConfirmation(finalEmail, String.valueOf(finalOrderId), finalCartItems, finalGrandTotal, true,
+                                                                         shippingName, shippingPhone, shippingAddress, shippingCity, shippingState, shippingPincode);
                     } catch (Exception e) {
                         System.err.println("[CheckoutCODServlet] Error sending asynchronous COD order confirmation email: " + e.getMessage());
                         e.printStackTrace();
