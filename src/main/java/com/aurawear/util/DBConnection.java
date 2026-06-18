@@ -8,7 +8,10 @@ import java.sql.SQLException;
 public class DBConnection {
     private static HikariDataSource dataSource;
 
-    static {
+    private static synchronized void initializeDataSource() {
+        if (dataSource != null && !dataSource.isClosed()) {
+            return;
+        }
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             HikariConfig config = new HikariConfig();
@@ -47,6 +50,9 @@ public class DBConnection {
 
     public static Connection getConnection() {
         try {
+            if (dataSource == null || dataSource.isClosed()) {
+                initializeDataSource();
+            }
             if (dataSource != null) {
                 return dataSource.getConnection();
             }
