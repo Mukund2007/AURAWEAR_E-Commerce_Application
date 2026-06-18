@@ -47,19 +47,26 @@
 
                 <!-- RATING -->
                 <div class="rating-row">
-                    <span class="stars">
-                        <c:forEach begin="1" end="${product.fullStars}">
-                            <i class="fa-solid fa-star"></i>
-                        </c:forEach>
-                        <c:if test="${product.halfStar}">
-                            <i class="fa-solid fa-star-half-stroke"></i>
-                        </c:if>
-                        <c:forEach begin="1" end="${5 - product.fullStars - (product.halfStar ? 1 : 0)}">
-                            <i class="fa-regular fa-star"></i>
-                        </c:forEach>
-                    </span>
-                    <span class="rating-value">${product.rating}</span>
-                    <span class="reviews-count">(${product.reviews} reviews)</span>
+                    <c:choose>
+                        <c:when test="${reviewsCount > 0}">
+                            <span class="stars">
+                                <c:forEach begin="1" end="${averageFullStars}">
+                                    <i class="fa-solid fa-star"></i>
+                                </c:forEach>
+                                <c:if test="${averageHalfStar}">
+                                    <i class="fa-solid fa-star-half-stroke"></i>
+                                </c:if>
+                                <c:forEach begin="1" end="${5 - averageFullStars - (averageHalfStar ? 1 : 0)}">
+                                    <i class="fa-regular fa-star"></i>
+                                </c:forEach>
+                            </span>
+                            <span class="rating-value"><fmt:formatNumber value="${averageRating}" minFractionDigits="1" maxFractionDigits="1"/></span>
+                            <span class="reviews-count">(${reviewsCount} review<c:if test="${reviewsCount != 1}">s</c:if>)</span>
+                        </c:when>
+                        <c:otherwise>
+                            <span class="reviews-count">No reviews yet</span>
+                        </c:otherwise>
+                    </c:choose>
                 </div>
 
                 <!-- PRICE ROW -->
@@ -145,6 +152,111 @@
 
         </div>
         <!-- end .details-container -->
+
+        <!-- PRODUCT REVIEWS SECTION -->
+        <div class="reviews-section">
+            <h2 class="reviews-title">Customer Reviews</h2>
+            
+            <!-- review success/error messages -->
+            <c:if test="${not empty param.reviewError}">
+                <div class="error-banner" style="background: rgba(255, 0, 1, 0.1); border: 1.5px solid var(--accent-color); color: var(--text-color); padding: 16px; font-weight: 800; text-transform: uppercase; font-size: 12px; margin-bottom: 24px; letter-spacing: 0.5px;">
+                    <i class="fa-solid fa-triangle-exclamation"></i> ${param.reviewError}
+                </div>
+            </c:if>
+            <c:if test="${not empty param.reviewSuccess}">
+                <div class="success-banner" style="background: rgba(46, 204, 113, 0.1); border: 1.5px solid #2ecc71; color: var(--text-color); padding: 16px; font-weight: 800; text-transform: uppercase; font-size: 12px; margin-bottom: 24px; letter-spacing: 0.5px;">
+                    <i class="fa-solid fa-circle-check"></i> ${param.reviewSuccess}
+                </div>
+            </c:if>
+
+            <div class="reviews-container">
+                
+                <!-- LEFT: Reviews List -->
+                <div class="reviews-list">
+                    <c:choose>
+                        <c:when test="${empty reviews}">
+                            <div class="review-info-box" style="text-align: center; width: 100%;">
+                                No reviews yet — be the first to review!
+                            </div>
+                        </c:when>
+                        <c:otherwise>
+                            <c:forEach var="rev" items="${reviews}">
+                                <div class="review-card">
+                                    <div class="review-header">
+                                        <span class="review-user">${rev.userName}</span>
+                                        <span class="review-date">
+                                            <fmt:formatDate value="${rev.createdAt}" pattern="yyyy-MM-dd" />
+                                        </span>
+                                    </div>
+                                    <div class="review-stars">
+                                        <c:forEach begin="1" end="${rev.rating}">
+                                            <i class="fa-solid fa-star"></i>
+                                        </c:forEach>
+                                        <c:forEach begin="1" end="${5 - rev.rating}">
+                                            <i class="fa-regular fa-star"></i>
+                                        </c:forEach>
+                                    </div>
+                                    <p class="review-text">${rev.reviewText}</p>
+                                </div>
+                            </c:forEach>
+                        </c:otherwise>
+                    </c:choose>
+                </div>
+
+                <!-- RIGHT: Write Review Form (Verified Purchase Only) -->
+                <div>
+                    <c:choose>
+                        <c:when test="${hasPurchased}">
+                            <c:choose>
+                                <c:when test="${hasAlreadyReviewed}">
+                                    <div class="review-info-box">
+                                        You've already reviewed this product.
+                                    </div>
+                                </c:when>
+                                <c:otherwise>
+                                    <div class="review-form-container">
+                                        <h3 class="review-form-title">Write a Review</h3>
+                                        <form action="${ctx}/review" method="POST">
+                                            <input type="hidden" name="productId" value="${product.id}">
+                                            
+                                            <div class="review-form-group">
+                                                <label>Rating</label>
+                                                <div class="star-rating-input">
+                                                    <input type="radio" id="star5" name="rating" value="5" required />
+                                                    <label for="star5" title="5 stars"><i class="fa-solid fa-star"></i></label>
+                                                    <input type="radio" id="star4" name="rating" value="4" />
+                                                    <label for="star4" title="4 stars"><i class="fa-solid fa-star"></i></label>
+                                                    <input type="radio" id="star3" name="rating" value="3" />
+                                                    <label for="star3" title="3 stars"><i class="fa-solid fa-star"></i></label>
+                                                    <input type="radio" id="star2" name="rating" value="2" />
+                                                    <label for="star2" title="2 stars"><i class="fa-solid fa-star"></i></label>
+                                                    <input type="radio" id="star1" name="rating" value="1" />
+                                                    <label for="star1" title="1 star"><i class="fa-solid fa-star"></i></label>
+                                                </div>
+                                            </div>
+
+                                            <div class="review-form-group">
+                                                <label for="reviewText">Review Details</label>
+                                                <textarea id="reviewText" name="reviewText" class="review-textarea" placeholder="Share your experience with this premium curation..." required></textarea>
+                                            </div>
+
+                                            <button type="submit" class="review-submit-btn">Submit Review</button>
+                                        </form>
+                                    </div>
+                                </c:otherwise>
+                            </c:choose>
+                        </c:when>
+                        <c:otherwise>
+                            <!-- Not purchased, show nothing or brief banner about verified purchase -->
+                            <div class="review-info-box" style="opacity: 0.7;">
+                                <i class="fa-solid fa-circle-info"></i> Only verified purchasers can review this garment.
+                            </div>
+                        </c:otherwise>
+                    </c:choose>
+                </div>
+
+            </div>
+        </div>
 
         <!-- YOU MAY ALSO LIKE SECTION -->
         <c:if test="${not empty relatedProducts}">

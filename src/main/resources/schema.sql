@@ -249,6 +249,23 @@ LOCK TABLES `shop_settings` WRITE;
 INSERT INTO `shop_settings` VALUES ('free_shipping_threshold','999'),('shipping_charge','99');
 UNLOCK TABLES;
 
+
+--
+-- Table structure for table `reviews`
+--
+
+DROP TABLE IF EXISTS `reviews`;
+CREATE TABLE `reviews` (
+  `id` INT AUTO_INCREMENT PRIMARY KEY,
+  `product_id` INT NOT NULL,
+  `user_email` VARCHAR(255) NOT NULL,
+  `rating` INT NOT NULL CHECK (rating BETWEEN 1 AND 5),
+  `review_text` TEXT,
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  UNIQUE KEY `unique_review` (`product_id`, `user_email`),
+  FOREIGN KEY (`product_id`) REFERENCES `products` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
 -- SET @@SESSION.SQL_LOG_BIN = @MYSQLDUMP_TEMP_LOG_BIN;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
