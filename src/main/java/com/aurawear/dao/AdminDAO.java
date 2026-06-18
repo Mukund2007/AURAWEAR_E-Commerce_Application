@@ -12,7 +12,7 @@ public class AdminDAO {
 
     public double getTotalRevenue() {
         double revenue = 0.0;
-        String sql = "SELECT SUM(total) FROM orders WHERE status = 'PAID'";
+        String sql = "SELECT SUM(total) FROM orders WHERE status IN ('PAID', 'DELIVERED')";
         try (Connection con = DBConnection.getConnection();
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {

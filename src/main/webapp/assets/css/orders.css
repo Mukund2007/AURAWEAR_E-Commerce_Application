@@ -242,7 +242,9 @@
     transition: background 0.3s ease;
 }
 
-.order-card.status-placed .order-status-strip { background: var(--accent-color); }
+.order-card.status-placed .order-status-strip,
+.order-card.status-cod_pending .order-status-strip,
+.order-card.status-cod_confirmed .order-status-strip { background: var(--accent-color); }
 .order-card.status-shipped .order-status-strip { background: #3498db; }
 .order-card.status-delivered .order-status-strip { background: #2ecc71; }
 .order-card.status-cancelled .order-status-strip { background: #e74c3c; }

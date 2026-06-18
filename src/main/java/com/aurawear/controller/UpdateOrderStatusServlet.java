@@ -49,14 +49,11 @@ public class UpdateOrderStatusServlet extends HttpServlet {
         }
 
         String targetStatus = "";
-        String currentStatusCheck = "";
 
         if ("cancel".equalsIgnoreCase(action)) {
             targetStatus = "Cancelled";
-            currentStatusCheck = "Placed";
         } else if ("return".equalsIgnoreCase(action)) {
             targetStatus = "Returned";
-            currentStatusCheck = "Delivered";
         } else {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             response.getWriter().write("Invalid action");
@@ -76,7 +73,16 @@ public class UpdateOrderStatusServlet extends HttpServlet {
                         return;
                     }
                     String currentStatus = rs.getString("status");
-                    if (!currentStatus.equalsIgnoreCase(currentStatusCheck)) {
+                    boolean allowed = false;
+                    if ("cancel".equalsIgnoreCase(action)) {
+                        allowed = currentStatus.equalsIgnoreCase("Placed") 
+                               || currentStatus.equalsIgnoreCase("COD_PENDING") 
+                               || currentStatus.equalsIgnoreCase("COD_CONFIRMED");
+                    } else if ("return".equalsIgnoreCase(action)) {
+                        allowed = currentStatus.equalsIgnoreCase("Delivered");
+                    }
+                    
+                    if (!allowed) {
                         response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
                         response.getWriter().write("Order is in status '" + currentStatus + "' and cannot be " + action + "ed.");
                         return;

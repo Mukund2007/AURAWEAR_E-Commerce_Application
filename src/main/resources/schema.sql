@@ -64,10 +64,9 @@ CREATE TABLE `orders` (
   `total` double DEFAULT NULL,
   `status` varchar(50) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `product_name` varchar(100) DEFAULT NULL,
-  `product_id` int DEFAULT NULL,
+  `payment_id` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -76,8 +75,39 @@ CREATE TABLE `orders` (
 
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-INSERT INTO `orders` VALUES (13,'mukundamadhavareddy540@gmail.com',799,'Cancelled','2026-05-03 10:45:32','Leather Cap',3),(14,'mukundamadhavareddy540@gmail.com',799,'Placed','2026-05-03 10:56:34','Leather Cap',3),(15,'mukundamadhavareddy540@gmail.com',3499,'Placed','2026-05-03 12:00:33','Leather Wrist Watch',25),(16,'mukundamadhavareddy540@gmail.com',3499,'Placed','2026-05-04 05:52:41','Chunky Boots',5),(17,'mukundamadhavareddy540@gmail.com',2499,'Placed','2026-05-04 05:52:41','Leather Tote Bag',13),(18,'mukundamadhavareddy540@gmail.com',699,'Placed','2026-05-04 05:52:41','Snapback Cap',17),(19,'mukundamadhavareddy540@gmail.com',3499,'Placed','2026-05-04 05:52:41','Leather Wrist Watch',25),(20,'mukundamadhavareddy540@gmail.com',1198,'Placed','2026-05-04 05:52:41','Biker Short',2),(21,'mukundamadhavareddy540@gmail.com',799,'Placed','2026-05-06 08:41:36','Leather Cap',3),(22,'mukundamadhavareddy540@gmail.com',1499,'Placed','2026-05-26 16:38:18','Mini Crossbody Bag',7),(23,'mukundamadhavareddy540@gmail.com',2299,'Placed','2026-05-26 16:38:18','Classic Windbreaker',53),(25,'mukundamadhavareddy540@gmail.com',599,'Placed','2026-05-26 17:21:02','Biker Short',2),(26,'mukundamadhavareddy540@gmail.com',698,'Cancelled','2026-05-27 09:21:45','Biker Short',2);
+INSERT INTO `orders` VALUES (13,'mukundamadhavareddy540@gmail.com',799,'Cancelled','2026-05-03 16:15:32',NULL),(14,'mukundamadhavareddy540@gmail.com',799,'Placed','2026-05-03 16:26:34',NULL),(15,'mukundamadhavareddy540@gmail.com',3499,'DELIVERED','2026-05-03 17:30:33',NULL),(16,'mukundamadhavareddy540@gmail.com',3499,'Placed','2026-05-04 11:22:41',NULL),(17,'mukundamadhavareddy540@gmail.com',2499,'Placed','2026-05-04 11:22:41',NULL),(18,'mukundamadhavareddy540@gmail.com',699,'Placed','2026-05-04 11:22:41',NULL),(19,'mukundamadhavareddy540@gmail.com',3499,'Placed','2026-05-04 11:22:41',NULL),(20,'mukundamadhavareddy540@gmail.com',1198,'Placed','2026-05-04 11:22:41',NULL),(21,'mukundamadhavareddy540@gmail.com',799,'Placed','2026-05-06 14:11:36',NULL),(22,'mukundamadhavareddy540@gmail.com',1499,'Placed','2026-05-26 22:08:18',NULL),(23,'mukundamadhavareddy540@gmail.com',2299,'Placed','2026-05-26 22:08:18',NULL),(25,'mukundamadhavareddy540@gmail.com',599,'Placed','2026-05-26 22:51:02',NULL),(26,'mukundamadhavareddy540@gmail.com',698,'Cancelled','2026-05-27 14:51:45',NULL),(27,'mukundamadhavareddy540@gmail.com',1198,'Placed','2026-05-28 14:30:28',NULL),(28,'mukundamadhavareddy540@gmail.com',599,'Cancelled','2026-05-28 14:30:28',NULL),(29,'mukundamadhavareddy540@gmail.com',6998,'SHIPPED','2026-05-28 14:30:28',NULL),(30,'naninarne12@gmail.com',2999,'PAID','2026-06-15 21:43:07','pay_test_123'),(31,'govardhanreddyt78@gmail.com',698,'SHIPPED','2026-06-15 22:21:45','pay_T1ykxTlzzRhGsh'),(32,'mukundamadhavareddy540@gmail.com',3499,'PAID','2026-06-17 18:38:33','pay_T2i2eKVWpITpyB'),(33,'mukundamadhavareddy540@gmail.com',698,'PAID','2026-06-17 19:17:52','pay_T2ii4mhb5l4inW'),(34,'mukundamadhavareddy540@gmail.com',9,'PAID','2026-06-18 01:05:09','pay_T2od7Sh4qXGu0R');
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `order_items`
+--
+
+DROP TABLE IF EXISTS `order_items`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `order_items` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `order_id` int NOT NULL,
+  `product_id` int NOT NULL,
+  `product_name` varchar(255) DEFAULT NULL,
+  `quantity` int DEFAULT '1',
+  `price` decimal(10,2) DEFAULT NULL,
+  `size` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `order_id` (`order_id`),
+  CONSTRAINT `order_items_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `order_items`
+--
+
+LOCK TABLES `order_items` WRITE;
+/*!40000 ALTER TABLE `order_items` DISABLE KEYS */;
+INSERT INTO `order_items` VALUES (1,13,3,'Leather Cap',1,799.00,'Free'),(2,14,3,'Leather Cap',1,799.00,'Free'),(3,15,25,'Leather Wrist Watch',1,3499.00,'Free'),(4,16,5,'Chunky Boots',1,3499.00,'UK6'),(5,17,13,'Leather Tote Bag',1,2499.00,'Free'),(6,18,17,'Snapback Cap',1,699.00,'Free'),(7,19,25,'Leather Wrist Watch',1,3499.00,'Free'),(8,20,2,'Biker Short',1,1198.00,'S'),(9,21,3,'Leather Cap',1,799.00,'Free'),(10,22,7,'Mini Crossbody Bag',1,1499.00,'Free'),(11,23,53,'Classic Windbreaker',1,2299.00,'M'),(12,25,2,'Biker Short',1,599.00,'S'),(13,26,2,'Biker Short',1,698.00,'S'),(14,27,2,'Biker Short',1,1198.00,'S'),(15,28,2,'Biker Short',1,599.00,'S'),(16,29,5,'Chunky Boots',1,6998.00,'UK6'),(32,30,1,'Classic Sneaker White',1,2999.00,'S'),(33,31,2,'Biker Short',1,599.00,'L'),(34,32,5,'Chunky Boots',1,3499.00,'UK9'),(35,33,2,'Biker Short',1,599.00,'M'),(36,34,2,'Biker Short',1,9.00,'L');
+/*!40000 ALTER TABLE `order_items` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --

@@ -76,6 +76,10 @@ public class EmailUtil {
     }
 
     public static void sendOrderConfirmation(String toEmail, String orderId, java.util.List<com.aurawear.model.CartItem> items, double totalAmount) throws MessagingException, java.io.UnsupportedEncodingException {
+        sendOrderConfirmation(toEmail, orderId, items, totalAmount, false);
+    }
+
+    public static void sendOrderConfirmation(String toEmail, String orderId, java.util.List<com.aurawear.model.CartItem> items, double totalAmount, boolean isCOD) throws MessagingException, java.io.UnsupportedEncodingException {
         Properties props = new Properties();
         props.put("mail.smtp.host",            "smtp.gmail.com");
         props.put("mail.smtp.port",            "587");
@@ -94,14 +98,14 @@ public class EmailUtil {
         Message message = new MimeMessage(session);
         message.setFrom(new InternetAddress(FROM_EMAIL, "AuraWear"));
         message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail));
-        message.setSubject("Your AuraWear Order Confirmation - #" + orderId);
-        message.setContent(buildOrderEmailHTML(orderId, items, totalAmount), "text/html; charset=utf-8");
+        message.setSubject(isCOD ? "Your AuraWear Order Confirmation (COD) - #" + orderId : "Your AuraWear Order Confirmation - #" + orderId);
+        message.setContent(buildOrderEmailHTML(orderId, items, totalAmount, isCOD), "text/html; charset=utf-8");
 
         Transport.send(message);
-        System.out.println("Order confirmation email sent to: " + toEmail + " for order: " + orderId);
+        System.out.println("Order confirmation email sent to: " + toEmail + " for order: " + orderId + " (COD=" + isCOD + ")");
     }
 
-    private static String buildOrderEmailHTML(String orderId, java.util.List<com.aurawear.model.CartItem> items, double totalAmount) {
+    private static String buildOrderEmailHTML(String orderId, java.util.List<com.aurawear.model.CartItem> items, double totalAmount, boolean isCOD) {
         StringBuilder sb = new StringBuilder();
         sb.append("<!DOCTYPE html>")
           .append("<html><head><meta charset='UTF-8'></head><body style='margin:0;padding:0;background:#f5f2ee;font-family:Arial,sans-serif;'>")
@@ -115,13 +119,21 @@ public class EmailUtil {
           .append("</td></tr>")
           
           // BODY
-          .append("<tr><td style='padding:40px;color:#111111;'>")
-          .append("<h2 style='font-size:20px;font-weight:800;text-transform:uppercase;margin:0 0 8px;letter-spacing:0.5px;'>Order Confirmed</h2>")
-          .append("<p style='font-size:14px;color:#666666;margin:0 0 24px;line-height:1.5;'>")
-          .append("Thank you for shopping with AuraWear. Your curation choice has been secured. Your order details are outlined below:")
-          .append("</p>")
+          .append("<tr><td style='padding:40px;color:#111111;'>");
           
-          .append("<div style='background:#faf9f6;padding:16px 20px;margin-bottom:24px;border-left:4px solid #ff0001;'>")
+        if (isCOD) {
+            sb.append("<h2 style='font-size:20px;font-weight:800;text-transform:uppercase;margin:0 0 8px;letter-spacing:0.5px;'>Order Placed (COD)</h2>")
+              .append("<p style='font-size:14px;color:#666666;margin:0 0 24px;line-height:1.5;'>")
+              .append("Thank you for shopping with AuraWear. Your curation choice has been secured. Your order will be delivered to your address, and payment of the total amount should be made in cash upon delivery. Your order details are outlined below:")
+              .append("</p>");
+        } else {
+            sb.append("<h2 style='font-size:20px;font-weight:800;text-transform:uppercase;margin:0 0 8px;letter-spacing:0.5px;'>Order Confirmed</h2>")
+              .append("<p style='font-size:14px;color:#666666;margin:0 0 24px;line-height:1.5;'>")
+              .append("Thank you for shopping with AuraWear. Your curation choice has been secured. Your order details are outlined below:")
+              .append("</p>");
+        }
+          
+        sb.append("<div style='background:#faf9f6;padding:16px 20px;margin-bottom:24px;border-left:4px solid #ff0001;'>")
           .append("<span style='font-size:12px;font-weight:700;text-transform:uppercase;color:#888888;'>Order Number</span><br>")
           .append("<span style='font-size:16px;font-weight:800;color:#111111;'>#").append(orderId).append("</span>")
           .append("</div>")
@@ -149,9 +161,15 @@ public class EmailUtil {
           
           // TOTAL
           .append("<table width='100%' cellpadding='0' cellspacing='0' style='margin-top:20px;'>")
-          .append("<tr>")
-          .append("<td style='font-size:14px;font-weight:700;color:#666666;'>Total Paid</td>")
-          .append("<td style='font-size:20px;font-weight:800;color:#ff0001;text-align:right;'>₹").append(String.format("%.0f", totalAmount)).append("</td>")
+          .append("<tr>");
+        
+        if (isCOD) {
+            sb.append("<td style='font-size:14px;font-weight:700;color:#666666;'>Total to Pay (COD)</td>");
+        } else {
+            sb.append("<td style='font-size:14px;font-weight:700;color:#666666;'>Total Paid</td>");
+        }
+        
+        sb.append("<td style='font-size:20px;font-weight:800;color:#ff0001;text-align:right;'>₹").append(String.format("%.0f", totalAmount)).append("</td>")
           .append("</tr>")
           .append("</table>")
           

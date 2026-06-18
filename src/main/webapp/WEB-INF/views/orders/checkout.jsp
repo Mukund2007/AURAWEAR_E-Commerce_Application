@@ -35,12 +35,24 @@
 
                 <div class="checkout-section">
                     <h3 class="section-title">
-                        <i class="fa-solid fa-shield-halved"></i> Secure Payment Gateway
+                        <i class="fa-solid fa-credit-card"></i> Payment Method
                     </h3>
                     
                     <p style="font-size: 13px; opacity: 0.7; margin-bottom: 20px; line-height: 1.5; text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px;">
-                        AuraWear integrates with Razorpay to provide secure, encrypted transactions. You can pay using Card, Netbanking, UPI, or popular wallets.
+                        Select how you would like to complete your premium acquisition.
                     </p>
+
+                    <!-- PAYMENT METHOD SELECTOR -->
+                    <div class="payment-options">
+                        <label class="payment-option selected" id="opt-online" style="flex: 1;">
+                            <input type="radio" name="payment_method" value="online" checked style="display:none;">
+                            <i class="fa-solid fa-credit-card"></i> Online Payment
+                        </label>
+                        <label class="payment-option" id="opt-cod" style="flex: 1;">
+                            <input type="radio" name="payment_method" value="cod" style="display:none;">
+                            <i class="fa-solid fa-hand-holding-dollar"></i> Cash on Delivery
+                        </label>
+                    </div>
 
                     <!-- PREFILLED BILLING SUMMARY -->
                     <div style="background: var(--card-bg); border: 1.5px solid var(--border-color-solid); padding: 20px; margin-bottom: 30px; display: flex; flex-direction: column; gap: 12px;">
@@ -55,23 +67,40 @@
                         </div>
                     </div>
 
-                    <!-- PAYMENT BUTTON -->
-                    <c:choose>
-                        <c:when test="${not empty razorpayOrderId}">
-                            <button type="button" id="payNowBtn" class="place-order-btn" style="width: 100%; border-radius: 0px !important;">
-                                <i class="fa-solid fa-lock"></i> Pay Now — ₹<fmt:formatNumber value="${grandTotal}" maxFractionDigits="0"/>
-                            </button>
-                        </c:when>
-                        <c:otherwise>
-                            <button type="button" class="place-order-btn" style="width: 100%; border-radius: 0px !important; opacity: 0.5; cursor: not-allowed;" disabled>
-                                Checkout Unavailable
-                            </button>
-                        </c:otherwise>
-                    </c:choose>
+                    <!-- ONLINE PAYMENT FLOW -->
+                    <div id="onlinePaymentFlow">
+                        <!-- PAYMENT BUTTON -->
+                        <c:choose>
+                            <c:when test="${not empty razorpayOrderId}">
+                                <button type="button" id="payNowBtn" class="place-order-btn" style="width: 100%; border-radius: 0px !important;">
+                                    <i class="fa-solid fa-lock"></i> Pay Now — ₹<fmt:formatNumber value="${grandTotal}" maxFractionDigits="0"/>
+                                </button>
+                            </c:when>
+                            <c:otherwise>
+                                <button type="button" class="place-order-btn" style="width: 100%; border-radius: 0px !important; opacity: 0.5; cursor: not-allowed;" disabled>
+                                    Online Checkout Unavailable
+                                </button>
+                            </c:otherwise>
+                        </c:choose>
+                        
+                        <p class="secure-label" style="margin-top: 16px; text-align: center; text-transform: uppercase; font-size: 11px; font-weight: 800; letter-spacing: 1px;">
+                            <i class="fa fa-lock"></i> Secure 256-bit encrypted SSL checkout
+                        </p>
+                    </div>
 
-                    <p class="secure-label" style="margin-top: 16px; text-align: center; text-transform: uppercase; font-size: 11px; font-weight: 800; letter-spacing: 1px;">
-                        <i class="fa fa-lock"></i> Secure 256-bit encrypted SSL checkout
-                    </p>
+                    <!-- COD PAYMENT FLOW -->
+                    <div id="codPaymentFlow" style="display: none;">
+                        <form action="${ctx}/checkout/cod" method="POST">
+                            <button type="submit" class="place-order-btn" style="width: 100%; border-radius: 0px !important;">
+                                <i class="fa-solid fa-truck"></i> Place Order (COD) — ₹<fmt:formatNumber value="${grandTotal}" maxFractionDigits="0"/>
+                            </button>
+                        </form>
+                        
+                        <p class="secure-label" style="margin-top: 16px; text-align: center; text-transform: uppercase; font-size: 11px; font-weight: 800; letter-spacing: 1px;">
+                            <i class="fa-solid fa-truck-ramp-box"></i> Pay in cash upon product delivery
+                        </p>
+                    </div>
+
                 </div>
             </div>
 
@@ -135,6 +164,48 @@
         const nav = document.querySelector(".navbar");
         if (nav) nav.classList.toggle("scrolled", window.scrollY > 80);
     });
+
+    // Toggle payment method flow
+    const optOnline = document.getElementById("opt-online");
+    const optCod = document.getElementById("opt-cod");
+    const onlinePaymentFlow = document.getElementById("onlinePaymentFlow");
+    const codPaymentFlow = document.getElementById("codPaymentFlow");
+
+    if (optOnline && optCod) {
+        const radios = document.getElementsByName("payment_method");
+        
+        function updatePaymentFlow() {
+            let selectedMethod = "online";
+            for (const radio of radios) {
+                if (radio.checked) {
+                    selectedMethod = radio.value;
+                    break;
+                }
+            }
+            
+            if (selectedMethod === "online") {
+                optOnline.classList.add("selected");
+                optCod.classList.remove("selected");
+                onlinePaymentFlow.style.display = "block";
+                codPaymentFlow.style.display = "none";
+            } else {
+                optOnline.classList.remove("selected");
+                optCod.classList.add("selected");
+                onlinePaymentFlow.style.display = "none";
+                codPaymentFlow.style.display = "block";
+            }
+        }
+
+        optOnline.onclick = function() {
+            optOnline.querySelector('input[type="radio"]').checked = true;
+            updatePaymentFlow();
+        };
+
+        optCod.onclick = function() {
+            optCod.querySelector('input[type="radio"]').checked = true;
+            updatePaymentFlow();
+        };
+    }
 
     // Razorpay Integration
     <c:if test="${not empty razorpayOrderId}">

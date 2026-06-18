@@ -52,10 +52,12 @@ public class CheckoutServlet extends HttpServlet {
         int amountInPaise = grandTotal * 100;
 
         String razorpayOrderId = null;
+        String razorpayKeyId = null;
 
         try {
+            razorpayKeyId = RazorpayConfig.getKeyId();
             // Initialize Razorpay Client using configuration constants
-            RazorpayClient razorpay = new RazorpayClient(RazorpayConfig.getKeyId(), RazorpayConfig.getKeySecret());
+            RazorpayClient razorpay = new RazorpayClient(razorpayKeyId, RazorpayConfig.getKeySecret());
 
             // Create Razorpay Order request
             JSONObject orderRequest = new JSONObject();
@@ -78,7 +80,7 @@ public class CheckoutServlet extends HttpServlet {
         request.setAttribute("grandTotal", grandTotal);
         request.setAttribute("amountInPaise", amountInPaise);
         request.setAttribute("razorpayOrderId", razorpayOrderId);
-        request.setAttribute("razorpayKeyId", RazorpayConfig.getKeyId());
+        request.setAttribute("razorpayKeyId", razorpayKeyId);
         request.setAttribute("user", user);
 
         request.getRequestDispatcher("/WEB-INF/views/orders/checkout.jsp")

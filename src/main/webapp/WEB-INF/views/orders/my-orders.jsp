@@ -66,7 +66,7 @@
                     <c:forEach var="item" items="${orders}">
                         <c:set var="s" value="${item[2]}" />
                         <c:choose>
-                            <c:when test="${s == 'Placed'}"><c:set var="placedCount" value="${placedCount + 1}" /></c:when>
+                            <c:when test="${s == 'Placed' || s == 'COD_PENDING' || s == 'COD_CONFIRMED'}"><c:set var="placedCount" value="${placedCount + 1}" /></c:when>
                             <c:when test="${s == 'Shipped'}"><c:set var="shippedCount" value="${shippedCount + 1}" /></c:when>
                             <c:when test="${s == 'Delivered'}"><c:set var="deliveredCount" value="${deliveredCount + 1}" /></c:when>
                             <c:when test="${s == 'Cancelled'}"><c:set var="cancelledCount" value="${cancelledCount + 1}" /></c:when>
@@ -154,6 +154,16 @@
                                                 <span class="pulse-indicator"></span> Placed
                                             </span>
                                         </c:when>
+                                        <c:when test="${status == 'COD_PENDING'}">
+                                            <span class="order-badge badge-placed">
+                                                <span class="pulse-indicator"></span> COD Pending
+                                            </span>
+                                        </c:when>
+                                        <c:when test="${status == 'COD_CONFIRMED'}">
+                                            <span class="order-badge badge-placed">
+                                                <span class="pulse-indicator"></span> COD Confirmed
+                                            </span>
+                                        </c:when>
                                         <c:when test="${status == 'Shipped'}">
                                             <span class="order-badge badge-shipped">
                                                 <span class="pulse-indicator"></span> Shipped
@@ -186,7 +196,7 @@
 
                                     <!-- CANCEL / RETURN ACTIONS -->
                                     <c:choose>
-                                        <c:when test="${status == 'Placed'}">
+                                        <c:when test="${status == 'Placed' || status == 'COD_PENDING' || status == 'COD_CONFIRMED'}">
                                             <button class="order-action-btn cancel-btn" onclick="event.stopPropagation(); performOrderAction('${order[0]}', 'cancel')">
                                                 <i class="fa-solid fa-ban"></i> Cancel Order
                                             </button>
@@ -309,7 +319,7 @@
             
             const progressFill = document.getElementById('trackerProgressFill');
             
-            if (status === 'Placed') {
+            if (status === 'Placed' || status === 'COD_PENDING' || status === 'COD_CONFIRMED') {
                 document.getElementById('step-placed').className = 'tracker-step active';
                 document.getElementById('step-processing').className = 'tracker-step active';
                 progressFill.style.height = '33%';

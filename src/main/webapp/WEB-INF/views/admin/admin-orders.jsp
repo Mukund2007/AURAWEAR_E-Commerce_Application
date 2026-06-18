@@ -216,7 +216,7 @@
                     <th>User Email</th>
                     <th>Date</th>
                     <th>Items Details</th>
-                    <th>Total Paid</th>
+                    <th>Total</th>
                     <th>Status Actions</th>
                 </tr>
             </thead>
@@ -252,6 +252,8 @@
                                     <form action="${ctx}/admin/orders" method="post" style="display:inline;">
                                         <input type="hidden" name="orderId" value="${order.id}">
                                         <select name="status" class="status-select" onchange="this.form.submit()">
+                                            <option value="COD_PENDING" ${order.status == 'COD_PENDING' ? 'selected' : ''}>COD_PENDING</option>
+                                            <option value="COD_CONFIRMED" ${order.status == 'COD_CONFIRMED' ? 'selected' : ''}>COD_CONFIRMED</option>
                                             <option value="PAID" ${order.status == 'PAID' ? 'selected' : ''}>PAID</option>
                                             <option value="SHIPPED" ${order.status == 'SHIPPED' ? 'selected' : ''}>SHIPPED</option>
                                             <option value="DELIVERED" ${order.status == 'DELIVERED' ? 'selected' : ''}>DELIVERED</option>

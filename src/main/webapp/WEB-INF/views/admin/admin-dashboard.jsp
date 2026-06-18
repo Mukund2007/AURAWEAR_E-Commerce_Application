@@ -200,10 +200,15 @@
             color: #4cd137;
             border: 1px solid rgba(76, 209, 55, 0.3);
         }
-        .status-pending, .status-placed {
+        .status-cod_pending, .status-pending, .status-placed {
             background-color: rgba(255, 165, 0, 0.08);
             color: #fbc531;
             border: 1px solid rgba(255, 165, 0, 0.2);
+        }
+        .status-cod_confirmed {
+            background-color: rgba(0, 150, 255, 0.08);
+            color: #00a8ff;
+            border: 1px solid rgba(0, 150, 255, 0.2);
         }
         .status-canceled {
             background-color: rgba(255, 0, 0, 0.08);
