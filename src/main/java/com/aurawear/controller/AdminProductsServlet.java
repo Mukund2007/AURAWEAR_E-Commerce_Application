@@ -81,8 +81,8 @@ public class AdminProductsServlet extends HttpServlet {
                 p.setBrand(request.getParameter("brand"));
                 p.setImage(request.getParameter("image"));
                 
-                // Defaults for new products
-                p.setRating(4.5);
+                // New products start with no ratings yet
+                p.setRating(0.0);
                 p.setReviews(0);
 
                 boolean success = adminDAO.addProduct(p);

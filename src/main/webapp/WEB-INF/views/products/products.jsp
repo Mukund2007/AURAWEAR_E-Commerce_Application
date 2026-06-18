@@ -198,19 +198,26 @@
                                         <h3>${p.name}</h3>
 
                                         <div class="rating">
-                                            <span class="rating-value">${p.rating}</span>
-                                            <span class="stars">
-                                                <c:forEach begin="1" end="${p.fullStars}">
-                                                    <i class="fa-solid fa-star"></i>
-                                                </c:forEach>
-                                                <c:if test="${p.halfStar}">
-                                                    <i class="fa-solid fa-star-half-stroke"></i>
-                                                </c:if>
-                                                <c:forEach begin="1" end="${5 - p.fullStars - (p.halfStar ? 1 : 0)}">
-                                                    <i class="fa-regular fa-star"></i>
-                                                </c:forEach>
-                                            </span>
-                                            <span class="reviews">(${p.reviews})</span>
+                                            <c:choose>
+                                                <c:when test="${p.reviews == 0}">
+                                                    <span class="no-reviews">No reviews yet</span>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <span class="rating-value">${p.rating}</span>
+                                                    <span class="stars">
+                                                        <c:forEach begin="1" end="${p.fullStars}">
+                                                            <i class="fa-solid fa-star"></i>
+                                                        </c:forEach>
+                                                        <c:if test="${p.halfStar}">
+                                                            <i class="fa-solid fa-star-half-stroke"></i>
+                                                        </c:if>
+                                                        <c:forEach begin="1" end="${5 - p.fullStars - (p.halfStar ? 1 : 0)}">
+                                                            <i class="fa-regular fa-star"></i>
+                                                        </c:forEach>
+                                                    </span>
+                                                    <span class="reviews">(${p.reviews})</span>
+                                                </c:otherwise>
+                                            </c:choose>
                                         </div>
 
                                         <div class="meta">${p.category} • ${p.size} • ${p.color}</div>
