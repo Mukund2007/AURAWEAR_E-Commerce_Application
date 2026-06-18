@@ -662,6 +662,38 @@ a { text-decoration: none; color: inherit; }
     color: #fff !important;
 }
 
+.badge-limited {
+    background: linear-gradient(135deg, #ff9800, #f57c00) !important;
+    color: #fff !important;
+    animation: pulse-limited 1.8s ease-in-out infinite;
+}
+
+@keyframes pulse-limited {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.85; transform: scale(1.04); }
+}
+
+.limited-stock-warning {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 152, 0, 0.08);
+    border: 1.5px solid #ff9800;
+    color: #ff9800;
+    padding: 10px 16px;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 1px;
+    border-radius: 4px;
+    margin-top: 10px;
+    animation: pulse-limited 1.8s ease-in-out infinite;
+}
+
+.limited-stock-warning i {
+    font-size: 14px;
+}
+
 .quick-add:disabled, .quick-add.disabled {
     opacity: 0.45 !important;
     cursor: not-allowed !important;

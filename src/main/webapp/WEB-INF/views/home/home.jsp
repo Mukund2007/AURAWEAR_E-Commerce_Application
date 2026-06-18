@@ -153,6 +153,9 @@
                             <c:when test="${p.stockQuantity == 0}">
                                 <span class="ts-new badge-oos">OUT OF STOCK</span>
                             </c:when>
+                            <c:when test="${p.stockQuantity <= 5}">
+                                <span class="ts-new badge-limited">🔥 ONLY ${p.stockQuantity} LEFT!</span>
+                            </c:when>
                             <c:otherwise>
                                 <span class="ts-new">NEW</span>
                             </c:otherwise>

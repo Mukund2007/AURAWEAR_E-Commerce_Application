@@ -110,6 +110,11 @@
                              <div class="oos-banner">⚠ Out of Stock</div>
                          </c:when>
                          <c:otherwise>
+                             <c:if test="${product.stockQuantity <= 5}">
+                                 <div class="limited-stock-warning">
+                                     <i class="fa-solid fa-fire"></i> Hurry! Only ${product.stockQuantity} left in stock
+                                 </div>
+                             </c:if>
                              <form id="addToCartForm" action="${ctx}/cart" method="POST">
                                  <input type="hidden" name="productId" value="${product.id}">
                                  <input type="hidden" name="price" value="${product.price}">

@@ -208,6 +208,17 @@ public class CartDAO {
                 ps.executeBatch();
             }
 
+            // 3. Decrement stock for each ordered product
+            String stockSql = "UPDATE products SET stock_quantity = GREATEST(stock_quantity - ?, 0) WHERE id = ?";
+            try (PreparedStatement ps = con.prepareStatement(stockSql)) {
+                for (CartItem item : items) {
+                    ps.setInt(1, item.getQuantity());
+                    ps.setInt(2, item.getProductId());
+                    ps.addBatch();
+                }
+                ps.executeBatch();
+            }
+
             con.commit();
         } catch (Exception e) {
             e.printStackTrace();
@@ -402,6 +413,19 @@ public class CartDAO {
                     ps.executeBatch();
                 }
                 System.out.println("[CartDAO] Successfully batch-inserted all order items.");
+
+                // 2.5 Decrement stock for each ordered product
+                String stockSql = "UPDATE products SET stock_quantity = GREATEST(stock_quantity - ?, 0) WHERE id = ?";
+                System.out.println("[CartDAO] Decrementing stock for ordered products...");
+                try (PreparedStatement ps = con.prepareStatement(stockSql)) {
+                    for (CartItem item : items) {
+                        ps.setInt(1, item.getQuantity());
+                        ps.setInt(2, item.getProductId());
+                        ps.addBatch();
+                    }
+                    ps.executeBatch();
+                }
+                System.out.println("[CartDAO] Stock decremented successfully.");
 
                 // 3. Clear cart
                 String clearCartSql = "DELETE FROM cart WHERE user_email=?";

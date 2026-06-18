@@ -409,8 +409,11 @@
                         <td>${prod.gender}</td>
                         <td>
                             <c:choose>
-                                <c:when test="${prod.stockQuantity > 0}">
+                                <c:when test="${prod.stockQuantity > 5}">
                                     <span style="color: #4cd137;"><i class="fa-solid fa-circle" style="font-size: 8px; vertical-align: middle; margin-right: 4px;"></i> In Stock (${prod.stockQuantity})</span>
+                                </c:when>
+                                <c:when test="${prod.stockQuantity > 0}">
+                                    <span style="color: #ff9800;"><i class="fa-solid fa-circle" style="font-size: 8px; vertical-align: middle; margin-right: 4px;"></i> Low Stock (${prod.stockQuantity})</span>
                                 </c:when>
                                 <c:otherwise>
                                     <span style="color: #ff4d4d;"><i class="fa-solid fa-circle" style="font-size: 8px; vertical-align: middle; margin-right: 4px;"></i> Out of Stock</span>
