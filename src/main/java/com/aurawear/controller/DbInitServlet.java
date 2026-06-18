@@ -44,6 +44,7 @@ public class DbInitServlet extends HttpServlet {
             String line;
             
             Statement stmt = conn.createStatement();
+            stmt.execute("SET FOREIGN_KEY_CHECKS = 0;");
             int executedCount = 0;
             int failedCount = 0;
             
@@ -76,6 +77,7 @@ public class DbInitServlet extends HttpServlet {
                     sb.setLength(0); // clear buffer
                 }
             }
+            stmt.execute("SET FOREIGN_KEY_CHECKS = 1;");
             
             out.println("<p><b>Initialization complete.</b></p>");
             out.println("<p>Successfully executed: " + executedCount + " statements.</p>");
