@@ -42,11 +42,6 @@
     <servlet-class>com.aurawear.controller.AdminSettingsServlet</servlet-class>
   </servlet>
 
-  <servlet>
-    <servlet-name>ReviewServlet</servlet-name>
-    <servlet-class>com.aurawear.controller.ReviewServlet</servlet-class>
-  </servlet>
-
   <servlet-mapping>
     <servlet-name>CheckoutServlet</servlet-name>
     <url-pattern>/checkout</url-pattern>
@@ -80,10 +75,5 @@
   <servlet-mapping>
     <servlet-name>AdminSettingsServlet</servlet-name>
     <url-pattern>/admin/settings</url-pattern>
-  </servlet-mapping>
-
-  <servlet-mapping>
-    <servlet-name>ReviewServlet</servlet-name>
-    <url-pattern>/review</url-pattern>
   </servlet-mapping>
 </web-app>
