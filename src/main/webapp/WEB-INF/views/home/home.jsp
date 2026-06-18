@@ -143,24 +143,32 @@
 
         <div class="ts-scroll" id="trendingScroll">
             <c:forEach var="p" items="${products}">
-                <div class="ts-card" onclick="goToProduct('${p.id}')"
+                <div class="ts-card ${p.stockQuantity == 0 ? 'oos-card' : ''}" onclick="goToProduct('${p.id}')"
                      data-id="${p.id}" data-name="${p.name}" data-price="${p.price}" data-size="M">
                     <div class="ts-img-wrap">
                         <img src="<c:choose><c:when test="${fn:startsWith(p.image, 'http')}">${p.image}</c:when><c:otherwise>${ctx}/assets/images/${p.image}</c:otherwise></c:choose>"
                              onerror="this.src='${ctx}/assets/images/fallback.jpg'"
                              alt="${p.name}" class="img-main">
-                        <span class="ts-new">NEW</span>
+                        <c:choose>
+                            <c:when test="${p.stockQuantity == 0}">
+                                <span class="ts-new badge-oos">OUT OF STOCK</span>
+                            </c:when>
+                            <c:otherwise>
+                                <span class="ts-new">NEW</span>
+                            </c:otherwise>
+                        </c:choose>
                         <button class="ts-wish ${not empty wishlistNames and wishlistNames.contains(p.id) ? 'active' : ''}" 
                                 data-id="${p.id}"
                                 onclick="toggleWishlist(event, this)" title="Add to Wishlist">
                             <i class="${not empty wishlistNames and wishlistNames.contains(p.id) ? 'fa-solid' : 'fa-regular'} fa-heart"></i>
                         </button>
-                        <button class="ts-add" 
+                        <button class="ts-add ${p.stockQuantity == 0 ? 'disabled' : ''}" 
                                 data-id="${p.id}" 
                                 data-size="${p.size}" 
                                 data-price="${p.price}" 
-                                onclick="quickAdd(event)">
-                            + ADD TO BAG
+                                onclick="quickAdd(event)"
+                                ${p.stockQuantity == 0 ? 'disabled' : ''}>
+                            ${p.stockQuantity == 0 ? 'OUT OF STOCK' : '+ ADD TO BAG'}
                         </button>
                     </div>
                     <div class="ts-info">
@@ -331,6 +339,10 @@
     });
 
     function goToProduct(id) {
+        const card = document.querySelector(`.ts-card[data-id="${id}"]`);
+        if (card && card.classList.contains('oos-card')) {
+            return;
+        }
         window.location.href = ctx + "/product?id=" + id;
     }
 
@@ -383,12 +395,27 @@
         .then(res => {
             if (res.status === 401) { window.location.href = ctx + "/login"; return; }
             if (!res.ok) throw new Error();
-            btn.innerText = "Added ✓";
-            showToast("Added to bag!");
-            updateCartCount();
-            setTimeout(() => { btn.disabled = false; btn.innerText = "+ ADD TO BAG"; }, 1600);
+            return res.json();
         })
-        .catch(() => { btn.disabled = false; btn.innerText = "+ ADD TO BAG"; });
+        .then(data => {
+            if (!data) return;
+            if (data.success) {
+                btn.innerText = "Added ✓";
+                showToast("Added to bag!");
+                updateCartCount();
+            } else {
+                btn.innerText = "OUT OF STOCK";
+                showToast(data.message || "Out of stock!");
+            }
+            setTimeout(() => {
+                btn.disabled = !data.success;
+                btn.innerText = data.success ? "+ ADD TO BAG" : "OUT OF STOCK";
+            }, 1600);
+        })
+        .catch(() => {
+            btn.disabled = false;
+            btn.innerText = "+ ADD TO BAG";
+        });
     }
 
     function updateCartCount() {

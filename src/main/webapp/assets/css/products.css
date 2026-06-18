@@ -655,3 +655,45 @@ a { text-decoration: none; color: inherit; }
     .products-page .product-grid { grid-template-columns: 1fr; gap: 16px; }
     .page-title { font-size: 36px; letter-spacing: -2px; }
 }
+
+/* ── OUT OF STOCK SYSTEM ────────────────────────────────────── */
+.badge-oos {
+    background: #e53935 !important;
+    color: #fff !important;
+}
+
+.quick-add:disabled, .quick-add.disabled {
+    opacity: 0.45 !important;
+    cursor: not-allowed !important;
+    background: #444 !important;
+    border-color: #444 !important;
+    color: #888 !important;
+    transform: translateY(0) !important;
+}
+
+.oos-card {
+    opacity: 0.65;
+}
+
+.oos-banner {
+    background: rgba(229, 57, 53, 0.08);
+    border: 1.5px solid #e53935;
+    color: var(--text-color);
+    padding: 16px 24px;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 13px;
+    letter-spacing: 1px;
+    border-radius: 4px;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    margin-top: 15px;
+}
+
+.size-btn:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+    text-decoration: line-through;
+    border-color: rgba(237, 228, 221, 0.1) !important;
+}

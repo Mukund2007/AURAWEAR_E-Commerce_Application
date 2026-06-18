@@ -360,7 +360,11 @@
                     <label>Brand Name</label>
                     <input type="text" name="brand" value="AuraWear" required>
                 </div>
-                <div class="form-group" style="grid-column: span 2;">
+                <div class="form-group">
+                    <label>Stock Quantity</label>
+                    <input type="number" name="stockQuantity" value="100" min="0" required>
+                </div>
+                <div class="form-group">
                     <label>Image Asset Name / URL</label>
                     <input type="text" name="image" value="fallback.jpg" required placeholder="assets/images/tee6.jpg or tee6.jpg">
                 </div>
@@ -385,6 +389,7 @@
                     <th>Sizes</th>
                     <th>Colors</th>
                     <th>Gender</th>
+                    <th>Stock</th>
                     <th style="width: 180px;">Actions</th>
                 </tr>
             </thead>
@@ -403,6 +408,16 @@
                         <td>${prod.color}</td>
                         <td>${prod.gender}</td>
                         <td>
+                            <c:choose>
+                                <c:when test="${prod.stockQuantity > 0}">
+                                    <span style="color: #4cd137;"><i class="fa-solid fa-circle" style="font-size: 8px; vertical-align: middle; margin-right: 4px;"></i> In Stock (${prod.stockQuantity})</span>
+                                </c:when>
+                                <c:otherwise>
+                                    <span style="color: #ff4d4d;"><i class="fa-solid fa-circle" style="font-size: 8px; vertical-align: middle; margin-right: 4px;"></i> Out of Stock</span>
+                                </c:otherwise>
+                            </c:choose>
+                        </td>
+                        <td>
                             <button class="btn-edit" onclick="openEditModal(
                                 '${prod.id}', 
                                 '${prod.name.replace("'", "\\'")}', 
@@ -417,7 +432,8 @@
                                 '${prod.rating}', 
                                 '${prod.reviews}', 
                                 '${prod.brand}', 
-                                '${prod.image}'
+                                '${prod.image}',
+                                '${prod.stockQuantity}'
                             )">Edit</button>
                             <form action="${ctx}/admin/products" method="post" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this product?');">
                                 <input type="hidden" name="action" value="delete">
@@ -494,7 +510,11 @@
                     <label>Brand Name</label>
                     <input type="text" name="brand" id="editBrand" required>
                 </div>
-                <div class="form-group" style="grid-column: span 2;">
+                <div class="form-group">
+                    <label>Stock Quantity</label>
+                    <input type="number" name="stockQuantity" id="editStockQuantity" min="0" required>
+                </div>
+                <div class="form-group">
                     <label>Image Asset Name / URL</label>
                     <input type="text" name="image" id="editImage" required>
                 </div>
@@ -516,7 +536,7 @@
         }
     }
 
-    function openEditModal(id, name, price, originalPrice, discount, category, type, size, color, gender, rating, reviews, brand, image) {
+    function openEditModal(id, name, price, originalPrice, discount, category, type, size, color, gender, rating, reviews, brand, image, stockQuantity) {
         document.getElementById('editProductId').value = id;
         document.getElementById('editName').value = name;
         document.getElementById('editPrice').value = Math.round(price);
@@ -529,6 +549,7 @@
         document.getElementById('editGender').value = gender;
         document.getElementById('editBrand').value = brand;
         document.getElementById('editImage').value = image;
+        document.getElementById('editStockQuantity').value = stockQuantity;
         document.getElementById('editModal').style.display = 'flex';
     }
 

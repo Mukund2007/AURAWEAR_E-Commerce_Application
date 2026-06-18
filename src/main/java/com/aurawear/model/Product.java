@@ -16,6 +16,7 @@ public class Product {
     private int    discount;
     private String brand;
     private String type;
+    private int    stockQuantity;  // 0 = Out of Stock
 
     public Product() {}
 
@@ -66,4 +67,9 @@ public class Product {
     // ===== STAR HELPERS =====
     public int getFullStars() { return (int) rating; }
     public boolean isHalfStar() { return (rating - (int) rating) >= 0.5; }
+
+    // ===== STOCK =====
+    public int getStockQuantity() { return stockQuantity; }
+    public void setStockQuantity(int stockQuantity) { this.stockQuantity = stockQuantity; }
+    public boolean isInStock() { return stockQuantity > 0; }
 }

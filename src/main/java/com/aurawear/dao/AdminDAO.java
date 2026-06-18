@@ -130,7 +130,7 @@ public class AdminDAO {
     }
 
     public boolean addProduct(Product p) {
-        String sql = "INSERT INTO products (name, price, category, image, original_price, discount, rating, reviews, brand, type, size, color, gender) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO products (name, price, category, image, original_price, discount, rating, reviews, brand, type, size, color, gender, stock_quantity) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try (Connection con = DBConnection.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setString(1, p.getName());
@@ -146,6 +146,7 @@ public class AdminDAO {
             ps.setString(11, p.getSize());
             ps.setString(12, p.getColor());
             ps.setString(13, p.getGender());
+            ps.setInt(14, p.getStockQuantity());
             return ps.executeUpdate() > 0;
         } catch (Exception e) {
             e.printStackTrace();
@@ -154,7 +155,7 @@ public class AdminDAO {
     }
 
     public boolean updateProduct(Product p) {
-        String sql = "UPDATE products SET name=?, price=?, category=?, image=?, original_price=?, discount=?, brand=?, type=?, size=?, color=?, gender=? WHERE id=?";
+        String sql = "UPDATE products SET name=?, price=?, category=?, image=?, original_price=?, discount=?, brand=?, type=?, size=?, color=?, gender=?, stock_quantity=? WHERE id=?";
         try (Connection con = DBConnection.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setString(1, p.getName());
@@ -168,7 +169,8 @@ public class AdminDAO {
             ps.setString(9, p.getSize());
             ps.setString(10, p.getColor());
             ps.setString(11, p.getGender());
-            ps.setInt(12, p.getId());
+            ps.setInt(12, p.getStockQuantity());
+            ps.setInt(13, p.getId());
             return ps.executeUpdate() > 0;
         } catch (Exception e) {
             e.printStackTrace();

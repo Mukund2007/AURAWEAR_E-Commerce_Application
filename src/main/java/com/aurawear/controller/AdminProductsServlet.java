@@ -85,6 +85,10 @@ public class AdminProductsServlet extends HttpServlet {
                 p.setRating(0.0);
                 p.setReviews(0);
 
+                String stockStr = request.getParameter("stockQuantity");
+                int stock = (stockStr != null && !stockStr.isEmpty()) ? Integer.parseInt(stockStr) : 100;
+                p.setStockQuantity(stock);
+
                 boolean success = adminDAO.addProduct(p);
                 if (success) {
                     response.sendRedirect(request.getContextPath() + "/admin/products?msg=Product+added+successfully");
@@ -117,6 +121,10 @@ public class AdminProductsServlet extends HttpServlet {
                 p.setGender(request.getParameter("gender"));
                 p.setBrand(request.getParameter("brand"));
                 p.setImage(request.getParameter("image"));
+
+                String editStockStr = request.getParameter("stockQuantity");
+                int editStock = (editStockStr != null && !editStockStr.isEmpty()) ? Integer.parseInt(editStockStr) : 100;
+                p.setStockQuantity(editStock);
 
                 boolean success = adminDAO.updateProduct(p);
                 if (success) {

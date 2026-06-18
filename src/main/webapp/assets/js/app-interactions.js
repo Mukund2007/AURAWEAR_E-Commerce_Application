@@ -56,7 +56,10 @@ function initDragToCart() {
         }
         
         card.addEventListener('mousedown', e => {
-            // Check if clicking interactive element
+            // Check if clicking interactive element or card is out of stock
+            if (card.classList.contains('oos-card')) {
+                return;
+            }
             if (e.target.closest('.wish') || 
                 e.target.closest('.wishlist') || 
                 e.target.closest('.quick-add') || 
@@ -199,17 +202,27 @@ function triggerDragAddToCart(id, size, price, name) {
                 return;
             }
             if (!res.ok) throw new Error("Failed to add to cart");
-            
-            // Show toast message if showToast function is available
-            if (typeof window.showToast === 'function') {
-                window.showToast(name + " added to cart!");
+            return res.json();
+        })
+        .then(data => {
+            if (!data) return;
+            if (data.success) {
+                // Show toast message if showToast function is available
+                if (typeof window.showToast === 'function') {
+                    window.showToast(name + " added to cart!");
+                } else {
+                    alert(name + " added to cart!");
+                }
+                // Update cart count
+                if (typeof window.updateCartCount === 'function') {
+                    window.updateCartCount();
+                }
             } else {
-                alert(name + " added to cart!");
-            }
-            
-            // Update cart count
-            if (typeof window.updateCartCount === 'function') {
-                window.updateCartCount();
+                if (typeof window.showToast === 'function') {
+                    window.showToast(data.message || "This item is out of stock");
+                } else {
+                    alert(data.message || "This item is out of stock");
+                }
             }
         })
         .catch(err => {

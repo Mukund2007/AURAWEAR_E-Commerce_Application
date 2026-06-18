@@ -233,6 +233,7 @@ public class ProductDAO {
         p.setDiscount(rs.getInt("discount"));
         p.setBrand(rs.getString("brand"));
         p.setType(rs.getString("type"));
+        p.setStockQuantity(rs.getInt("stock_quantity"));
         return p;
     }
 }

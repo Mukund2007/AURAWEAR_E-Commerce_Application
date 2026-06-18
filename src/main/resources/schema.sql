@@ -132,6 +132,7 @@ CREATE TABLE `products` (
   `reviews` int DEFAULT NULL,
   `brand` varchar(50) DEFAULT NULL,
   `image` varchar(500) DEFAULT NULL,
+  `stock_quantity` int NOT NULL DEFAULT 100,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;

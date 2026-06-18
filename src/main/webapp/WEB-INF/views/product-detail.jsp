@@ -95,22 +95,29 @@
 
                 <div>
                     <div class="size-label">SELECT SIZE</div>
-                    <div class="sizes">
-                        <c:forEach var="sz" items="${availSizes}">
-                            <button type="button" class="size-btn" data-size="${sz}">${sz}</button>
-                        </c:forEach>
-                    </div>
+                     <div class="sizes">
+                         <c:forEach var="sz" items="${availSizes}">
+                             <button type="button" class="size-btn" data-size="${sz}" ${product.stockQuantity == 0 ? 'disabled' : ''}>${sz}</button>
+                         </c:forEach>
+                     </div>
                 </div>
 
                 <!-- ACTION BUTTONS -->
                 <div class="action-buttons">
-                    <!-- ADD TO CART FORM (POST to /cart) -->
-                    <form id="addToCartForm" action="${ctx}/cart" method="POST">
-                        <input type="hidden" name="productId" value="${product.id}">
-                        <input type="hidden" name="price" value="${product.price}">
-                        <input type="hidden" name="size" id="selectedSizeInput" value="">
-                        <button type="submit" class="add-btn">Add to Cart</button>
-                    </form>
+                     <!-- ADD TO CART FORM (POST to /cart) or Out of Stock banner -->
+                     <c:choose>
+                         <c:when test="${product.stockQuantity == 0}">
+                             <div class="oos-banner">⚠ Out of Stock</div>
+                         </c:when>
+                         <c:otherwise>
+                             <form id="addToCartForm" action="${ctx}/cart" method="POST">
+                                 <input type="hidden" name="productId" value="${product.id}">
+                                 <input type="hidden" name="price" value="${product.price}">
+                                 <input type="hidden" name="size" id="selectedSizeInput" value="">
+                                 <button type="submit" class="add-btn">Add to Cart</button>
+                             </form>
+                         </c:otherwise>
+                     </c:choose>
 
                     <!-- WISHLIST BUTTON -->
                     <button class="wishlist-btn ${isWishlisted ? 'wishlisted' : ''}" id="wishlistBtn"
@@ -316,12 +323,15 @@
     });
 
     // Cart form submit validation
-    document.getElementById("addToCartForm").addEventListener("submit", function(e) {
-        if (!selectedSize) {
-            e.preventDefault();
-            showToast("Please select a size first ⚠️");
-        }
-    });
+    const cartForm = document.getElementById("addToCartForm");
+    if (cartForm) {
+        cartForm.addEventListener("submit", function(e) {
+            if (!selectedSize) {
+                e.preventDefault();
+                showToast("Please select a size first ⚠️");
+            }
+        });
+    }
 
     // Wishlist Toggle
     function toggleWishlist(id, btn) {

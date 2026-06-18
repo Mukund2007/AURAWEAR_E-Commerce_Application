@@ -8,7 +8,9 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.WebServlet;
 
 import com.aurawear.dao.CartDAO;
+import com.aurawear.dao.ProductDAO;
 import com.aurawear.model.CartItem;
+import com.aurawear.model.Product;
 import com.aurawear.model.User;
 
 @WebServlet("/cart")
@@ -61,8 +63,16 @@ public class CartServlet extends HttpServlet {
         if (idParam != null && size != null && priceParam != null) {
             try {
                 int productId = Integer.parseInt(idParam);
-                // Convert price to int (in case it comes with decimal places, e.g., 2999.0)
                 int price = (int) Double.parseDouble(priceParam);
+
+                // ── Out-of-Stock guard ──
+                ProductDAO productDAO = new ProductDAO();
+                Product product = productDAO.getProductById(productId);
+                if (product == null || !product.isInStock()) {
+                    response.sendRedirect(request.getContextPath() + "/cart?error=out_of_stock");
+                    return;
+                }
+
                 CartDAO dao = new CartDAO();
                 dao.addToCart(email, productId, size, price);
             } catch (NumberFormatException e) {

@@ -77,6 +77,25 @@ public class DbInitServlet extends HttpServlet {
                     sb.setLength(0); // clear buffer
                 }
             }
+            // ── Safe column migrations (ALTER TABLE IF NOT EXISTS equivalent) ──
+            String[] migrations = {
+                "ALTER TABLE products ADD COLUMN stock_quantity INT NOT NULL DEFAULT 100"
+            };
+            out.println("<h3>Running column migrations...</h3>");
+            for (String migration : migrations) {
+                try {
+                    stmt.execute(migration);
+                    out.println("<p style='color:green;'>✓ " + migration + "</p>");
+                } catch (SQLException ex) {
+                    // Column already exists — that's fine
+                    if (ex.getMessage().contains("Duplicate column name") || ex.getErrorCode() == 1060) {
+                        out.println("<p style='color:grey;'>⚠ Already exists (skipped): " + migration + "</p>");
+                    } else {
+                        out.println("<p style='color:orange;'>⚠ Migration warning: " + ex.getMessage() + "</p>");
+                    }
+                }
+            }
+
             stmt.execute("SET FOREIGN_KEY_CHECKS = 1;");
             
             out.println("<p><b>Initialization complete.</b></p>");

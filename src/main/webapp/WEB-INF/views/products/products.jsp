@@ -168,29 +168,37 @@
                         </c:when>
                         <c:otherwise>
                             <c:forEach var="p" items="${products}">
-                                <div class="product-card" onclick="goToProduct('${p.id}')" data-id="${p.id}" data-name="${p.name}" data-price="${p.price}" data-size="${p.size}">
+                                <div class="product-card ${p.stockQuantity == 0 ? 'oos-card' : ''}" onclick="goToProduct('${p.id}')" data-id="${p.id}" data-name="${p.name}" data-price="${p.price}" data-size="${p.size}">
 
                                      <div class="product-image">
                                         <img class="img-main"
                                              src="<c:choose><c:when test="${fn:startsWith(p.image, 'http')}">${p.image}</c:when><c:otherwise>${ctx}/assets/images/${p.image}</c:otherwise></c:choose>"
                                              onerror="this.src='${ctx}/assets/images/fallback.jpg'"
                                              alt="${p.name}">
-                                        <div class="badge">NEW</div>
+                                        <c:choose>
+                                            <c:when test="${p.stockQuantity == 0}">
+                                                <div class="badge badge-oos">OUT OF STOCK</div>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <div class="badge">NEW</div>
+                                            </c:otherwise>
+                                        </c:choose>
 
                                         <%-- WISHLIST BUTTON: pre-fill active state from server --%>
                                         <div class="wishlist ${not empty wishlistNames and wishlistNames.contains(p.id) ? 'active' : ''}"
                                              data-id="${p.id}"
                                              onclick="toggleWishlist(event, this)">
-                                            <i class="fa fa-heart"></i>
+                                             <i class="fa fa-heart"></i>
                                         </div>
 
                                         <%-- QUICK ADD: passes id, size (default from product), price --%>
-                                        <button class="quick-add"
+                                        <button class="quick-add ${p.stockQuantity == 0 ? 'disabled' : ''}"
                                                 data-id="${p.id}"
                                                 data-size="${p.size}"
                                                 data-price="${p.price}"
-                                                onclick="quickAdd(event)">
-                                            Quick Add
+                                                onclick="quickAdd(event)"
+                                                ${p.stockQuantity == 0 ? 'disabled' : ''}>
+                                            ${p.stockQuantity == 0 ? 'Out of Stock' : 'Quick Add'}
                                         </button>
                                     </div>
 
@@ -257,10 +265,15 @@
     }
 
     function goToProduct(id) {
+        const card = document.querySelector(`.product-card[data-id="${id}"]`);
+        if (card && card.classList.contains('oos-card')) {
+            return;
+        }
         window.location.href = ctx + "/product?id=" + id;
     }
 
-    /* ── QUICK ADD ──────────    function quickAdd(e) {
+    /* ── QUICK ADD ────────── */
+    function quickAdd(e) {
         e.stopPropagation();
         const btn = e.currentTarget;
         const id = btn.getAttribute("data-id");
@@ -280,12 +293,21 @@
                     return;
                 }
                 if (!res.ok) throw new Error("Failed");
-                btn.innerText = "Added ✓";
-                showToast(btn.closest(".product-card").querySelector("h3").innerText + " added to cart!");
-                updateCartCount();
+                return res.json();
+            })
+            .then(data => {
+                if (!data) return;
+                if (data.success) {
+                    btn.innerText = "Added ✓";
+                    showToast(btn.closest(".product-card").querySelector("h3").innerText + " added to cart!");
+                    updateCartCount();
+                } else {
+                    btn.innerText = "Out of Stock";
+                    showToast(data.message || "This item is out of stock");
+                }
                 setTimeout(() => {
-                    btn.innerText = "Quick Add";
-                    btn.disabled  = false;
+                    btn.innerText = data.success ? "Quick Add" : "Out of Stock";
+                    btn.disabled  = !data.success;
                 }, 1400);
             })
             .catch(() => {
