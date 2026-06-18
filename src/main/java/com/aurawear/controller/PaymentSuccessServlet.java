@@ -71,11 +71,20 @@ public class PaymentSuccessServlet extends HttpServlet {
             int shipping = (subtotal > 0 && subtotal < threshold) ? shippingCharge : 0;
             final double grandTotal = subtotal + shipping;
 
+            String shippingName = request.getParameter("shipping_name");
+            String shippingPhone = request.getParameter("shipping_phone");
+            String shippingAddress = request.getParameter("shipping_address");
+            String shippingCity = request.getParameter("shipping_city");
+            String shippingState = request.getParameter("shipping_state");
+            String shippingPincode = request.getParameter("shipping_pincode");
+
             // Save order and clear cart in a single transaction
             System.out.println("[PaymentSuccessServlet] Calling moveCartToOrdersWithPayment for: " + email);
             int orderId = -1;
             try {
-                orderId = dao.moveCartToOrdersWithPayment(email, razorpayPaymentId, "PAID");
+                orderId = dao.moveCartToOrdersWithPayment(email, razorpayPaymentId, "PAID",
+                                                         shippingName, shippingPhone, shippingAddress,
+                                                         shippingCity, shippingState, shippingPincode);
                 System.out.println("[PaymentSuccessServlet] moveCartToOrdersWithPayment: SUCCESS, Order ID: " + orderId);
             } catch (Exception e) {
                 System.out.println("[PaymentSuccessServlet] moveCartToOrdersWithPayment: FAILURE");

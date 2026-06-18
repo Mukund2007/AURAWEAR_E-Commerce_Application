@@ -65,6 +65,12 @@ CREATE TABLE `orders` (
   `status` varchar(50) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `payment_id` varchar(100) DEFAULT NULL,
+  `shipping_name` varchar(100) DEFAULT NULL,
+  `shipping_phone` varchar(20) DEFAULT NULL,
+  `shipping_address` varchar(255) DEFAULT NULL,
+  `shipping_city` varchar(50) DEFAULT NULL,
+  `shipping_state` varchar(50) DEFAULT NULL,
+  `shipping_pincode` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;

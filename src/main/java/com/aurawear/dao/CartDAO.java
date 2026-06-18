@@ -150,7 +150,9 @@ public class CartDAO {
     }
 
     // ✅ MOVE CART TO ORDERS — Transactional (orders + order_items)
-    public void moveCartToOrders(String email) {
+    public void moveCartToOrders(String email, String shippingName, String shippingPhone,
+                                 String shippingAddress, String shippingCity,
+                                 String shippingState, String shippingPincode) {
         List<CartItem> items = getCartItems(email);
         if (items.isEmpty()) {
             return;
@@ -174,12 +176,18 @@ public class CartDAO {
             con.setAutoCommit(false);
 
             // 1. Insert into orders
-            String orderSql = "INSERT INTO orders (user_email, total, status, payment_id) VALUES (?, ?, 'Placed', ?)";
+            String orderSql = "INSERT INTO orders (user_email, total, status, payment_id, shipping_name, shipping_phone, shipping_address, shipping_city, shipping_state, shipping_pincode) VALUES (?, ?, 'Placed', ?, ?, ?, ?, ?, ?, ?)";
             int orderId = -1;
             try (PreparedStatement ps = con.prepareStatement(orderSql, Statement.RETURN_GENERATED_KEYS)) {
                 ps.setString(1, email);
                 ps.setDouble(2, grandTotal);
                 ps.setString(3, paymentId);
+                ps.setString(4, shippingName);
+                ps.setString(5, shippingPhone);
+                ps.setString(6, shippingAddress);
+                ps.setString(7, shippingCity);
+                ps.setString(8, shippingState);
+                ps.setString(9, shippingPincode);
                 ps.executeUpdate();
 
                 try (ResultSet rs = ps.getGeneratedKeys()) {
@@ -337,7 +345,10 @@ public class CartDAO {
     }
 
     // ✅ MOVE CART TO ORDERS WITH PAYMENT — Transactional (orders + order_items + delete cart)
-    public int moveCartToOrdersWithPayment(String email, String paymentId, String status) throws Exception {
+    public int moveCartToOrdersWithPayment(String email, String paymentId, String status,
+                                           String shippingName, String shippingPhone,
+                                           String shippingAddress, String shippingCity,
+                                           String shippingState, String shippingPincode) throws Exception {
         System.out.println("[CartDAO] Starting moveCartToOrdersWithPayment...");
         System.out.println("[CartDAO] Parameters - email: " + email + ", paymentId: " + paymentId + ", status: " + status);
 
@@ -372,14 +383,20 @@ public class CartDAO {
                 System.out.println("[CartDAO] autoCommit set to false.");
 
                 // 1. Insert into orders
-                // SQL schema verified: (user_email, total, status, payment_id)
-                String orderSql = "INSERT INTO orders (user_email, total, status, payment_id) VALUES (?, ?, ?, ?)";
+                // SQL schema verified: (user_email, total, status, payment_id, shipping_name, shipping_phone, shipping_address, shipping_city, shipping_state, shipping_pincode)
+                String orderSql = "INSERT INTO orders (user_email, total, status, payment_id, shipping_name, shipping_phone, shipping_address, shipping_city, shipping_state, shipping_pincode) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
                 System.out.println("[CartDAO] Inserting order record into orders table...");
                 try (PreparedStatement ps = con.prepareStatement(orderSql, Statement.RETURN_GENERATED_KEYS)) {
                     ps.setString(1, email);
                     ps.setDouble(2, grandTotal);
                     ps.setString(3, status);
                     ps.setString(4, paymentId);
+                    ps.setString(5, shippingName);
+                    ps.setString(6, shippingPhone);
+                    ps.setString(7, shippingAddress);
+                    ps.setString(8, shippingCity);
+                    ps.setString(9, shippingState);
+                    ps.setString(10, shippingPincode);
                     ps.executeUpdate();
 
                     try (ResultSet rs = ps.getGeneratedKeys()) {

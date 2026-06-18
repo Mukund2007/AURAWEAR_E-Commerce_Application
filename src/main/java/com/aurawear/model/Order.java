@@ -11,6 +11,12 @@ public class Order {
     private Timestamp createdAt;
     private String paymentId;
     private List<OrderItem> items;
+    private String shippingName;
+    private String shippingPhone;
+    private String shippingAddress;
+    private String shippingCity;
+    private String shippingState;
+    private String shippingPincode;
 
     public Order() {}
 
@@ -34,4 +40,22 @@ public class Order {
 
     public List<OrderItem> getItems() { return items; }
     public void setItems(List<OrderItem> items) { this.items = items; }
+
+    public String getShippingName() { return shippingName; }
+    public void setShippingName(String shippingName) { this.shippingName = shippingName; }
+
+    public String getShippingPhone() { return shippingPhone; }
+    public void setShippingPhone(String shippingPhone) { this.shippingPhone = shippingPhone; }
+
+    public String getShippingAddress() { return shippingAddress; }
+    public void setShippingAddress(String shippingAddress) { this.shippingAddress = shippingAddress; }
+
+    public String getShippingCity() { return shippingCity; }
+    public void setShippingCity(String shippingCity) { this.shippingCity = shippingCity; }
+
+    public String getShippingState() { return shippingState; }
+    public void setShippingState(String shippingState) { this.shippingState = shippingState; }
+
+    public String getShippingPincode() { return shippingPincode; }
+    public void setShippingPincode(String shippingPincode) { this.shippingPincode = shippingPincode; }
 }

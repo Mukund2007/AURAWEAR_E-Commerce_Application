@@ -51,11 +51,40 @@ public class CheckoutCODServlet extends HttpServlet {
         int shipping = (subtotal > 0 && subtotal < threshold) ? shippingCharge : 0;
         double grandTotal = subtotal + shipping;
 
+        String shippingName = request.getParameter("shipping_name");
+        String shippingPhone = request.getParameter("shipping_phone");
+        String shippingAddress = request.getParameter("shipping_address");
+        String shippingCity = request.getParameter("shipping_city");
+        String shippingState = request.getParameter("shipping_state");
+        String shippingPincode = request.getParameter("shipping_pincode");
+
+        if (shippingName == null || shippingName.trim().isEmpty() ||
+            shippingPhone == null || shippingPhone.trim().isEmpty() ||
+            shippingAddress == null || shippingAddress.trim().isEmpty() ||
+            shippingCity == null || shippingCity.trim().isEmpty() ||
+            shippingState == null || shippingState.trim().isEmpty() ||
+            shippingPincode == null || shippingPincode.trim().isEmpty()) {
+            
+            request.setAttribute("errorMsg", "Please complete all shipping address fields.");
+            request.setAttribute("cartItems", cartItems);
+            request.setAttribute("subtotal", subtotal);
+            request.setAttribute("shipping", shipping);
+            request.setAttribute("grandTotal", (int) grandTotal);
+            request.setAttribute("amountInPaise", (int) (grandTotal * 100));
+            request.setAttribute("user", user);
+            
+            request.getRequestDispatcher("/WEB-INF/views/orders/checkout.jsp")
+                   .forward(request, response);
+            return;
+        }
+
         int orderId = -1;
         try {
             // Place order with payment_id = null and status = "COD_PENDING"
             System.out.println("[CheckoutCODServlet] Calling moveCartToOrdersWithPayment for: " + email + " with COD_PENDING");
-            orderId = dao.moveCartToOrdersWithPayment(email, null, "COD_PENDING");
+            orderId = dao.moveCartToOrdersWithPayment(email, null, "COD_PENDING", 
+                                                     shippingName, shippingPhone, shippingAddress, 
+                                                     shippingCity, shippingState, shippingPincode);
             System.out.println("[CheckoutCODServlet] moveCartToOrdersWithPayment: SUCCESS, Order ID: " + orderId);
 
             // Trigger order confirmation email asynchronously

@@ -198,6 +198,12 @@ public class AdminDAO {
         order.setStatus(rs.getString("status"));
         order.setCreatedAt(rs.getTimestamp("created_at"));
         order.setPaymentId(rs.getString("payment_id"));
+        order.setShippingName(rs.getString("shipping_name"));
+        order.setShippingPhone(rs.getString("shipping_phone"));
+        order.setShippingAddress(rs.getString("shipping_address"));
+        order.setShippingCity(rs.getString("shipping_city"));
+        order.setShippingState(rs.getString("shipping_state"));
+        order.setShippingPincode(rs.getString("shipping_pincode"));
         return order;
     }
 }

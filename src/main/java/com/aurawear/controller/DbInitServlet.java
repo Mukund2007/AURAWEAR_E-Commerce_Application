@@ -79,7 +79,13 @@ public class DbInitServlet extends HttpServlet {
             }
             // ── Safe column migrations (ALTER TABLE IF NOT EXISTS equivalent) ──
             String[] migrations = {
-                "ALTER TABLE products ADD COLUMN stock_quantity INT NOT NULL DEFAULT 100"
+                "ALTER TABLE products ADD COLUMN stock_quantity INT NOT NULL DEFAULT 100",
+                "ALTER TABLE orders ADD COLUMN shipping_name VARCHAR(100) DEFAULT NULL",
+                "ALTER TABLE orders ADD COLUMN shipping_phone VARCHAR(20) DEFAULT NULL",
+                "ALTER TABLE orders ADD COLUMN shipping_address VARCHAR(255) DEFAULT NULL",
+                "ALTER TABLE orders ADD COLUMN shipping_city VARCHAR(50) DEFAULT NULL",
+                "ALTER TABLE orders ADD COLUMN shipping_state VARCHAR(50) DEFAULT NULL",
+                "ALTER TABLE orders ADD COLUMN shipping_pincode VARCHAR(20) DEFAULT NULL"
             };
             out.println("<h3>Running column migrations...</h3>");
             for (String migration : migrations) {
