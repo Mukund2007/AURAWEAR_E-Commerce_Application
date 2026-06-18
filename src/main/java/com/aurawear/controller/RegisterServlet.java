@@ -25,6 +25,8 @@ public class RegisterServlet extends HttpServlet {
 
             session.setAttribute("otp", otp);
 
+            System.out.println("[REGISTRATION OTP RESEND] Email: " + email + " | Code: " + otp);
+
             try {
                 EmailUtil.sendOTP(email, otp);
             } catch (Exception e) {
@@ -66,6 +68,8 @@ public class RegisterServlet extends HttpServlet {
         session.setAttribute("pendingEmail",    email);
         session.setAttribute("pendingPassword", password);
         session.setAttribute("otp",             otp);
+
+        System.out.println("[REGISTRATION OTP] Email: " + email + " | Code: " + otp);
 
         // Send real email
         try {
