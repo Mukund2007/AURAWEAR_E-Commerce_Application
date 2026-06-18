@@ -125,13 +125,13 @@ CREATE TABLE `products` (
   `discount` int DEFAULT NULL,
   `category` varchar(50) DEFAULT NULL,
   `type` varchar(50) DEFAULT NULL,
-  `size` varchar(10) DEFAULT NULL,
-  `color` varchar(20) DEFAULT NULL,
+  `size` varchar(100) DEFAULT NULL,
+  `color` varchar(100) DEFAULT NULL,
   `gender` varchar(10) DEFAULT NULL,
   `rating` decimal(2,1) DEFAULT NULL,
   `reviews` int DEFAULT NULL,
   `brand` varchar(50) DEFAULT NULL,
-  `image` varchar(100) DEFAULT NULL,
+  `image` varchar(500) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
