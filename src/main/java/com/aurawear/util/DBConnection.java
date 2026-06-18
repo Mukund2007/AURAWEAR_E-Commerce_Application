@@ -28,6 +28,10 @@ public class DBConnection {
             config.setPassword(password);
             config.setDriverClassName("com.mysql.cj.jdbc.Driver");
             
+            // Fail fast if database is unreachable
+            config.addDataSourceProperty("connectTimeout", "5000");
+            config.addDataSourceProperty("socketTimeout", "5000");
+            
             // Pool configuration for optimized database scaling
             config.setMaximumPoolSize(10);
             config.setMinimumIdle(2);
