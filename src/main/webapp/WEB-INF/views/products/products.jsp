@@ -170,9 +170,9 @@
                             <c:forEach var="p" items="${products}">
                                 <div class="product-card" onclick="goToProduct('${p.id}')" data-id="${p.id}" data-name="${p.name}" data-price="${p.price}" data-size="${p.size}">
 
-                                    <div class="product-image">
+                                     <div class="product-image">
                                         <img class="img-main"
-                                             src="${ctx}/assets/images/${p.image}"
+                                             src="<c:choose><c:when test="${fn:startsWith(p.image, 'http')}">${p.image}</c:when><c:otherwise>${ctx}/assets/images/${p.image}</c:otherwise></c:choose>"
                                              onerror="this.src='${ctx}/assets/images/fallback.jpg'"
                                              alt="${p.name}">
                                         <div class="badge">NEW</div>

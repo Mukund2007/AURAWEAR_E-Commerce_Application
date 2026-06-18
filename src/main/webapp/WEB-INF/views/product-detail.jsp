@@ -35,7 +35,7 @@
 
             <!-- LEFT: IMAGE -->
             <div class="image-section">
-                <img src="${ctx}/assets/images/${product.image}"
+                <img src="<c:choose><c:when test="${fn:startsWith(product.image, 'http')}">${product.image}</c:when><c:otherwise>${ctx}/assets/images/${product.image}</c:otherwise></c:choose>"
                      onerror="this.src='${ctx}/assets/images/fallback.jpg'"
                      alt="${product.name}">
             </div>
@@ -266,7 +266,7 @@
                     <c:forEach var="p" items="${relatedProducts}">
                         <div class="related-card" onclick="window.location.href='${ctx}/product?id=${p.id}'">
                             <div class="related-img-wrap">
-                                <img src="${ctx}/assets/images/${p.image}"
+                                <img src="<c:choose><c:when test="${fn:startsWith(p.image, 'http')}">${p.image}</c:when><c:otherwise>${ctx}/assets/images/${p.image}</c:otherwise></c:choose>"
                                      onerror="this.src='${ctx}/assets/images/fallback.jpg'"
                                      alt="${p.name}">
                                 <c:if test="${p.discount > 0}">

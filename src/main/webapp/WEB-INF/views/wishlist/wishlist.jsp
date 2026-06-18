@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" isELIgnored="false" %>
 <%@ taglib prefix="c"   uri="jakarta.tags.core" %>
+<%@ taglib prefix="fn"  uri="jakarta.tags.functions" %>
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 
@@ -70,7 +71,7 @@
                                      onclick="window.location.href='${ctx}/product?id=${item.productId}'">
                                     <c:choose>
                                         <c:when test="${not empty item.image}">
-                                            <img src="${ctx}/assets/images/${item.image}"
+                                            <img src="<c:choose><c:when test="${fn:startsWith(item.image, 'http')}">${item.image}</c:when><c:otherwise>${ctx}/assets/images/${item.image}</c:otherwise></c:choose>"
                                                  onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
                                                  alt="${item.productName}">
                                             <div class="wl-img-fallback" style="display:none;">

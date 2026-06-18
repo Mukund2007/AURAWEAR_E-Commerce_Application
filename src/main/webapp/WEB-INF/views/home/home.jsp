@@ -2,6 +2,7 @@
 <%@ page isELIgnored="false"%>
 <%@ taglib prefix="c"   uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn"  uri="http://java.sun.com/jsp/jstl/functions"%>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 
 <!DOCTYPE html>
@@ -145,7 +146,7 @@
                 <div class="ts-card" onclick="goToProduct('${p.id}')"
                      data-id="${p.id}" data-name="${p.name}" data-price="${p.price}" data-size="M">
                     <div class="ts-img-wrap">
-                        <img src="${ctx}/assets/images/${p.image}"
+                        <img src="<c:choose><c:when test="${fn:startsWith(p.image, 'http')}">${p.image}</c:when><c:otherwise>${ctx}/assets/images/${p.image}</c:otherwise></c:choose>"
                              onerror="this.src='${ctx}/assets/images/fallback.jpg'"
                              alt="${p.name}" class="img-main">
                         <span class="ts-new">NEW</span>

@@ -1,12 +1,14 @@
+<%@ taglib prefix="c"  uri="jakarta.tags.core" %>
+<%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
 <c:forEach var="p" items="${products}">
     <div class="product-card" onclick="goToProduct('${p.id}')" data-id="${p.id}" data-name="${p.name}" data-price="${p.price}" data-size="M">
 
         <img class="img-main"
-             src="${pageContext.request.contextPath}/assets/images/${p.image}"
+             src="<c:choose><c:when test="${fn:startsWith(p.image, 'http')}">${p.image}</c:when><c:otherwise>${pageContext.request.contextPath}/assets/images/${p.image}</c:otherwise></c:choose>"
              onerror="this.src='${pageContext.request.contextPath}/assets/images/fallback.jpg'">
 
         <img class="img-hover"
-             src="${pageContext.request.contextPath}/assets/images/${p.image}">
+             src="<c:choose><c:when test="${fn:startsWith(p.image, 'http')}">${p.image}</c:when><c:otherwise>${pageContext.request.contextPath}/assets/images/${p.image}</c:otherwise></c:choose>">
 
         <div class="badge">NEW</div>
 

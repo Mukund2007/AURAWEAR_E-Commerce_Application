@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>
 <%@ taglib prefix="c"   uri="jakarta.tags.core" %>
+<%@ taglib prefix="fn"  uri="jakarta.tags.functions" %>
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 
@@ -111,7 +112,7 @@
                 <div class="summary-items">
                     <c:forEach var="item" items="${cartItems}">
                         <div class="summary-item">
-                            <img src="${ctx}/assets/images/${item.image}"
+                            <img src="<c:choose><c:when test="${fn:startsWith(item.image, 'http')}">${item.image}</c:when><c:otherwise>${ctx}/assets/images/${item.image}</c:otherwise></c:choose>"
                                  onerror="this.src='${ctx}/assets/images/fallback.jpg'"
                                  alt="${item.productName}">
                             <div class="summary-item-info">
