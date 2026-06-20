@@ -69,28 +69,28 @@
         <div class="category-grid">
             <!-- MEN -->
             <a class="category-tile group" href="${ctx}/products?gender=Men">
-                <img alt="Men's Collection" class="category-img" src="${ctx}/assets/images/over1.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'"/>
+                <img alt="Men's Collection" class="category-img" src="${ctx}/assets/images/category-men.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'"/>
                 <div class="category-overlay">
                     <span class="category-label">Men</span>
                 </div>
             </a>
             <!-- WOMEN -->
             <a class="category-tile group" href="${ctx}/products?gender=Women">
-                <img alt="Women's Collection" class="category-img" src="${ctx}/assets/images/over3.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'"/>
+                <img alt="Women's Collection" class="category-img" src="${ctx}/assets/images/category-women.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'"/>
                 <div class="category-overlay">
                     <span class="category-label">Women</span>
                 </div>
             </a>
             <!-- FOOTWEAR -->
             <a class="category-tile group" href="${ctx}/products?category=Footwear">
-                <img alt="Footwear" class="category-img" src="${ctx}/assets/images/sneak1.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'"/>
+                <img alt="Footwear" class="category-img" src="${ctx}/assets/images/category-footwear.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'"/>
                 <div class="category-overlay">
                     <span class="category-label">Footwear</span>
                 </div>
             </a>
             <!-- ACCESSORIES -->
             <a class="category-tile group" href="${ctx}/products?category=Accessories">
-                <img alt="Accessories" class="category-img" src="${ctx}/assets/images/bag1.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'"/>
+                <img alt="Accessories" class="category-img" src="${ctx}/assets/images/category-accessories.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'"/>
                 <div class="category-overlay">
                     <span class="category-label">Accessories</span>
                 </div>
