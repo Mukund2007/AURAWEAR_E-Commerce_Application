@@ -53,28 +53,28 @@
             <div class="acet-dropdown dropdown-catalog">
                 <div class="dropdown-grid">
                     <a href="${ctx}/products?gender=Men" class="acet-product-item" data-aura-bound="true">
-                        <img src="${ctx}/assets/images/over1.jpg" alt="Men's Apparel" class="acet-prod-img" />
+                        <img src="${ctx}/assets/images/over1.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'" alt="Men's Apparel" class="acet-prod-img" />
                         <div class="acet-prod-info">
                             <h4 class="acet-prod-title">Men's apparel</h4>
                             <p class="acet-prod-desc">Silhouettes designed for structure and volume.</p>
                         </div>
                     </a>
                     <a href="${ctx}/products?gender=Women" class="acet-product-item" data-aura-bound="true">
-                        <img src="${ctx}/assets/images/over3.jpg" alt="Women's Apparel" class="acet-prod-img" />
+                        <img src="${ctx}/assets/images/over3.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'" alt="Women's Apparel" class="acet-prod-img" />
                         <div class="acet-prod-info">
                             <h4 class="acet-prod-title">Women's apparel</h4>
                             <p class="acet-prod-desc">Textured, high-fashion silhouettes.</p>
                         </div>
                     </a>
                     <a href="${ctx}/products?category=Footwear" class="acet-product-item" data-aura-bound="true">
-                        <img src="${ctx}/assets/images/sneak1.jpg" alt="Footwear Drop" class="acet-prod-img" />
+                        <img src="${ctx}/assets/images/sneak1.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'" alt="Footwear Drop" class="acet-prod-img" />
                         <div class="acet-prod-info">
                             <h4 class="acet-prod-title">Footwear Drop</h4>
                             <p class="acet-prod-desc">Tactile, premium weights that stand out.</p>
                         </div>
                     </a>
                     <a href="${ctx}/products?category=Accessories" class="acet-product-item" data-aura-bound="true">
-                        <img src="${ctx}/assets/images/bag1.jpg" alt="Accessories" class="acet-prod-img" />
+                        <img src="${ctx}/assets/images/bag1.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'" alt="Accessories" class="acet-prod-img" />
                         <div class="acet-prod-info">
                             <h4 class="acet-prod-title">Accessories</h4>
                             <p class="acet-prod-desc">Minimalist details to complete the look.</p>

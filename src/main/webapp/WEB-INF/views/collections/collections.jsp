@@ -56,15 +56,15 @@
     <section class="col-block col-block--left" id="noir">
         <div class="col-block-images">
             <div class="col-img-main">
-                <img src="${ctx}/assets/images/over1.jpg" alt="Noir Drop — Oversized Silhouette">
+                <img src="${ctx}/assets/images/over1.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'" alt="Noir Drop — Oversized Silhouette">
                 <div class="col-img-badge">01</div>
             </div>
             <div class="col-img-stack">
                 <div class="col-img-secondary">
-                    <img src="${ctx}/assets/images/cargo2.jpg" alt="Noir Drop — Cargo">
+                    <img src="${ctx}/assets/images/cargo2.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'" alt="Noir Drop — Cargo">
                 </div>
                 <div class="col-img-secondary">
-                    <img src="${ctx}/assets/images/ls1.jpg" alt="Noir Drop — Long Sleeve">
+                    <img src="${ctx}/assets/images/ls1.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'" alt="Noir Drop — Long Sleeve">
                 </div>
             </div>
         </div>
@@ -111,15 +111,15 @@
         </div>
         <div class="col-block-images">
             <div class="col-img-main">
-                <img src="${ctx}/assets/images/polo1.jpg" alt="Minimal Essentials — Polo">
+                <img src="${ctx}/assets/images/polo1.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'" alt="Minimal Essentials — Polo">
                 <div class="col-img-badge col-img-badge--dark">02</div>
             </div>
             <div class="col-img-stack">
                 <div class="col-img-secondary">
-                    <img src="${ctx}/assets/images/tank1.jpg" alt="Minimal Essentials — Tank">
+                    <img src="${ctx}/assets/images/tank1.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'" alt="Minimal Essentials — Tank">
                 </div>
                 <div class="col-img-secondary">
-                    <img src="${ctx}/assets/images/short1.jpg" alt="Minimal Essentials — Shorts">
+                    <img src="${ctx}/assets/images/short1.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'" alt="Minimal Essentials — Shorts">
                 </div>
             </div>
         </div>
@@ -134,15 +134,15 @@
     <section class="col-block col-block--left col-block--dark" id="street">
         <div class="col-block-images">
             <div class="col-img-main">
-                <img src="${ctx}/assets/images/track1.jpg" alt="Street Uniform — Tracksuit">
+                <img src="${ctx}/assets/images/track1.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'" alt="Street Uniform — Tracksuit">
                 <div class="col-img-badge col-img-badge--red">03</div>
             </div>
             <div class="col-img-stack">
                 <div class="col-img-secondary">
-                    <img src="${ctx}/assets/images/wind1.jpg" alt="Street Uniform — Windbreaker">
+                    <img src="${ctx}/assets/images/wind1.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'" alt="Street Uniform — Windbreaker">
                 </div>
                 <div class="col-img-secondary">
-                    <img src="${ctx}/assets/images/cap1.jpg" alt="Street Uniform — Cap">
+                    <img src="${ctx}/assets/images/cap1.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'" alt="Street Uniform — Cap">
                 </div>
             </div>
         </div>

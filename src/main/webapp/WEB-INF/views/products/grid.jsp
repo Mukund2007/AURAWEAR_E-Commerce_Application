@@ -8,7 +8,8 @@
              onerror="this.src='${pageContext.request.contextPath}/assets/images/fallback.jpg'">
 
         <img class="img-hover"
-             src="<c:choose><c:when test="${fn:startsWith(p.image, 'http')}">${p.image}</c:when><c:otherwise>${pageContext.request.contextPath}/assets/images/${p.image}</c:otherwise></c:choose>">
+             src="<c:choose><c:when test="${fn:startsWith(p.image, 'http')}">${p.image}</c:when><c:otherwise>${pageContext.request.contextPath}/assets/images/${p.image}</c:otherwise></c:choose>"
+             onerror="this.src='${pageContext.request.contextPath}/assets/images/fallback.jpg'">
 
         <c:choose>
             <c:when test="${p.stockQuantity == 0}">

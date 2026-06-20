@@ -90,20 +90,45 @@ public class UpdateOrderStatusServlet extends HttpServlet {
                 }
             }
 
-            // Update order status
-            String updateSql = "UPDATE orders SET status = ? WHERE id = ? AND user_email = ?";
-            try (PreparedStatement psUpdate = con.prepareStatement(updateSql)) {
-                psUpdate.setString(1, targetStatus);
-                psUpdate.setInt(2, orderId);
-                psUpdate.setString(3, email);
-                int updated = psUpdate.executeUpdate();
-                if (updated > 0) {
-                    response.setStatus(HttpServletResponse.SC_OK);
-                    response.getWriter().write("Success");
-                } else {
-                    response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-                    response.getWriter().write("Failed to update status");
+            con.setAutoCommit(false);
+            try {
+                // Update order status
+                String updateSql = "UPDATE orders SET status = ? WHERE id = ? AND user_email = ?";
+                try (PreparedStatement psUpdate = con.prepareStatement(updateSql)) {
+                    psUpdate.setString(1, targetStatus);
+                    psUpdate.setInt(2, orderId);
+                    psUpdate.setString(3, email);
+                    int updated = psUpdate.executeUpdate();
+                    if (updated > 0) {
+                        // Restore stock for each item in the order
+                        String getItemsSql = "SELECT product_id, quantity FROM order_items WHERE order_id = ?";
+                        try (PreparedStatement psGetItems = con.prepareStatement(getItemsSql)) {
+                            psGetItems.setInt(1, orderId);
+                            try (ResultSet rsItems = psGetItems.executeQuery()) {
+                                String restoreStockSql = "UPDATE products SET stock_quantity = stock_quantity + ? WHERE id = ?";
+                                try (PreparedStatement psRestore = con.prepareStatement(restoreStockSql)) {
+                                    while (rsItems.next()) {
+                                        int productId = rsItems.getInt("product_id");
+                                        int quantity = rsItems.getInt("quantity");
+                                        psRestore.setInt(1, quantity);
+                                        psRestore.setInt(2, productId);
+                                        psRestore.executeUpdate();
+                                    }
+                                }
+                            }
+                        }
+                        con.commit();
+                        response.setStatus(HttpServletResponse.SC_OK);
+                        response.getWriter().write("Success");
+                    } else {
+                        con.rollback();
+                        response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+                        response.getWriter().write("Failed to update status");
+                    }
                 }
+            } catch (Exception e) {
+                con.rollback();
+                throw e;
             }
         } catch (Exception e) {
             e.printStackTrace();
