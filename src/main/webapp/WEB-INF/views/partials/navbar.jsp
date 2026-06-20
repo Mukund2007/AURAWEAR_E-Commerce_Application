@@ -2,14 +2,7 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 
-<script>
-    (function() {
-        var savedTheme = localStorage.getItem('auraTheme') || 'canvas';
-        if (savedTheme !== 'canvas') {
-            document.documentElement.classList.add('theme-' + savedTheme);
-        }
-    })();
-</script>
+
 
 <link rel="stylesheet" href="${ctx}/assets/css/navbar.css">
 
@@ -110,18 +103,7 @@
 
     <div class="nav-right-group">
 
-        <!-- DYNAMIC THEME SELECTOR WIDGET (OUTFIT COLOR SWATCHES) -->
-        <div class="aura-theme-picker" data-aura-bound="true">
-            <button class="theme-swatch swatch-noir" onclick="setAuraTheme('noir')" title="Noir (Dark) Mode" aria-label="Noir Mode">
-                <span class="swatch-dot"></span>
-            </button>
-            <button class="theme-swatch swatch-canvas" onclick="setAuraTheme('canvas')" title="Canvas (Cream) Mode" aria-label="Canvas Mode">
-                <span class="swatch-dot"></span>
-            </button>
-            <button class="theme-swatch swatch-red" onclick="setAuraTheme('red')" title="Accent (Red) Mode" aria-label="Red Mode">
-                <span class="swatch-dot"></span>
-            </button>
-        </div>
+
 
         <div class="search-box">
             <form action="${ctx}/products" method="get">
@@ -450,26 +432,7 @@
 </div>
 
 <script>
-// ── OUTFIT-STYLE DYNAMIC THEMING CONTROLLER ───────────────────
-function setAuraTheme(theme) {
-    const htmlEl = document.documentElement;
-    htmlEl.classList.remove('theme-noir', 'theme-canvas', 'theme-red');
-    if (theme !== 'canvas') {
-        htmlEl.classList.add('theme-' + theme);
-    }
-    localStorage.setItem('auraTheme', theme);
-    updateSwatchUI(theme);
-}
 
-function updateSwatchUI(theme) {
-    document.querySelectorAll('.theme-swatch').forEach(swatch => {
-        swatch.classList.remove('active');
-    });
-    const activeSwatch = document.querySelector('.swatch-' + theme);
-    if (activeSwatch) {
-        activeSwatch.classList.add('active');
-    }
-}
 
 function updateCartCount() {
     fetch("${ctx}/cart-count", { credentials: "include" })
@@ -497,9 +460,7 @@ function closeMenuOverlay() {
 }
 
 function initAuraInteractive() {
-    // ── Swatch Active UI Initialization
-    var savedTheme = localStorage.getItem('auraTheme') || 'canvas';
-    updateSwatchUI(savedTheme);
+
 
     // ── Preloader Progress Counter
     const percentEl = document.getElementById("preloaderPercent");

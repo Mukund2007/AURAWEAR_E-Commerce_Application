@@ -10,27 +10,7 @@
     --input-bg: #ffffff;
 }
 
-html.theme-noir {
-    --bg-color: #0d0d0d;
-    --text-color: #ede4dd;
-    --border-color: rgba(237, 228, 221, 0.15);
-    --border-color-solid: #ede4dd;
-    --accent-color: #ff0001;
-    --card-bg: rgba(25, 25, 25, 0.5);
-    --navbar-bg: rgba(13, 13, 13, 0.85);
-    --input-bg: #1a1a1a;
-}
 
-html.theme-red {
-    --bg-color: #ff0001;
-    --text-color: #0d0d0d;
-    --border-color: rgba(13, 13, 13, 0.25);
-    --border-color-solid: #0d0d0d;
-    --accent-color: #ede4dd;
-    --card-bg: rgba(255, 255, 255, 0.25);
-    --navbar-bg: rgba(255, 0, 1, 0.85);
-    --input-bg: rgba(255, 255, 255, 0.4);
-}
 
 /* Global Application Level transitions */
 html {
@@ -205,12 +185,7 @@ h1, h2, h3, h4, h5, h6, p, span, a, div, section, label, input, select, textarea
     background: rgba(13, 13, 13, 0.98) !important;
     color: #ede4dd !important;
 }
-html.theme-noir .menu-overlay {
-    background: rgba(5, 5, 5, 0.99) !important;
-}
-html.theme-red .menu-overlay {
-    background: rgba(13, 13, 13, 0.98) !important;
-}
+
 .menu-overlay .menu-item {
     color: #ede4dd !important;
 }
@@ -267,100 +242,7 @@ footer, .footer {
     transition: all 0.4s cubic-bezier(0.76, 0, 0.24, 1) !important;
 }
 
-/* ── OUTFIT-STYLE DYNAMIC THEME SELECTOR WIDGET ──────────────────── */
-.aura-theme-picker {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    z-index: 99900;
-    transition: all 0.5s cubic-bezier(0.76, 0, 0.24, 1);
-}
 
-.theme-swatch {
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    border: none;
-    background: transparent;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
-    transition: all 0.4s cubic-bezier(0.76, 0, 0.24, 1);
-    position: relative;
-    outline: none;
-}
-
-.theme-swatch:hover {
-    transform: scale(1.2);
-}
-
-.swatch-dot {
-    border-radius: 50%;
-    transition: all 0.4s cubic-bezier(0.76, 0, 0.24, 1);
-}
-
-/* 1. Noir Swatch Dot - "larger black" when active */
-.swatch-noir .swatch-dot {
-    background: #000000;
-    width: 14px;
-    height: 14px;
-    border: 1px solid rgba(237, 228, 221, 0.2);
-}
-.swatch-noir.active .swatch-dot {
-    width: 20px;
-    height: 20px;
-    border-color: transparent;
-}
-
-/* 2. Canvas Swatch Dot - "white outline circle" when active */
-.swatch-canvas .swatch-dot {
-    background: #ede4dd;
-    width: 14px;
-    height: 14px;
-    border: 1px solid rgba(13, 13, 13, 0.2);
-}
-.swatch-canvas.active .swatch-dot {
-    width: 20px;
-    height: 20px;
-    background: transparent;
-    border: 2px solid var(--text-color);
-}
-
-/* 3. Red Swatch Dot - "larger red with white dot" when active, "small red" when inactive */
-.swatch-red .swatch-dot {
-    background: #ff0001;
-    width: 14px;
-    height: 14px;
-    border: none;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.swatch-red.active .swatch-dot {
-    width: 20px;
-    height: 20px;
-}
-.swatch-red .swatch-dot::after {
-    content: "";
-    position: absolute;
-    width: 4px;
-    height: 4px;
-    background: #ffffff;
-    border-radius: 50%;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-.swatch-red.active .swatch-dot::after {
-    opacity: 1;
-}
-
-/* Selected state active concentric ring */
-.theme-swatch.active {
-    box-shadow: 0 0 0 2px var(--bg-color), 0 0 0 3.5px var(--text-color);
-}
 
 /* ── CUSTOM CURSOR FOLLOWER ──────────────────────────────────── */
 .custom-cursor-follower {
@@ -409,15 +291,7 @@ footer, .footer {
     transition: all 0.5s cubic-bezier(0.76, 0, 0.24, 1);
 }
 
-html.theme-noir .navbar-center-menu {
-    background: rgba(25, 25, 25, 0.65) !important;
-    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.25) !important;
-}
 
-html.theme-red .navbar-center-menu {
-    background: rgba(255, 255, 255, 0.2) !important;
-    box-shadow: 0 4px 20px rgba(13, 13, 13, 0.1) !important;
-}
 
 .acet-menu-item {
     position: relative;
@@ -1115,26 +989,7 @@ html.theme-red .navbar-center-menu {
         gap: 12px !important;
     }
     
-    /* Make the theme swatches slightly smaller or adjust gap for mobile */
-    .navbar .aura-theme-picker {
-        gap: 8px !important;
-        margin-right: 4px;
-    }
-    
-    .navbar .theme-swatch {
-        width: 20px !important;
-        height: 20px !important;
-    }
-    .navbar .swatch-dot {
-        width: 10px !important;
-        height: 10px !important;
-    }
-    .navbar .swatch-noir.active .swatch-dot,
-    .navbar .swatch-canvas.active .swatch-dot,
-    .navbar .swatch-red.active .swatch-dot {
-        width: 14px !important;
-        height: 14px !important;
-    }
+
     
     /* Add a beautiful mobile search box inside the menu overlay */
     .menu-overlay .mobile-search-box {
