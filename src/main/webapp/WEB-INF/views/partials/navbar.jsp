@@ -14,7 +14,7 @@
 <link rel="stylesheet" href="${ctx}/assets/css/navbar.css">
 
 <div class="top-strip">
-    <div>✨ AURA SYSTEM LIVE ✨ | Shipping on all orders above ₹999</div>
+    <div>Shipping on all orders above ₹999</div>
     <div class="top-right">
         <a href="${ctx}/my-orders">Track Order</a>
         <a href="${ctx}/my-orders">Returns</a>
