@@ -57,7 +57,6 @@
         <img alt="High-fashion editorial streetwear" class="hero-bg-img" src="${ctx}/assets/images/hero-main.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'"/>
         <div class="hero-overlay"></div>
         <div class="hero-content">
-            <p class="hero-eyebrow">AW '25 — NEW ARRIVAL</p>
             <h1 class="hero-title">Essential Silhouettes. Refined for the Everyday.</h1>
             <div class="hero-buttons">
                 <a href="${ctx}/products" class="btn btn-primary">Explore Collection</a>
