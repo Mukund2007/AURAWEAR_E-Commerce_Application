@@ -350,8 +350,22 @@
                 if (!data) return;
                 if (data.success) {
                     btn.innerText = "Added ✓";
-                    showToast(btn.closest(".product-card").querySelector(".product-title-text").innerText + " added to cart!");
+                    const pName = btn.closest(".product-card").querySelector(".product-title-text").innerText;
+                    showToast(pName + " added to cart!");
                     updateCartCount();
+                    if (typeof gtag === 'function') {
+                        gtag('event', 'add_to_cart', {
+                            currency: 'INR',
+                            value: parseFloat(price),
+                            items: [{
+                                item_id: id,
+                                item_name: pName,
+                                price: parseFloat(price),
+                                quantity: 1,
+                                item_size: size
+                            }]
+                        });
+                    }
                 } else {
                     btn.innerText = "Out of Stock";
                     showToast(data.message || "This item is out of stock");
@@ -596,6 +610,18 @@
     window.showToast = showToast;
     </script>
     <script src="${ctx}/assets/js/app-interactions.js?v=11"></script>
+
+    <c:if test="${not empty keyword}">
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                if (typeof gtag === 'function') {
+                    gtag('event', 'search', {
+                        search_term: '${fn:escapeXml(keyword)}'
+                    });
+                }
+            });
+        </script>
+    </c:if>
 
 </body>
 </html>

@@ -458,5 +458,27 @@
     </c:if>
     </script>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            if (typeof gtag === 'function') {
+                gtag('event', 'begin_checkout', {
+                    currency: 'INR',
+                    value: parseFloat('${grandTotal}'),
+                    items: [
+                        <c:forEach var="item" items="${cartItems}" varStatus="status">
+                        {
+                            item_id: '${item.productId}',
+                            item_name: '${item.productName}',
+                            price: parseFloat('${item.price}'),
+                            quantity: parseInt('${item.quantity}'),
+                            item_size: '${item.size}'
+                        }${not status.last ? ',' : ''}
+                        </c:forEach>
+                    ]
+                });
+            }
+        });
+    </script>
+
 </body>
 </html>

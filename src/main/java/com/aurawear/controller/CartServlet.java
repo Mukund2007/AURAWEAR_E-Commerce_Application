@@ -75,6 +75,11 @@ public class CartServlet extends HttpServlet {
 
                 CartDAO dao = new CartDAO();
                 dao.addToCart(email, productId, size, price);
+                
+                session.setAttribute("justAddedToCart", true);
+                session.setAttribute("addedProduct", product);
+                session.setAttribute("addedSize", size);
+                session.setAttribute("addedPrice", price);
             } catch (NumberFormatException e) {
                 e.printStackTrace();
             }

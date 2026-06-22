@@ -2,7 +2,27 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 
+<!-- Google Analytics GA4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EG16LNFXMK"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-EG16LNFXMK');
+</script>
 
+<c:if test="${sessionScope.loginSuccess}">
+    <script>
+        gtag('event', 'login', { method: 'Email' });
+    </script>
+    <c:remove var="loginSuccess" scope="session" />
+</c:if>
+<c:if test="${sessionScope.registrationSuccess}">
+    <script>
+        gtag('event', 'sign_up', { method: 'Email' });
+    </script>
+    <c:remove var="registrationSuccess" scope="session" />
+</c:if>
 
 <link rel="stylesheet" href="${ctx}/assets/css/navbar.css?v=122">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />

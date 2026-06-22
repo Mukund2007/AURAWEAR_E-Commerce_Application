@@ -241,6 +241,22 @@
             btn.classList.add("added");
             showToast("Added to bag!");
             updateCartCount();
+            
+            if (typeof gtag === 'function') {
+                const pName = btn.closest(".wl-card")?.querySelector(".wl-name")?.innerText || 'Product';
+                gtag('event', 'add_to_cart', {
+                    currency: 'INR',
+                    value: parseFloat(price),
+                    items: [{
+                        item_id: productId.toString(),
+                        item_name: pName,
+                        price: parseFloat(price),
+                        quantity: 1,
+                        item_size: size || 'M'
+                    }]
+                });
+            }
+            
             setTimeout(() => {
                 btn.disabled = false;
                 btn.innerHTML = '+ Add to Bag';

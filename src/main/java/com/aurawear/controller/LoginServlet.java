@@ -48,6 +48,7 @@ public class LoginServlet extends HttpServlet {
 		    User user = userDAO.getUserByEmail(email); // ✅ FETCH USER
 
 		    session.setAttribute("user", user);        // ✅ STORE OBJECT
+		    session.setAttribute("loginSuccess", true);  // GA4 Event Flag
 
 		    response.sendRedirect(request.getContextPath() + "/home");
 		}

@@ -120,6 +120,7 @@ public class VerifyOTPServlet extends HttpServlet {
             		HttpSession newSession = request.getSession(true);
             		newSession.setAttribute("userId", userId);
             		newSession.setAttribute("user", freshUser);
+            		newSession.setAttribute("registrationSuccess", true); // GA4 Event Flag
 
             		response.sendRedirect(
             		request.getContextPath() + "/home"

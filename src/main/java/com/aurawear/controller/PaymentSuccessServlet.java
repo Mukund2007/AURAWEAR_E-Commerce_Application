@@ -86,6 +86,12 @@ public class PaymentSuccessServlet extends HttpServlet {
                                                          shippingName, shippingPhone, shippingAddress,
                                                          shippingCity, shippingState, shippingPincode);
                 System.out.println("[PaymentSuccessServlet] moveCartToOrdersWithPayment: SUCCESS, Order ID: " + orderId);
+                if (orderId != -1) {
+                    session.setAttribute("justPurchased", true);
+                    session.setAttribute("purchaseOrderId", orderId);
+                    session.setAttribute("purchaseTotal", grandTotal);
+                    session.setAttribute("purchaseItems", cartItems);
+                }
             } catch (Exception e) {
                 System.out.println("[PaymentSuccessServlet] moveCartToOrdersWithPayment: FAILURE");
                 e.printStackTrace();

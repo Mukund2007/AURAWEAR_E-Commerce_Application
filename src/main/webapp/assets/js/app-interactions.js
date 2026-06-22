@@ -221,6 +221,20 @@ function triggerDragAddToCart(id, size, price, name) {
                 if (typeof window.updateCartCount === 'function') {
                     window.updateCartCount();
                 }
+                
+                if (typeof gtag === 'function') {
+                    gtag('event', 'add_to_cart', {
+                        currency: 'INR',
+                        value: parseFloat(price),
+                        items: [{
+                            item_id: id.toString(),
+                            item_name: name,
+                            price: parseFloat(price),
+                            quantity: 1,
+                            item_size: size
+                        }]
+                    });
+                }
             } else {
                 if (typeof window.showToast === 'function') {
                     window.showToast(data.message || "This item is out of stock");

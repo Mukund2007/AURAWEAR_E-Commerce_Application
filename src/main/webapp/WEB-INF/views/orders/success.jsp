@@ -42,5 +42,36 @@
         });
     </script>
 
+    <c:if test="${sessionScope.justPurchased}">
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                if (typeof gtag === 'function') {
+                    gtag('event', 'purchase', {
+                        transaction_id: '${sessionScope.purchaseOrderId}',
+                        value: parseFloat('${sessionScope.purchaseTotal}'),
+                        currency: 'INR',
+                        items: [
+                            <c:forEach var="item" items="${sessionScope.purchaseItems}" varStatus="status">
+                            {
+                                item_id: '${item.productId}',
+                                item_name: '${item.productName}',
+                                price: parseFloat('${item.price}'),
+                                quantity: parseInt('${item.quantity}'),
+                                item_size: '${item.size}'
+                            }${not status.last ? ',' : ''}
+                            </c:forEach>
+                        ]
+                    });
+                }
+            });
+        </script>
+        <%
+            session.removeAttribute("justPurchased");
+            session.removeAttribute("purchaseOrderId");
+            session.removeAttribute("purchaseTotal");
+            session.removeAttribute("purchaseItems");
+        %>
+    </c:if>
+
 </body>
 </html>

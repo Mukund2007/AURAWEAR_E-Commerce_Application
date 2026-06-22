@@ -414,6 +414,31 @@
         if (nav) nav.classList.toggle('scrolled', window.scrollY > 80);
     });
     </script>
+    <c:if test="${sessionScope.justAddedToCart}">
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                if (typeof gtag === 'function') {
+                    gtag('event', 'add_to_cart', {
+                        currency: 'INR',
+                        value: parseFloat('${sessionScope.addedPrice}'),
+                        items: [{
+                            item_id: '${sessionScope.addedProduct.id}',
+                            item_name: '${sessionScope.addedProduct.name}',
+                            price: parseFloat('${sessionScope.addedPrice}'),
+                            quantity: 1,
+                            item_size: '${sessionScope.addedSize}'
+                        }]
+                    });
+                }
+            });
+        </script>
+        <%
+            session.removeAttribute("justAddedToCart");
+            session.removeAttribute("addedProduct");
+            session.removeAttribute("addedSize");
+            session.removeAttribute("addedPrice");
+        %>
+    </c:if>
 
-</body>
+    </body>
 </html>

@@ -406,6 +406,7 @@
         const id = btn.getAttribute("data-id");
         const size = btn.getAttribute("data-size");
         const price = btn.getAttribute("data-price");
+        const pName = btn.closest(".group").querySelector("h3")?.innerText || 'Product';
         btn.disabled = true;
         btn.innerText = "Adding...";
         fetch(ctx + "/add-to-cart", {
@@ -428,6 +429,19 @@
                 btn.innerText = "Added ✓";
                 showToast("Added to bag!");
                 updateCartCount();
+                if (typeof gtag === 'function') {
+                    gtag('event', 'add_to_cart', {
+                        currency: 'INR',
+                        value: parseFloat(price),
+                        items: [{
+                            item_id: id,
+                            item_name: pName,
+                            price: parseFloat(price),
+                            quantity: 1,
+                            item_size: size || 'M'
+                        }]
+                    });
+                }
             } else {
                 btn.innerText = "OUT OF STOCK";
                 showToast(data.message || "Out of stock!");

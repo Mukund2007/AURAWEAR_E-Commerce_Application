@@ -86,6 +86,13 @@ public class CheckoutCODServlet extends HttpServlet {
                                                      shippingName, shippingPhone, shippingAddress, 
                                                      shippingCity, shippingState, shippingPincode);
             System.out.println("[CheckoutCODServlet] moveCartToOrdersWithPayment: SUCCESS, Order ID: " + orderId);
+            
+            if (orderId != -1) {
+                session.setAttribute("justPurchased", true);
+                session.setAttribute("purchaseOrderId", orderId);
+                session.setAttribute("purchaseTotal", grandTotal);
+                session.setAttribute("purchaseItems", cartItems);
+            }
 
             // Trigger order confirmation email asynchronously
             if (orderId != -1) {
