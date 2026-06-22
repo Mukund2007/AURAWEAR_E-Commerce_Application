@@ -23,7 +23,7 @@ public class WishlistToggleServlet extends HttpServlet {
         productDAO  = new ProductDAO();
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         response.setContentType("text/plain;charset=UTF-8");

@@ -334,7 +334,7 @@
 </div>
 
 <script>
-
+window._csrf = "${_csrf}";
 
 function updateCartCount() {
     fetch("${ctx}/cart-count", { credentials: "include" })

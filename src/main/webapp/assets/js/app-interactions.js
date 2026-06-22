@@ -190,11 +190,15 @@ function initDragToCart() {
 
 function triggerDragAddToCart(id, size, price, name) {
     const contextPath = window.ctx || '';
-    const url = contextPath + "/add-to-cart?id=" + id
-                    + "&size=" + encodeURIComponent(size)
-                    + "&price=" + price;
-                    
-    fetch(url, { credentials: "include" })
+    fetch(contextPath + "/add-to-cart", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+            "X-CSRF-Token": window._csrf
+        },
+        body: "id=" + encodeURIComponent(id) + "&size=" + encodeURIComponent(size) + "&price=" + encodeURIComponent(price),
+        credentials: "include"
+    })
         .then(res => {
             if (res.status === 401) {
                 // If not logged in, redirect to login page

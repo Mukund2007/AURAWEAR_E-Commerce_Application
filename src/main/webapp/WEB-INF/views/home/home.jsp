@@ -368,8 +368,13 @@
     function toggleWishlist(e, el) {
         e.stopPropagation();
         const id = el.getAttribute("data-id");
-        fetch(ctx + "/wishlist-toggle?id=" + id, {
-            method: "GET",
+        fetch(ctx + "/wishlist-toggle", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+                "X-CSRF-Token": window._csrf
+            },
+            body: "id=" + encodeURIComponent(id),
             credentials: "include"
         })
         .then(res => {
@@ -403,7 +408,13 @@
         const price = btn.getAttribute("data-price");
         btn.disabled = true;
         btn.innerText = "Adding...";
-        fetch(ctx + "/add-to-cart?id=" + id + "&size=" + encodeURIComponent(size || "M") + "&price=" + price, {
+        fetch(ctx + "/add-to-cart", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+                "X-CSRF-Token": window._csrf
+            },
+            body: "id=" + encodeURIComponent(id) + "&size=" + encodeURIComponent(size || "M") + "&price=" + encodeURIComponent(price),
             credentials: "include"
         })
         .then(res => {

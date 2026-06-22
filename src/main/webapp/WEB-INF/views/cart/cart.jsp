@@ -273,7 +273,14 @@
         minusBtn.disabled = true;
         plusBtn.disabled = true;
 
-        fetch(ctxPath + "/update-cart?id=" + id + "&size=" + size + "&change=" + change)
+        fetch(ctxPath + "/update-cart", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+                "X-CSRF-Token": window._csrf
+            },
+            body: "id=" + encodeURIComponent(id) + "&size=" + encodeURIComponent(size) + "&change=" + encodeURIComponent(change)
+        })
         .then(res => res.json())
         .then(data => {
             const qtySpan   = controls.querySelector(".qty");
@@ -304,7 +311,14 @@
         itemDiv.style.opacity = "0";
         itemDiv.style.transform = "scale(0.95)";
 
-        fetch(ctxPath + "/remove-from-cart?id=" + id + "&size=" + size)
+        fetch(ctxPath + "/remove-from-cart", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+                "X-CSRF-Token": window._csrf
+            },
+            body: "id=" + encodeURIComponent(id) + "&size=" + encodeURIComponent(size)
+        })
         .then(res => {
             if (!res.ok) throw new Error();
             setTimeout(() => {

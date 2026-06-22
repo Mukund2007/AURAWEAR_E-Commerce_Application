@@ -490,8 +490,13 @@
 
     // Wishlist Toggle
     function toggleWishlist(id, btn) {
-        fetch(ctx + "/wishlist-toggle?id=" + id, {
-            method: "GET",
+        fetch(ctx + "/wishlist-toggle", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+                "X-CSRF-Token": window._csrf
+            },
+            body: "id=" + encodeURIComponent(id),
             credentials: "include"
         })
         .then(res => {

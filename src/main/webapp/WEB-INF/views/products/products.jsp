@@ -329,11 +329,15 @@
         btn.disabled  = true;
         btn.innerText = "Adding...";
 
-        const url = ctx + "/add-to-cart?id=" + id
-                        + "&size=" + encodeURIComponent(size)
-                        + "&price=" + price;
-
-        fetch(url, { credentials: "include" })
+        fetch(ctx + "/add-to-cart", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+                "X-CSRF-Token": window._csrf
+            },
+            body: "id=" + encodeURIComponent(id) + "&size=" + encodeURIComponent(size) + "&price=" + encodeURIComponent(price),
+            credentials: "include"
+        })
             .then(res => {
                 if (res.status === 401) {
                     window.location.href = ctx + "/login";
@@ -369,8 +373,13 @@
         e.stopPropagation();
         const id = el.getAttribute("data-id");
 
-        fetch(ctx + "/wishlist-toggle?id=" + id, {
-            method: "GET",
+        fetch(ctx + "/wishlist-toggle", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+                "X-CSRF-Token": window._csrf
+            },
+            body: "id=" + encodeURIComponent(id),
             credentials: "include"
         })
         .then(res => {

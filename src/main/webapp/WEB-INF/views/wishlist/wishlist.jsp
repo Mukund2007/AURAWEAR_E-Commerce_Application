@@ -195,7 +195,13 @@
 
     function removeItem(e, productId, productName) {
         e.stopPropagation();
-        fetch(ctx + "/wishlist-toggle?id=" + productId, {
+        fetch(ctx + "/wishlist-toggle", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+                "X-CSRF-Token": window._csrf
+            },
+            body: "id=" + encodeURIComponent(productId),
             credentials: "include"
         })
         .then(res => {
@@ -219,9 +225,13 @@
         btn.disabled = true;
         btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Adding...';
 
-        fetch(ctx + "/add-to-cart?id=" + productId
-                + "&size=" + encodeURIComponent(size || "M")
-                + "&price=" + price, {
+        fetch(ctx + "/add-to-cart", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+                "X-CSRF-Token": window._csrf
+            },
+            body: "id=" + encodeURIComponent(productId) + "&size=" + encodeURIComponent(size || "M") + "&price=" + encodeURIComponent(price),
             credentials: "include"
         })
         .then(res => {
