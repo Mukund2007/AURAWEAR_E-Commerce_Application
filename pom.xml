@@ -70,6 +70,19 @@
 
     <build>
         <finalName>AuraWear</finalName>
+
+        <!-- Exclude local-dev secrets from WAR — they must never ship to production -->
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <excludes>
+                    <exclude>app-local.properties</exclude>
+                    <exclude>razorpay-local.properties</exclude>
+                    <exclude>*.secret</exclude>
+                    <exclude>*.secrets</exclude>
+                </excludes>
+            </resource>
+        </resources>
     </build>
 
 </project>

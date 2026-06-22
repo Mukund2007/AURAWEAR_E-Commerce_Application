@@ -1,18 +1,35 @@
 package com.aurawear.util;
 
+import com.aurawear.config.AppConfig;
 import jakarta.mail.*;
 import jakarta.mail.internet.*;
 import java.util.Properties;
 
+/**
+ * Email utility for sending OTP and order confirmation emails via Gmail SMTP.
+ *
+ * Credentials are loaded exclusively from environment variables via AppConfig:
+ *   AURAWEAR_EMAIL          — sender Gmail address
+ *   AURAWEAR_EMAIL_PASSWORD — Gmail App Password (16-char, no spaces)
+ *
+ * No hardcoded credentials. Local development values go in
+ * src/main/resources/app-local.properties (git-ignored).
+ */
 public class EmailUtil {
 
-    // ✅ Loaded from Environment Variables (with fallback values for local development)
-    private static final String FROM_EMAIL = System.getenv("AURAWEAR_EMAIL") != null 
-        ? System.getenv("AURAWEAR_EMAIL") 
-        : "aurawear1976@gmail.com";
-    private static final String APP_PASSWORD = System.getenv("AURAWEAR_EMAIL_PASSWORD") != null 
-        ? System.getenv("AURAWEAR_EMAIL_PASSWORD") 
-        : "ankj vguy cxiy jolz";
+    private static String getFromEmail() {
+        String v = AppConfig.get("AURAWEAR_EMAIL");
+        if (v == null) throw new RuntimeException(
+            "[EmailUtil] AURAWEAR_EMAIL environment variable is not set");
+        return v;
+    }
+
+    private static String getAppPassword() {
+        String v = AppConfig.get("AURAWEAR_EMAIL_PASSWORD");
+        if (v == null) throw new RuntimeException(
+            "[EmailUtil] AURAWEAR_EMAIL_PASSWORD environment variable is not set");
+        return v;
+    }
 
     public static void sendOTP(String toEmail, String otp) throws MessagingException, java.io.UnsupportedEncodingException {
 
@@ -27,12 +44,12 @@ public class EmailUtil {
         Session session = Session.getInstance(props, new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(FROM_EMAIL, APP_PASSWORD);
+                return new PasswordAuthentication(getFromEmail(), getAppPassword());
             }
         });
 
         Message message = new MimeMessage(session);
-        message.setFrom(new InternetAddress(FROM_EMAIL, "AuraWear"));
+        message.setFrom(new InternetAddress(getFromEmail(), "AuraWear"));
         message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail));
         message.setSubject("Your AuraWear Verification Code");
         message.setContent(buildEmailHTML(otp), "text/html; charset=utf-8");
@@ -97,12 +114,12 @@ public class EmailUtil {
         Session session = Session.getInstance(props, new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(FROM_EMAIL, APP_PASSWORD);
+                return new PasswordAuthentication(getFromEmail(), getAppPassword());
             }
         });
 
         Message message = new MimeMessage(session);
-        message.setFrom(new InternetAddress(FROM_EMAIL, "AuraWear"));
+        message.setFrom(new InternetAddress(getFromEmail(), "AuraWear"));
         message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail));
         message.setSubject(isCOD ? "Your AuraWear Order Confirmation (COD) - #" + orderId : "Your AuraWear Order Confirmation - #" + orderId);
         message.setContent(buildOrderEmailHTML(orderId, items, totalAmount, isCOD, shippingName, shippingPhone, shippingAddress, shippingCity, shippingState, shippingPincode), "text/html; charset=utf-8");

@@ -1,9 +1,50 @@
+# ── Build outputs ────────────────────────────────────────────────────────────
 target/
-.DS_Store
 *.class
 *.war
 *.jar
+
+# ── IDE / OS ─────────────────────────────────────────────────────────────────
+.DS_Store
 .classpath
 .project
 .settings/
+*.launch
+*.iml
+.idea/
+.vscode/
+
+# ── Local secrets — NEVER commit these ───────────────────────────────────────
+# Unified local-dev override (loaded by AppConfig as classpath fallback)
+app-local.properties
+src/main/resources/app-local.properties
+
+# Legacy local override (superseded by app-local.properties)
+razorpay-local.properties
+src/main/resources/razorpay-local.properties
+
+# Tomcat environment variable script
 setenv.sh
+**/setenv.sh
+
+# Standard .env files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Any secrets files
+secrets.*
+*.secret
+*.secrets
+*.key
+*.pem
+*.p12
+*.keystore
+
+# ── Database dumps — never commit real data ───────────────────────────────────
+# schema.sql is committed for schema structure only — ensure it contains
+# NO real user passwords, NO real email addresses, NO payment transaction IDs.
+# db.sqlite (local SQLite scratch file)
+db.sqlite

@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 9.6.0, for macos15 (arm64)
 --
--- Host: localhost    Database: aurawear
+-- Host: [CONFIGURED VIA ENV]    Database: [CONFIGURED VIA ENV]
 -- ------------------------------------------------------
 -- Server version	9.6.0
 
@@ -14,14 +14,14 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
--- SET @MYSQLDUMP_TEMP_LOG_BIN = @@SESSION.SQL_LOG_BIN;
--- SET @@SESSION.SQL_LOG_BIN= 0;
+-- [SANITIZED: GTID/binlog info removed]
+-- [SANITIZED: GTID/binlog info removed]
 
 --
 -- GTID state at the beginning of the backup 
 --
 
--- SET @@GLOBAL.GTID_PURGED=/*!80000 '+'*/ '8a20390a-3c0b-11f1-9c77-b9e13b83e0d9:1-938';
+-- [SANITIZED: GTID/binlog info removed]
 
 --
 -- Table structure for table `cart`
@@ -47,7 +47,7 @@ CREATE TABLE `cart` (
 
 LOCK TABLES `cart` WRITE;
 /*!40000 ALTER TABLE `cart` DISABLE KEYS */;
-INSERT INTO `cart` VALUES (98,'mukundamadhavareddy540@gmail.com',599,2,2,'L'),(100,'mukundamadhavareddy540@gmail.com',599,1,2,'S'),(101,'mukundamadhavareddy540@gmail.com',3499,1,5,'M'),(102,'govardhanreddyt78@gmail.com',599,2,2,'L'),(103,'naninarne12@gmail.com',2999,1,1,'S');
+-- [SANITIZED: Real cart data removed — populate via application]
 /*!40000 ALTER TABLE `cart` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -81,7 +81,7 @@ CREATE TABLE `orders` (
 
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-INSERT INTO `orders` VALUES (13,'mukundamadhavareddy540@gmail.com',799,'Cancelled','2026-05-03 16:15:32',NULL),(14,'mukundamadhavareddy540@gmail.com',799,'Placed','2026-05-03 16:26:34',NULL),(15,'mukundamadhavareddy540@gmail.com',3499,'DELIVERED','2026-05-03 17:30:33',NULL),(16,'mukundamadhavareddy540@gmail.com',3499,'Placed','2026-05-04 11:22:41',NULL),(17,'mukundamadhavareddy540@gmail.com',2499,'Placed','2026-05-04 11:22:41',NULL),(18,'mukundamadhavareddy540@gmail.com',699,'Placed','2026-05-04 11:22:41',NULL),(19,'mukundamadhavareddy540@gmail.com',3499,'Placed','2026-05-04 11:22:41',NULL),(20,'mukundamadhavareddy540@gmail.com',1198,'Placed','2026-05-04 11:22:41',NULL),(21,'mukundamadhavareddy540@gmail.com',799,'Placed','2026-05-06 14:11:36',NULL),(22,'mukundamadhavareddy540@gmail.com',1499,'Placed','2026-05-26 22:08:18',NULL),(23,'mukundamadhavareddy540@gmail.com',2299,'Placed','2026-05-26 22:08:18',NULL),(25,'mukundamadhavareddy540@gmail.com',599,'Placed','2026-05-26 22:51:02',NULL),(26,'mukundamadhavareddy540@gmail.com',698,'Cancelled','2026-05-27 14:51:45',NULL),(27,'mukundamadhavareddy540@gmail.com',1198,'Placed','2026-05-28 14:30:28',NULL),(28,'mukundamadhavareddy540@gmail.com',599,'Cancelled','2026-05-28 14:30:28',NULL),(29,'mukundamadhavareddy540@gmail.com',6998,'SHIPPED','2026-05-28 14:30:28',NULL),(30,'naninarne12@gmail.com',2999,'PAID','2026-06-15 21:43:07','pay_test_123'),(31,'govardhanreddyt78@gmail.com',698,'SHIPPED','2026-06-15 22:21:45','pay_T1ykxTlzzRhGsh'),(32,'mukundamadhavareddy540@gmail.com',3499,'PAID','2026-06-17 18:38:33','pay_T2i2eKVWpITpyB'),(33,'mukundamadhavareddy540@gmail.com',698,'PAID','2026-06-17 19:17:52','pay_T2ii4mhb5l4inW'),(34,'mukundamadhavareddy540@gmail.com',9,'PAID','2026-06-18 01:05:09','pay_T2od7Sh4qXGu0R');
+-- [SANITIZED: Real orders data removed — populate via application]
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -112,7 +112,7 @@ CREATE TABLE `order_items` (
 
 LOCK TABLES `order_items` WRITE;
 /*!40000 ALTER TABLE `order_items` DISABLE KEYS */;
-INSERT INTO `order_items` VALUES (1,13,3,'Leather Cap',1,799.00,'Free'),(2,14,3,'Leather Cap',1,799.00,'Free'),(3,15,25,'Leather Wrist Watch',1,3499.00,'Free'),(4,16,5,'Chunky Boots',1,3499.00,'UK6'),(5,17,13,'Leather Tote Bag',1,2499.00,'Free'),(6,18,17,'Snapback Cap',1,699.00,'Free'),(7,19,25,'Leather Wrist Watch',1,3499.00,'Free'),(8,20,2,'Biker Short',1,1198.00,'S'),(9,21,3,'Leather Cap',1,799.00,'Free'),(10,22,7,'Mini Crossbody Bag',1,1499.00,'Free'),(11,23,53,'Classic Windbreaker',1,2299.00,'M'),(12,25,2,'Biker Short',1,599.00,'S'),(13,26,2,'Biker Short',1,698.00,'S'),(14,27,2,'Biker Short',1,1198.00,'S'),(15,28,2,'Biker Short',1,599.00,'S'),(16,29,5,'Chunky Boots',1,6998.00,'UK6'),(32,30,1,'Classic Sneaker White',1,2999.00,'S'),(33,31,2,'Biker Short',1,599.00,'L'),(34,32,5,'Chunky Boots',1,3499.00,'UK9'),(35,33,2,'Biker Short',1,599.00,'M'),(36,34,2,'Biker Short',1,9.00,'L');
+-- [SANITIZED: Real order_items data removed — populate via application]
 /*!40000 ALTER TABLE `order_items` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -181,7 +181,7 @@ CREATE TABLE `user_profiles` (
 
 LOCK TABLES `user_profiles` WRITE;
 /*!40000 ALTER TABLE `user_profiles` DISABLE KEYS */;
-INSERT INTO `user_profiles` VALUES (1,16,'Mukund','Minimal','S',NULL,'Drops,Sneakers,Exclusive','2026-04-28 18:35:23'),(2,16,'Mukund','Minimal','S',NULL,'Drops,Exclusive','2026-04-28 18:36:06'),(3,17,'312321','Minimal','S',NULL,'Drops,Sneakers,Exclusive','2026-04-28 18:40:33'),(4,18,'hjfg','Minimal','S',NULL,'Drops,Sneakers,Exclusive','2026-04-28 18:43:54'),(5,18,'hjfg','Minimal','S',NULL,'Drops,Sneakers,Exclusive','2026-04-28 18:47:17'),(6,19,'545454','Minimal','S',NULL,'Drops,Sneakers,Exclusive','2026-04-29 05:14:26'),(7,20,'Mukund20','Streetwear','M',NULL,'Drops,Sneakers,Exclusive','2026-04-30 15:54:34'),(8,21,'httg','Minimal','S',NULL,'Drops,Sneakers,Exclusive','2026-05-03 06:05:13'),(9,1,'REDDY','Streetwear','M','Regular','Drops,Sneakers','2026-05-03 09:56:04'),(10,1,'mukundamadhavareddy540@gmail.com','Minimal','S','Slim','','2026-05-06 08:43:02'),(11,1,'Mukund','Minimal','M','Regular','Drops,Sneakers','2026-05-06 08:43:42'),(12,1,'mukundreddy','Minimal','S','Slim','Sneakers','2026-05-26 16:45:08');
+-- [SANITIZED: Real user_profiles data removed — populate via application]
 /*!40000 ALTER TABLE `user_profiles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -210,8 +210,8 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` (`id`, `name`, `email`, `password`, `verified`) VALUES (1,'Mukund','mukundamadhavareddy540@gmail.com','tuhQEQaa5e3WvF7YfUiZrg==:4GpPSakhBxtR53h7a98MLqruvDefNh19tpNzLs2vxjc=',0),(2,NULL,'mukundamadhavareddy@gmail.com','Mukund',0),(9,'mukund reddy','mukundmadhavareddy@gmail.com','Muund',0),(10,'Mukund 433','mukundamadhavared@gmail.com','37843',0),(11,'Muk37 ewwe','dewdewd@gmail.com','dewewd',0),(12,NULL,NULL,NULL,0),(13,'mukund reddy','mukundamadhav@gmail.com','423432',0),(14,'ueruie rwehew','ewrgwegh@gmail.co','dhsbdasd',0),(15,'vghffd dsd','jshdj@gmail.com','sds',0),(16,'mukund reddy','mukunday540@gmail.com','36784384',0),(17,'mukund reddy','mukueddy540@gmail.com','Mukwfde',0),(18,'mukund reddy','mukundamad540@gmail.com','hgfu',0),(19,'mukund reddy','mukuvareddy540@gmail.com','zereew',0),(20,'Mukunda reddy','mukeddy540@gmail.com','Mukund',0),(21,'mukund reddy','mukuneddy540@gmail.com','eqwqer',0),(22,'Mukunda reddy','ewareddy540@gmail.com','djwuyeuwewee',0),(23,'Mukunda reddy','mukundawemaewewewdewvareddy540@gmail.com','erw',0),(24,'Hari  Charan','haricharan@gmail.com','Hari@2630',0),(25,'mukund reddy','kummathi00@gmail.com','Mukund',0),(26,'gova  reddy','govardhanreddyt78@gmail.com','govardhan1234',0),(27,'Nani Narne','naninarne12@gmail.com','mWQfOjujzuHYKUOAQ/KGcQ==:v+rTlEKSIInUiTGVhPzrxX0dDIgQePwnoDhfL+NiPgY=',0);
-UPDATE `users` SET `role` = 'admin' WHERE `email` = 'mukundamadhavareddy540@gmail.com';
+-- [SANITIZED: Real users data removed — populate via application]
+-- [SANITIZED: Admin role assignment removed — set via admin panel or direct DB update]
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -237,7 +237,7 @@ CREATE TABLE `wishlist` (
 
 LOCK TABLES `wishlist` WRITE;
 /*!40000 ALTER TABLE `wishlist` DISABLE KEYS */;
-INSERT INTO `wishlist` VALUES (75,'govardhanreddyt78@gmail.com','Linen Overshirt',1499),(77,'govardhanreddyt78@gmail.com','Biker Short',599),(94,'mukundamadhavareddy540@gmail.com','Leather Cap',799),(95,'mukundamadhavareddy540@gmail.com','Biker Short',599),(96,'naninarne12@gmail.com','Classic Sneaker White',2999);
+-- [SANITIZED: Real wishlist data removed — populate via application]
 /*!40000 ALTER TABLE `wishlist` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -273,7 +273,7 @@ CREATE TABLE `reviews` (
   FOREIGN KEY (`product_id`) REFERENCES `products` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- SET @@SESSION.SQL_LOG_BIN = @MYSQLDUMP_TEMP_LOG_BIN;
+-- [SANITIZED: GTID/binlog info removed]
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
