@@ -23,6 +23,13 @@ public class AppStartupListener implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         ServletContext ctx = sce.getServletContext();
+        
+        // Dynamically configure session cookie security based on the environment
+        boolean isRender = System.getenv("RENDER") != null;
+        ctx.getSessionCookieConfig().setHttpOnly(true);
+        ctx.getSessionCookieConfig().setSecure(isRender);
+        ctx.log("[AppStartupListener] Dynamic Session Cookie Secure flag set to: " + isRender);
+        
         ctx.log("[AppStartupListener] Validating required environment variables...");
 
         try {
