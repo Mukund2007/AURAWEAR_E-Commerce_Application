@@ -30,15 +30,15 @@ public class PasswordUtil {
     public static boolean verifyPassword(String password, String storedHash) {
         if (storedHash == null) return false;
         
-        // Backwards compatibility for existing plaintext passwords:
-        // Plaintext passwords won't contain a colon (or base64 encoded salt:hash structure).
         if (!storedHash.contains(":")) {
-            return password.equals(storedHash);
+            throw new IllegalArgumentException("Stored password is not PBKDF2 formatted.");
         }
         
         try {
             String[] parts = storedHash.split(":");
-            if (parts.length != 2) return false;
+            if (parts.length != 2) {
+                throw new IllegalArgumentException("Stored password is not PBKDF2 formatted.");
+            }
             byte[] salt = Base64.getDecoder().decode(parts[0]);
             byte[] hash = Base64.getDecoder().decode(parts[1]);
             
