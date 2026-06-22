@@ -33,13 +33,19 @@ public class EmailUtil {
 
     public static void sendOTP(String toEmail, String otp) throws MessagingException, java.io.UnsupportedEncodingException {
 
+        System.out.println("[EmailUtil.sendOTP] Recipient parameter: '" + toEmail + "'");
+        System.out.println("[EmailUtil.sendOTP] OTP parameter: '" + otp + "'");
+        System.out.println("[EmailUtil.sendOTP] SMTP Sender Address: '" + getFromEmail() + "'");
+        System.out.println("[EmailUtil.sendOTP] SMTP Recipient Address: '" + toEmail + "'");
+        System.out.println("[EmailUtil.sendOTP] SMTP Authentication: Initializing Session authentication with Gmail...");
+
         Properties props = new Properties();
         props.put("mail.smtp.host",            "smtp.gmail.com");
         props.put("mail.smtp.port",            "587");
         props.put("mail.smtp.auth",            "true");
         props.put("mail.smtp.starttls.enable", "true");
-        props.put("mail.smtp.connectiontimeout", "4000");
-        props.put("mail.smtp.timeout",           "4000");
+        props.put("mail.smtp.connectiontimeout", "10000");
+        props.put("mail.smtp.timeout",           "10000");
 
         Session session = Session.getInstance(props, new Authenticator() {
             @Override
@@ -54,8 +60,9 @@ public class EmailUtil {
         message.setSubject("Your AuraWear Verification Code");
         message.setContent(buildEmailHTML(otp), "text/html; charset=utf-8");
 
+        System.out.println("[EmailUtil.sendOTP] SMTP sending message via Transport.send()...");
         Transport.send(message);
-        System.out.println("OTP email sent to: " + toEmail);
+        System.out.println("[EmailUtil.sendOTP] SMTP send succeeds. Gmail accepted the message for: " + toEmail);
     }
 
     private static String buildEmailHTML(String otp) {
@@ -108,8 +115,8 @@ public class EmailUtil {
         props.put("mail.smtp.port",            "587");
         props.put("mail.smtp.auth",            "true");
         props.put("mail.smtp.starttls.enable", "true");
-        props.put("mail.smtp.connectiontimeout", "4000");
-        props.put("mail.smtp.timeout",           "4000");
+        props.put("mail.smtp.connectiontimeout", "10000");
+        props.put("mail.smtp.timeout",           "10000");
 
         Session session = Session.getInstance(props, new Authenticator() {
             @Override
