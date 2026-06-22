@@ -12,9 +12,10 @@
     <title>${product.name} — AuraWear</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" href="${ctx}/assets/css/home.css">
-    <link rel="stylesheet" href="${ctx}/assets/css/product-details.css">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="${ctx}/assets/css/home.css?v=118">
+    <link rel="stylesheet" href="${ctx}/assets/css/product-details.css?v=120">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 </head>
 <body>
 
@@ -25,10 +26,10 @@
         <!-- BREADCRUMB -->
         <div class="breadcrumb">
             <a href="${ctx}/home">Home</a>
-            <span>/</span>
+            <span class="breadcrumb-sep"><span class="material-symbols-outlined">chevron_right</span></span>
             <a href="${ctx}/products?category=${product.category}">${product.category}</a>
-            <span>/</span>
-            <span>${product.name}</span>
+            <span class="breadcrumb-sep"><span class="material-symbols-outlined">chevron_right</span></span>
+            <span class="breadcrumb-active">${product.name}</span>
         </div>
 
         <div class="details-container">
@@ -49,15 +50,15 @@
                 <div class="rating-row">
                     <c:choose>
                         <c:when test="${reviewsCount > 0}">
-                            <span class="stars">
+                            <span class="stars" style="display: inline-flex; align-items: center; gap: 2px;">
                                 <c:forEach begin="1" end="${averageFullStars}">
-                                    <i class="fa-solid fa-star"></i>
+                                    <span class="material-symbols-outlined" style="font-size: 14px; font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24; color: var(--pd-primary);">star</span>
                                 </c:forEach>
                                 <c:if test="${averageHalfStar}">
-                                    <i class="fa-solid fa-star-half-stroke"></i>
+                                    <span class="material-symbols-outlined" style="font-size: 14px; font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24; color: var(--pd-primary);">star_half</span>
                                 </c:if>
                                 <c:forEach begin="1" end="${5 - averageFullStars - (averageHalfStar ? 1 : 0)}">
-                                    <i class="fa-regular fa-star"></i>
+                                    <span class="material-symbols-outlined" style="font-size: 14px; font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; color: var(--pd-outline-variant);">star</span>
                                 </c:forEach>
                             </span>
                             <span class="rating-value"><fmt:formatNumber value="${averageRating}" minFractionDigits="1" maxFractionDigits="1"/></span>
@@ -94,69 +95,96 @@
                 </c:choose>
 
                 <div>
-                    <div class="size-label">SELECT SIZE</div>
+                    <div class="size-selector-header">
+                        <div class="size-label">SELECT SIZE</div>
+                        <button type="button" class="size-guide-link" onclick="openSizeGuide()">Size Guide</button>
+                    </div>
                      <div class="sizes">
-                         <c:forEach var="sz" items="${availSizes}">
-                             <button type="button" class="size-btn" data-size="${sz}" ${product.stockQuantity == 0 ? 'disabled' : ''}>${sz}</button>
-                         </c:forEach>
-                     </div>
+                          <c:forEach var="sz" items="${availSizes}">
+                              <button type="button" class="size-btn" data-size="${sz}" ${product.stockQuantity == 0 ? 'disabled' : ''}>${sz}</button>
+                          </c:forEach>
+                      </div>
+                </div>
+
+                <!-- COLOR INFO -->
+                <div>
+                    <div class="color-label-row">
+                        <span class="color-title">Color:</span>
+                        <span class="color-value">${product.color}</span>
+                    </div>
+                    <c:set var="colorLower" value="${fn:toLowerCase(product.color)}" />
+                    <c:choose>
+                        <c:when test="${colorLower eq 'sage'}"><c:set var="colorHex" value="#718063" /></c:when>
+                        <c:when test="${colorLower eq 'off-white' or colorLower eq 'off white'}"><c:set var="colorHex" value="#f3efe0" /></c:when>
+                        <c:when test="${colorLower eq 'charcoal'}"><c:set var="colorHex" value="#36454f" /></c:when>
+                        <c:when test="${colorLower eq 'jet black' or colorLower eq 'black'}"><c:set var="colorHex" value="#000000" /></c:when>
+                        <c:when test="${colorLower eq 'sand'}"><c:set var="colorHex" value="#d8cbb5" /></c:when>
+                        <c:when test="${colorLower eq 'taupe'}"><c:set var="colorHex" value="#b38b6d" /></c:when>
+                        <c:when test="${colorLower eq 'cream'}"><c:set var="colorHex" value="#fffdd0" /></c:when>
+                        <c:when test="${colorLower eq 'olive'}"><c:set var="colorHex" value="#556b2f" /></c:when>
+                        <c:when test="${colorLower eq 'white'}"><c:set var="colorHex" value="#ffffff" /></c:when>
+                        <c:otherwise><c:set var="colorHex" value="${colorLower}" /></c:otherwise>
+                    </c:choose>
+                    <div class="colors" style="margin-top: 12px;">
+                        <span class="color-dot active" style="background-color: ${colorHex}; border: 1px solid var(--pd-outline-variant);" title="${product.color}"></span>
+                    </div>
                 </div>
 
                 <!-- ACTION BUTTONS -->
                 <div class="action-buttons">
                      <!-- ADD TO CART FORM (POST to /cart) or Out of Stock banner -->
                      <c:choose>
-                         <c:when test="${product.stockQuantity == 0}">
-                             <div class="oos-banner">⚠ Out of Stock</div>
-                         </c:when>
-                         <c:otherwise>
-                             <c:if test="${product.stockQuantity <= 5}">
-                                 <div class="limited-stock-warning">
-                                     <i class="fa-solid fa-fire"></i> Hurry! Only ${product.stockQuantity} left in stock
-                                 </div>
-                             </c:if>
-                             <form id="addToCartForm" action="${ctx}/cart" method="POST">
-                                 <input type="hidden" name="productId" value="${product.id}">
-                                 <input type="hidden" name="price" value="${product.price}">
-                                 <input type="hidden" name="size" id="selectedSizeInput" value="">
-                                 <button type="submit" class="add-btn">Add to Cart</button>
-                             </form>
-                         </c:otherwise>
+                          <c:when test="${product.stockQuantity == 0}">
+                              <div class="oos-banner">Out of Stock</div>
+                          </c:when>
+                          <c:otherwise>
+                              <c:if test="${product.stockQuantity <= 5}">
+                                  <div class="limited-stock-warning">
+                                      Only ${product.stockQuantity} left
+                                  </div>
+                              </c:if>
+                              <form id="addToCartForm" action="${ctx}/cart" method="POST">
+                                  <input type="hidden" name="productId" value="${product.id}">
+                                  <input type="hidden" name="price" value="${product.price}">
+                                  <input type="hidden" name="size" id="selectedSizeInput" value="">
+                                  <button type="submit" class="add-btn">Add to Cart</button>
+                              </form>
+                          </c:otherwise>
                      </c:choose>
 
                     <!-- WISHLIST BUTTON -->
-                    <button class="wishlist-btn ${isWishlisted ? 'wishlisted' : ''}" id="wishlistBtn"
+                    <button class="pd-wishlist-btn ${isWishlisted ? 'wishlisted' : ''}" id="wishlistBtn"
                             onclick="toggleWishlist(${product.id}, this)">
                         <i class="${isWishlisted ? 'fa-solid' : 'fa-regular'} fa-heart"></i>
                         ${isWishlisted ? 'Wishlisted' : 'Add to Wishlist'}
                     </button>
                 </div>
 
-                <!-- SPECIFICATIONS SECTION -->
-                <div class="product-specs">
-                    <h3>Product Information</h3>
-                    <div class="spec-grid">
-                        <div class="spec-item">
-                            <span class="spec-label">Brand</span>
-                            <span class="spec-value">${product.brand}</span>
-                        </div>
-                        <div class="spec-item">
-                            <span class="spec-label">Category</span>
-                            <span class="spec-value">${product.category}</span>
-                        </div>
-                        <div class="spec-item">
-                            <span class="spec-label">Type</span>
-                            <span class="spec-value">${product.type}</span>
-                        </div>
-                        <div class="spec-item">
-                            <span class="spec-label">Color</span>
-                            <span class="spec-value">${product.color}</span>
-                        </div>
-                        <div class="spec-item">
-                            <span class="spec-label">Gender</span>
-                            <span class="spec-value">${product.gender}</span>
-                        </div>
-                    </div>
+                <!-- DYNAMIC DESCRIPTION SECTION -->
+                <div class="product-description-block">
+                    <p class="description-text">
+                        <c:choose>
+                            <c:when test="${product.category eq 'Footwear'}">
+                                A masterclass in ergonomic and technical design. This curation features a sculptural sole unit engineered for everyday resilience and modern proportions. Serving as a grounded foundation for the minimalist look.
+                            </c:when>
+                            <c:when test="${product.category eq 'Accessories'}">
+                                A minimalist accompaniment designed for utility and aesthetic longevity. Engineered with tight fabric weaving and durable hardware, it complements the daily uniform with quiet distinction.
+                            </c:when>
+                            <c:otherwise>
+                                A masterclass in technical precision and silhouette drape. Engineered from high-density premium materials, it offers wind resistance, thermal regulation, and structural integrity for the architectural wardrobe.
+                            </c:otherwise>
+                        </c:choose>
+                    </p>
+                    <ul class="highlights-list">
+                        <li class="highlight-item">
+                            <span class="material-symbols-outlined highlight-icon">verified</span>
+                            <span>Sustainably sourced premium fabrics</span>
+                        </li>
+                        <li class="highlight-item">
+                            <span class="material-symbols-outlined highlight-icon">package_2</span>
+                            <span>Complimentary shipping on orders above ₹999</span>
+                        </li>
+                    </ul>
                 </div>
 
             </div>
@@ -165,19 +193,87 @@
         </div>
         <!-- end .details-container -->
 
+        <!-- DETAILS, FABRIC, CARE ACCORDION SECTION -->
+        <section class="specs-section">
+            <div class="specs-grid">
+                <c:choose>
+                    <c:when test="${product.category eq 'Footwear'}">
+                        <div class="specs-col">
+                            <h3 class="specs-title">DETAILS</h3>
+                            <p class="specs-text">High-density outsole, custom traction pattern, breathable construction, premium eyelets, and reinforced support.</p>
+                            <div class="specs-mini-list">
+                                <div class="specs-mini-item"><span>Brand</span><strong>${product.brand}</strong></div>
+                                <div class="specs-mini-item"><span>Type</span><strong>${product.type}</strong></div>
+                                <div class="specs-mini-item"><span>Color</span><strong>${product.color}</strong></div>
+                                <div class="specs-mini-item"><span>Gender</span><strong>${product.gender}</strong></div>
+                            </div>
+                        </div>
+                        <div class="specs-col">
+                            <h3 class="specs-title">FABRIC</h3>
+                            <p class="specs-text">Upper: 100% Technical Knit / Leather. Midsole: Ortholite cushioned. Outsole: Durable vulcanized rubber.</p>
+                        </div>
+                        <div class="specs-col">
+                            <h3 class="specs-title">CARE</h3>
+                            <p class="specs-text">Wipe with a damp cloth or soft brush. Avoid full submersion in water. Do not machine wash.</p>
+                        </div>
+                    </c:when>
+                    <c:when test="${product.category eq 'Accessories'}">
+                        <div class="specs-col">
+                            <h3 class="specs-title">DETAILS</h3>
+                            <p class="specs-text">Compact profile, reinforced stitching, subtle branding, and high-durability metallic hardware.</p>
+                            <div class="specs-mini-list">
+                                <div class="specs-mini-item"><span>Brand</span><strong>${product.brand}</strong></div>
+                                <div class="specs-mini-item"><span>Type</span><strong>${product.type}</strong></div>
+                                <div class="specs-mini-item"><span>Color</span><strong>${product.color}</strong></div>
+                                <div class="specs-mini-item"><span>Gender</span><strong>${product.gender}</strong></div>
+                            </div>
+                        </div>
+                        <div class="specs-col">
+                            <h3 class="specs-title">FABRIC</h3>
+                            <p class="specs-text">100% Premium Organic Cotton / Heavy-weight Merino Wool Blend. High durability fibers.</p>
+                        </div>
+                        <div class="specs-col">
+                            <h3 class="specs-title">CARE</h3>
+                            <p class="specs-text">Hand wash cold. Dry flat in shade. Do not tumble dry. Iron on low heat if needed.</p>
+                        </div>
+                    </c:when>
+                    <c:otherwise>
+                        <div class="specs-col">
+                            <h3 class="specs-title">DETAILS</h3>
+                            <p class="specs-text">Water-repellent finish, internal utility pockets, YKK Aquaguard zippers, and reinforced articulated seams.</p>
+                            <div class="specs-mini-list">
+                                <div class="specs-mini-item"><span>Brand</span><strong>${product.brand}</strong></div>
+                                <div class="specs-mini-item"><span>Type</span><strong>${product.type}</strong></div>
+                                <div class="specs-mini-item"><span>Color</span><strong>${product.color}</strong></div>
+                                <div class="specs-mini-item"><span>Gender</span><strong>${product.gender}</strong></div>
+                            </div>
+                        </div>
+                        <div class="specs-col">
+                            <h3 class="specs-title">FABRIC</h3>
+                            <p class="specs-text">Outer: 100% Recycled Technical Polyester. Lining: Lightweight breathable mesh. Origin: Shizuoka, Japan.</p>
+                        </div>
+                        <div class="specs-col">
+                            <h3 class="specs-title">CARE</h3>
+                            <p class="specs-text">Professional dry clean only. Store on a wide-shouldered hanger to maintain sculptural integrity.</p>
+                        </div>
+                    </c:otherwise>
+                </c:choose>
+            </div>
+        </section>
+
         <!-- PRODUCT REVIEWS SECTION -->
         <div class="reviews-section">
             <h2 class="reviews-title">Customer Reviews</h2>
             
             <!-- review success/error messages -->
             <c:if test="${not empty param.reviewError}">
-                <div class="error-banner" style="background: rgba(255, 0, 1, 0.1); border: 1.5px solid var(--accent-color); color: var(--text-color); padding: 16px; font-weight: 800; text-transform: uppercase; font-size: 12px; margin-bottom: 24px; letter-spacing: 0.5px;">
-                    <i class="fa-solid fa-triangle-exclamation"></i> ${param.reviewError}
+                <div class="error-banner" style="background: rgba(186, 26, 26, 0.1); border: 1.5px solid var(--pd-error); color: var(--pd-error); padding: 16px; font-family: 'Inter', sans-serif; font-weight: 600; text-transform: uppercase; font-size: 12px; margin-bottom: 24px; letter-spacing: 0.5px; display: inline-flex; align-items: center; gap: 8px;">
+                    <span class="material-symbols-outlined" style="font-size: 18px;">warning</span> ${param.reviewError}
                 </div>
             </c:if>
             <c:if test="${not empty param.reviewSuccess}">
-                <div class="success-banner" style="background: rgba(46, 204, 113, 0.1); border: 1.5px solid #2ecc71; color: var(--text-color); padding: 16px; font-weight: 800; text-transform: uppercase; font-size: 12px; margin-bottom: 24px; letter-spacing: 0.5px;">
-                    <i class="fa-solid fa-circle-check"></i> ${param.reviewSuccess}
+                <div class="success-banner" style="background: rgba(46, 204, 113, 0.1); border: 1.5px solid #2ecc71; color: #2ecc71; padding: 16px; font-family: 'Inter', sans-serif; font-weight: 600; text-transform: uppercase; font-size: 12px; margin-bottom: 24px; letter-spacing: 0.5px; display: inline-flex; align-items: center; gap: 8px;">
+                    <span class="material-symbols-outlined" style="font-size: 18px;">check_circle</span> ${param.reviewSuccess}
                 </div>
             </c:if>
 
@@ -195,17 +291,23 @@
                             <c:forEach var="rev" items="${reviews}">
                                 <div class="review-card">
                                     <div class="review-header">
-                                        <span class="review-user">${rev.userName}</span>
+                                        <div class="review-user-row">
+                                            <span class="review-user">${rev.userName}</span>
+                                            <span class="verified-badge">
+                                                <span class="material-symbols-outlined" style="font-size: 14px; font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 0, 'opsz' 24; color: #2ecc71;">verified</span>
+                                                Verified Purchase
+                                            </span>
+                                        </div>
                                         <span class="review-date">
                                             <fmt:formatDate value="${rev.createdAt}" pattern="yyyy-MM-dd" />
                                         </span>
                                     </div>
-                                    <div class="review-stars">
+                                    <div class="review-stars" style="display: inline-flex; align-items: center; gap: 2px;">
                                         <c:forEach begin="1" end="${rev.rating}">
-                                            <i class="fa-solid fa-star"></i>
+                                            <span class="material-symbols-outlined" style="font-size: 12px; font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24; color: var(--pd-primary);">star</span>
                                         </c:forEach>
                                         <c:forEach begin="1" end="${5 - rev.rating}">
-                                            <i class="fa-regular fa-star"></i>
+                                            <span class="material-symbols-outlined" style="font-size: 12px; font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; color: var(--pd-outline-variant);">star</span>
                                         </c:forEach>
                                     </div>
                                     <p class="review-text">${rev.reviewText}</p>
@@ -295,8 +397,9 @@
                                             <span class="related-original-price">₹<fmt:formatNumber value="${p.originalPrice}" maxFractionDigits="0"/></span>
                                         </c:if>
                                     </div>
-                                    <span class="related-rating">
-                                        <i class="fa-solid fa-star"></i> ${p.rating}
+                                    <span class="related-rating" style="display: inline-flex; align-items: center; gap: 2px;">
+                                        <span class="material-symbols-outlined" style="font-size: 12px; font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24; color: var(--pd-primary);">star</span>
+                                        ${p.rating}
                                     </span>
                                 </div>
                             </div>
@@ -308,6 +411,51 @@
 
     </div>
     <!-- end .details-wrap -->
+
+    <!-- Footer -->
+    <footer class="footer-section">
+        <div class="footer-container">
+            <div class="footer-brand-col">
+                <div class="footer-logo">AURAWEAR</div>
+                <p class="footer-desc">
+                    PREMIUM STREETWEAR FOR THE BOLD. DEFINING THE AESTHETIC OF THE NEW ERA.
+                </p>
+                <div class="footer-socials">
+                    <a href="#">INSTAGRAM</a>
+                    <a href="#">TIKTOK</a>
+                </div>
+            </div>
+            <div class="footer-links-col">
+                <h5 class="footer-heading">SHOP</h5>
+                <ul class="footer-links-list">
+                    <li><a href="${ctx}/products?gender=Men">MEN</a></li>
+                    <li><a href="${ctx}/products?gender=Women">WOMEN</a></li>
+                    <li><a href="${ctx}/products?category=Accessories">ACCESSORIES</a></li>
+                    <li><a href="${ctx}/collections">COLLECTIONS</a></li>
+                </ul>
+            </div>
+            <div class="footer-links-col">
+                <h5 class="footer-heading">ACCOUNT</h5>
+                <ul class="footer-links-list">
+                    <li><a href="${ctx}/profile">PROFILE</a></li>
+                    <li><a href="${ctx}/my-orders">ORDERS</a></li>
+                    <li><a href="${ctx}/wishlist">WISHLIST</a></li>
+                    <li><a href="${ctx}/cart">CART</a></li>
+                </ul>
+            </div>
+            <div class="footer-links-col">
+                <h5 class="footer-heading">HELP</h5>
+                <ul class="footer-links-list">
+                    <li><a href="${ctx}/my-orders">SHIPPING &amp; RETURNS</a></li>
+                    <li><a href="javascript:void(0)" onclick="openSizeGuide()">SIZE GUIDE</a></li>
+                    <li><a href="mailto:support@aurawear.com">CONTACT</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom-row">
+            <p class="footer-copyright">© 2025 AURAWEAR. ALL RIGHTS RESERVED.</p>
+        </div>
+    </footer>
 
     <!-- TOAST -->
     <div id="toast"></div>

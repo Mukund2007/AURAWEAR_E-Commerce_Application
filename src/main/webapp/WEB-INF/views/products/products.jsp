@@ -21,8 +21,8 @@
     </title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" href="${ctx}/assets/css/home.css?v=11">
-    <link rel="stylesheet" href="${ctx}/assets/css/products.css?v=13">
+    <link rel="stylesheet" href="${ctx}/assets/css/home.css?v=120">
+    <link rel="stylesheet" href="${ctx}/assets/css/products.css?v=120">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 </head>
@@ -30,9 +30,9 @@
 
     <jsp:include page="../partials/navbar.jsp" />
 
-    <!-- ══ HERO BANNER ════════════════════════════════════════ -->
-    <div class="products-hero" data-label="<c:choose><c:when test='${not empty param.gender}'>${param.gender}</c:when><c:when test='${not empty param.category}'>${param.category}</c:when><c:otherwise>ALL</c:otherwise></c:choose>">
-        <div class="hero-breadcrumb">
+    <!-- ══ BREADCRUMB ════════════════════════════════════════ -->
+    <div class="breadcrumb-nav">
+        <div class="breadcrumb-container">
             <a href="${ctx}/home">Home</a>
             <span class="sep">/</span>
             <c:choose>
@@ -42,50 +42,41 @@
                 <c:otherwise>All Products</c:otherwise>
             </c:choose>
         </div>
-        <div class="hero-title-row">
-            <h1 class="page-title">
-                <c:choose>
-                    <c:when test="${not empty param.category}">${param.category}s</c:when>
-                    <c:when test="${not empty param.gender}">${param.gender}'s Collection</c:when>
-                    <c:when test="${not empty param.keyword}">"${param.keyword}"</c:when>
-                    <c:otherwise>All Products</c:otherwise>
-                </c:choose>
-            </h1>
-            <div class="hero-sort-bar">
-                <select id="sortSelect" onchange="submitSort(this.value)">
-                    <option value="">Sort By</option>
-                    <option value="priceHigh" ${param.sort == 'priceHigh' ? 'selected' : ''}>Price: High → Low</option>
-                    <option value="priceLow"  ${param.sort == 'priceLow'  ? 'selected' : ''}>Price: Low → High</option>
-                    <option value="rating"    ${param.sort == 'rating'    ? 'selected' : ''}>Top Rated</option>
-                    <option value="newest"    ${param.sort == 'newest'    ? 'selected' : ''}>Newest</option>
-                </select>
-            </div>
-        </div>
     </div>
 
-    <!-- ══ TOOLBAR STRIP ══════════════════════════════════════ -->
-    <div class="toolbar-strip">
-        <div class="showing">
-            Showing <strong>${fn:length(products)}</strong> products
-        </div>
-        <a href="${ctx}/products" class="clear-btn">Clear All</a>
-    </div>
+    <!-- ══ PAGE HEADER ══════════════════════════════════════ -->
+    <header class="products-header">
+        <h1 class="page-title">
+            <c:choose>
+                <c:when test="${not empty param.category}">${param.category}s</c:when>
+                <c:when test="${not empty param.gender}">${param.gender}'s Collection</c:when>
+                <c:when test="${not empty param.keyword}">"${param.keyword}"</c:when>
+                <c:otherwise>The Archive</c:otherwise>
+            </c:choose>
+        </h1>
+        <p class="page-subtitle">
+            <c:choose>
+                <c:when test="${not empty param.category}">Curated ${fn:toLowerCase(param.category)} apparel designed for longevity, precision, and architectural balance.</c:when>
+                <c:when test="${not empty param.gender}">Curated technical apparel for ${fn:toLowerCase(param.gender)}, designed for longevity, precision, and architectural balance.</c:when>
+                <c:otherwise>Curated technical apparel designed for longevity, precision, and architectural balance. Every piece is a testament to restrained luxury.</c:otherwise>
+            </c:choose>
+        </p>
+    </header>
 
-    <div class="page-wrap">
+    <!-- ══ STICKY FILTER & SORT BAR ═════════════════════════ -->
+    <form id="filterForm" method="get" action="${ctx}/products">
+        <input type="hidden" name="sort" id="sortHidden" value="${param.sort}">
+        <input type="hidden" name="keyword" value="<c:out value='${param.keyword}'/>">
 
-        <div class="shop-layout">
-
-            <!-- ===== FILTER SIDEBAR ===== -->
-            <form id="filterForm" method="get" action="${ctx}/products">
-                <input type="hidden" name="sort" id="sortHidden" value="${param.sort}">
-                <input type="hidden" name="keyword" value="<c:out value='${param.keyword}'/>">
-                <div class="filter-sidebar-title">Filter</div>
-
-                <div class="filter-block">
-                    <div class="filter-header" onclick="toggleFilter(this)">
-                        <h4>CATEGORIES</h4><span>−</span>
-                    </div>
-                    <div class="filter-content open">
+        <section class="sticky-filter-bar">
+            <div class="filter-groups">
+                <!-- Dropdown: Category -->
+                <div class="filter-dropdown">
+                    <button type="button" class="filter-dropdown-btn">
+                        <span>Category</span>
+                        <span class="material-symbols-outlined dropdown-chevron">expand_more</span>
+                    </button>
+                    <div class="dropdown-content">
                         <label><input type="checkbox" name="category" value="Tops"> Tops</label>
                         <label><input type="checkbox" name="category" value="Bottoms"> Bottoms</label>
                         <label><input type="checkbox" name="category" value="Pants"> Pants</label>
@@ -96,21 +87,26 @@
                     </div>
                 </div>
 
-                <div class="filter-block">
-                    <div class="filter-header" onclick="toggleFilter(this)">
-                        <h4>GENDER</h4><span>+</span>
-                    </div>
-                    <div class="filter-content">
+                <!-- Dropdown: Gender -->
+                <div class="filter-dropdown">
+                    <button type="button" class="filter-dropdown-btn">
+                        <span>Gender</span>
+                        <span class="material-symbols-outlined dropdown-chevron">expand_more</span>
+                    </button>
+                    <div class="dropdown-content">
                         <label><input type="radio" name="gender" value="Men"> Men</label>
                         <label><input type="radio" name="gender" value="Women"> Women</label>
+                        <label><input type="radio" name="gender" value="" ${empty param.gender ? 'checked' : ''}> All Genders</label>
                     </div>
                 </div>
 
-                <div class="filter-block">
-                    <div class="filter-header" onclick="toggleFilter(this)">
-                        <h4>SIZE</h4><span>+</span>
-                    </div>
-                    <div class="filter-content">
+                <!-- Dropdown: Size -->
+                <div class="filter-dropdown">
+                    <button type="button" class="filter-dropdown-btn">
+                        <span>Size</span>
+                        <span class="material-symbols-outlined dropdown-chevron">expand_more</span>
+                    </button>
+                    <div class="dropdown-content">
                         <label><input type="checkbox" name="size" value="S"> S</label>
                         <label><input type="checkbox" name="size" value="M"> M</label>
                         <label><input type="checkbox" name="size" value="L"> L</label>
@@ -118,11 +114,13 @@
                     </div>
                 </div>
 
-                <div class="filter-block">
-                    <div class="filter-header" onclick="toggleFilter(this)">
-                        <h4>COLOR</h4><span>+</span>
-                    </div>
-                    <div class="filter-content">
+                <!-- Dropdown: Color -->
+                <div class="filter-dropdown">
+                    <button type="button" class="filter-dropdown-btn">
+                        <span>Color</span>
+                        <span class="material-symbols-outlined dropdown-chevron">expand_more</span>
+                    </button>
+                    <div class="dropdown-content">
                         <label><input type="checkbox" name="color" value="Black"> Black</label>
                         <label><input type="checkbox" name="color" value="White"> White</label>
                         <label><input type="checkbox" name="color" value="Grey"> Grey</label>
@@ -135,135 +133,181 @@
                     </div>
                 </div>
 
-                <div class="filter-block">
-                    <div class="filter-header" onclick="toggleFilter(this)">
-                        <h4>PRICE</h4><span>−</span>
-                    </div>
-                    <div class="filter-content open">
+                <!-- Dropdown: Price -->
+                <div class="filter-dropdown">
+                    <button type="button" class="filter-dropdown-btn">
+                        <span>Price</span>
+                        <span class="material-symbols-outlined dropdown-chevron">expand_more</span>
+                    </button>
+                    <div class="dropdown-content price-dropdown-content">
                         <div class="price-slider">
-                            <div class="slider-track"></div>
-                            <input type="range" id="minRange" name="minPrice" min="0" max="10000" step="100" value="0">
-                            <input type="range" id="maxRange" name="maxPrice" min="0" max="10000" step="100" value="10000">
+                           <div class="slider-track"></div>
+                           <input type="range" id="minRange" name="minPrice" min="0" max="10000" step="100" value="0">
+                           <input type="range" id="maxRange" name="maxPrice" min="0" max="10000" step="100" value="10000">
                         </div>
                         <div class="price-label" id="priceLabel">₹0 – ₹10,000+</div>
                     </div>
                 </div>
-
-            </form>
-
-
-            <!-- ===== PRODUCTS SECTION ===== -->
-            <div class="products-section">
-
-                <div id="activeFilters" class="active-filters"></div>
-
-                <!-- PRODUCT GRID -->
-                <div class="product-grid">
-                    <c:choose>
-                        <c:when test="${empty products}">
-                            <div class="no-products">
-                                <i class="fa fa-magnifying-glass no-products-icon"></i>
-                                No products found. Try adjusting your filters.
-                            </div>
-                        </c:when>
-                        <c:otherwise>
-                            <c:forEach var="p" items="${products}">
-                                <div class="product-card ${p.stockQuantity == 0 ? 'oos-card' : ''}" onclick="goToProduct('${p.id}')" data-id="${p.id}" data-name="${p.name}" data-price="${p.price}" data-size="${p.size}">
-
-                                     <div class="product-image">
-                                        <img class="img-main"
-                                             src="<c:choose><c:when test="${fn:startsWith(p.image, 'http')}">${p.image}</c:when><c:otherwise>${ctx}/assets/images/${p.image}</c:otherwise></c:choose>"
-                                             onerror="this.src='${ctx}/assets/images/fallback.jpg'"
-                                             alt="${p.name}">
-                                        <c:choose>
-                                            <c:when test="${p.stockQuantity == 0}">
-                                                <div class="badge badge-oos">OUT OF STOCK</div>
-                                            </c:when>
-                                            <c:when test="${p.stockQuantity <= 5}">
-                                                <div class="badge badge-limited">🔥 ONLY ${p.stockQuantity} LEFT!</div>
-                                            </c:when>
-                                            <c:otherwise>
-                                                <div class="badge">NEW</div>
-                                            </c:otherwise>
-                                        </c:choose>
-
-                                        <%-- WISHLIST BUTTON: pre-fill active state from server --%>
-                                        <div class="wishlist ${not empty wishlistNames and wishlistNames.contains(p.id) ? 'active' : ''}"
-                                             data-id="${p.id}"
-                                             onclick="toggleWishlist(event, this)">
-                                             <i class="fa fa-heart"></i>
-                                        </div>
-
-                                        <%-- QUICK ADD: passes id, size (default from product), price --%>
-                                        <button class="quick-add ${p.stockQuantity == 0 ? 'disabled' : ''}"
-                                                data-id="${p.id}"
-                                                data-size="${p.size}"
-                                                data-price="${p.price}"
-                                                onclick="quickAdd(event)"
-                                                ${p.stockQuantity == 0 ? 'disabled' : ''}>
-                                            ${p.stockQuantity == 0 ? 'Out of Stock' : 'Quick Add'}
-                                        </button>
-                                    </div>
-
-                                    <div class="product-info">
-                                        <h3>${p.name}</h3>
-
-                                        <div class="rating">
-                                            <c:choose>
-                                                <c:when test="${p.reviews == 0}">
-                                                    <span class="no-reviews">No reviews yet</span>
-                                                </c:when>
-                                                <c:otherwise>
-                                                    <span class="rating-value">${p.rating}</span>
-                                                    <span class="stars">
-                                                        <c:forEach begin="1" end="${p.fullStars}">
-                                                            <i class="fa-solid fa-star"></i>
-                                                        </c:forEach>
-                                                        <c:if test="${p.halfStar}">
-                                                            <i class="fa-solid fa-star-half-stroke"></i>
-                                                        </c:if>
-                                                        <c:forEach begin="1" end="${5 - p.fullStars - (p.halfStar ? 1 : 0)}">
-                                                            <i class="fa-regular fa-star"></i>
-                                                        </c:forEach>
-                                                    </span>
-                                                    <span class="reviews">(${p.reviews})</span>
-                                                </c:otherwise>
-                                            </c:choose>
-                                        </div>
-
-                                        <div class="meta">${p.category} • ${p.size} • ${p.color}</div>
-
-                                        <div class="price-row">
-                                            <div class="price">₹<fmt:formatNumber value="${p.price}" maxFractionDigits="0"/></div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </c:forEach>
-                        </c:otherwise>
-                    </c:choose>
-                </div>
-
             </div>
 
+            <div class="filter-actions-right">
+                <span class="products-count-label"><span id="productsCount">${fn:length(products)}</span> Products Found</span>
+                <div class="filter-dropdown sort-dropdown">
+                    <button type="button" class="filter-dropdown-btn sort-btn">
+                        <span>Sort By</span>
+                        <span class="material-symbols-outlined dropdown-chevron">expand_more</span>
+                    </button>
+                    <div class="dropdown-content sort-dropdown-content">
+                        <div class="sort-option ${empty param.sort ? 'selected' : ''}" data-value="" onclick="selectSortOption(this)">Sort By</div>
+                        <div class="sort-option ${param.sort == 'priceHigh' ? 'selected' : ''}" data-value="priceHigh" onclick="selectSortOption(this)">Price: High → Low</div>
+                        <div class="sort-option ${param.sort == 'priceLow' ? 'selected' : ''}" data-value="priceLow" onclick="selectSortOption(this)">Price: Low → High</div>
+                        <div class="sort-option ${param.sort == 'rating' ? 'selected' : ''}" data-value="rating" onclick="selectSortOption(this)">Top Rated</div>
+                        <div class="sort-option ${param.sort == 'newest' ? 'selected' : ''}" data-value="newest" onclick="selectSortOption(this)">Newest</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </form>
+
+    <!-- ══ MAIN PRODUCTS CONTAINER ══════════════════════════ -->
+    <main class="page-wrap">
+        <!-- Active Filter Chips -->
+        <div id="activeFilters" class="active-filters"></div>
+
+        <!-- Product Grid -->
+        <div class="product-grid">
+            <c:choose>
+                <c:when test="${empty products}">
+                    <div class="no-products">
+                        <span class="material-symbols-outlined no-products-icon">search_off</span>
+                        No products found. Try adjusting your filters.
+                    </div>
+                </c:when>
+                <c:otherwise>
+                    <c:forEach var="p" items="${products}">
+                        <div class="product-card ${p.stockQuantity == 0 ? 'oos-card' : ''}" onclick="goToProduct('${p.id}')" data-id="${p.id}" data-name="${p.name}" data-price="${p.price}" data-size="${p.size}">
+
+                             <div class="product-image">
+                                <img class="img-main"
+                                     src="<c:choose><c:when test="${fn:startsWith(p.image, 'http')}">${p.image}</c:when><c:otherwise>${ctx}/assets/images/${p.image}</c:otherwise></c:choose>"
+                                     onerror="this.src='${ctx}/assets/images/fallback.jpg'"
+                                     alt="${p.name}">
+                                <c:choose>
+                                    <c:when test="${p.stockQuantity == 0}">
+                                        <div class="badge badge-oos">OUT OF STOCK</div>
+                                    </c:when>
+                                    <c:when test="${p.stockQuantity <= 5}">
+                                        <div class="badge badge-limited">Only ${p.stockQuantity} left</div>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <div class="badge">NEW</div>
+                                    </c:otherwise>
+                                </c:choose>
+
+                                <%-- WISHLIST BUTTON --%>
+                                <div class="wishlist ${not empty wishlistNames and wishlistNames.contains(p.id) ? 'active' : ''}"
+                                     data-id="${p.id}"
+                                     onclick="toggleWishlist(event, this)">
+                                     <span class="material-symbols-outlined wishlist-heart-icon">favorite</span>
+                                </div>
+
+                                <%-- QUICK ADD --%>
+                                <button class="quick-add ${p.stockQuantity == 0 ? 'disabled' : ''}"
+                                        data-id="${p.id}"
+                                        data-size="${p.size}"
+                                        data-price="${p.price}"
+                                        onclick="quickAdd(event)"
+                                        ${p.stockQuantity == 0 ? 'disabled' : ''}>
+                                    ${p.stockQuantity == 0 ? 'Out of Stock' : 'Quick Add'}
+                                </button>
+                            </div>
+
+                            <div class="product-info">
+                                <span class="product-category-tag">${p.category}</span>
+                                <h3 class="product-title-text">${p.name}</h3>
+                                <div class="product-meta-specs">${p.size} • ${p.color}</div>
+                                <div class="price-row">
+                                    <div class="price-tag">₹<fmt:formatNumber value="${p.price}" maxFractionDigits="0"/></div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </c:forEach>
+                </c:otherwise>
+            </c:choose>
         </div>
 
-    </div>
 
+    </main>
 
     <!-- TOAST NOTIFICATION -->
     <div id="toast" class="toast-msg"></div>
-
 
     <script>
     const ctx = "${ctx}";
 
     function submitForm() {
-        document.getElementById("filterForm").submit();
+        const form = document.getElementById("filterForm");
+        const formData = new FormData(form);
+        const params = new URLSearchParams();
+        
+        for (const [key, val] of formData.entries()) {
+            if (val) params.append(key, val);
+        }
+        
+        const url = ctx + "/products?" + params.toString();
+        
+        // update address bar
+        window.history.pushState({}, "", url);
+        
+        // Update slider UI and chips locally
+        updateSlider();
+        renderChips();
+        
+        const grid = document.querySelector(".product-grid");
+        if (grid) grid.style.opacity = "0.5";
+        
+        fetch(url, {
+            headers: {
+                "X-Requested-With": "XMLHttpRequest"
+            }
+        })
+        .then(res => {
+            if (!res.ok) throw new Error("Filter request failed");
+            return res.text();
+        })
+        .then(html => {
+            if (grid) {
+                grid.innerHTML = html;
+                grid.style.opacity = "1";
+                
+                // Update product count label
+                const count = grid.querySelectorAll(".product-card").length;
+                const countEl = document.getElementById("productsCount");
+                if (countEl) countEl.innerText = count;
+                
+                // Re-init interactions
+                if (typeof init3DTilt === "function") init3DTilt();
+                if (typeof initDragToCart === "function") initDragToCart();
+            }
+        })
+        .catch(err => {
+            console.warn("AJAX filter failed, falling back to page reload:", err);
+            form.submit();
+        });
     }
 
-    function submitSort(value) {
+    function selectSortOption(el) {
+        const value = el.getAttribute("data-value");
         document.getElementById("sortHidden").value = value;
+        
+        document.querySelectorAll(".sort-option").forEach(opt => {
+            opt.classList.toggle("selected", opt === el);
+        });
+        
+        const btnText = el.textContent;
+        document.querySelector(".sort-btn span").textContent = btnText;
+        
         submitForm();
     }
 
@@ -302,7 +346,7 @@
                 if (!data) return;
                 if (data.success) {
                     btn.innerText = "Added ✓";
-                    showToast(btn.closest(".product-card").querySelector("h3").innerText + " added to cart!");
+                    showToast(btn.closest(".product-card").querySelector(".product-title-text").innerText + " added to cart!");
                     updateCartCount();
                 } else {
                     btn.innerText = "Out of Stock";
@@ -320,11 +364,7 @@
             });
     }
 
-    /* ── WISHLIST TOGGLE ────────────────────────────────────
-       Calls /wishlist-toggle with productId.
-       Reads "added"/"removed" from server, then sets heart state
-       accurately and shows a toast notification.
-     ─────────────────────────────────────────────────────── */
+    /* ── WISHLIST TOGGLE ──────────────────────────────────── */
     function toggleWishlist(e, el) {
         e.stopPropagation();
         const id = el.getAttribute("data-id");
@@ -374,47 +414,47 @@
         setTimeout(() => toast.classList.remove("show"), 2400);
     }
 
-    /* ── FILTER SIDEBAR ─────────────────────────────────── */
-    function toggleFilter(el) {
-        const content = el.nextElementSibling;
-        const icon    = el.querySelector("span");
-        const isOpen  = content.classList.toggle("open");
-        icon.innerText = isOpen ? "−" : "+";
-        try {
-            localStorage.setItem("filter_" + el.querySelector("h4").innerText.toLowerCase(), isOpen);
-        } catch(e) {}
-    }
-
-    function restoreFilterState() {
-        document.querySelectorAll(".filter-block").forEach(block => {
-            const header  = block.querySelector(".filter-header");
-            const content = block.querySelector(".filter-content");
-            const icon    = block.querySelector("span");
-            const title   = header.querySelector("h4").innerText.toLowerCase();
-            try {
-                const saved = localStorage.getItem("filter_" + title);
-                if (saved === "true")  { content.classList.add("open");    icon.innerText = "−"; }
-                if (saved === "false") { content.classList.remove("open"); icon.innerText = "+"; }
-            } catch(e) {}
-        });
-    }
-
     function restoreFiltersFromURL() {
         const params = new URLSearchParams(window.location.search);
+        
+        // checkboxes
         document.querySelectorAll("#filterForm input[type='checkbox']").forEach(input => {
             input.checked = params.getAll(input.name).includes(input.value);
         });
+        
+        // gender radio
         const gender = params.get("gender");
         if (gender) {
             const radio = document.querySelector("input[name='gender'][value='" + gender + "']");
             if (radio) radio.checked = true;
+        } else {
+            const radioAll = document.querySelector("input[name='gender'][value='']");
+            if (radioAll) radioAll.checked = true;
         }
+        
+        // ranges
         const min = params.get("minPrice");
         const max = params.get("maxPrice");
         if (min) document.getElementById("minRange").value = min;
         if (max) document.getElementById("maxRange").value = max;
+        
+        // custom sort dropdown selection
         const sort = params.get("sort");
-        if (sort) document.getElementById("sortSelect").value = sort;
+        if (sort) {
+            const opt = document.querySelector(`.sort-option[data-value='${sort}']`);
+            if (opt) {
+                document.querySelectorAll(".sort-option").forEach(o => o.classList.remove("selected"));
+                opt.classList.add("selected");
+                document.querySelector(".sort-btn span").textContent = opt.textContent;
+            }
+        } else {
+            const optDefault = document.querySelector(".sort-option[data-value='']");
+            if (optDefault) {
+                document.querySelectorAll(".sort-option").forEach(o => o.classList.remove("selected"));
+                optDefault.classList.add("selected");
+                document.querySelector(".sort-btn span").textContent = "Sort By";
+            }
+        }
         updateSlider();
     }
 
@@ -423,6 +463,7 @@
         if (!container) return;
         container.innerHTML = "";
         const params = new URLSearchParams(window.location.search);
+        
         ["category", "size", "color", "gender"].forEach(key => {
             params.getAll(key).forEach(value => {
                 if (!value) return;
@@ -435,6 +476,7 @@
                 }));
             });
         });
+        
         const min = params.get("minPrice");
         const max = params.get("maxPrice");
         if ((min && min !== "0") || (max && max !== "10000")) {
@@ -445,6 +487,7 @@
                 window.location.href = url.toString();
             }));
         }
+        
         const keyword = params.get("keyword");
         if (keyword) {
             container.appendChild(makeChip('"' + keyword + '"', () => {
@@ -489,28 +532,58 @@
         }
     }
 
+
+
     minRange?.addEventListener("input",  updateSlider);
     maxRange?.addEventListener("input",  updateSlider);
     minRange?.addEventListener("change", submitForm);
     maxRange?.addEventListener("change", submitForm);
 
-    /* ── NAVBAR SCROLL ──────────────────────────────────── */
-    window.addEventListener("scroll", function () {
-        const nav = document.querySelector(".navbar");
-        if (nav) nav.classList.toggle("scrolled", window.scrollY > 80);
-    });
-
     /* ── INIT ───────────────────────────────────────────── */
     document.addEventListener("DOMContentLoaded", () => {
+        // Submit on form inputs change
         document.querySelectorAll("#filterForm input[type='checkbox'], #filterForm input[type='radio']")
             .forEach(input => input.addEventListener("change", submitForm));
+            
+        // Dropdown toggle listeners for touch/click (primarily mobile)
+        document.querySelectorAll('.filter-dropdown-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const dropdown = btn.closest('.filter-dropdown');
+                const isOpen = dropdown.classList.toggle('open');
+                
+                document.querySelectorAll('.filter-dropdown').forEach(d => {
+                    if (d !== dropdown) d.classList.remove('open');
+                });
+                
+                const icon = btn.querySelector('.dropdown-chevron');
+                if (icon) {
+                    icon.textContent = isOpen ? 'expand_less' : 'expand_more';
+                }
+            });
+        });
+
+        // Close dropdowns on outside clicks
+        document.addEventListener('click', () => {
+            document.querySelectorAll('.filter-dropdown').forEach(d => {
+                d.classList.remove('open');
+                const icon = d.querySelector('.dropdown-chevron');
+                if (icon) icon.textContent = 'expand_more';
+            });
+        });
+
+        // Prevent dropdowns closing when clicking inside
+        document.querySelectorAll('.dropdown-content').forEach(content => {
+            content.addEventListener('click', (e) => {
+                e.stopPropagation();
+            });
+        });
+
         restoreFiltersFromURL();
-        restoreFilterState();
         renderChips();
         updateCartCount();
     });
 
-    // Bind global toast to window so drag add can use it
     window.showToast = showToast;
     </script>
     <script src="${ctx}/assets/js/app-interactions.js?v=11"></script>

@@ -4,7 +4,8 @@
 
 
 
-<link rel="stylesheet" href="${ctx}/assets/css/navbar.css">
+<link rel="stylesheet" href="${ctx}/assets/css/navbar.css?v=122">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
 
 <div class="top-strip">
     <div>Shipping on all orders above ₹999</div>
@@ -18,197 +19,96 @@
 
 <!-- NAVBAR -->
 <nav class="navbar">
-
-    <div class="brand">
-        <a href="${ctx}/home">AW <span>AURAWEAR</span></a>
-    </div>
-
-    <!-- CENTER PILL: ACETERNITY HOVER NAVIGATION -->
-    <div class="navbar-center-menu">
-        <!-- Item 01: Collections -->
-        <div class="acet-menu-item" data-aura-bound="true">
-            <span class="acet-menu-title">Collections <i class="fa fa-chevron-down acet-chevron-icon"></i></span>
-            <div class="acet-dropdown dropdown-collections">
-                <div class="dropdown-col-list">
-                    <h4 class="dropdown-heading">Curated Drops</h4>
-                    <a href="${ctx}/collections" class="hovered-link" data-aura-bound="true">Noir Drop</a>
-                    <a href="${ctx}/collections" class="hovered-link" data-aura-bound="true">Minimalist Essentials</a>
-                    <a href="${ctx}/collections" class="hovered-link" data-aura-bound="true">Street Uniform</a>
-                    <div class="dropdown-divider"></div>
-                    <a href="${ctx}/products" class="hovered-link hovered-link--accent" data-aura-bound="true">&rarr; Browse Lookbook</a>
-                </div>
-            </div>
+    <div class="navbar-container">
+        <!-- Brand Logo -->
+        <div class="brand">
+            <a href="${ctx}/home">AuraWear</a>
         </div>
 
-        <!-- Item 02: Catalog (Grid of Products) -->
-        <div class="acet-menu-item" data-aura-bound="true">
-            <span class="acet-menu-title">Catalog <i class="fa fa-chevron-down acet-chevron-icon"></i></span>
-            <div class="acet-dropdown dropdown-catalog">
-                <div class="dropdown-grid">
-                    <a href="${ctx}/products?gender=Men" class="acet-product-item" data-aura-bound="true">
-                        <img src="${ctx}/assets/images/over1.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'" alt="Men's Apparel" class="acet-prod-img" />
-                        <div class="acet-prod-info">
-                            <h4 class="acet-prod-title">Men's apparel</h4>
-                            <p class="acet-prod-desc">Silhouettes designed for structure and volume.</p>
-                        </div>
-                    </a>
-                    <a href="${ctx}/products?gender=Women" class="acet-product-item" data-aura-bound="true">
-                        <img src="${ctx}/assets/images/over3.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'" alt="Women's Apparel" class="acet-prod-img" />
-                        <div class="acet-prod-info">
-                            <h4 class="acet-prod-title">Women's apparel</h4>
-                            <p class="acet-prod-desc">Textured, high-fashion silhouettes.</p>
-                        </div>
-                    </a>
-                    <a href="${ctx}/products?category=Footwear" class="acet-product-item" data-aura-bound="true">
-                        <img src="${ctx}/assets/images/sneak1.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'" alt="Footwear Drop" class="acet-prod-img" />
-                        <div class="acet-prod-info">
-                            <h4 class="acet-prod-title">Footwear Drop</h4>
-                            <p class="acet-prod-desc">Tactile, premium weights that stand out.</p>
-                        </div>
-                    </a>
-                    <a href="${ctx}/products?category=Accessories" class="acet-product-item" data-aura-bound="true">
-                        <img src="${ctx}/assets/images/bag1.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'" alt="Accessories" class="acet-prod-img" />
-                        <div class="acet-prod-info">
-                            <h4 class="acet-prod-title">Accessories</h4>
-                            <p class="acet-prod-desc">Minimalist details to complete the look.</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
+        <!-- Center Navigation Links -->
+        <c:set var="reqServletPath" value="${requestScope['jakarta.servlet.forward.servlet_path']}" />
+        <c:set var="isProductsView" value="${reqServletPath == '/WEB-INF/views/products/products.jsp' || reqServletPath == '/WEB-INF/views/product-detail.jsp'}" />
+        <c:set var="isCollectionsView" value="${reqServletPath == '/WEB-INF/views/collections/collections.jsp'}" />
+        
+        <div class="nav-links">
+            <a href="${ctx}/products" class="${isProductsView && empty param.category && empty param.gender ? 'active' : ''}">Shop All</a>
+            <a href="${ctx}/products?gender=Men" class="${isProductsView && param.gender == 'Men' ? 'active' : ''}">New Arrivals</a>
+            <a href="${ctx}/products?category=Accessories" class="${isProductsView && param.category == 'Accessories' ? 'active' : ''}">Essentials</a>
+            <a href="${ctx}/collections" class="${isCollectionsView ? 'active' : ''}">Collections</a>
         </div>
 
-        <!-- Item 03: Atmosphere -->
-        <div class="acet-menu-item" data-aura-bound="true">
-            <span class="acet-menu-title">Atmosphere <i class="fa fa-chevron-down acet-chevron-icon"></i></span>
-            <div class="acet-dropdown dropdown-atmosphere">
-                <div class="dropdown-col-list">
-                    <h4 class="dropdown-heading">Brand Realm</h4>
-                    <a href="${ctx}/profile" class="hovered-link" data-aura-bound="true">My Account</a>
-                    <a href="${ctx}/wishlist" class="hovered-link" data-aura-bound="true">Wishlist</a>
-                    <a href="${ctx}/cart" class="hovered-link" data-aura-bound="true">Shopping Cart</a>
-                    <a href="${ctx}/my-orders" class="hovered-link" data-aura-bound="true">Order Status</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Embedded Mini Hamburger Button inside Center Menu -->
-        <a href="#" class="menu-trigger-btn menu-trigger-btn--pill" onclick="openMenuOverlay(); return false;" data-aura-bound="true" title="Open Fullscreen Overlay" aria-label="Fullscreen Menu">
-            <span class="menu-icon-bars">
-                <span class="bar bar-1"></span>
-                <span class="bar bar-2"></span>
-                <span class="bar bar-3"></span>
-            </span>
-        </a>
-    </div>
-
-    <div class="nav-right-group">
-
-
-
-        <div class="search-box">
-            <form action="${ctx}/products" method="get">
-                <input type="text" name="keyword"
-                       placeholder="Search for products..."
-                       value="${param.keyword}">
-                <button type="submit"><i class="fa fa-search"></i></button>
-            </form>
-        </div>
-
+        <!-- Right Side Utility Icons -->
         <div class="nav-icons">
-
+            <div class="search-box">
+                <form action="${ctx}/products" method="get">
+                    <button type="submit" aria-label="Search">
+                        <span class="material-symbols-outlined">search</span>
+                    </button>
+                    <input type="text" name="keyword" placeholder="Search" value="${param.keyword}" autocomplete="off">
+                </form>
+            </div>
+            
             <c:choose>
                 <c:when test="${not empty sessionScope.user}">
-                    <a href="${ctx}/profile">
-                        <i class="fa fa-user"></i>
-                        <span>Account</span>
+                    <a href="${ctx}/wishlist" title="Wishlist">
+                        <span class="material-symbols-outlined">favorite</span>
                     </a>
                 </c:when>
                 <c:otherwise>
-                    <a href="#" onclick="openLoginModal(); return false;">
-                        <i class="fa fa-user"></i>
-                        <span>Account</span>
+                    <a href="#" onclick="openLoginModal(); return false;" title="Wishlist">
+                        <span class="material-symbols-outlined">favorite</span>
                     </a>
                 </c:otherwise>
             </c:choose>
 
             <c:choose>
                 <c:when test="${not empty sessionScope.user}">
-                    <a href="${ctx}/wishlist">
-                        <i class="fa fa-heart"></i>
-                        <span>Wishlist</span>
+                    <a href="${ctx}/cart" class="cart-link" title="Cart">
+                        <div class="nav-icon-wrap">
+                            <span class="material-symbols-outlined">shopping_bag</span>
+                            <span id="cart-count" class="cart-badge">0</span>
+                        </div>
                     </a>
                 </c:when>
                 <c:otherwise>
-                    <a href="#" onclick="openLoginModal(); return false;">
-                        <i class="fa fa-heart"></i>
-                        <span>Wishlist</span>
+                    <a href="#" onclick="openLoginModal(); return false;" class="cart-link" title="Cart">
+                        <div class="nav-icon-wrap">
+                            <span class="material-symbols-outlined">shopping_bag</span>
+                            <span id="cart-count" class="cart-badge">0</span>
+                        </div>
                     </a>
                 </c:otherwise>
             </c:choose>
 
             <c:choose>
                 <c:when test="${not empty sessionScope.user}">
-                    <a href="${ctx}/cart" class="cart-link">
-                        <div class="nav-icon-wrap">
-                            <i class="fa fa-bag-shopping"></i>
-                            <span id="cart-count" class="cart-badge">0</span>
-                        </div>
-                        <span>Cart</span>
+                    <a href="${ctx}/profile" title="Account">
+                        <span class="material-symbols-outlined">person</span>
                     </a>
                 </c:when>
                 <c:otherwise>
-                    <a href="#" onclick="openLoginModal(); return false;" class="cart-link">
-                        <div class="nav-icon-wrap">
-                            <i class="fa fa-bag-shopping"></i>
-                            <span id="cart-count" class="cart-badge">0</span>
-                        </div>
-                        <span>Cart</span>
+                    <a href="#" onclick="openLoginModal(); return false;" title="Account">
+                        <span class="material-symbols-outlined">person</span>
                     </a>
                 </c:otherwise>
             </c:choose>
 
             <!-- Mobile Menu Hamburger Trigger -->
-            <a href="#" class="menu-trigger-btn mobile-menu-trigger" onclick="openMenuOverlay(); return false;" title="Open Fullscreen Overlay" aria-label="Fullscreen Menu">
+            <a href="#" class="menu-trigger-btn mobile-menu-trigger" onclick="openMenuOverlay(); return false;" title="Open Menu" aria-label="Menu">
                 <span class="menu-icon-bars">
                     <span class="bar bar-1"></span>
                     <span class="bar bar-2"></span>
                     <span class="bar bar-3"></span>
                 </span>
             </a>
-
         </div>
-
     </div>
-
 </nav>
-
-<!-- PRELOADER -->
-<c:if test="${requestScope.isHome == 'true'}">
-<div class="preloader-overlay" id="preloader">
-    <div class="preloader-left">
-        <div class="preloader-logo">AW</div>
-        <div class="preloader-message">
-            <span class="pm-line pm-line-1">AURA IS NOT WHAT YOU WEAR.</span>
-            <span class="pm-line pm-line-2">IT IS WHO YOU ARE.</span>
-            <span class="pm-line pm-line-3">See you in the dreams.</span>
-        </div>
-    </div>
-    <div class="preloader-right">
-        <div class="preloader-percent" id="preloaderPercent">0%</div>
-        <div class="preloader-status">LOADING STOREFRONT</div>
-    </div>
-    <div class="preloader-curtain">
-        <div class="preloader-col pc-1"></div>
-        <div class="preloader-col pc-2"></div>
-        <div class="preloader-col pc-3"></div>
-    </div>
-</div>
-</c:if>
 
 <!-- LUXURY OVERLAY MENU -->
 <div class="menu-overlay" id="menuOverlay">
     <div class="menu-header">
-        <div class="preloader-logo">AW</div>
+        <div class="menu-logo">AW</div>
         <button class="menu-close-btn" onclick="closeMenuOverlay()"><i class="fa-solid fa-xmark"></i></button>
     </div>
     
@@ -261,11 +161,13 @@
 
 
 
+
+
 <!-- HIGH-END ANALOGUE FILM GRAIN NOISE OVERLAY -->
 <div class="noise-overlay"></div>
 
 <!-- LOGIN MODAL -->
-<jsp:include page="../partials/login-modal.jsp" />
+<jsp:include page="/WEB-INF/views/partials/login-modal.jsp" />
 
 <!-- SIZE GUIDE MODAL -->
 <div class="size-overlay" id="sizeOverlay" onclick="closeSizeGuide(event)">
@@ -462,30 +364,6 @@ function closeMenuOverlay() {
 function initAuraInteractive() {
 
 
-    // ── Preloader Progress Counter
-    const percentEl = document.getElementById("preloaderPercent");
-    const preloader = document.getElementById("preloader");
-    
-    if (percentEl && preloader) {
-        if (sessionStorage.getItem("auraPreloaderShown") === "true") {
-            preloader.style.display = "none";
-            preloader.classList.add("loaded");
-        } else {
-            let count = 0;
-            const interval = setInterval(() => {
-                count += Math.floor(Math.random() * 8) + 4;
-                if (count >= 100) {
-                    count = 100;
-                    clearInterval(interval);
-                    setTimeout(() => {
-                        preloader.classList.add("loaded");
-                        sessionStorage.setItem("auraPreloaderShown", "true");
-                    }, 400);
-                }
-                percentEl.innerText = count + "%";
-            }, 35);
-        }
-    }
 
     // ── Update Cart Count
     updateCartCount();
@@ -529,7 +407,7 @@ function initAuraInteractive() {
     };
     setupScrollObserver();
 
-    // ── Preloader-Safe Typographical Entrance Guarantee
+    // ── Typographical Entrance Reveal
     setTimeout(() => {
         const firstFoldElements = document.querySelectorAll(
             ".hero [data-scroll-reveal], .cat-panels [data-scroll-reveal], .statement [data-scroll-reveal]"
@@ -537,7 +415,7 @@ function initAuraInteractive() {
         firstFoldElements.forEach(el => {
             el.classList.add("reveal-active");
         });
-    }, 400);
+    }, 0);
 
     // Re-bind scroll reveal for dynamically parsed elements
     const scrollMutationObserver = new MutationObserver(setupScrollObserver);

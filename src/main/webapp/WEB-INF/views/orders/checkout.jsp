@@ -12,9 +12,10 @@
     <title>Checkout — AuraWear</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" href="${ctx}/assets/css/home.css">
-    <link rel="stylesheet" href="${ctx}/assets/css/orders.css">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="${ctx}/assets/css/home.css?v=118">
+    <link rel="stylesheet" href="${ctx}/assets/css/checkout.css?v=4">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 </head>
 <body>
 
@@ -29,18 +30,18 @@
                 <h1 class="checkout-title">Checkout</h1>
 
                 <c:if test="${not empty errorMsg}">
-                    <div class="error-banner" style="background: rgba(255, 0, 1, 0.1); border: 1.5px solid var(--accent-color); color: var(--text-color); padding: 16px; font-weight: 800; text-transform: uppercase; font-size: 12px; margin-bottom: 24px; letter-spacing: 0.5px;">
-                        <i class="fa-solid fa-triangle-exclamation"></i> ${errorMsg}
+                    <div class="error-banner" style="background: rgba(186, 26, 26, 0.1); border: 1px solid var(--co-error); color: var(--co-error); padding: 16px; font-family: 'Inter', sans-serif; font-weight: 600; text-transform: uppercase; font-size: 12px; margin-bottom: 24px; letter-spacing: 0.5px; display: inline-flex; align-items: center; gap: 8px;">
+                        <span class="material-symbols-outlined" style="font-size: 18px;">warning</span> ${errorMsg}
                     </div>
                 </c:if>
 
                 <!-- ===== SHIPPING ADDRESS SECTION ===== -->
                 <div class="checkout-section">
                     <h3 class="section-title">
-                        <i class="fa-solid fa-truck-fast"></i> Shipping Address
+                        <span class="material-symbols-outlined">local_shipping</span> Shipping Address
                     </h3>
                     
-                    <p style="font-size: 13px; opacity: 0.7; margin-bottom: 20px; line-height: 1.5; text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px;">
+                    <p style="font-size: 13px; opacity: 0.7; margin-bottom: 20px; line-height: 1.5; text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px; font-family: 'Inter', sans-serif;">
                         Where should we deliver your premium selection?
                     </p>
 
@@ -51,7 +52,7 @@
                         </div>
                         <div class="form-group">
                             <label for="shipping_phone">Phone Number *</label>
-                            <input type="tel" id="shipping_phone" placeholder="10-digit mobile number" required>
+                            <input type="tel" id="shipping_phone" placeholder="10-digit mobile number" maxlength="10" required>
                         </div>
                     </div>
 
@@ -81,43 +82,43 @@
                         </div>
                     </div>
 
-                    <div id="shippingError" style="display: none; background: rgba(255, 0, 1, 0.1); border: 1.5px solid var(--accent-color); color: var(--text-color); padding: 12px; font-weight: 800; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px; margin-top: 8px;">
-                        <i class="fa-solid fa-triangle-exclamation"></i> Please complete all shipping address fields.
+                    <div id="shippingError" style="display: none; background: rgba(186, 26, 26, 0.1); border: 1px solid var(--co-error); color: var(--co-error); padding: 12px; font-family: 'Inter', sans-serif; font-weight: 600; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px; margin-top: 12px; display: inline-flex; align-items: center; gap: 6px;">
+                        <span class="material-symbols-outlined" style="font-size: 16px;">warning</span> Please complete all shipping address fields.
                     </div>
                 </div>
 
                 <!-- ===== PAYMENT METHOD SECTION ===== -->
                 <div class="checkout-section">
                     <h3 class="section-title">
-                        <i class="fa-solid fa-credit-card"></i> Payment Method
+                        <span class="material-symbols-outlined">payments</span> Payment Method
                     </h3>
                     
-                    <p style="font-size: 13px; opacity: 0.7; margin-bottom: 20px; line-height: 1.5; text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px;">
+                    <p style="font-size: 13px; opacity: 0.7; margin-bottom: 20px; line-height: 1.5; text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px; font-family: 'Inter', sans-serif;">
                         Select how you would like to complete your premium acquisition.
                     </p>
 
                     <!-- PAYMENT METHOD SELECTOR -->
                     <div class="payment-options">
-                        <label class="payment-option selected" id="opt-online" style="flex: 1;">
+                        <label class="payment-option selected" id="opt-online">
                             <input type="radio" name="payment_method" value="online" checked style="display:none;">
-                            <i class="fa-solid fa-credit-card"></i> Online Payment
+                            <span class="material-symbols-outlined" style="font-size: 18px;">credit_card</span> Online Payment
                         </label>
-                        <label class="payment-option" id="opt-cod" style="flex: 1;">
+                        <label class="payment-option" id="opt-cod">
                             <input type="radio" name="payment_method" value="cod" style="display:none;">
-                            <i class="fa-solid fa-hand-holding-dollar"></i> Cash on Delivery
+                            <span class="material-symbols-outlined" style="font-size: 18px;">payments</span> Cash on Delivery
                         </label>
                     </div>
 
                     <!-- PREFILLED BILLING SUMMARY -->
-                    <div style="background: var(--card-bg); border: 1.5px solid var(--border-color-solid); padding: 20px; margin-bottom: 30px; display: flex; flex-direction: column; gap: 12px;">
-                        <h4 style="font-size: 12px; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; border-bottom: 1px solid var(--border-color); padding-bottom: 8px;">Customer Information</h4>
-                        <div style="display: flex; justify-content: space-between; font-size: 13px; font-weight: 700; text-transform: uppercase;">
-                            <span style="opacity: 0.5;">Name</span>
-                            <span>${user.name}</span>
+                    <div style="background: var(--co-surface-container); border: 1px solid var(--co-outline-variant); padding: 20px; border-radius: var(--radius-default); margin-bottom: 24px; display: flex; flex-direction: column; gap: 12px;">
+                        <h4 style="font-family: 'Outfit', sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; border-bottom: 1px dashed var(--co-outline-variant); padding-bottom: 8px; color: var(--co-primary); margin: 0;">Customer Information</h4>
+                        <div style="display: flex; justify-content: space-between; font-size: 13px; font-weight: 500; text-transform: uppercase;">
+                            <span style="color: var(--co-on-surface-variant); opacity: 0.7;">Name</span>
+                            <span style="color: var(--co-primary); font-weight: 600;">${user.name}</span>
                         </div>
-                        <div style="display: flex; justify-content: space-between; font-size: 13px; font-weight: 700;">
-                            <span style="opacity: 0.5; text-transform: uppercase;">Email</span>
-                            <span>${user.email}</span>
+                        <div style="display: flex; justify-content: space-between; font-size: 13px; font-weight: 500;">
+                            <span style="color: var(--co-on-surface-variant); opacity: 0.7; text-transform: uppercase;">Email</span>
+                            <span style="color: var(--co-primary); font-weight: 600;">${user.email}</span>
                         </div>
                     </div>
 
@@ -126,19 +127,19 @@
                         <!-- PAYMENT BUTTON -->
                         <c:choose>
                             <c:when test="${not empty razorpayOrderId}">
-                                <button type="button" id="payNowBtn" class="place-order-btn" style="width: 100%; border-radius: 0px !important;">
-                                    <i class="fa-solid fa-lock"></i> Pay Now — ₹<fmt:formatNumber value="${grandTotal}" maxFractionDigits="0"/>
+                                <button type="button" id="payNowBtn" class="place-order-btn">
+                                    <span class="material-symbols-outlined">lock</span> Pay Now — ₹<fmt:formatNumber value="${grandTotal}" maxFractionDigits="0"/>
                                 </button>
                             </c:when>
                             <c:otherwise>
-                                <button type="button" class="place-order-btn" style="width: 100%; border-radius: 0px !important; opacity: 0.5; cursor: not-allowed;" disabled>
+                                <button type="button" class="place-order-btn" disabled>
                                     Online Checkout Unavailable
                                 </button>
                             </c:otherwise>
                         </c:choose>
                         
-                        <p class="secure-label" style="margin-top: 16px; text-align: center; text-transform: uppercase; font-size: 11px; font-weight: 800; letter-spacing: 1px;">
-                            <i class="fa fa-lock"></i> Secure 256-bit encrypted SSL checkout
+                        <p class="secure-label">
+                            <span class="material-symbols-outlined">verified_user</span> Secure 256-bit encrypted SSL checkout
                         </p>
                     </div>
 
@@ -151,13 +152,13 @@
                             <input type="hidden" name="shipping_city" id="cod_shipping_city">
                             <input type="hidden" name="shipping_state" id="cod_shipping_state">
                             <input type="hidden" name="shipping_pincode" id="cod_shipping_pincode">
-                            <button type="submit" class="place-order-btn" style="width: 100%; border-radius: 0px !important;">
-                                <i class="fa-solid fa-truck"></i> Place Order (COD) — ₹<fmt:formatNumber value="${grandTotal}" maxFractionDigits="0"/>
+                            <button type="submit" class="place-order-btn">
+                                <span class="material-symbols-outlined">local_shipping</span> Place Order (COD) — ₹<fmt:formatNumber value="${grandTotal}" maxFractionDigits="0"/>
                             </button>
                         </form>
                         
-                        <p class="secure-label" style="margin-top: 16px; text-align: center; text-transform: uppercase; font-size: 11px; font-weight: 800; letter-spacing: 1px;">
-                            <i class="fa-solid fa-truck-ramp-box"></i> Pay in cash upon product delivery
+                        <p class="secure-label">
+                            <span class="material-symbols-outlined">payments</span> Pay in cash upon product delivery
                         </p>
                     </div>
 
@@ -195,7 +196,7 @@
                     <span>
                         <c:choose>
                             <c:when test="${shipping == 0}">
-                                <span class="free-badge" style="background: var(--accent-color); color: var(--bg-color); font-size: 9px; font-weight: 800; padding: 2px 6px;">FREE</span>
+                                <span class="free-badge">FREE</span>
                             </c:when>
                             <c:otherwise>
                                 ₹<fmt:formatNumber value="${shipping}" maxFractionDigits="0"/>
@@ -215,6 +216,51 @@
         </div>
 
     </div>
+
+    <!-- Footer -->
+    <footer class="footer-section">
+        <div class="footer-container">
+            <div class="footer-brand-col">
+                <div class="footer-logo">AURAWEAR</div>
+                <p class="footer-desc">
+                    PREMIUM STREETWEAR FOR THE BOLD. DEFINING THE AESTHETIC OF THE NEW ERA.
+                </p>
+                <div class="footer-socials">
+                    <a href="#">INSTAGRAM</a>
+                    <a href="#">TIKTOK</a>
+                </div>
+            </div>
+            <div class="footer-links-col">
+                <h5 class="footer-heading">SHOP</h5>
+                <ul class="footer-links-list">
+                    <li><a href="${ctx}/products?gender=Men">MEN</a></li>
+                    <li><a href="${ctx}/products?gender=Women">WOMEN</a></li>
+                    <li><a href="${ctx}/products?category=Accessories">ACCESSORIES</a></li>
+                    <li><a href="${ctx}/collections">COLLECTIONS</a></li>
+                </ul>
+            </div>
+            <div class="footer-links-col">
+                <h5 class="footer-heading">ACCOUNT</h5>
+                <ul class="footer-links-list">
+                    <li><a href="${ctx}/profile">PROFILE</a></li>
+                    <li><a href="${ctx}/my-orders">ORDERS</a></li>
+                    <li><a href="${ctx}/wishlist">WISHLIST</a></li>
+                    <li><a href="${ctx}/cart">CART</a></li>
+                </ul>
+            </div>
+            <div class="footer-links-col">
+                <h5 class="footer-heading">HELP</h5>
+                <ul class="footer-links-list">
+                    <li><a href="${ctx}/my-orders">SHIPPING &amp; RETURNS</a></li>
+                    <li><a href="javascript:void(0)" onclick="openSizeGuide()">SIZE GUIDE</a></li>
+                    <li><a href="mailto:support@aurawear.com">CONTACT</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom-row">
+            <p class="footer-copyright">© 2025 AURAWEAR. ALL RIGHTS RESERVED.</p>
+        </div>
+    </footer>
 
     <!-- RAZORPAY SCRIPT -->
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
@@ -240,17 +286,45 @@
     function validateShipping() {
         const fields = getShippingFields();
         const errorDiv = document.getElementById("shippingError");
+        
+        // 1. Check empty fields
         for (const key in fields) {
             if (!fields[key]) {
-                errorDiv.style.display = "block";
-                // Scroll to the error
+                errorDiv.innerHTML = '<span class="material-symbols-outlined" style="font-size: 16px;">warning</span> Please complete all shipping address fields.';
+                errorDiv.style.display = "flex";
                 errorDiv.scrollIntoView({ behavior: "smooth", block: "center" });
                 return false;
             }
         }
+
+        // 2. Validate Phone Number (must be exactly 10 digits)
+        if (!/^\d{10}$/.test(fields.shipping_phone)) {
+            errorDiv.innerHTML = '<span class="material-symbols-outlined" style="font-size: 16px;">warning</span> Please enter a valid 10-digit mobile number.';
+            errorDiv.style.display = "flex";
+            document.getElementById("shipping_phone").scrollIntoView({ behavior: "smooth", block: "center" });
+            return false;
+        }
+
+        // 3. Validate PIN Code (must be exactly 6 digits)
+        if (!/^\d{6}$/.test(fields.shipping_pincode)) {
+            errorDiv.innerHTML = '<span class="material-symbols-outlined" style="font-size: 16px;">warning</span> Please enter a valid 6-digit PIN code.';
+            errorDiv.style.display = "flex";
+            document.getElementById("shipping_pincode").scrollIntoView({ behavior: "smooth", block: "center" });
+            return false;
+        }
+
         errorDiv.style.display = "none";
         return true;
     }
+
+    // Dynamic numeric-only restrictions
+    document.getElementById("shipping_phone").addEventListener("input", function() {
+        this.value = this.value.replace(/\D/g, "");
+    });
+
+    document.getElementById("shipping_pincode").addEventListener("input", function() {
+        this.value = this.value.replace(/\D/g, "");
+    });
 
     // Hide shipping error when user starts typing
     document.querySelectorAll('#shipping_name, #shipping_phone, #shipping_address, #shipping_city, #shipping_state, #shipping_pincode').forEach(function(input) {
@@ -364,7 +438,7 @@
             "email": "${user.email}"
         },
         "theme": {
-            "color": "#ff0001"
+            "color": "#000000"
         }
     };
 

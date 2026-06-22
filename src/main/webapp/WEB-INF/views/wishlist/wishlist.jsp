@@ -9,11 +9,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Wishlist — AuraWear</title>
+    <title>Your Wishlist - AuraWear</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" href="${ctx}/assets/css/home.css">
-    <link rel="stylesheet" href="${ctx}/assets/css/wishlist.css">
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="${ctx}/assets/css/home.css?v=118">
+    <link rel="stylesheet" href="${ctx}/assets/css/wishlist.css?v=4">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
 </head>
 <body>
 
@@ -23,22 +29,15 @@
 
         <!-- HEADER -->
         <div class="wishlist-header">
-            <div class="wishlist-header-inner">
-                <div class="wishlist-header-text">
-                    <h1>My Wishlist</h1>
-                    <p>
-                        <c:choose>
-                            <c:when test="${not empty wishlist}">
-                                ${wishlist.size()} saved item<c:if test="${wishlist.size() != 1}">s</c:if>
-                            </c:when>
-                            <c:otherwise>Items you've saved for later</c:otherwise>
-                        </c:choose>
-                    </p>
-                </div>
-                <a href="${ctx}/products" class="wishlist-shop-btn">
-                    <i class="fa-solid fa-bag-shopping"></i> Continue Shopping
-                </a>
-            </div>
+            <h1>Your Wishlist</h1>
+            <p class="wl-subtitle">
+                <c:choose>
+                    <c:when test="${not empty wishlist}">
+                        <span id="headerCount">${wishlist.size()}</span> item<c:if test="${wishlist.size() != 1}">s</c:if> saved
+                    </c:when>
+                    <c:otherwise>Items you've saved for later</c:otherwise>
+                </c:choose>
+            </p>
         </div>
 
         <!-- CONTENT -->
@@ -46,13 +45,13 @@
             <c:choose>
 
                 <c:when test="${empty wishlist}">
-                    <div class="wishlist-empty">
+                    <div class="wishlist-empty" id="emptyState">
                         <div class="wishlist-empty-icon">
-                            <i class="fa-regular fa-heart"></i>
+                            <span class="material-symbols-outlined">favorite</span>
                         </div>
                         <h3>Your wishlist is empty</h3>
                         <p>Save items you love by tapping the heart on any product.<br>They'll appear here for easy access.</p>
-                        <a href="${ctx}/products" class="wishlist-browse-btn">Discover Products</a>
+                        <a href="${ctx}/products" class="wishlist-browse-btn">Browse Store</a>
                     </div>
                 </c:when>
 
@@ -61,61 +60,134 @@
                         <c:forEach var="item" items="${wishlist}">
                             <div class="wishlist-card" id="wcard-${item.productId}">
 
-                                <button class="wl-remove-btn"
-                                        onclick="removeItem(event, ${item.productId}, '${item.productName}')"
-                                        title="Remove">
-                                    <i class="fa-solid fa-xmark"></i>
-                                </button>
-
+                                <!-- Product Image -->
                                 <div class="wl-image-wrap"
                                      onclick="window.location.href='${ctx}/product?id=${item.productId}'">
                                     <c:choose>
                                         <c:when test="${not empty item.image}">
                                             <img src="<c:choose><c:when test="${fn:startsWith(item.image, 'http')}">${item.image}</c:when><c:otherwise>${ctx}/assets/images/${item.image}</c:otherwise></c:choose>"
                                                  onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
-                                                 alt="${item.productName}">
+                                                 alt="${item.productName}"
+                                                 loading="lazy">
                                             <div class="wl-img-fallback" style="display:none;">
-                                                <i class="fa-solid fa-shirt"></i>
+                                                <span class="material-symbols-outlined" style="font-size: 40px; color: var(--wl-outline); opacity: 0.4;">checkroom</span>
                                             </div>
                                         </c:when>
                                         <c:otherwise>
                                             <div class="wl-img-fallback">
-                                                <i class="fa-solid fa-shirt"></i>
+                                                <span class="material-symbols-outlined" style="font-size: 40px; color: var(--wl-outline); opacity: 0.4;">checkroom</span>
                                             </div>
                                         </c:otherwise>
                                     </c:choose>
                                 </div>
 
+                                <!-- Heart Remove Button -->
+                                <button class="wl-remove-btn"
+                                        onclick="removeItem(event, ${item.productId}, '${item.productName}')"
+                                        aria-label="Remove from wishlist"
+                                        title="Remove from wishlist">
+                                    <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1, 'wght' 400;">favorite</span>
+                                </button>
+
+                                <!-- Product Info -->
                                 <div class="wl-info">
                                     <h3 class="wl-name">${item.productName}</h3>
-                                    <div class="wl-price">
-                                        ₹<fmt:formatNumber value="${item.price}" maxFractionDigits="0"/>
-                                    </div>
+                                    <p class="wl-category">AuraWear</p>
+                                    <p class="wl-price">₹<fmt:formatNumber value="${item.price}" maxFractionDigits="0"/></p>
                                 </div>
 
+                                <!-- Add to Bag Button -->
                                 <button class="wl-add-btn"
-                                        onclick="addToCart(event, ${item.productId}, '${item.size}', ${item.price})">
-                                    <i class="fa-solid fa-bag-shopping"></i> Add to Cart
+                                        onclick="addToCart(event, ${item.productId}, '${item.size}', ${item.price})"
+                                        id="addBtn-${item.productId}">
+                                    + Add to Bag
                                 </button>
 
                             </div>
                         </c:forEach>
+
+                        <!-- Empty Slot placeholder (visible on large screens) -->
+                        <div class="wl-empty-slot" id="emptySlot">
+                            <span class="material-symbols-outlined">add</span>
+                            <p>Keep exploring to add more items</p>
+                            <a href="${ctx}/products">Browse Store</a>
+                        </div>
                     </div>
 
+                    <!-- Bottom Strip -->
                     <div class="wishlist-strip">
                         <span id="wishlistCount">
-                            <i class="fa-regular fa-heart"></i>
+                            <span class="material-symbols-outlined" style="font-size: 18px; margin-right: 6px; font-variation-settings: 'FILL' 0, 'wght' 400;">favorite</span>
                             ${wishlist.size()} saved item<c:if test="${wishlist.size() != 1}">s</c:if>
                         </span>
-                        <a href="${ctx}/products">Shop more <i class="fa-solid fa-arrow-right"></i></a>
+                        <a href="${ctx}/products" style="text-decoration: none; display: inline-flex; align-items: center; gap: 4px;">Shop more <span class="material-symbols-outlined" style="font-size: 16px;">arrow_right_alt</span></a>
                     </div>
                 </c:otherwise>
 
             </c:choose>
         </div>
 
-    </div>
+        <!-- YOU MAY ALSO LIKE -->
+        <div class="wl-recommendations">
+            <h2>You may also like</h2>
+            <div class="wl-rec-chips">
+                <a href="${ctx}/products?category=Outerwear" class="wl-rec-chip">MODULAR LAYERS</a>
+                <a href="${ctx}/products?category=Accessories" class="wl-rec-chip">URBAN TECH</a>
+                <a href="${ctx}/products?category=Knitwear" class="wl-rec-chip">ESSENTIAL KNITS</a>
+                <a href="${ctx}/products?gender=Men" class="wl-rec-chip">MEN'S EDIT</a>
+                <a href="${ctx}/products?gender=Women" class="wl-rec-chip">WOMEN'S EDIT</a>
+            </div>
+        </div>
 
+    </div>
+    <!-- end .wishlist-page -->
+
+    <!-- Footer -->
+    <footer class="footer-section">
+        <div class="footer-container">
+            <div class="footer-brand-col">
+                <div class="footer-logo">AURAWEAR</div>
+                <p class="footer-desc">
+                    PREMIUM STREETWEAR FOR THE BOLD. DEFINING THE AESTHETIC OF THE NEW ERA.
+                </p>
+                <div class="footer-socials">
+                    <a href="#">INSTAGRAM</a>
+                    <a href="#">TIKTOK</a>
+                </div>
+            </div>
+            <div class="footer-links-col">
+                <h5 class="footer-heading">SHOP</h5>
+                <ul class="footer-links-list">
+                    <li><a href="${ctx}/products?gender=Men">MEN</a></li>
+                    <li><a href="${ctx}/products?gender=Women">WOMEN</a></li>
+                    <li><a href="${ctx}/products?category=Accessories">ACCESSORIES</a></li>
+                    <li><a href="${ctx}/collections">COLLECTIONS</a></li>
+                </ul>
+            </div>
+            <div class="footer-links-col">
+                <h5 class="footer-heading">ACCOUNT</h5>
+                <ul class="footer-links-list">
+                    <li><a href="${ctx}/profile">PROFILE</a></li>
+                    <li><a href="${ctx}/my-orders">ORDERS</a></li>
+                    <li><a href="${ctx}/wishlist">WISHLIST</a></li>
+                    <li><a href="${ctx}/cart">CART</a></li>
+                </ul>
+            </div>
+            <div class="footer-links-col">
+                <h5 class="footer-heading">HELP</h5>
+                <ul class="footer-links-list">
+                    <li><a href="${ctx}/my-orders">SHIPPING &amp; RETURNS</a></li>
+                    <li><a href="javascript:void(0)" onclick="openSizeGuide()">SIZE GUIDE</a></li>
+                    <li><a href="mailto:support@aurawear.com">CONTACT</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom-row">
+            <p class="footer-copyright">© 2025 AURAWEAR. ALL RIGHTS RESERVED.</p>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
     <div id="toast" class="wl-toast"></div>
 
     <script>
@@ -156,17 +228,19 @@
             if (res.status === 401) { window.location.href = ctx + "/login"; return; }
             if (!res.ok) throw new Error();
             btn.innerHTML = '<i class="fa-solid fa-check"></i> Added!';
-            showToast("Added to cart!");
+            btn.classList.add("added");
+            showToast("Added to bag!");
             updateCartCount();
             setTimeout(() => {
                 btn.disabled = false;
-                btn.innerHTML = '<i class="fa-solid fa-bag-shopping"></i> Add to Cart';
-            }, 1400);
+                btn.innerHTML = '+ Add to Bag';
+                btn.classList.remove("added");
+            }, 1800);
         })
         .catch(() => {
             btn.disabled = false;
-            btn.innerHTML = '<i class="fa-solid fa-bag-shopping"></i> Add to Cart';
-            showToast("Could not add to cart. Try again.");
+            btn.innerHTML = '+ Add to Bag';
+            showToast("Could not add to bag. Try again.");
         });
     }
 
@@ -181,17 +255,24 @@
 
     function refreshCount() {
         const count = document.querySelectorAll(".wishlist-card").length;
+        const headerEl = document.getElementById("headerCount");
+        if (headerEl) headerEl.textContent = count;
+
         const el = document.getElementById("wishlistCount");
-        if (el) el.innerHTML = '<i class="fa-regular fa-heart"></i> '
+        if (el) el.innerHTML = '<span class="material-symbols-outlined" style="font-size: 18px; margin-right: 6px; font-variation-settings: \'FILL\' 0, \'wght\' 400;">favorite</span>'
             + count + ' saved item' + (count !== 1 ? 's' : '');
+
         if (count === 0) {
-            document.querySelector(".wishlist-container").innerHTML = `
-                <div class="wishlist-empty">
-                    <div class="wishlist-empty-icon"><i class="fa-regular fa-heart"></i></div>
-                    <h3>Your wishlist is empty</h3>
-                    <p>Save items you love by tapping the heart on any product.</p>
-                    <a href="${ctx}/products" class="wishlist-browse-btn">Discover Products</a>
-                </div>`;
+            document.querySelector(".wishlist-container").innerHTML =
+                '<div class="wishlist-empty">'
+              +   '<div class="wishlist-empty-icon"><span class="material-symbols-outlined">favorite</span></div>'
+              +   '<h3>Your wishlist is empty</h3>'
+              +   '<p>Save items you love by tapping the heart on any product.</p>'
+              +   '<a href="' + ctx + '/products" class="wishlist-browse-btn">Browse Store</a>'
+              + '</div>';
+
+            var subtitle = document.querySelector(".wishlist-header .wl-subtitle");
+            if (subtitle) subtitle.textContent = "Items you've saved for later";
         }
     }
 

@@ -55,6 +55,12 @@ public class VerifyOTPServlet extends HttpServlet {
             String password =
                 (String) session.getAttribute("pendingPassword");
 
+            String username =
+                (String) session.getAttribute("pendingUsername");
+
+            String interests =
+                (String) session.getAttribute("pendingInterests");
+
 
             /* save user AFTER verification */
             User user =
@@ -70,6 +76,18 @@ public class VerifyOTPServlet extends HttpServlet {
 
             		User createdUser =
             		dao.getUserByEmail(email);
+
+                    // Create user profile in user_profiles
+                    com.aurawear.model.UserProfile profile =
+                        new com.aurawear.model.UserProfile(
+                            createdUser.getId(),
+                            username,
+                            "",
+                            "",
+                            "",
+                            interests
+                        );
+                    dao.saveProfile(profile);
 
             		session.setAttribute(
             		"userId",
@@ -89,9 +107,11 @@ public class VerifyOTPServlet extends HttpServlet {
             		session.removeAttribute("pendingName");
             		session.removeAttribute("pendingEmail");
             		session.removeAttribute("pendingPassword");
+            		session.removeAttribute("pendingUsername");
+            		session.removeAttribute("pendingInterests");
 
             		response.sendRedirect(
-            		"complete-profile"
+            		request.getContextPath() + "/home"
             		);
 
             		}else{

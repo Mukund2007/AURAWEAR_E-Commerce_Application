@@ -116,9 +116,10 @@ public class CartDAO {
             System.out.println("FOUND EMAIL: " + email);
 
             String sql =
-                "SELECT o.id, oi.price, oi.quantity, o.status, oi.product_name, o.created_at, oi.product_id, oi.size " +
+                "SELECT o.id, oi.price, oi.quantity, o.status, oi.product_name, o.created_at, oi.product_id, oi.size, p.image " +
                 "FROM orders o " +
                 "JOIN order_items oi ON oi.order_id = o.id " +
+                "LEFT JOIN products p ON oi.product_id = p.id " +
                 "WHERE o.user_email = ? ORDER BY o.id DESC, oi.id ASC";
 
             PreparedStatement ps = con.prepareStatement(sql);
@@ -126,7 +127,7 @@ public class CartDAO {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                String[] order = new String[8];
+                String[] order = new String[9];
                 order[0] = String.valueOf(rs.getInt("id"));
                 double price = rs.getDouble("price");
                 int qty = rs.getInt("quantity");
@@ -137,6 +138,7 @@ public class CartDAO {
                 order[5] = String.valueOf(rs.getInt("product_id"));
                 order[6] = rs.getString("size");
                 order[7] = String.valueOf(qty);
+                order[8] = rs.getString("image");
                 orders.add(order);
             }
 

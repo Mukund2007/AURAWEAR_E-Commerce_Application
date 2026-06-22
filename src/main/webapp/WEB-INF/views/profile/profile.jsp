@@ -13,7 +13,7 @@
     <title>My Account — AuraWear</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" href="${ctx}/assets/css/home.css">
+    <link rel="stylesheet" href="${ctx}/assets/css/home.css?v=118">
     <link rel="stylesheet" href="${ctx}/assets/css/profile.css">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
@@ -72,15 +72,7 @@
                 </div>
             </a>
 
-            <a href="${ctx}/complete-profile" class="dashboard-card">
-                <div class="card-icon">
-                    <i class="fa-solid fa-user-pen"></i>
-                </div>
-                <div class="card-text">
-                    <h3>Profile Settings</h3>
-                    <p>Update your personal details</p>
-                </div>
-            </a>
+
 
             <a href="${ctx}/logout" class="dashboard-card logout-card">
                 <div class="card-icon">

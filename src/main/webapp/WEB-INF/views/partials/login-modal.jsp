@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 
-<link rel="stylesheet" href="${ctx}/assets/css/login-modal.css">
+<link rel="stylesheet" href="${ctx}/assets/css/login-modal.css?v=120">
 
 <div class="login-overlay" id="loginOverlay" onclick="closeLoginModal(event)">
     <div class="login-modal" id="loginModal">
@@ -19,7 +19,7 @@
             </div>
         </div>
 
-        <h2 class="modal-title">Welcome Back</h2>
+        <h2 class="modal-title">Sign In</h2>
         <p class="modal-sub">Sign in to your account</p>
 
         <div class="modal-error" id="modalError" <c:if test="${empty param.loginError}">style="display:none;"</c:if>>
@@ -45,12 +45,6 @@
 
         <div class="modal-register-cta">
             Not a member? <a href="${ctx}/register">Create Account &rarr;</a>
-        </div>
-
-        <div class="modal-perks">
-            <span>✨ Member Exclusives</span>
-            <span>⚡ Early Access</span>
-            <span>🌌 Premium Drops</span>
         </div>
 
     </div>

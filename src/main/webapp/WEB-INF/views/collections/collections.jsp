@@ -8,190 +8,204 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Curated Collections — AuraWear</title>
-    <meta name="description" content="Explore AuraWear's curated fashion drops — Noir, Minimal Essentials, Street Uniform, and more. Premium editorial collections.">
+    <meta name="description" content="Explore AuraWear's curated fashion drops. Premium technical garments engineered for longevity, versatility, and the modern architectural form.">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" href="${ctx}/assets/css/home.css">
-    <link rel="stylesheet" href="${ctx}/assets/css/collections.css?v=5">
+    <link rel="stylesheet" href="${ctx}/assets/css/home.css?v=118">
+    <link rel="stylesheet" href="${ctx}/assets/css/collections.css?v=6">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
 </head>
 <body>
 
     <jsp:include page="../partials/navbar.jsp" />
 
-    <!-- ══ HERO ══════════════════════════════════════════════ -->
-    <section class="col-hero">
-        <div class="col-hero-label">AW — 2025 DROPS</div>
-        <h1 class="col-hero-title">
-            <span class="col-hero-line">CURATED</span>
-            <span class="col-hero-line red">COLLECTIONS</span>
-        </h1>
-        <p class="col-hero-sub">Signature drops designed for every aura.</p>
-        <div class="col-hero-meta">
-            <span>03 COLLECTIONS</span>
-            <span class="col-dot">•</span>
-            <span>SEASONAL EDIT</span>
-            <span class="col-dot">•</span>
-            <span>LIMITED DROPS</span>
-        </div>
-    </section>
-
-    <!-- ══ MARQUEE TICKER ════════════════════════════════════ -->
-    <div class="col-ticker" aria-hidden="true">
-        <div class="col-ticker-track">
-            <span>NOIR DROP</span><span class="sep">★</span>
-            <span>MINIMAL ESSENTIALS</span><span class="sep">★</span>
-            <span>STREET UNIFORM</span><span class="sep">★</span>
-            <span>SEASONAL EDIT 2025</span><span class="sep">★</span>
-            <span>CURATED PICKS</span><span class="sep">★</span>
-            <span>NOIR DROP</span><span class="sep">★</span>
-            <span>MINIMAL ESSENTIALS</span><span class="sep">★</span>
-            <span>STREET UNIFORM</span><span class="sep">★</span>
-            <span>SEASONAL EDIT 2025</span><span class="sep">★</span>
-            <span>CURATED PICKS</span><span class="sep">★</span>
-        </div>
-    </div>
-
-    <!-- ══ COLLECTION 01 — NOIR DROP ════════════════════════ -->
-    <section class="col-block col-block--left" id="noir">
-        <div class="col-block-images">
-            <div class="col-img-main">
-                <img src="${ctx}/assets/images/over1.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'" alt="Noir Drop — Oversized Silhouette">
-                <div class="col-img-badge">01</div>
-            </div>
-            <div class="col-img-stack">
-                <div class="col-img-secondary">
-                    <img src="${ctx}/assets/images/cargo2.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'" alt="Noir Drop — Cargo">
-                </div>
-                <div class="col-img-secondary">
-                    <img src="${ctx}/assets/images/ls1.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'" alt="Noir Drop — Long Sleeve">
-                </div>
-            </div>
-        </div>
-        <div class="col-block-text">
-            <div class="col-block-number">COLLECTION — 01</div>
-            <h2 class="col-block-title">NOIR<br>DROP</h2>
-            <p class="col-block-desc">
-                Monochrome essentials &amp; high-contrast silhouettes. 
-                All-black everything. Structured fits for the bold.
+    <!-- ══ HEADER ════════════════════════════════════════════ -->
+    <section class="col-header">
+        <div class="reveal">
+            <h1 class="col-header-title">Collections</h1>
+            <p class="col-header-desc">
+                A curated study of technical garments engineered for longevity, versatility, and the modern architectural form.
             </p>
-            <ul class="col-block-tags">
-                <li>OVERSIZED</li>
-                <li>MONOCHROME</li>
-                <li>STRUCTURED</li>
-            </ul>
-            <a href="${ctx}/products?category=Streetwear" class="col-explore-btn">
-                Explore the Drop <i class="fa-solid fa-arrow-right"></i>
-            </a>
         </div>
     </section>
 
-    <!-- ══ DIVIDER ══════════════════════════════════════════ -->
-    <div class="col-divider">
-        <span>— SCROLL TO EXPLORE —</span>
-    </div>
-
-    <!-- ══ COLLECTION 02 — MINIMAL ══════════════════════════ -->
-    <section class="col-block col-block--right col-block--cream" id="minimal">
-        <div class="col-block-text">
-            <div class="col-block-number">COLLECTION — 02</div>
-            <h2 class="col-block-title">MINIMAL<br>ESSENTIALS</h2>
-            <p class="col-block-desc">
-                Timeless daily uniforms &amp; clean structural base-wear.
-                Less is more. Quiet luxury for every occasion.
-            </p>
-            <ul class="col-block-tags">
-                <li>CLEAN CUT</li>
-                <li>NEUTRAL TONES</li>
-                <li>EVERYDAY FIT</li>
-            </ul>
-            <a href="${ctx}/products?category=Casual" class="col-explore-btn">
-                Explore the Drop <i class="fa-solid fa-arrow-right"></i>
-            </a>
-        </div>
-        <div class="col-block-images">
-            <div class="col-img-main">
-                <img src="${ctx}/assets/images/polo1.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'" alt="Minimal Essentials — Polo">
-                <div class="col-img-badge col-img-badge--dark">02</div>
+    <!-- ══ COLLECTION 01 — THE ESSENTIALS ═══════════════════ -->
+    <section class="col-section" id="essentials">
+        <div class="col-container">
+            <div class="col-col-half reveal">
+                <div class="col-images-grid-2">
+                    <div class="col-img-wrapper">
+                        <img src="${ctx}/assets/images/over1.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'" alt="The Essentials — Linen Overshirt">
+                    </div>
+                    <div class="col-img-wrapper col-img-offset">
+                        <img src="${ctx}/assets/images/ls1.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'" alt="The Essentials — Ribbed Long Sleeve">
+                    </div>
+                </div>
             </div>
-            <div class="col-img-stack">
-                <div class="col-img-secondary">
-                    <img src="${ctx}/assets/images/tank1.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'" alt="Minimal Essentials — Tank">
+            <div class="col-col-half reveal">
+                <div class="col-tags">
+                    <span class="col-tag">CORE</span>
+                    <span class="col-tag">MONOCHROME</span>
                 </div>
-                <div class="col-img-secondary">
-                    <img src="${ctx}/assets/images/short1.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'" alt="Minimal Essentials — Shorts">
-                </div>
+                <h2 class="col-title">The Essentials</h2>
+                <p class="col-desc">
+                    The foundation of the technical wardrobe. Designed with structural integrity and minimal silhouettes, these pieces provide the core framework for any variable environment. Longevity in every fiber.
+                </p>
+                <a class="col-btn" href="${ctx}/products?category=Tops">
+                    SHOP COLLECTION
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- ══ DIVIDER ══════════════════════════════════════════ -->
-    <div class="col-divider">
-        <span>— KEEP SCROLLING —</span>
-    </div>
-
-    <!-- ══ COLLECTION 03 — STREET ════════════════════════════ -->
-    <section class="col-block col-block--left col-block--dark" id="street">
-        <div class="col-block-images">
-            <div class="col-img-main">
-                <img src="${ctx}/assets/images/track1.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'" alt="Street Uniform — Tracksuit">
-                <div class="col-img-badge col-img-badge--red">03</div>
-            </div>
-            <div class="col-img-stack">
-                <div class="col-img-secondary">
-                    <img src="${ctx}/assets/images/wind1.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'" alt="Street Uniform — Windbreaker">
+    <!-- ══ COLLECTION 02 — MODULAR LAYERING ═════════════════ -->
+    <section class="col-section col-section-alt" id="layering">
+        <div class="col-container">
+            <div class="col-col-half reveal">
+                <div class="col-tags">
+                    <span class="col-tag">TECHNICAL</span>
+                    <span class="col-tag">STRUCTURED</span>
                 </div>
-                <div class="col-img-secondary">
-                    <img src="${ctx}/assets/images/cap1.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'" alt="Street Uniform — Cap">
+                <h2 class="col-title">Modular Layering</h2>
+                <p class="col-desc">
+                    An exploration of architectural layering. Our technical mid-layers and shell jackets are engineered to interface seamlessly, creating a responsive protective system that adapts to both climate and context.
+                </p>
+                <a class="col-btn col-btn--outline" href="${ctx}/products?category=Outerwear">
+                    SHOP COLLECTION
+                </a>
+            </div>
+            <div class="col-col-half reveal">
+                <div class="col-images-composite">
+                    <div class="col-img-composite-main">
+                        <img src="${ctx}/assets/images/wind1.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'" alt="Modular Layering — Classic Windbreaker">
+                    </div>
+                    <div class="col-img-composite-stack">
+                        <div class="col-img-composite-sub">
+                            <img src="${ctx}/assets/images/vest2.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'" alt="Modular Layering — Quilted Vest">
+                        </div>
+                        <div class="col-img-composite-sub">
+                            <img src="${ctx}/assets/images/vest1.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'" alt="Modular Layering — Puffer Vest">
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-block-text">
-            <div class="col-block-number">COLLECTION — 03</div>
-            <h2 class="col-block-title">STREET<br>UNIFORM</h2>
-            <p class="col-block-desc">
-                Oversized silhouettes &amp; bold graphic prints.
-                Built for the streets. Worn for the culture.
-            </p>
-            <ul class="col-block-tags">
-                <li>BOLD PRINTS</li>
-                <li>OVERSIZE</li>
-                <li>STREETWEAR</li>
-            </ul>
-            <a href="${ctx}/products?category=Techwear" class="col-explore-btn col-explore-btn--red">
-                Explore the Drop <i class="fa-solid fa-arrow-right"></i>
-            </a>
         </div>
     </section>
 
-    <!-- ══ BOTTOM CTA ════════════════════════════════════════ -->
-    <section class="col-cta">
-        <div class="col-cta-inner">
-            <p class="col-cta-label">— FULL CATALOG —</p>
-            <h2 class="col-cta-title">CAN'T DECIDE?<br>SHOP EVERYTHING.</h2>
-            <a href="${ctx}/products" class="col-cta-btn">
-                <i class="fa-solid fa-bag-shopping"></i> Browse All Products
-            </a>
+    <!-- ══ COLLECTION 03 — SOFT SCULPTURES ══════════════════ -->
+    <section class="col-section" id="sculptures">
+        <div class="col-container">
+            <div class="col-col-half reveal">
+                <div class="col-images-relative">
+                    <div class="col-img-square">
+                        <img src="${ctx}/assets/images/track1.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'" alt="Soft Sculptures — Classic Tracksuit">
+                    </div>
+                    <div class="col-img-overlapping">
+                        <img src="${ctx}/assets/images/coord2.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'" alt="Soft Sculptures — Knit Co-ord Set">
+                    </div>
+                </div>
+            </div>
+            <div class="col-col-half reveal">
+                <div class="col-tags">
+                    <span class="col-tag">OVERSIZED</span>
+                    <span class="col-tag">TEXTURAL</span>
+                </div>
+                <h2 class="col-title">Soft Sculptures</h2>
+                <p class="col-desc">
+                    Where comfort meets rigid form. This collection explores the intersection of soft-touch materials with structured silhouettes, creating garments that hold their shape while respecting the fluid movement of the wearer.
+                </p>
+                <a class="col-btn" href="${ctx}/products?category=Sets">
+                    SHOP COLLECTION
+                </a>
+            </div>
         </div>
     </section>
+
+    <!-- ══ TRUST SIGNALS ════════════════════════════════════ -->
+    <section class="col-trust-section">
+        <div class="col-trust-container">
+            <div class="col-trust-item reveal">
+                <span class="material-symbols-outlined">local_shipping</span>
+                <span class="col-trust-text">Global Logistics</span>
+            </div>
+            <div class="col-trust-item reveal">
+                <span class="material-symbols-outlined">verified_user</span>
+                <span class="col-trust-text">Lifetime Warranty</span>
+            </div>
+            <div class="col-trust-item reveal">
+                <span class="material-symbols-outlined">eco</span>
+                <span class="col-trust-text">Regenerative Textiles</span>
+            </div>
+            <div class="col-trust-item reveal">
+                <span class="material-symbols-outlined">architecture</span>
+                <span class="col-trust-text">Precision Engineering</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══ FOOTER ═══════════════════════════════════════════ -->
+    <footer class="footer-section">
+        <div class="footer-container">
+            <div class="footer-brand-col">
+                <div class="footer-logo">AURAWEAR</div>
+                <p class="footer-desc">
+                    PREMIUM STREETWEAR FOR THE BOLD. DEFINING THE AESTHETIC OF THE NEW ERA.
+                </p>
+                <div class="footer-socials">
+                    <a href="#">INSTAGRAM</a>
+                    <a href="#">TIKTOK</a>
+                </div>
+            </div>
+            <div class="footer-links-col">
+                <h5 class="footer-heading">SHOP</h5>
+                <ul class="footer-links-list">
+                    <li><a href="${ctx}/products?gender=Men">MEN</a></li>
+                    <li><a href="${ctx}/products?gender=Women">WOMEN</a></li>
+                    <li><a href="${ctx}/products?category=Accessories">ACCESSORIES</a></li>
+                    <li><a href="${ctx}/collections">COLLECTIONS</a></li>
+                </ul>
+            </div>
+            <div class="footer-links-col">
+                <h5 class="footer-heading">ACCOUNT</h5>
+                <ul class="footer-links-list">
+                    <li><a href="${ctx}/profile">PROFILE</a></li>
+                    <li><a href="${ctx}/my-orders">ORDERS</a></li>
+                    <li><a href="${ctx}/wishlist">WISHLIST</a></li>
+                    <li><a href="${ctx}/cart">CART</a></li>
+                </ul>
+            </div>
+            <div class="footer-links-col">
+                <h5 class="footer-heading">HELP</h5>
+                <ul class="footer-links-list">
+                    <li><a href="${ctx}/my-orders">SHIPPING &amp; RETURNS</a></li>
+                    <li><a href="javascript:void(0)" onclick="openSizeGuide()">SIZE GUIDE</a></li>
+                    <li><a href="mailto:support@aurawear.com">CONTACT</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom-row">
+            <p class="footer-copyright">© 2025 AURAWEAR. ALL RIGHTS RESERVED.</p>
+        </div>
+    </footer>
 
     <script>
-        window.addEventListener('scroll', function () {
-            const nav = document.querySelector('.navbar');
-            if (nav) nav.classList.toggle('scrolled', window.scrollY > 80);
-        });
-
-        // Animate sections on scroll
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('col-visible');
+        // Reveal elements on scroll
+        function reveal() {
+            const reveals = document.querySelectorAll(".reveal");
+            const windowHeight = window.innerHeight;
+            const elementVisible = 100;
+            reveals.forEach(el => {
+                const elementTop = el.getBoundingClientRect().top;
+                if (elementTop < windowHeight - elementVisible) {
+                    el.classList.add("active");
                 }
             });
-        }, { threshold: 0.12 });
+        }
 
-        document.querySelectorAll('.col-block, .col-cta').forEach(el => observer.observe(el));
+        window.addEventListener("scroll", reveal);
+        // Initial execution
+        reveal();
     </script>
-
 </body>
 </html>

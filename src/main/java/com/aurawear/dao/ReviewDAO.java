@@ -91,7 +91,7 @@ public class ReviewDAO {
     }
 
     public boolean hasUserPurchasedProduct(String userEmail, int productId) {
-        String sql = "SELECT COUNT(*) FROM order_items oi JOIN orders o ON oi.order_id = o.id WHERE o.user_email = ? AND oi.product_id = ? AND o.status IN ('PAID', 'DELIVERED')";
+        String sql = "SELECT COUNT(*) FROM order_items oi JOIN orders o ON oi.order_id = o.id WHERE o.user_email = ? AND oi.product_id = ? AND UPPER(o.status) IN ('PAID', 'SHIPPED', 'DELIVERED')";
         try (Connection con = DBConnection.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setString(1, userEmail);

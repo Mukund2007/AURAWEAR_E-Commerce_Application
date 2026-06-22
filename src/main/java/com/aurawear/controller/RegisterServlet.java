@@ -49,6 +49,10 @@ public class RegisterServlet extends HttpServlet {
         String name      = firstName + " " + lastName;
         String email     = request.getParameter("email");
         String password  = request.getParameter("password");
+        String username  = request.getParameter("username");
+
+        String[] interestsArr = request.getParameterValues("interests");
+        String interests = (interestsArr != null) ? String.join(",", interestsArr) : "";
 
         // Check email already registered
         UserDAO dao = new UserDAO();
@@ -64,10 +68,12 @@ public class RegisterServlet extends HttpServlet {
 
         // Save to session
         HttpSession session = request.getSession();
-        session.setAttribute("pendingName",     name);
-        session.setAttribute("pendingEmail",    email);
-        session.setAttribute("pendingPassword", password);
-        session.setAttribute("otp",             otp);
+        session.setAttribute("pendingName",      name);
+        session.setAttribute("pendingEmail",     email);
+        session.setAttribute("pendingPassword",  password);
+        session.setAttribute("pendingUsername",  username);
+        session.setAttribute("pendingInterests", interests);
+        session.setAttribute("otp",              otp);
 
         System.out.println("[REGISTRATION OTP] Email: " + email + " | Code: " + otp);
 
