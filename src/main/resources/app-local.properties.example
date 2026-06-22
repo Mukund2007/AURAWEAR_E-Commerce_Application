@@ -1,0 +1,19 @@
+# AuraWear — Local Development Secrets Template
+# Copy this file to app-local.properties and fill in your values.
+# NEVER commit app-local.properties to git.
+
+# --- Database ---
+AURAWEAR_DB_URL=
+AURAWEAR_DB_USER=
+AURAWEAR_DB_PASSWORD=
+
+# --- Email / SMTP ---
+AURAWEAR_EMAIL=
+AURAWEAR_EMAIL_PASSWORD=
+
+# --- Razorpay ---
+RAZORPAY_LIVE_MODE=false
+RAZORPAY_TEST_KEY_ID=
+RAZORPAY_TEST_KEY_SECRET=
+RAZORPAY_LIVE_KEY_ID=
+RAZORPAY_LIVE_KEY_SECRET=

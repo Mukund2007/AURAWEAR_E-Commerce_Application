@@ -37,7 +37,12 @@ public class LoginServlet extends HttpServlet {
 
 		if (dao.validateUser(email, password)) {
 
-		    HttpSession session = request.getSession();
+		    // Session fixation protection: invalidate old session
+		    HttpSession oldSession = request.getSession(false);
+		    if (oldSession != null) {
+		        oldSession.invalidate();
+		    }
+		    HttpSession session = request.getSession(true);
 
 		    UserDAO userDAO = new UserDAO();          // ✅ ADD THIS
 		    User user = userDAO.getUserByEmail(email); // ✅ FETCH USER

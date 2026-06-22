@@ -45,6 +45,17 @@ public class VerifyOTPServlet extends HttpServlet {
            enteredOtp.equals(realOtp)
         ){
 
+            // Check OTP expiry (10 minutes)
+            Long otpCreatedAt = (Long) session.getAttribute("otpCreatedAt");
+            if (otpCreatedAt != null && (System.currentTimeMillis() - otpCreatedAt) > 600_000) {
+                session.removeAttribute("otp");
+                session.removeAttribute("otpCreatedAt");
+                request.setAttribute("showOtp", true);
+                request.setAttribute("otpError", "Verification code expired. Please request a new one.");
+                request.getRequestDispatcher("/WEB-INF/views/auth/register.jsp").forward(request, response);
+                return;
+            }
+
             // pull pending registration data
             String name =
                 (String) session.getAttribute("pendingName");
@@ -89,26 +100,26 @@ public class VerifyOTPServlet extends HttpServlet {
                         );
                     dao.saveProfile(profile);
 
-            		session.setAttribute(
-            		"userId",
-            		createdUser.getId()
-            		);
-
-            		session.setAttribute(
-            		"user",
-            		createdUser
-            		);
-
             		System.out.println(
             		"User saved successfully"
             		);
 
             		session.removeAttribute("otp");
+            		session.removeAttribute("otpCreatedAt");
+            		session.removeAttribute("otpAttempts");
             		session.removeAttribute("pendingName");
             		session.removeAttribute("pendingEmail");
             		session.removeAttribute("pendingPassword");
             		session.removeAttribute("pendingUsername");
             		session.removeAttribute("pendingInterests");
+
+            		// Session fixation protection after registration
+            		int userId = createdUser.getId();
+            		User freshUser = createdUser;
+            		session.invalidate();
+            		HttpSession newSession = request.getSession(true);
+            		newSession.setAttribute("userId", userId);
+            		newSession.setAttribute("user", freshUser);
 
             		response.sendRedirect(
             		request.getContextPath() + "/home"
@@ -131,6 +142,17 @@ public class VerifyOTPServlet extends HttpServlet {
                 "otpError",
                 "Invalid verification code"
             );
+
+            Integer attempts = (Integer) session.getAttribute("otpAttempts");
+            attempts = (attempts == null) ? 1 : attempts + 1;
+            session.setAttribute("otpAttempts", attempts);
+            if (attempts >= 3) {
+                session.removeAttribute("otp");
+                session.removeAttribute("otpCreatedAt");
+                session.removeAttribute("otpAttempts");
+                request.setAttribute("otpError", "Too many failed attempts. Please register again.");
+                request.setAttribute("showOtp", false);
+            }
 
             request.getRequestDispatcher(
                 "/WEB-INF/views/auth/register.jsp"

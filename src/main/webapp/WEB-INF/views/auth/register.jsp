@@ -183,6 +183,7 @@
                 </c:if>
                 
                 <form class="space-y-stack-lg" id="registrationForm" action="${ctx}/register" method="post" onsubmit="return checkPasswords()">
+                    <input type="hidden" name="_csrf" value="${_csrf}" />
                     <!-- Personal Info Row -->
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-stack-md">
                         <div class="space-y-1">
@@ -275,6 +276,7 @@
                 </c:if>
                 
                 <form class="space-y-stack-lg" id="otpForm" action="${ctx}/otp-verify" method="post">
+                    <input type="hidden" name="_csrf" value="${_csrf}" />
                     <input type="hidden" name="otp" id="fullOtp">
 
                     <p class="font-body-md text-on-surface-variant text-center mb-stack-lg">

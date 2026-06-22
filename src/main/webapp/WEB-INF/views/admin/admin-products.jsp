@@ -305,6 +305,7 @@
     <div class="collapsible-form-panel" id="addProductPanel">
         <h2 style="font-size: 16px; text-transform: uppercase; margin-bottom: 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 10px;">Add New Product</h2>
         <form action="${ctx}/admin/products" method="post">
+            <input type="hidden" name="_csrf" value="${_csrf}" />
             <input type="hidden" name="action" value="add">
             
             <div class="form-grid">
@@ -439,6 +440,7 @@
                                 '${prod.stockQuantity}'
                             )">Edit</button>
                             <form action="${ctx}/admin/products" method="post" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this product?');">
+                                <input type="hidden" name="_csrf" value="${_csrf}" />
                                 <input type="hidden" name="action" value="delete">
                                 <input type="hidden" name="productId" value="${prod.id}">
                                 <button type="submit" class="btn-delete">Delete</button>
@@ -457,6 +459,7 @@
         <button class="modal-close" onclick="closeEditModal()">&times;</button>
         <h2 style="font-size: 16px; text-transform: uppercase; margin-bottom: 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 10px;">Edit Product Info</h2>
         <form action="${ctx}/admin/products" method="post">
+            <input type="hidden" name="_csrf" value="${_csrf}" />
             <input type="hidden" name="action" value="edit">
             <input type="hidden" name="productId" id="editProductId">
             

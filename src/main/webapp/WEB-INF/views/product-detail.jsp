@@ -144,6 +144,7 @@
                                   </div>
                               </c:if>
                               <form id="addToCartForm" action="${ctx}/cart" method="POST">
+                                  <input type="hidden" name="_csrf" value="${_csrf}" />
                                   <input type="hidden" name="productId" value="${product.id}">
                                   <input type="hidden" name="price" value="${product.price}">
                                   <input type="hidden" name="size" id="selectedSizeInput" value="">
@@ -292,7 +293,7 @@
                                 <div class="review-card">
                                     <div class="review-header">
                                         <div class="review-user-row">
-                                            <span class="review-user">${rev.userName}</span>
+                                            <span class="review-user"><c:out value="${rev.userName}" /></span>
                                             <span class="verified-badge">
                                                 <span class="material-symbols-outlined" style="font-size: 14px; font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 0, 'opsz' 24; color: #2ecc71;">verified</span>
                                                 Verified Purchase
@@ -310,7 +311,7 @@
                                             <span class="material-symbols-outlined" style="font-size: 12px; font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; color: var(--pd-outline-variant);">star</span>
                                         </c:forEach>
                                     </div>
-                                    <p class="review-text">${rev.reviewText}</p>
+                                    <p class="review-text"><c:out value="${rev.reviewText}" /></p>
                                 </div>
                             </c:forEach>
                         </c:otherwise>
@@ -331,6 +332,7 @@
                                     <div class="review-form-container">
                                         <h3 class="review-form-title">Write a Review</h3>
                                         <form action="${ctx}/review" method="POST">
+                                            <input type="hidden" name="_csrf" value="${_csrf}" />
                                             <input type="hidden" name="productId" value="${product.id}">
                                             
                                             <div class="review-form-group">

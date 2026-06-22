@@ -205,6 +205,7 @@
 
     <div class="settings-card">
         <form action="${ctx}/admin/settings" method="post">
+            <input type="hidden" name="_csrf" value="${_csrf}" />
             <div class="form-group">
                 <label>Shipping Charge (₹)</label>
                 <input type="number" name="shippingCharge" value="${shippingCharge}" required min="0" placeholder="99">

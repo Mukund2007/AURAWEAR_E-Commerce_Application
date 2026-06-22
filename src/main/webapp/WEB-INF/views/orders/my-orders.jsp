@@ -413,7 +413,8 @@
                 fetch('${ctx}/update-order-status', {
                     method: 'POST',
                     headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded'
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                        'X-CSRF-Token': '${_csrf}'
                     },
                     body: 'orderId=' + encodeURIComponent(orderId) + '&action=' + encodeURIComponent(action)
                 })

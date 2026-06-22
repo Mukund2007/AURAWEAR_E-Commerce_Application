@@ -24,8 +24,10 @@ public class RegisterServlet extends HttpServlet {
             String otp   = String.valueOf((int)(Math.random() * 900000) + 100000);
 
             session.setAttribute("otp", otp);
+            session.setAttribute("otpCreatedAt", System.currentTimeMillis());
+            session.removeAttribute("otpAttempts");
 
-            System.out.println("[REGISTRATION OTP RESEND] Email: " + email + " | Code: " + otp);
+            System.out.println("[REGISTRATION] OTP resent to: " + email);
 
             try {
                 EmailUtil.sendOTP(email, otp);
@@ -74,16 +76,18 @@ public class RegisterServlet extends HttpServlet {
         session.setAttribute("pendingUsername",  username);
         session.setAttribute("pendingInterests", interests);
         session.setAttribute("otp",              otp);
+        session.setAttribute("otpCreatedAt", System.currentTimeMillis());
+        session.removeAttribute("otpAttempts");
 
-        System.out.println("[REGISTRATION OTP] Email: " + email + " | Code: " + otp);
+        System.out.println("[REGISTRATION] OTP generated for: " + email);
 
         // Send real email
         try {
             EmailUtil.sendOTP(email, otp);
-            System.out.println("OTP sent to: " + email);
+            System.out.println("[REGISTRATION] OTP email sent to: " + email);
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("EMAIL FAILED — OTP is: " + otp);
+            System.out.println("[REGISTRATION] Email send failed for: " + email);
         }
 
         request.setAttribute("showOtp", true);

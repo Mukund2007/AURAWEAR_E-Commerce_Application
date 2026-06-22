@@ -131,9 +131,9 @@ public class UpdateOrderStatusServlet extends HttpServlet {
                 throw e;
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            System.err.println("[UpdateOrderStatusServlet] Error processing order " + orderIdStr + ": " + e.getMessage());
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-            response.getWriter().write("Database error: " + e.getMessage());
+            response.getWriter().write("An error occurred while processing your request.");
         }
     }
 }

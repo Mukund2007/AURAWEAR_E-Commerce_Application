@@ -282,6 +282,7 @@
                                 <td><strong>₹<fmt:formatNumber value="${order.total}" type="number" maxFractionDigits="0" /></strong></td>
                                 <td>
                                     <form action="${ctx}/admin/orders" method="post" style="display:inline;">
+                                        <input type="hidden" name="_csrf" value="${_csrf}" />
                                         <input type="hidden" name="orderId" value="${order.id}">
                                         <select name="status" class="status-select" onchange="this.form.submit()">
                                             <option value="COD_PENDING" ${order.status == 'COD_PENDING' ? 'selected' : ''}>COD_PENDING</option>

@@ -145,6 +145,7 @@
     </c:if>
 
     <form action="${ctx}/admin/login" method="post">
+        <input type="hidden" name="_csrf" value="${_csrf}" />
         <div class="form-group">
             <label>System Email</label>
             <input type="email" name="email" required autocomplete="email" placeholder="name@aurawear.com">

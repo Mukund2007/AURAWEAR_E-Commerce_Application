@@ -39,6 +39,11 @@ public class AdminLoginServlet extends HttpServlet {
         if (loginDAO.validateUser(email, password)) {
             User user = userDAO.getUserByEmail(email);
             if (user != null && "admin".equals(user.getRole())) {
+                // Session fixation protection: invalidate old session
+                HttpSession oldSession = request.getSession(false);
+                if (oldSession != null) {
+                    oldSession.invalidate();
+                }
                 HttpSession session = request.getSession(true);
                 session.setAttribute("user", user);
                 response.sendRedirect(request.getContextPath() + "/admin/dashboard");

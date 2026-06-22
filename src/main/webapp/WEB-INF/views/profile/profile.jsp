@@ -30,7 +30,7 @@
                 <h1>
                     Hello,
                     <c:choose>
-                        <c:when test="${not empty sessionScope.user}">${sessionScope.user.name}</c:when>
+                        <c:when test="${not empty sessionScope.user}"><c:out value="${sessionScope.user.name}" /></c:when>
                         <c:otherwise>Guest</c:otherwise>
                     </c:choose>
                 </h1>

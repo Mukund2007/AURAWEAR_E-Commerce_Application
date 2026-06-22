@@ -48,7 +48,7 @@
                     <div class="form-row two-col">
                         <div class="form-group">
                             <label for="shipping_name">Full Name *</label>
-                            <input type="text" id="shipping_name" placeholder="Recipient name" required value="${user.name}">
+                            <input type="text" id="shipping_name" placeholder="Recipient name" required value="${fn:escapeXml(user.name)}">
                         </div>
                         <div class="form-group">
                             <label for="shipping_phone">Phone Number *</label>
@@ -114,11 +114,11 @@
                         <h4 style="font-family: 'Outfit', sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; border-bottom: 1px dashed var(--co-outline-variant); padding-bottom: 8px; color: var(--co-primary); margin: 0;">Customer Information</h4>
                         <div style="display: flex; justify-content: space-between; font-size: 13px; font-weight: 500; text-transform: uppercase;">
                             <span style="color: var(--co-on-surface-variant); opacity: 0.7;">Name</span>
-                            <span style="color: var(--co-primary); font-weight: 600;">${user.name}</span>
+                            <span style="color: var(--co-primary); font-weight: 600;"><c:out value="${user.name}" /></span>
                         </div>
                         <div style="display: flex; justify-content: space-between; font-size: 13px; font-weight: 500;">
                             <span style="color: var(--co-on-surface-variant); opacity: 0.7; text-transform: uppercase;">Email</span>
-                            <span style="color: var(--co-primary); font-weight: 600;">${user.email}</span>
+                            <span style="color: var(--co-primary); font-weight: 600;"><c:out value="${user.email}" /></span>
                         </div>
                     </div>
 
@@ -146,6 +146,7 @@
                     <!-- COD PAYMENT FLOW -->
                     <div id="codPaymentFlow" style="display: none;">
                         <form id="codForm" action="${ctx}/checkout/cod" method="POST">
+                            <input type="hidden" name="_csrf" value="${_csrf}" />
                             <input type="hidden" name="shipping_name" id="cod_shipping_name">
                             <input type="hidden" name="shipping_phone" id="cod_shipping_phone">
                             <input type="hidden" name="shipping_address" id="cod_shipping_address">
@@ -434,8 +435,8 @@
             form.submit();
         },
         "prefill": {
-            "name": "${user.name}",
-            "email": "${user.email}"
+            "name": "${fn:escapeXml(user.name)}",
+            "email": "${fn:escapeXml(user.email)}"
         },
         "theme": {
             "color": "#000000"
