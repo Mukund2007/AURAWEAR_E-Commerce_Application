@@ -32,6 +32,11 @@ public class CheckoutServlet extends HttpServlet {
         User user = (User) session.getAttribute("user");
         CartDAO dao = new CartDAO();
 
+        String errorParam = request.getParameter("error");
+        if (errorParam != null && !errorParam.trim().isEmpty()) {
+            request.setAttribute("errorMsg", errorParam);
+        }
+
         List<CartItem> cartItems = dao.getCartItems(user.getEmail());
         if (cartItems == null || cartItems.isEmpty()) {
             response.sendRedirect(request.getContextPath() + "/cart");

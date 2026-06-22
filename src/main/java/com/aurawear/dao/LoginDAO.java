@@ -11,20 +11,16 @@ public class LoginDAO {
     public boolean validateUser(
             String email,
             String password) {
-        try {
-            Connection con = DBConnection.getConnection();
-
-            String sql = "SELECT password FROM users WHERE email=?";
-
-            PreparedStatement ps = con.prepareStatement(sql);
+        try (Connection con = DBConnection.getConnection();
+             PreparedStatement ps = con.prepareStatement("SELECT password FROM users WHERE email=?")) {
 
             ps.setString(1, email);
 
-            ResultSet rs = ps.executeQuery();
-
-            if (rs.next()) {
-                String storedHash = rs.getString("password");
-                return com.aurawear.util.PasswordUtil.verifyPassword(password, storedHash);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    String storedHash = rs.getString("password");
+                    return com.aurawear.util.PasswordUtil.verifyPassword(password, storedHash);
+                }
             }
 
         } catch (Exception e) {

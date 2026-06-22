@@ -410,6 +410,11 @@
             form.method = "POST";
             form.action = "${ctx}/payment-success";
 
+            // CSRF Token
+            const csrfInp = document.createElement("input");
+            csrfInp.type = "hidden"; csrfInp.name = "_csrf"; csrfInp.value = "${_csrf}";
+            form.appendChild(csrfInp);
+
             // Payment credentials
             const pId = document.createElement("input");
             pId.type = "hidden"; pId.name = "razorpay_payment_id"; pId.value = response.razorpay_payment_id;
