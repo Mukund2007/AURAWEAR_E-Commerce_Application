@@ -18,21 +18,32 @@ public class RegisterServlet extends HttpServlet {
 
         // RESEND OTP
         if ("true".equals(request.getParameter("resend"))) {
-
+            System.out.println("[REGISTRATION][RESEND] Resend OTP requested");
             HttpSession session = request.getSession();
             String email = (String) session.getAttribute("pendingEmail");
-            String otp   = String.valueOf((int)(Math.random() * 900000) + 100000);
+            System.out.println("[REGISTRATION][RESEND] Session pendingEmail: '" + email + "'");
 
+            if (email == null || email.isEmpty()) {
+                System.err.println("[REGISTRATION][RESEND] ERROR: No pending email in session — cannot resend");
+                request.setAttribute("error", "Session expired. Please register again.");
+                request.getRequestDispatcher("/WEB-INF/views/auth/register.jsp").forward(request, response);
+                return;
+            }
+
+            String otp = String.valueOf((int)(Math.random() * 900000) + 100000);
             session.setAttribute("otp", otp);
             session.setAttribute("otpCreatedAt", System.currentTimeMillis());
             session.removeAttribute("otpAttempts");
-
-            System.out.println("[REGISTRATION] OTP resent to: " + email);
+            System.out.println("[REGISTRATION][RESEND] New OTP generated and stored in session");
 
             try {
+                System.out.println("[REGISTRATION][RESEND] Calling EmailUtil.sendOTP() for '" + email + "'");
                 EmailUtil.sendOTP(email, otp);
+                System.out.println("[REGISTRATION][RESEND] OTP resent successfully to '" + email + "'");
             } catch (Exception e) {
+                System.err.println("[REGISTRATION][RESEND] Exception sending OTP to '" + email + "': " + e.getMessage());
                 e.printStackTrace();
+                request.setAttribute("error", "Could not resend OTP. Please try again.");
             }
 
             request.setAttribute("showOtp", true);
@@ -46,6 +57,10 @@ public class RegisterServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        System.out.println("[REGISTRATION] ============ NEW REGISTRATION ATTEMPT ============");
+
+        // ── STEP 1: Form parameters ──────────────────────────────────────────────
+        System.out.println("[REGISTRATION] STEP 1: Reading form parameters");
         String firstName = request.getParameter("firstName");
         String lastName  = request.getParameter("lastName");
         String name      = firstName + " " + lastName;
@@ -53,35 +68,64 @@ public class RegisterServlet extends HttpServlet {
         String password  = request.getParameter("password");
         String username  = request.getParameter("username");
 
-        System.out.println("[REGISTRATION] Email entered in registration form: '" + email + "'");
-        String normalizedEmail = (email != null) ? email.trim().toLowerCase() : "";
-        System.out.println("[REGISTRATION] Email after normalization/trim: '" + normalizedEmail + "'");
+        System.out.println("[REGISTRATION] firstName     : '" + firstName + "'");
+        System.out.println("[REGISTRATION] lastName      : '" + lastName + "'");
+        System.out.println("[REGISTRATION] username      : '" + username + "'");
+        System.out.println("[REGISTRATION] email (raw)   : '" + email + "'");
+        System.out.println("[REGISTRATION] password set  : " + (password != null && !password.isEmpty()));
+
+        // ── STEP 2: Form validation ──────────────────────────────────────────────
+        System.out.println("[REGISTRATION] STEP 2: Form validation");
+        if (email == null || email.trim().isEmpty()) {
+            System.err.println("[REGISTRATION] VALIDATION FAILED: email is null or empty");
+            request.setAttribute("error", "Email address is required.");
+            request.getRequestDispatcher("/WEB-INF/views/auth/register.jsp").forward(request, response);
+            return;
+        }
+        if (password == null || password.trim().isEmpty()) {
+            System.err.println("[REGISTRATION] VALIDATION FAILED: password is null or empty");
+            request.setAttribute("error", "Password is required.");
+            request.getRequestDispatcher("/WEB-INF/views/auth/register.jsp").forward(request, response);
+            return;
+        }
+
+        String normalizedEmail = email.trim().toLowerCase();
+        System.out.println("[REGISTRATION] email (normalized): '" + normalizedEmail + "'");
+        System.out.println("[REGISTRATION] STEP 2: Validation PASSED");
 
         String[] interestsArr = request.getParameterValues("interests");
         String interests = (interestsArr != null) ? String.join(",", interestsArr) : "";
 
-        // Check email already registered
-        UserDAO dao = new UserDAO();
-        boolean exists = dao.emailExists(normalizedEmail);
-        System.out.println("[REGISTRATION] Show whether the email already exists in the database: " + exists);
-        if (exists) {
-            System.out.println("[REGISTRATION] Show whether registration is blocked because of duplicate account detection: TRUE (email: '" + normalizedEmail + "')");
-            System.out.println("[REGISTRATION] Show whether OTP generation is skipped for any reason: TRUE (Duplicate email exists)");
-            request.setAttribute("emailError", "This email is already registered");
-            request.getRequestDispatcher("/WEB-INF/views/auth/register.jsp")
-                   .forward(request, response);
+        // ── STEP 3: Duplicate email check ────────────────────────────────────────
+        System.out.println("[REGISTRATION] STEP 3: Checking duplicate email in database");
+        boolean exists;
+        try {
+            UserDAO dao = new UserDAO();
+            exists = dao.emailExists(normalizedEmail);
+            System.out.println("[REGISTRATION] emailExists(" + normalizedEmail + ") = " + exists);
+        } catch (Exception e) {
+            System.err.println("[REGISTRATION] STEP 3 FAILED: Database error checking email: " + e.getMessage());
+            e.printStackTrace();
+            request.setAttribute("error", "A database error occurred. Please try again.");
+            request.getRequestDispatcher("/WEB-INF/views/auth/register.jsp").forward(request, response);
             return;
         }
 
-        System.out.println("[REGISTRATION] Show whether registration is blocked because of duplicate account detection: FALSE");
-        System.out.println("[REGISTRATION] Show whether OTP generation is skipped for any reason: FALSE");
+        if (exists) {
+            System.out.println("[REGISTRATION] BLOCKED: Duplicate email detected — '" + normalizedEmail + "'");
+            request.setAttribute("emailError", "This email is already registered.");
+            request.getRequestDispatcher("/WEB-INF/views/auth/register.jsp").forward(request, response);
+            return;
+        }
+        System.out.println("[REGISTRATION] STEP 3: Email is new — proceeding");
 
-        // Generate OTP
+        // ── STEP 4: OTP generation ───────────────────────────────────────────────
+        System.out.println("[REGISTRATION] STEP 4: Generating OTP");
         String otp = String.valueOf((int)(Math.random() * 900000) + 100000);
-        System.out.println("[REGISTRATION] Generated OTP: '" + otp + "'");
-        System.out.println("[REGISTRATION] Email passed into EmailUtil.sendOTP(): '" + normalizedEmail + "'");
+        System.out.println("[REGISTRATION] OTP generated: '" + otp + "'");
 
-        // Save to session
+        // ── STEP 5: Session storage ──────────────────────────────────────────────
+        System.out.println("[REGISTRATION] STEP 5: Storing data in session");
         HttpSession session = request.getSession();
         session.setAttribute("pendingName",      name);
         session.setAttribute("pendingEmail",     normalizedEmail);
@@ -89,23 +133,33 @@ public class RegisterServlet extends HttpServlet {
         session.setAttribute("pendingUsername",  username);
         session.setAttribute("pendingInterests", interests);
         session.setAttribute("otp",              otp);
-        session.setAttribute("otpCreatedAt", System.currentTimeMillis());
+        session.setAttribute("otpCreatedAt",     System.currentTimeMillis());
         session.removeAttribute("otpAttempts");
-        System.out.println("[REGISTRATION] OTP storage: OTP '" + otp + "' successfully stored in session under 'otp' for pending email '" + normalizedEmail + "'");
+        System.out.println("[REGISTRATION] STEP 5: Session stored — pendingEmail='" + normalizedEmail + "'");
 
-        // Send real email
+        // ── STEP 6: Email delivery ───────────────────────────────────────────────
+        System.out.println("[REGISTRATION] STEP 6: Sending OTP email to '" + normalizedEmail + "'");
         try {
-            System.out.println("[REGISTRATION] Attempting to send OTP email to '" + normalizedEmail + "' via EmailUtil.sendOTP()");
             EmailUtil.sendOTP(normalizedEmail, otp);
-            System.out.println("[REGISTRATION] SMTP send succeeds. [REGISTRATION] OTP email sent to: " + normalizedEmail);
+            System.out.println("[REGISTRATION] STEP 6: OTP email SENT successfully to '" + normalizedEmail + "'");
         } catch (Exception e) {
-            System.err.println("[REGISTRATION] FATAL Exception occurred during OTP email sending to '" + normalizedEmail + "':");
+            System.err.println("[REGISTRATION] STEP 6 FAILED: Exception sending OTP email to '" + normalizedEmail + "'");
+            System.err.println("[REGISTRATION] Exception type   : " + e.getClass().getName());
+            System.err.println("[REGISTRATION] Exception message: " + e.getMessage());
             e.printStackTrace();
-            throw new RuntimeException("OTP delivery failed: " + e.getMessage(), e);
+            // *** DO NOT throw — return a friendly error page instead ***
+            request.setAttribute("error",
+                "We could not send the verification email to '" + normalizedEmail +
+                "'. Please check the address and try again. (" + e.getMessage() + ")");
+            request.getRequestDispatcher("/WEB-INF/views/auth/register.jsp").forward(request, response);
+            return;
         }
 
+        // ── STEP 7: Forward to OTP entry page ───────────────────────────────────
+        System.out.println("[REGISTRATION] STEP 7: Forwarding to OTP entry view");
         request.setAttribute("showOtp", true);
         request.getRequestDispatcher("/WEB-INF/views/auth/register.jsp")
                .forward(request, response);
+        System.out.println("[REGISTRATION] ============ REGISTRATION FLOW COMPLETE ============");
     }
 }
