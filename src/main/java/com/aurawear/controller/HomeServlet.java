@@ -20,30 +20,51 @@ public class HomeServlet extends HttpServlet {
                          HttpServletResponse response)
             throws ServletException, IOException {
 
-        // 🔥 GET PRODUCTS FROM DB
-        ProductDAO dao = new ProductDAO();
-        List<Product> products = dao.getTrendingProducts();
+        System.out.println("[HOME] Request received");
 
-        // 🔥 GET WISHLIST
-        WishlistDAO wishlistDAO = new WishlistDAO();
-        Set<Integer> wishlistNames = new HashSet<>();
-        HttpSession session = request.getSession(false);
-        if (session != null && session.getAttribute("user") != null) {
-            User user = (User) session.getAttribute("user");
-            wishlistNames = wishlistDAO.getWishlistProductIds(user.getEmail());
+        try {
+            System.out.println("[HOME] Loading products from DB");
+            ProductDAO dao = new ProductDAO();
+            List<Product> products = dao.getTrendingProducts();
+            System.out.println("[HOME] Products loaded: " + products.size());
+
+            System.out.println("[HOME] Loading wishlist");
+            WishlistDAO wishlistDAO = new WishlistDAO();
+            Set<Integer> wishlistNames = new HashSet<>();
+            HttpSession session = request.getSession(false);
+            System.out.println("[HOME] Session present: " + (session != null));
+
+            if (session != null) {
+                Object userObj = session.getAttribute("user");
+                System.out.println("[HOME] Session user attribute present: " + (userObj != null));
+                if (userObj != null) {
+                    User user = (User) userObj;
+                    System.out.println("[HOME] User email: " + user.getEmail());
+                    wishlistNames = wishlistDAO.getWishlistProductIds(user.getEmail());
+                    System.out.println("[HOME] Wishlist IDs loaded: " + wishlistNames.size());
+                }
+            }
+
+            request.setAttribute("products", products);
+            request.setAttribute("wishlistNames", wishlistNames);
+
+            // Disable browser caching
+            response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+            response.setHeader("Pragma", "no-cache");
+            response.setDateHeader("Expires", 0);
+
+            System.out.println("[HOME] Forwarding to home.jsp");
+            request.getRequestDispatcher("/WEB-INF/views/home/home.jsp")
+                   .forward(request, response);
+            System.out.println("[HOME] Forward complete");
+
+        } catch (Exception e) {
+            System.err.println("[HOME] UNCAUGHT EXCEPTION");
+            System.err.println("[HOME] Exception Type: " + e.getClass().getName());
+            System.err.println("[HOME] Exception Message: " + e.getMessage());
+            e.printStackTrace();
+            // Rethrow so the container can return a 500 instead of silently dropping the connection
+            throw new ServletException("[HOME] Fatal error loading home page", e);
         }
-
-        // 🔥 SEND TO JSP
-        request.setAttribute("products", products);
-        request.setAttribute("wishlistNames", wishlistNames);
-
-        // 🔥 DISABLE BROWSER CACHING
-        response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1
-        response.setHeader("Pragma", "no-cache"); // HTTP 1.0
-        response.setDateHeader("Expires", 0); // Proxies
-
-        // 🔥 FORWARD
-        request.getRequestDispatcher("/WEB-INF/views/home/home.jsp")
-               .forward(request, response);
     }
 }
