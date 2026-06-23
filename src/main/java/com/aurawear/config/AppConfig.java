@@ -18,7 +18,7 @@ import java.util.Properties;
  *
  * Usage:
  *   String dbUrl      = AppConfig.get("AURAWEAR_DB_URL");
- *   String emailPass  = AppConfig.get("AURAWEAR_EMAIL_PASSWORD");
+ *   String resendKey  = AppConfig.get("RESEND_API_KEY");
  *   boolean liveMode  = AppConfig.getBoolean("RAZORPAY_LIVE_MODE");
  */
 public class AppConfig {
@@ -29,9 +29,8 @@ public class AppConfig {
         "AURAWEAR_DB_URL",
         "AURAWEAR_DB_USER",
         "AURAWEAR_DB_PASSWORD",
-        // Email / SMTP
-        "AURAWEAR_EMAIL",
-        "AURAWEAR_EMAIL_PASSWORD",
+        // Email — Resend HTTP API (replaces JavaMail SMTP)
+        "RESEND_API_KEY",
         // Razorpay (at least the active-mode keys must be resolvable at runtime)
         "RAZORPAY_LIVE_MODE",
     };
