@@ -29,9 +29,9 @@ public class AppConfig {
         "AURAWEAR_DB_URL",
         "AURAWEAR_DB_USER",
         "AURAWEAR_DB_PASSWORD",
-        // Email / SMTP (Gmail port 465 SSL)
+        // Email — Brevo HTTP API
+        "BREVO_API_KEY",
         "AURAWEAR_EMAIL",
-        "AURAWEAR_EMAIL_PASSWORD",
         // Razorpay (at least the active-mode keys must be resolvable at runtime)
         "RAZORPAY_LIVE_MODE",
     };
