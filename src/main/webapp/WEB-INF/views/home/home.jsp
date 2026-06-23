@@ -8,6 +8,7 @@
 <!DOCTYPE html>
 <html class="scroll-smooth" lang="en">
 <head>
+    <jsp:include page="../partials/head-includes.jsp" />
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title>AuraWear - High-End Minimalist Apparel</title>

@@ -2,8 +2,6 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 
-<link rel="stylesheet" href="${ctx}/assets/css/login-modal.css?v=120">
-
 <div class="login-overlay" id="loginOverlay" onclick="closeLoginModal(event)">
     <div class="login-modal" id="loginModal">
 
@@ -49,33 +47,3 @@
 
     </div>
 </div>
-
-<script>
-function openLoginModal() {
-    document.getElementById("loginOverlay").classList.add("active");
-    document.body.style.overflow = "hidden";
-    setTimeout(() => {
-        const inp = document.querySelector("#loginModal input[type='email']");
-        if (inp) inp.focus();
-    }, 300);
-}
-function closeLoginModal(e) {
-    if (e && e.target !== document.getElementById("loginOverlay")) return;
-    document.getElementById("loginOverlay").classList.remove("active");
-    document.body.style.overflow = "";
-}
-document.addEventListener("keydown", function(e) {
-    if (e.key === "Escape") {
-        document.getElementById("loginOverlay").classList.remove("active");
-        document.body.style.overflow = "";
-    }
-});
-
-// Auto-open modal on redirect from LoginFilter or LoginServlet errors
-document.addEventListener("DOMContentLoaded", function() {
-    const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.has('login') || urlParams.has('loginError')) {
-        openLoginModal();
-    }
-});
-</script>
