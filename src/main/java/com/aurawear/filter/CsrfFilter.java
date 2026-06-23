@@ -79,8 +79,12 @@ public class CsrfFilter implements Filter {
                     clientToken = httpRequest.getHeader(CSRF_HEADER);
                 }
 
+                final String finalToken = token;
+                final String finalClientToken = clientToken;
                 if (!token.equals(clientToken)) {
-                    logger.warning(() -> "CSRF validation failed for " + path);
+                    logger.warning(() -> "[CSRF] Validation failed for path: " + path 
+                        + " | Session Token: '" + finalToken 
+                        + "' | Submitted Client Token: '" + finalClientToken + "'");
                     httpResponse.setStatus(HttpServletResponse.SC_FORBIDDEN);
                     httpResponse.setContentType("text/plain");
                     httpResponse.getWriter().write("CSRF token validation failed");
