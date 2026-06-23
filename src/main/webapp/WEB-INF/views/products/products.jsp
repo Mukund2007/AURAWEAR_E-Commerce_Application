@@ -12,9 +12,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
         <c:choose>
-            <c:when test="${not empty param.gender}">${param.gender}'s Collection</c:when>
-            <c:when test="${not empty param.category}">${param.category}s</c:when>
-            <c:when test="${not empty param.keyword}">"${param.keyword}"</c:when>
+            <c:when test="${not empty param.gender}"><c:out value="${param.gender}"/>'s Collection</c:when>
+            <c:when test="${not empty param.category}"><c:out value="${param.category}"/>s</c:when>
+            <c:when test="${not empty param.keyword}">"<c:out value='${param.keyword}'/>"</c:when>
             <c:otherwise>All Products</c:otherwise>
         </c:choose>
         — AuraWear
@@ -36,9 +36,9 @@
             <a href="${ctx}/home">Home</a>
             <span class="sep">/</span>
             <c:choose>
-                <c:when test="${not empty param.gender}">${param.gender}</c:when>
-                <c:when test="${not empty param.category}">${param.category}</c:when>
-                <c:when test="${not empty param.keyword}">Search: "${param.keyword}"</c:when>
+                <c:when test="${not empty param.gender}"><c:out value="${param.gender}"/></c:when>
+                <c:when test="${not empty param.category}"><c:out value="${param.category}"/></c:when>
+                <c:when test="${not empty param.keyword}">Search: "<c:out value='${param.keyword}'/>"</c:when>
                 <c:otherwise>All Products</c:otherwise>
             </c:choose>
         </div>
@@ -48,16 +48,16 @@
     <header class="products-header">
         <h1 class="page-title">
             <c:choose>
-                <c:when test="${not empty param.category}">${param.category}s</c:when>
-                <c:when test="${not empty param.gender}">${param.gender}'s Collection</c:when>
-                <c:when test="${not empty param.keyword}">"${param.keyword}"</c:when>
+                <c:when test="${not empty param.category}"><c:out value="${param.category}"/>s</c:when>
+                <c:when test="${not empty param.gender}"><c:out value="${param.gender}"/>'s Collection</c:when>
+                <c:when test="${not empty param.keyword}">"<c:out value='${param.keyword}'/>"</c:when>
                 <c:otherwise>The Archive</c:otherwise>
             </c:choose>
         </h1>
         <p class="page-subtitle">
             <c:choose>
-                <c:when test="${not empty param.category}">Curated ${fn:toLowerCase(param.category)} apparel designed for longevity, precision, and architectural balance.</c:when>
-                <c:when test="${not empty param.gender}">Curated technical apparel for ${fn:toLowerCase(param.gender)}, designed for longevity, precision, and architectural balance.</c:when>
+                <c:when test="${not empty param.category}">Curated <c:out value="${fn:toLowerCase(param.category)}"/> apparel designed for longevity, precision, and architectural balance.</c:when>
+                <c:when test="${not empty param.gender}">Curated technical apparel for <c:out value="${fn:toLowerCase(param.gender)}"/>, designed for longevity, precision, and architectural balance.</c:when>
                 <c:otherwise>Curated technical apparel designed for longevity, precision, and architectural balance. Every piece is a testament to restrained luxury.</c:otherwise>
             </c:choose>
         </p>
@@ -65,8 +65,8 @@
 
     <!-- ══ STICKY FILTER & SORT BAR ═════════════════════════ -->
     <form id="filterForm" method="get" action="${ctx}/products">
-        <input type="hidden" name="sort" id="sortHidden" value="${param.sort}">
-        <input type="hidden" name="keyword" value="<c:out value='${param.keyword}'/>">
+        <input type="hidden" name="sort" id="sortHidden" value="${fn:escapeXml(param.sort)}">
+        <input type="hidden" name="keyword" value="${fn:escapeXml(param.keyword)}">
 
         <section class="sticky-filter-bar">
             <div class="filter-groups">

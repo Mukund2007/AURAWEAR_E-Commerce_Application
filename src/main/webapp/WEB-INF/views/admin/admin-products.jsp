@@ -307,7 +307,7 @@
 
     <c:if test="${not empty param.msg}">
         <div class="alert-success">
-            <i class="fa-solid fa-circle-check"></i> ${param.msg}
+            <i class="fa-solid fa-circle-check"></i> <c:out value="${param.msg}" />
         </div>
     </c:if>
 

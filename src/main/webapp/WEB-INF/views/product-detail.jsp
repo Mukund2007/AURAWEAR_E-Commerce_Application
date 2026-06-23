@@ -269,12 +269,12 @@
             <!-- review success/error messages -->
             <c:if test="${not empty param.reviewError}">
                 <div class="error-banner" style="background: rgba(186, 26, 26, 0.1); border: 1.5px solid var(--pd-error); color: var(--pd-error); padding: 16px; font-family: 'Inter', sans-serif; font-weight: 600; text-transform: uppercase; font-size: 12px; margin-bottom: 24px; letter-spacing: 0.5px; display: inline-flex; align-items: center; gap: 8px;">
-                    <span class="material-symbols-outlined" style="font-size: 18px;">warning</span> ${param.reviewError}
+                    <span class="material-symbols-outlined" style="font-size: 18px;">warning</span> <c:out value="${param.reviewError}" />
                 </div>
             </c:if>
             <c:if test="${not empty param.reviewSuccess}">
                 <div class="success-banner" style="background: rgba(46, 204, 113, 0.1); border: 1.5px solid #2ecc71; color: #2ecc71; padding: 16px; font-family: 'Inter', sans-serif; font-weight: 600; text-transform: uppercase; font-size: 12px; margin-bottom: 24px; letter-spacing: 0.5px; display: inline-flex; align-items: center; gap: 8px;">
-                    <span class="material-symbols-outlined" style="font-size: 18px;">check_circle</span> ${param.reviewSuccess}
+                    <span class="material-symbols-outlined" style="font-size: 18px;">check_circle</span> <c:out value="${param.reviewSuccess}" />
                 </div>
             </c:if>
 

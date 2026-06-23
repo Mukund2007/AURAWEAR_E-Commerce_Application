@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 
 <!-- Google Analytics GA4 -->
@@ -64,7 +65,7 @@ gtag('config', 'G-EG16LNFXMK');
                     <button type="submit" aria-label="Search">
                         <span class="material-symbols-outlined">search</span>
                     </button>
-                    <input type="text" name="keyword" placeholder="Search" value="${param.keyword}" autocomplete="off">
+                    <input type="text" name="keyword" placeholder="Search" value="${fn:escapeXml(param.keyword)}" autocomplete="off">
                 </form>
             </div>
             
@@ -135,7 +136,7 @@ gtag('config', 'G-EG16LNFXMK');
     <!-- MOBILE-ONLY SEARCH BOX IN OVERLAY -->
     <div class="mobile-search-box">
         <form action="${ctx}/products" method="get">
-            <input type="text" name="keyword" placeholder="Search for products..." value="${param.keyword}">
+            <input type="text" name="keyword" placeholder="Search for products..." value="${fn:escapeXml(param.keyword)}">
             <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
         </form>
     </div>

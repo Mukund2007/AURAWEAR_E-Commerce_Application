@@ -150,7 +150,7 @@
 
     <c:if test="${not empty error}">
         <div class="error-message">
-            <i class="fa-solid fa-triangle-exclamation"></i> ${error}
+            <i class="fa-solid fa-triangle-exclamation"></i> <c:out value="${error}" />
         </div>
     </c:if>
 

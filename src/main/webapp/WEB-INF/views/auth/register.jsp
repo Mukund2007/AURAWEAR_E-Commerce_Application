@@ -188,7 +188,7 @@
                 
                 <c:if test="${not empty emailError}">
                     <div class="bg-error-container text-on-error-container border border-error px-4 py-3 mb-6 font-body-md text-center">
-                        ${emailError}
+                        <c:out value="${emailError}" />
                     </div>
                 </c:if>
                 
@@ -281,7 +281,7 @@
                 
                 <c:if test="${not empty otpError}">
                     <div class="bg-error-container text-on-error-container border border-error px-4 py-3 mb-6 font-body-md text-center">
-                        ${otpError}
+                        <c:out value="${otpError}" />
                     </div>
                 </c:if>
                 

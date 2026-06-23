@@ -31,7 +31,7 @@
 
                 <c:if test="${not empty errorMsg}">
                     <div class="error-banner" style="background: rgba(186, 26, 26, 0.1); border: 1px solid var(--co-error); color: var(--co-error); padding: 16px; font-family: 'Inter', sans-serif; font-weight: 600; text-transform: uppercase; font-size: 12px; margin-bottom: 24px; letter-spacing: 0.5px; display: inline-flex; align-items: center; gap: 8px;">
-                        <span class="material-symbols-outlined" style="font-size: 18px;">warning</span> ${errorMsg}
+                        <span class="material-symbols-outlined" style="font-size: 18px;">warning</span> <c:out value="${errorMsg}" />
                     </div>
                 </c:if>
 
