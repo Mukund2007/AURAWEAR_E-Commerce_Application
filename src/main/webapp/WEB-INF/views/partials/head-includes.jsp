@@ -38,7 +38,14 @@ function updateCartCount() {
         .then(res => res.text())
         .then(count => {
             const el = document.getElementById("cart-count");
-            if (el) el.innerText = count;
+            if (el) {
+                const trimmed = count.trim();
+                if (!isNaN(trimmed) && trimmed !== "") {
+                    el.innerText = trimmed;
+                } else {
+                    el.innerText = "0";
+                }
+            }
         });
 }
 

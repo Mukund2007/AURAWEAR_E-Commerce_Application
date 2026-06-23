@@ -9,8 +9,7 @@ import jakarta.servlet.annotation.WebFilter;
     "/cart", "/wishlist", "/profile", "/my-orders", "/orders",
     "/add-to-cart", "/remove-from-cart", "/update-cart",
     "/wishlist-toggle", "/wishlist-remove", "/review",
-    "/checkout", "/checkout/cod", "/update-order-status",
-    "/cart-count"
+    "/checkout", "/checkout/cod", "/update-order-status"
 })
 public class LoginFilter implements Filter {
 
