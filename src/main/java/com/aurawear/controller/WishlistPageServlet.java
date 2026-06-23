@@ -20,11 +20,11 @@ extends HttpServlet{
 			HttpServletResponse response)
 					throws ServletException,IOException{
 
-		HttpSession session=
+		HttpSession session =
 				request.getSession(false);
 
-		if(session==null){
-			response.sendRedirect("login");
+		if (session == null || session.getAttribute("user") == null) {
+			response.sendRedirect(request.getContextPath() + "/login");
 			return;
 		}
 

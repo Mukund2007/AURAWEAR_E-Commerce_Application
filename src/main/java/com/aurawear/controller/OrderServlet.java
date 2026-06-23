@@ -19,11 +19,11 @@ HttpServletRequest request,
 HttpServletResponse response)
 throws ServletException, IOException{
 
-	HttpSession session=
-			request.getSession();
+	HttpSession session =
+			request.getSession(false);
 
-			if(session.getAttribute("user")==null){
-			response.sendRedirect("login");
+			if (session == null || session.getAttribute("user") == null) {
+			response.sendRedirect(request.getContextPath() + "/login");
 			return;
 			}
 

@@ -5,7 +5,13 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.WebFilter;
 
-@WebFilter({"/cart", "/wishlist", "/profile", "/my-orders"})
+@WebFilter({
+    "/cart", "/wishlist", "/profile", "/my-orders", "/orders",
+    "/add-to-cart", "/remove-from-cart", "/update-cart",
+    "/wishlist-toggle", "/wishlist-remove", "/review",
+    "/checkout", "/checkout/cod", "/update-order-status",
+    "/cart-count"
+})
 public class LoginFilter implements Filter {
 
     public void doFilter(
