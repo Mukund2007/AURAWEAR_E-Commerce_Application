@@ -46,5 +46,5 @@ secrets.*
 # ── Database dumps — never commit real data ───────────────────────────────────
 # schema.sql is committed for schema structure only — ensure it contains
 # NO real user passwords, NO real email addresses, NO payment transaction IDs.
-# db.sqlite (local SQLite scratch file)
-db.sqlite
+# SQLite database files
+*.sqlite

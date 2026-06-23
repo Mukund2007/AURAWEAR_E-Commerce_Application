@@ -93,7 +93,7 @@ AuraWear/
 ├── src/
 │   ├── main/
 │   │   ├── java/com/aurawear/
-│   │   │   ├── controller/          # 28 servlets — home, products, collections, cart, checkout
+│   │   │   ├── controller/          # 31 servlets — home, products, collections, cart, checkout
 │   │   │   │                          (Razorpay + COD), orders, reviews, wishlist, profile,
 │   │   │   │                          register/login/OTP, health check, and admin/*
 │   │   │   ├── dao/                 # UserDAO, LoginDAO, ProductDAO, CartDAO, ReviewDAO,
