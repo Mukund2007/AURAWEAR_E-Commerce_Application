@@ -35,13 +35,18 @@ h1, h2, h3, h4, h5, h6, p, span, a, div, section, label, input, select, textarea
     top: 0;
     z-index: 999;
     width: 100%;
-    height: 80px;
-    background: var(--navbar-bg) !important;
-    border-bottom: 1px solid var(--border-color) !important;
+    height: 55px;
+    background: rgba(255, 255, 255, 0.75) !important;
+    border-bottom: 1.5px solid rgba(0, 0, 0, 0.05) !important;
     box-sizing: border-box;
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     transition: background 0.8s cubic-bezier(0.76, 0, 0.24, 1), border-bottom 0.8s cubic-bezier(0.76, 0, 0.24, 1) !important;
+}
+
+body.theme-noir .navbar {
+    background: rgba(13, 13, 13, 0.75) !important;
+    border-bottom: 1.5px solid rgba(255, 255, 255, 0.05) !important;
 }
 
 .navbar-container {
@@ -53,7 +58,7 @@ h1, h2, h3, h4, h5, h6, p, span, a, div, section, label, input, select, textarea
     align-items: center;
     padding: 0 var(--margin-desktop, 80px);
     box-sizing: border-box;
-    gap: 32px;
+    gap: 16px;
 }
 
 @media (max-width: 768px) {
@@ -1226,15 +1231,15 @@ footer, .footer, .footer-section {
 .nav-links-left {
     display: flex;
     align-items: center;
-    gap: 32px;
+    gap: 28px;
 }
 
 .nav-links-left a {
     font-family: var(--font-body, 'Inter', sans-serif);
-    font-size: 13px;
+    font-size: 11px;
     font-weight: 500;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.18em;
     color: var(--text-color) !important;
     text-decoration: none;
     transition: opacity 0.3s;
@@ -1252,26 +1257,27 @@ footer, .footer, .footer-section {
 
 .nav-logo-center .brand-text {
     font-family: var(--font-headline, 'Outfit', sans-serif);
-    font-size: 20px;
-    font-weight: 500;
-    letter-spacing: 0.25em;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.45em;
     text-transform: uppercase;
     text-decoration: none;
     color: var(--text-color) !important;
+    opacity: 0.9;
 }
 
 .nav-actions-right {
     display: flex;
     align-items: center;
-    gap: 32px;
+    gap: 28px;
 }
 
 .nav-actions-right .nav-text-action {
     font-family: var(--font-body, 'Inter', sans-serif);
-    font-size: 13px;
+    font-size: 11px;
     font-weight: 500;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.18em;
     color: var(--text-color) !important;
     text-decoration: none;
     transition: opacity 0.3s;
@@ -1291,6 +1297,28 @@ footer, .footer, .footer-section {
 .cart-link-wrap .material-symbols-outlined {
     font-size: 20px;
     font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+}
+
+.cart-badge {
+    position: absolute !important;
+    top: -5px !important;
+    right: -6px !important;
+    background: #000000 !important;
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: 50% !important;
+    width: 12px !important;
+    height: 12px !important;
+    font-size: 7px !important;
+    font-weight: 700 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+body.theme-noir .cart-badge {
+    background: #ffffff !important;
+    color: #000000 !important;
 }
 
 /* Fullscreen Search Overlay */
