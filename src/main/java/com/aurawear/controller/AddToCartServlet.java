@@ -40,7 +40,7 @@ public class AddToCartServlet extends HttpServlet {
         }
 
         int productId = Integer.parseInt(idParam);
-        int price     = Integer.parseInt(priceParam);
+        int price     = (int) Double.parseDouble(priceParam);
 
         // ── Out-of-Stock guard ──
         ProductDAO productDAO = new ProductDAO();
