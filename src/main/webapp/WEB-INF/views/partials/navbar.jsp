@@ -34,7 +34,29 @@
 
         <!-- Right Side Utility Icons/Actions -->
         <div class="nav-actions-right">
-            <a href="#" onclick="openSearchOverlay(); return false;" class="nav-text-action">Search</a>
+            <!-- Search Box -->
+            <div class="search-box">
+                <form action="${ctx}/products" method="get">
+                    <button type="submit" aria-label="Search">
+                        <span class="material-symbols-outlined">search</span>
+                    </button>
+                    <input type="text" name="keyword" placeholder="Search" value="${fn:escapeXml(param.keyword)}" autocomplete="off">
+                </form>
+            </div>
+
+            <!-- Wishlist Icon Link -->
+            <c:choose>
+                <c:when test="${not empty sessionScope.user}">
+                    <a href="${ctx}/wishlist" title="Wishlist" class="wishlist-link-wrap">
+                        <span class="material-symbols-outlined">favorite</span>
+                    </a>
+                </c:when>
+                <c:otherwise>
+                    <a href="#" onclick="openLoginModal(); return false;" title="Wishlist" class="wishlist-link-wrap">
+                        <span class="material-symbols-outlined">favorite</span>
+                    </a>
+                </c:otherwise>
+            </c:choose>
             
             <c:choose>
                 <c:when test="${not empty sessionScope.user}">
@@ -75,17 +97,6 @@
         </div>
     </div>
 </nav>
-
-<!-- SEARCH OVERLAY -->
-<div class="search-overlay-fullscreen" id="searchOverlay" onclick="closeSearchOverlay(event)">
-    <button class="search-close-btn" onclick="closeSearchOverlay()"><span class="material-symbols-outlined">close</span></button>
-    <div class="search-overlay-content">
-        <form action="${ctx}/products" method="get">
-            <input type="text" name="keyword" placeholder="Type to search..." value="${fn:escapeXml(param.keyword)}" autocomplete="off">
-            <button type="submit" class="search-submit-btn"><span class="material-symbols-outlined">arrow_forward</span></button>
-        </form>
-    </div>
-</div>
 
 <!-- LUXURY OVERLAY MENU -->
 <div class="menu-overlay" id="menuOverlay">

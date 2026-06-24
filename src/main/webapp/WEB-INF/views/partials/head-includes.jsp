@@ -26,7 +26,7 @@ gtag('config', 'G-EG16LNFXMK');
 </c:if>
 
 <!-- Global Resource Links -->
-<link rel="stylesheet" href="${ctx}/assets/css/navbar.css?v=123">
+<link rel="stylesheet" href="${ctx}/assets/css/navbar.css?v=124">
 <link rel="stylesheet" href="${ctx}/assets/css/login-modal.css?v=120">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
 
@@ -65,26 +65,7 @@ function closeMenuOverlay() {
     }
 }
 
-function openSearchOverlay() {
-    const el = document.getElementById("searchOverlay");
-    if (el) {
-        el.classList.add("active");
-        document.body.style.overflow = "hidden";
-        setTimeout(() => {
-            const input = el.querySelector("input");
-            if (input) input.focus();
-        }, 100);
-    }
-}
 
-function closeSearchOverlay(e) {
-    if (e && e.target !== document.getElementById("searchOverlay") && !e.target.closest(".search-close-btn")) return;
-    const el = document.getElementById("searchOverlay");
-    if (el) {
-        el.classList.remove("active");
-        document.body.style.overflow = "";
-    }
-}
 
 function initAuraInteractive() {
     // ── Update Cart Count
