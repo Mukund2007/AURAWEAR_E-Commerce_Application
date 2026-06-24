@@ -65,6 +65,7 @@ body.theme-noir .navbar {
 @media (max-width: 768px) {
     .navbar-container {
         padding: 0 var(--margin-mobile, 20px);
+        justify-content: flex-end !important;
     }
 }
 
@@ -850,6 +851,10 @@ footer, .footer, .footer-section {
     color: #ff0001;
 }
 
+.mobile-menu-trigger {
+    display: none !important;
+}
+
 @media (max-width: 900px) {
     .menu-grid {
         grid-template-columns: 1fr;
@@ -885,9 +890,6 @@ footer, .footer, .footer-section {
     }
 }
 
-.mobile-menu-trigger {
-    display: none !important;
-}
 
 /* ── STUNNING GLASSMORPHIC SIZE GUIDE MODAL ─────────────────── */
 .size-overlay {
