@@ -115,7 +115,7 @@
                         <span class="cart-badge">0</span>
                     </div>
                 </a>
-            </c:choose>
+            </c:when>
             <c:otherwise>
                 <a href="#" onclick="openLoginModal(); return false;" class="cart-link-wrap" title="Cart">
                     <div class="nav-icon-wrap">
