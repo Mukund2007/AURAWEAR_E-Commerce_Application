@@ -37,15 +37,12 @@ function updateCartCount() {
     fetch("${ctx}/cart-count", { credentials: "include" })
         .then(res => res.text())
         .then(count => {
-            const el = document.getElementById("cart-count");
-            if (el) {
-                const trimmed = count.trim();
-                if (!isNaN(trimmed) && trimmed !== "") {
-                    el.innerText = trimmed;
-                } else {
-                    el.innerText = "0";
-                }
-            }
+            const trimmed = count.trim();
+            const value = (!isNaN(trimmed) && trimmed !== "") ? trimmed : "0";
+            const badges = document.querySelectorAll(".cart-badge");
+            badges.forEach(el => {
+                el.innerText = value;
+            });
         });
 }
 
@@ -64,6 +61,20 @@ function closeMenuOverlay() {
         document.body.style.overflow = "";
     }
 }
+
+function toggleMenuSearch() {
+    const el = document.getElementById("menuSearchInline");
+    if (el) {
+        if (el.style.display === "none") {
+            el.style.display = "flex";
+            const input = el.querySelector("input");
+            if (input) input.focus();
+        } else {
+            el.style.display = "none";
+        }
+    }
+}
+
 
 
 

@@ -101,38 +101,56 @@
 <!-- LUXURY OVERLAY MENU -->
 <div class="menu-overlay" id="menuOverlay">
     <div class="menu-header">
-        <div class="menu-logo">AW</div>
-        <button class="menu-close-btn" onclick="closeMenuOverlay()"><i class="fa-solid fa-xmark"></i></button>
+        <button class="menu-close-btn" onclick="closeMenuOverlay()" aria-label="Close Menu">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div class="menu-logo-center">
+            <span class="brand-text">AURA</span>
+        </div>
+        <c:choose>
+            <c:when test="${not empty sessionScope.user}">
+                <a href="${ctx}/cart" class="cart-link-wrap" title="Cart">
+                    <div class="nav-icon-wrap">
+                        <span class="material-symbols-outlined">shopping_bag</span>
+                        <span class="cart-badge">0</span>
+                    </div>
+                </a>
+            </c:choose>
+            <c:otherwise>
+                <a href="#" onclick="openLoginModal(); return false;" class="cart-link-wrap" title="Cart">
+                    <div class="nav-icon-wrap">
+                        <span class="material-symbols-outlined">shopping_bag</span>
+                        <span class="cart-badge">0</span>
+                    </div>
+                </a>
+            </c:otherwise>
+        </c:choose>
     </div>
     
-    <!-- MOBILE-ONLY SEARCH BOX IN OVERLAY -->
-    <div class="mobile-search-box">
-        <form action="${ctx}/products" method="get">
-            <input type="text" name="keyword" placeholder="Search for products..." value="${fn:escapeXml(param.keyword)}">
-            <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-        </form>
-    </div>
-
-    <div class="menu-grid">
-        <div class="menu-col">
-            <h4>Collections</h4>
-            <div class="menu-list">
-                <a href="${ctx}/collections" class="menu-item">Noir Drop</a>
-                <a href="${ctx}/collections" class="menu-item">Minimalist</a>
-                <a href="${ctx}/collections" class="menu-item">Street Uniform</a>
-                <a href="${ctx}/products" class="menu-item-sub">&rarr; Browse Lookbook</a>
-            </div>
+    <div class="menu-content-centered">
+        <a href="${ctx}/products" class="menu-item-new">Shop</a>
+        <a href="${ctx}/collections" class="menu-item-new">Collections</a>
+        <a href="mailto:support@aurawear.com" class="menu-item-new">About</a>
+        
+        <div class="menu-divider-new"></div>
+        
+        <a href="#" onclick="toggleMenuSearch(); return false;" class="menu-item-bottom">Search</a>
+        
+        <div class="menu-search-inline" id="menuSearchInline" style="display: none; width: 100%; max-width: 320px; margin-top: -12px; margin-bottom: 24px; box-sizing: border-box;">
+            <form action="${ctx}/products" method="get" style="display: flex; border: 1.5px solid var(--border-color-solid); padding: 8px 12px; background: var(--input-bg); width: 100%; align-items: center; justify-content: space-between;">
+                <input type="text" name="keyword" placeholder="Search..." style="border: none; background: transparent; outline: none; width: 100%; font-size: 13px; font-family: 'Inter', sans-serif;">
+                <button type="submit" style="background: none; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center;"><span class="material-symbols-outlined" style="font-size: 18px; color: var(--text-color);">search</span></button>
+            </form>
         </div>
-        <div class="menu-col">
-            <h4>Store Catalog</h4>
-            <div class="menu-list">
-                <a href="${ctx}/products" class="menu-item">Shop All</a>
-                <a href="${ctx}/products?gender=Men" class="menu-item">Men's Wear</a>
-                <a href="${ctx}/products?gender=Women" class="menu-item">Women's Wear</a>
-                <a href="${ctx}/products?category=Footwear" class="menu-item-sub">Footwear</a>
-                <a href="${ctx}/products?category=Accessories" class="menu-item-sub">Accessories</a>
-            </div>
-        </div>
+        
+        <c:choose>
+            <c:when test="${not empty sessionScope.user}">
+                <a href="${ctx}/profile" class="menu-item-bottom">Account</a>
+            </c:when>
+            <c:otherwise>
+                <a href="#" onclick="openLoginModal(); return false;" class="menu-item-bottom">Account</a>
+            </c:otherwise>
+        </c:choose>
     </div>
 </div>
 

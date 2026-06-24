@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap');
+
 /* ── GLOBAL THEMATIC VARIABLES & OVERRIDES ───────────────────── */
 :root {
     --bg-color: #fcf9f8;
@@ -310,19 +312,6 @@ body.theme-noir .search-box:focus-within {
 /* Toggles & indicators overrides */
 .top-strip {
     display: none !important;
-}
-
-/* POETIC Drawer overlays — always full-bleed dark panel regardless of theme */
-.menu-overlay {
-    background: rgba(13, 13, 13, 0.98) !important;
-    color: #ede4dd !important;
-}
-
-.menu-overlay .menu-item {
-    color: #ede4dd !important;
-}
-.menu-overlay .menu-item:hover {
-    color: var(--accent-color) !important;
 }
 
 /* General button states */
@@ -727,13 +716,15 @@ footer, .footer, .footer-section {
 .menu-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(13, 13, 13, 0.98);
+    background: var(--bg-color) !important;
+    color: var(--text-color) !important;
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
     z-index: 99990;
-    color: #ede4dd;
-    display: grid;
-    grid-template-rows: auto 1fr;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
     padding: 40px 60px;
     opacity: 0;
     visibility: hidden;
@@ -748,29 +739,34 @@ footer, .footer, .footer-section {
 }
 
 .menu-header {
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid rgba(237, 228, 221, 0.15);
-    padding-bottom: 20px;
+    border-bottom: none !important;
+    padding-bottom: 0 !important;
 }
 
 .menu-close-btn {
-    background: transparent;
-    border: 1px solid rgba(237, 228, 221, 0.2);
-    color: #ede4dd;
+    border: 1.5px solid var(--border-color-solid) !important;
+    background: transparent !important;
+    color: var(--text-color) !important;
     font-size: 16px;
-    width: 44px; height: 44px;
-    display: flex; align-items: center; justify-content: center;
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
     transition: all 0.3s;
 }
+
 .menu-close-btn:hover {
-    background: #ff0001;
-    border-color: #ff0001;
-    color: #ffffff;
+    background: var(--text-color) !important;
+    color: var(--bg-color) !important;
     transform: rotate(90deg);
 }
+
 
 .menu-grid {
     display: grid;
@@ -1386,4 +1382,76 @@ body.theme-noir .navbar-container #cart-count,
         gap: 16px !important;
     }
 }
+
+/* Centered Mobile Menu Layout & Styling */
+.menu-logo-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu-logo-center .brand-text {
+    font-family: var(--font-headline, 'Outfit', sans-serif);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--text-color);
+}
+
+.menu-content-centered {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: auto;
+    margin-bottom: auto;
+    padding-bottom: 40px;
+    box-sizing: border-box;
+}
+
+.menu-item-new {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 38px;
+    font-weight: 400;
+    color: var(--text-color) !important;
+    margin-bottom: 24px;
+    text-decoration: none;
+    transition: opacity 0.3s;
+    text-align: center;
+}
+
+.menu-divider-new {
+    width: 100%;
+    max-width: 320px;
+    height: 1px;
+    background-color: var(--border-color);
+    margin: 24px 0 36px 0;
+    opacity: 0.4;
+}
+
+.menu-item-bottom {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-color) !important;
+    margin-bottom: 24px;
+    text-decoration: none;
+    transition: opacity 0.3s;
+    text-align: center;
+}
+
+.menu-item-new:hover, .menu-item-bottom:hover {
+    opacity: 0.6;
+}
+
+@media (max-width: 768px) {
+    .menu-overlay {
+        padding: 30px 20px !important;
+    }
+}
+
 
