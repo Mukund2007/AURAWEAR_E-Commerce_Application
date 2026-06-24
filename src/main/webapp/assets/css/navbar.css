@@ -1222,3 +1222,163 @@ footer, .footer, .footer-section {
 .search-overlay-perks { display: flex; flex-direction: column; gap: 8px; padding-top: 22px; border-top: 1.5px solid var(--border-color-solid); transition: border-color 0.8s; }
 .search-overlay-perks span { font-size: 12px; color: var(--text-color); display: flex; align-items: center; gap: 8px; font-weight: 700; text-transform: uppercase; transition: color 0.8s; }
 
+/* ── NEW MINIMALIST NAVBAR STYLES ──────────────────────────────── */
+.nav-links-left {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+}
+
+.nav-links-left a {
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-size: 13px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-color) !important;
+    text-decoration: none;
+    transition: opacity 0.3s;
+}
+
+.nav-links-left a:hover {
+    opacity: 0.6;
+}
+
+.nav-logo-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-logo-center .brand-text {
+    font-family: var(--font-headline, 'Outfit', sans-serif);
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--text-color) !important;
+}
+
+.nav-actions-right {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+}
+
+.nav-actions-right .nav-text-action {
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-size: 13px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-color) !important;
+    text-decoration: none;
+    transition: opacity 0.3s;
+}
+
+.nav-actions-right .nav-text-action:hover {
+    opacity: 0.6;
+}
+
+.cart-link-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+    color: var(--text-color) !important;
+}
+
+.cart-link-wrap .material-symbols-outlined {
+    font-size: 20px;
+    font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+}
+
+/* Fullscreen Search Overlay */
+.search-overlay-fullscreen {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background-color: rgba(237, 228, 221, 0.98);
+    z-index: 10000;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    transition: background-color 0.8s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+body.theme-noir .search-overlay-fullscreen {
+    background-color: rgba(13, 13, 13, 0.98);
+}
+
+.search-overlay-fullscreen.active {
+    display: flex;
+}
+
+.search-overlay-content {
+    width: 80%;
+    max-width: 600px;
+}
+
+.search-overlay-content form {
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid var(--text-color);
+    padding-bottom: 8px;
+    transition: border-color 0.8s;
+}
+
+.search-overlay-content input {
+    width: 100%;
+    border: none;
+    background: transparent;
+    outline: none;
+    font-size: 24px;
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-weight: 500;
+    color: var(--text-color);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: color 0.8s;
+}
+
+.search-overlay-content input::placeholder {
+    color: var(--text-muted);
+    opacity: 0.5;
+    transition: color 0.8s;
+}
+
+.search-submit-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-color);
+    cursor: pointer;
+    transition: color 0.8s;
+}
+
+.search-close-btn {
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    background: transparent;
+    border: none;
+    color: var(--text-color);
+    cursor: pointer;
+    transition: color 0.8s;
+}
+
+.search-close-btn span, .search-submit-btn span {
+    font-size: 32px;
+}
+
+/* Mobile Media Queries for New Navbar */
+@media (max-width: 768px) {
+    .nav-links-left {
+        display: none !important;
+    }
+    .nav-actions-right .nav-text-action {
+        display: none !important;
+    }
+}
+

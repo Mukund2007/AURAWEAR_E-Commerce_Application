@@ -65,24 +65,30 @@ function closeMenuOverlay() {
     }
 }
 
+function openSearchOverlay() {
+    const el = document.getElementById("searchOverlay");
+    if (el) {
+        el.classList.add("active");
+        document.body.style.overflow = "hidden";
+        setTimeout(() => {
+            const input = el.querySelector("input");
+            if (input) input.focus();
+        }, 100);
+    }
+}
+
+function closeSearchOverlay(e) {
+    if (e && e.target !== document.getElementById("searchOverlay") && !e.target.closest(".search-close-btn")) return;
+    const el = document.getElementById("searchOverlay");
+    if (el) {
+        el.classList.remove("active");
+        document.body.style.overflow = "";
+    }
+}
+
 function initAuraInteractive() {
     // ── Update Cart Count
     updateCartCount();
-
-    // ── Aura Click Ripple
-    document.addEventListener("click", (e) => {
-        if (e.button !== 0) return; // Only left clicks
-        
-        const ripple = document.createElement("div");
-        ripple.className = "click-aura-ripple";
-        ripple.style.left = e.clientX + "px";
-        ripple.style.top = e.clientY + "px";
-        document.body.appendChild(ripple);
-        
-        ripple.addEventListener("animationend", () => {
-            ripple.remove();
-        });
-    });
 
     // ── Scroll Reveal Intersection Observer Setup
     const revealObserver = new IntersectionObserver((entries, observer) => {

@@ -16,50 +16,38 @@
 <!-- NAVBAR -->
 <nav class="navbar">
     <div class="navbar-container">
-        <!-- Brand Logo -->
-        <div class="brand">
-            <a href="${ctx}/home">AuraWear</a>
-        </div>
-
-        <!-- Center Navigation Links -->
+        <!-- Left: Links -->
         <c:set var="reqServletPath" value="${requestScope['jakarta.servlet.forward.servlet_path']}" />
         <c:set var="isProductsView" value="${reqServletPath == '/WEB-INF/views/products/products.jsp' || reqServletPath == '/WEB-INF/views/product-detail.jsp'}" />
         <c:set var="isCollectionsView" value="${reqServletPath == '/WEB-INF/views/collections/collections.jsp'}" />
         
-        <div class="nav-links">
-            <a href="${ctx}/products" class="${isProductsView && empty param.category && empty param.gender ? 'active' : ''}">Shop All</a>
-            <a href="${ctx}/products?gender=Men" class="${isProductsView && param.gender == 'Men' ? 'active' : ''}">New Arrivals</a>
-            <a href="${ctx}/products?category=Accessories" class="${isProductsView && param.category == 'Accessories' ? 'active' : ''}">Essentials</a>
+        <div class="nav-links-left">
+            <a href="${ctx}/products" class="${isProductsView ? 'active' : ''}">Shop</a>
             <a href="${ctx}/collections" class="${isCollectionsView ? 'active' : ''}">Collections</a>
+            <a href="mailto:support@aurawear.com">About</a>
         </div>
 
-        <!-- Right Side Utility Icons -->
-        <div class="nav-icons">
-            <div class="search-box">
-                <form action="${ctx}/products" method="get">
-                    <button type="submit" aria-label="Search">
-                        <span class="material-symbols-outlined">search</span>
-                    </button>
-                    <input type="text" name="keyword" placeholder="Search" value="${fn:escapeXml(param.keyword)}" autocomplete="off">
-                </form>
-            </div>
+        <!-- Center: Brand Logo -->
+        <div class="nav-logo-center">
+            <a href="${ctx}/home" class="brand-text">AURA</a>
+        </div>
+
+        <!-- Right Side Utility Icons/Actions -->
+        <div class="nav-actions-right">
+            <a href="#" onclick="openSearchOverlay(); return false;" class="nav-text-action">Search</a>
             
             <c:choose>
                 <c:when test="${not empty sessionScope.user}">
-                    <a href="${ctx}/wishlist" title="Wishlist">
-                        <span class="material-symbols-outlined">favorite</span>
-                    </a>
+                    <a href="${ctx}/profile" class="nav-text-action">Account</a>
                 </c:when>
                 <c:otherwise>
-                    <a href="#" onclick="openLoginModal(); return false;" title="Wishlist">
-                        <span class="material-symbols-outlined">favorite</span>
-                    </a>
+                    <a href="#" onclick="openLoginModal(); return false;" class="nav-text-action">Account</a>
                 </c:otherwise>
             </c:choose>
 
             <c:choose>
                 <c:when test="${not empty sessionScope.user}">
-                    <a href="${ctx}/cart" class="cart-link" title="Cart">
+                    <a href="${ctx}/cart" class="cart-link-wrap" title="Cart">
                         <div class="nav-icon-wrap">
                             <span class="material-symbols-outlined">shopping_bag</span>
                             <span id="cart-count" class="cart-badge">0</span>
@@ -67,24 +55,11 @@
                     </a>
                 </c:when>
                 <c:otherwise>
-                    <a href="#" onclick="openLoginModal(); return false;" class="cart-link" title="Cart">
+                    <a href="#" onclick="openLoginModal(); return false;" class="cart-link-wrap" title="Cart">
                         <div class="nav-icon-wrap">
                             <span class="material-symbols-outlined">shopping_bag</span>
                             <span id="cart-count" class="cart-badge">0</span>
                         </div>
-                    </a>
-                </c:otherwise>
-            </c:choose>
-
-            <c:choose>
-                <c:when test="${not empty sessionScope.user}">
-                    <a href="${ctx}/profile" title="Account">
-                        <span class="material-symbols-outlined">person</span>
-                    </a>
-                </c:when>
-                <c:otherwise>
-                    <a href="#" onclick="openLoginModal(); return false;" title="Account">
-                        <span class="material-symbols-outlined">person</span>
                     </a>
                 </c:otherwise>
             </c:choose>
@@ -100,6 +75,17 @@
         </div>
     </div>
 </nav>
+
+<!-- SEARCH OVERLAY -->
+<div class="search-overlay-fullscreen" id="searchOverlay" onclick="closeSearchOverlay(event)">
+    <button class="search-close-btn" onclick="closeSearchOverlay()"><span class="material-symbols-outlined">close</span></button>
+    <div class="search-overlay-content">
+        <form action="${ctx}/products" method="get">
+            <input type="text" name="keyword" placeholder="Type to search..." value="${fn:escapeXml(param.keyword)}" autocomplete="off">
+            <button type="submit" class="search-submit-btn"><span class="material-symbols-outlined">arrow_forward</span></button>
+        </form>
+    </div>
+</div>
 
 <!-- LUXURY OVERLAY MENU -->
 <div class="menu-overlay" id="menuOverlay">
