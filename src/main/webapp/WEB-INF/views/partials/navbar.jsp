@@ -133,22 +133,6 @@
                 <a href="${ctx}/products?category=Accessories" class="menu-item-sub">Accessories</a>
             </div>
         </div>
-        <div class="menu-col">
-            <h4>Atmosphere</h4>
-            <p class="menu-poetics">
-                AW '25 drop redefines street luxury through structural silhouettes, textured weight, and dynamic aura identities.
-            </p>
-            <div class="menu-list">
-                <a href="${ctx}/profile" class="menu-item-sub">My Profile</a>
-                <a href="${ctx}/my-orders" class="menu-item-sub">Order Tracking</a>
-                <a href="${ctx}/wishlist" class="menu-item-sub">Wishlist</a>
-            </div>
-            <div class="menu-footer">
-                <span>© 2025 AuraWear</span>
-                <a href="#">Instagram</a>
-                <a href="#">X.com</a>
-            </div>
-        </div>
     </div>
 </div>
 
