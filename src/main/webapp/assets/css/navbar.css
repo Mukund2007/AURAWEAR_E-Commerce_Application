@@ -856,6 +856,10 @@ footer, .footer, .footer-section {
 }
 
 @media (max-width: 900px) {
+    .menu-overlay {
+        grid-template-rows: auto auto 1fr !important;
+        padding: 30px 20px !important;
+    }
     .menu-grid {
         grid-template-columns: 1fr;
         overflow-y: auto;
