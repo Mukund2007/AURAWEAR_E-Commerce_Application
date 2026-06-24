@@ -584,3 +584,16 @@ body {
     opacity: 0.4;
     text-transform: uppercase;
 }
+
+@media (max-width: 480px) {
+    .otp-boxes {
+        gap: 6px;
+        margin: 20px 0;
+    }
+    .otp-boxes input {
+        width: 38px !important;
+        height: 44px !important;
+        font-size: 18px;
+    }
+}
+

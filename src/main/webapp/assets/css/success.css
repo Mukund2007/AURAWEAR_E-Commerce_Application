@@ -104,3 +104,24 @@ body {
     color: var(--bg-color);
     border-color: var(--accent-color);
 }
+
+@media (max-width: 480px) {
+    .success-wrap {
+        margin: 40px auto;
+        padding: 32px 20px;
+        width: calc(100% - 40px);
+        box-shadow: 4px 4px 0px var(--border-color-solid);
+    }
+    .success-wrap h1 {
+        font-size: 28px;
+    }
+    .success-actions {
+        flex-direction: column;
+        gap: 12px;
+    }
+    .btn-dark, .btn-light {
+        width: 100%;
+        text-align: center;
+    }
+}
+

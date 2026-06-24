@@ -499,4 +499,16 @@ a {
     .item-price {
         font-size: 15px;
     }
+    .cart-container-wrap .home-products-section {
+        margin-top: 60px !important;
+        padding-top: 40px !important;
+    }
+    .cart-container-wrap .section-title {
+        font-size: 24px !important;
+        margin-bottom: 28px !important;
+    }
+    .cart-container-wrap .products-grid {
+        grid-template-columns: 1fr !important;
+        gap: 24px !important;
+    }
 }

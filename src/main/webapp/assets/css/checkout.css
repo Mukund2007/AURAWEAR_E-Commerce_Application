@@ -376,3 +376,12 @@ body {
         gap: 0;
     }
 }
+
+@media (max-width: 480px) {
+    .customer-info-row {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 4px !important;
+    }
+}
+

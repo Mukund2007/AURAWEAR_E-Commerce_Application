@@ -1,0 +1,89 @@
+/* =========================================================================
+   AURAWEAR ADMIN — RESPONSIVE OVERRIDES
+   ========================================================================= */
+
+@media (max-width: 900px) {
+    /* Responsive navbar */
+    .admin-nav {
+        flex-direction: column !important;
+        gap: 16px !important;
+        padding: 16px 20px !important;
+        align-items: center !important;
+    }
+    
+    .nav-links {
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        gap: 12px 20px !important;
+    }
+    
+    .nav-links a {
+        font-size: 11px !important;
+        letter-spacing: 1px !important;
+    }
+
+    .page-header {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 16px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .admin-container {
+        padding: 24px 16px !important;
+    }
+
+    .page-title {
+        font-size: 26px !important;
+    }
+
+    /* Collapse grids */
+    .metrics-grid {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+    }
+
+    /* Tables scroll safety */
+    .table-container {
+        width: 100% !important;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+        border: 1px solid var(--border-color) !important;
+    }
+    
+    .admin-table {
+        min-width: 600px !important; /* Ensure table elements are readable and don't shrink too much */
+    }
+
+    .admin-table th, .admin-table td {
+        padding: 12px 14px !important;
+        font-size: 13px !important;
+    }
+
+    /* Modals */
+    .modal-content {
+        width: 95% !important;
+        padding: 24px 16px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .admin-nav {
+        padding: 16px 12px !important;
+    }
+    
+    .nav-links {
+        gap: 10px 14px !important;
+    }
+    
+    .login-card {
+        padding: 24px !important;
+        margin: 0 12px !important;
+    }
+}

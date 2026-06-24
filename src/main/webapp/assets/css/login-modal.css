@@ -286,3 +286,15 @@
     font-weight: 700;
     text-transform: uppercase;
 }
+
+@media (max-width: 480px) {
+    .login-modal {
+        padding: 32px 20px;
+        box-shadow: 4px 4px 0px #1c1b1b;
+    }
+    .modal-close {
+        top: 12px;
+        right: 12px;
+    }
+}
+

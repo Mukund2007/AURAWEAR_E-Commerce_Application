@@ -111,13 +111,13 @@
                     </div>
 
                     <!-- PREFILLED BILLING SUMMARY -->
-                    <div style="background: var(--co-surface-container); border: 1px solid var(--co-outline-variant); padding: 20px; border-radius: var(--radius-default); margin-bottom: 24px; display: flex; flex-direction: column; gap: 12px;">
+                    <div class="customer-info-box" style="background: var(--co-surface-container); border: 1px solid var(--co-outline-variant); padding: 20px; border-radius: var(--radius-default); margin-bottom: 24px; display: flex; flex-direction: column; gap: 12px;">
                         <h4 style="font-family: 'Outfit', sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; border-bottom: 1px dashed var(--co-outline-variant); padding-bottom: 8px; color: var(--co-primary); margin: 0;">Customer Information</h4>
-                        <div style="display: flex; justify-content: space-between; font-size: 13px; font-weight: 500; text-transform: uppercase;">
+                        <div class="customer-info-row" style="display: flex; justify-content: space-between; font-size: 13px; font-weight: 500; text-transform: uppercase;">
                             <span style="color: var(--co-on-surface-variant); opacity: 0.7;">Name</span>
                             <span style="color: var(--co-primary); font-weight: 600;"><c:out value="${user.name}" /></span>
                         </div>
-                        <div style="display: flex; justify-content: space-between; font-size: 13px; font-weight: 500;">
+                        <div class="customer-info-row" style="display: flex; justify-content: space-between; font-size: 13px; font-weight: 500;">
                             <span style="color: var(--co-on-surface-variant); opacity: 0.7; text-transform: uppercase;">Email</span>
                             <span style="color: var(--co-primary); font-weight: 600;"><c:out value="${user.email}" /></span>
                         </div>
