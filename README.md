@@ -79,10 +79,12 @@ Toggles the entire storefront canvas, cards, and outline grids seamlessly betwee
 * **Slide-Up Tracking Drawer**: A premium milestone timeline modal that slides up from the viewport with a heavy blur backdrop (`backdrop-filter: blur(24px)`).
 * **Secure Actions**: Customer capabilities to "Cancel Placed Orders" and "Return Delivered Items" verified through session ownership in the backend.
 
-### 📱 4. Mobile Viewport Architecture (≤ 768px)
-* Forced navbar structure to prevent logo wrapping (`flex-wrap: nowrap`) on narrow screens (like `375px`).
-* Hides bulky search inputs and secondary action links to maintain a minimalist, balanced mobile header.
-* **Overlay Mobile Search**: Dynamically inserts a prominent mobile-only search bar at the top of the slide-out fullscreen hamburger menu drawer (`#menuOverlay`).
+### 📱 4. Mobile Viewport & Menu Redesign (≤ 768px)
+* **Centered Light Overlay Menu**: Replaced the legacy menu with a premium, light-themed centered overlay. Includes a close button `[x]` on the left, centered `AURA` brand logo, and cart shopping bag icon with live count badge on the right.
+* **Centered Cormorant Serif Typography**: Dynamic and responsive brand typography for `Shop`, `Collections`, and `About`.
+* **Inline Search Toggle**: Replaced standard search input with a slide-out inline search form on mobile.
+* **Responsive Layouts**: Optimized storefront grids, success cards, cart summaries, and checkout flows for screens down to 320px.
+* **Responsive Admin Panel**: Collapsed metrics grids, forms, and navigation wrappers, and added horizontal table scrolling.
 
 ---
 
@@ -144,7 +146,8 @@ Every secret is supplied via environment variables at runtime — see `.env.exam
 | Variable | Purpose |
 |---|---|
 | `AURAWEAR_DB_URL`, `AURAWEAR_DB_USER`, `AURAWEAR_DB_PASSWORD` | MySQL connection (JDBC URL, least-privilege app user, password) |
-| `AURAWEAR_EMAIL`, `AURAWEAR_EMAIL_PASSWORD` | Gmail sender address and App Password for OTP/order emails |
+| `BREVO_API_KEY` | API Key from brevo.com for transactional emails (replaces SMTP App Passwords) |
+| `AURAWEAR_EMAIL` | Verified sender email address on Brevo |
 | `RAZORPAY_LIVE_MODE` | `true` / `false` — toggles live vs. test payment keys |
 | `RAZORPAY_TEST_KEY_ID`, `RAZORPAY_TEST_KEY_SECRET` | Razorpay test-mode credentials |
 | `RAZORPAY_LIVE_KEY_ID`, `RAZORPAY_LIVE_KEY_SECRET` | Razorpay live-mode credentials (only required when live mode is on) |
@@ -154,8 +157,8 @@ Every secret is supplied via environment variables at runtime — see `.env.exam
 export AURAWEAR_DB_URL="jdbc:mysql://localhost:3306/aurawear"
 export AURAWEAR_DB_USER="aurawear_app"
 export AURAWEAR_DB_PASSWORD="your_db_password"
-export AURAWEAR_EMAIL="your_address@gmail.com"
-export AURAWEAR_EMAIL_PASSWORD="your_16_char_app_password"
+export AURAWEAR_EMAIL="your_verified_brevo_sender@gmail.com"
+export BREVO_API_KEY="your_brevo_api_key"
 export RAZORPAY_LIVE_MODE="false"
 export RAZORPAY_TEST_KEY_ID="rzp_test_..."
 export RAZORPAY_TEST_KEY_SECRET="your_test_secret"
