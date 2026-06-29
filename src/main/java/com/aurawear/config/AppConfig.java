@@ -29,9 +29,6 @@ public class AppConfig {
         "AURAWEAR_DB_URL",
         "AURAWEAR_DB_USER",
         "AURAWEAR_DB_PASSWORD",
-        // Email — Brevo HTTP API
-        "BREVO_API_KEY",
-        "AURAWEAR_EMAIL",
         // Razorpay (at least the active-mode keys must be resolvable at runtime)
         "RAZORPAY_LIVE_MODE",
     };

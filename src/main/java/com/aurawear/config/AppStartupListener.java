@@ -50,6 +50,11 @@ public class AppStartupListener implements ServletContextListener {
 
             ctx.log("[AppStartupListener] All environment variables validated successfully. Application starting. ✓");
 
+            // Log warning if email config is missing (but don't block startup)
+            if (AppConfig.get("BREVO_API_KEY") == null || AppConfig.get("AURAWEAR_EMAIL") == null) {
+                ctx.log("[AppStartupListener] WARNING: Email configuration (BREVO_API_KEY or AURAWEAR_EMAIL) is not set. Email delivery will fail if triggered.");
+            }
+
         } catch (RuntimeException e) {
             // Log clearly and re-throw to abort startup
             ctx.log("[AppStartupListener] FATAL STARTUP ERROR: " + e.getMessage());
