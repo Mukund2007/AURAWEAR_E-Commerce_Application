@@ -1,12 +1,12 @@
 /* ================================================
-   LOGIN MODAL STYLES (Light Cream Theme)
+   LOGIN MODAL STYLES (Luxury Editorial Theme)
    ================================================ */
 
 .login-overlay {
     position: fixed !important;
     top: 0 !important; left: 0 !important;
     right: 0 !important; bottom: 0 !important;
-    background: rgba(0, 0, 0, 0.5) !important;
+    background: rgba(28, 46, 74, 0.4) !important;
     z-index: 99999 !important;
     display: flex !important;
     align-items: center;
@@ -14,7 +14,7 @@
     padding: 20px;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
+    transition: opacity var(--transition-normal), visibility var(--transition-normal);
 }
 
 .login-overlay.active {
@@ -26,39 +26,39 @@
     width: 100%;
     max-width: 440px;
     max-height: 90vh;
-    background: #fcf9f8; /* Cream/off-white background */
-    border: 1.5px solid #1c1b1b; /* Charcoal border */
-    border-radius: 0px;
+    background: var(--surface-color); /* Warm Stone background */
+    border: 1px solid var(--border-color); /* Thin border */
+    border-radius: var(--radius-card); /* 8px radius */
     padding: 44px 40px;
     overflow-y: auto;
     position: relative;
-    box-shadow: 8px 8px 0px #1c1b1b;
-    color: #1c1b1b; /* Near-black text */
-    font-family: 'Outfit', 'Inter', sans-serif;
+    box-shadow: var(--shadow-subtle);
+    color: var(--primary-text);
+    font-family: var(--font-body);
 }
 
 .modal-close {
     position: absolute;
     top: 20px;
     right: 20px;
-    background: #ffffff;
-    border: 1.5px solid #cfc4c5; /* Thin grey border */
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
     font-size: 14px;
     cursor: pointer;
-    color: #1c1b1b;
+    color: var(--primary-text);
     width: 34px;
     height: 34px;
-    border-radius: 0px;
+    border-radius: var(--radius-pill);
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.2s ease;
+    transition: all var(--transition-fast) ease;
 }
 
 .modal-close:hover {
-    background: #1c1b1b;
-    color: #fcf9f8;
-    border-color: #1c1b1b;
+    background: var(--primary-brand);
+    color: var(--bg-color);
+    border-color: var(--primary-brand);
     transform: rotate(90deg);
 }
 
@@ -72,61 +72,62 @@
 .modal-brand-logo {
     width: 40px;
     height: 40px;
-    background: #1c1b1b;
-    color: #fcf9f8;
-    font-size: 13px;
-    font-weight: 900;
+    background: var(--primary-brand);
+    color: var(--bg-color);
+    font-size: 12px;
+    font-weight: 800;
     letter-spacing: 1px;
-    border-radius: 0px;
+    border-radius: var(--radius-card);
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    border: 1.5px solid #1c1b1b;
+    border: 1px solid var(--border-color);
 }
 
 .modal-brand-name {
-    font-size: 16px;
-    font-weight: 900;
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 700;
     letter-spacing: 2px;
-    color: #1c1b1b;
+    color: var(--primary-text);
     text-transform: uppercase;
 }
 
 .modal-brand-sub {
+    font-family: var(--font-body);
     font-size: 9px;
     letter-spacing: 3px;
-    color: #1c1b1b;
-    opacity: 0.6;
+    color: var(--secondary-text);
     text-transform: uppercase;
     margin-top: 2px;
 }
 
 .modal-title {
+    font-family: var(--font-headline);
     font-size: 26px;
-    font-weight: 900;
+    font-weight: 500;
     letter-spacing: -1px;
     margin-bottom: 6px;
-    color: #1c1b1b;
+    color: var(--primary-text);
     text-transform: uppercase;
 }
 
 .modal-sub {
-    font-size: 14px;
-    color: #1c1b1b;
-    opacity: 0.6;
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: var(--secondary-text);
     margin-bottom: 26px;
-    font-weight: 600;
 }
 
 .modal-error {
-    background: rgba(255, 0, 1, 0.1);
-    border: 1.5px solid #ba1a1a;
-    color: #ba1a1a;
-    font-size: 13px;
-    font-weight: 800;
+    background: rgba(140, 59, 59, 0.1);
+    border: 1px solid var(--error-color);
+    color: var(--error-color);
+    font-size: 12px;
+    font-weight: 700;
     padding: 12px 16px;
-    border-radius: 0px;
+    border-radius: var(--radius-card);
     margin-bottom: 16px;
     text-transform: uppercase;
 }
@@ -137,11 +138,12 @@
 
 .modal-field label {
     display: block;
+    font-family: var(--font-body);
     font-size: 11px;
-    font-weight: 800;
-    letter-spacing: 1.5px;
+    font-weight: 700;
+    letter-spacing: 1px;
     text-transform: uppercase;
-    color: #1c1b1b;
+    color: var(--primary-text);
     margin-bottom: 8px;
 }
 
@@ -149,86 +151,74 @@
     width: 100%;
     padding: 13px 16px;
     font-size: 14px;
-    border: 1.5px solid #cfc4c5; /* Thin grey border */
-    border-radius: 0px;
-    background: #ffffff; /* White input background */
-    color: #1c1b1b;
-    font-family: inherit;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-input); /* 8px radius */
+    background: var(--surface-color); /* Warm Stone background */
+    color: var(--primary-text);
+    font-family: var(--font-body);
     outline: none;
-    transition: all 0.25s ease;
-    font-weight: 600;
+    transition: border-color var(--transition-normal);
 }
 
 .modal-field input:focus {
-    border-color: #1c1b1b;
+    border-color: var(--primary-brand);
     box-shadow: none !important;
 }
 
 .modal-field input::placeholder {
-    color: #1c1b1b;
-    opacity: 0.4;
+    color: var(--secondary-text);
+    opacity: 0.6;
 }
 
 .modal-forgot {
     display: block;
     text-align: right;
+    font-family: var(--font-body);
     font-size: 12px;
-    color: #1c1b1b;
-    opacity: 0.6;
+    color: var(--secondary-text);
     margin-top: 6px;
     text-decoration: none;
-    transition: all 0.2s ease;
-    font-weight: 700;
+    transition: color var(--transition-fast);
 }
 
 .modal-forgot:hover {
-    color: #718063;
-    opacity: 1;
+    color: var(--secondary-brand);
 }
 
 .modal-signin-btn {
     width: 100%;
     padding: 15px;
-    background: #1c1b1b; /* Charcoal/black button */
-    color: #fcf9f8; /* Cream text */
-    border: 1.5px solid #1c1b1b;
-    border-radius: 0px;
+    background: var(--primary-brand); /* Deep Navy background */
+    color: var(--bg-color); /* Warm Ivory text */
+    border: 1px solid var(--primary-brand);
+    border-radius: var(--radius-button); /* 8px radius */
+    font-family: var(--font-body);
     font-size: 13px;
-    font-weight: 800;
+    font-weight: 600;
     letter-spacing: 1.5px;
     text-transform: uppercase;
     cursor: pointer;
-    font-family: inherit;
-    margin-top: 8px;
-    transition: all 0.25s ease;
+    transition: background-color var(--transition-normal), border-color var(--transition-normal);
 }
 
 .modal-signin-btn:hover {
-    background: #718063;
-    border-color: #718063;
-    color: #ffffff;
-    transform: translate(-3px, -3px);
-    box-shadow: 4px 4px 0px #1c1b1b;
-}
-
-.modal-signin-btn:active {
-    transform: translate(0, 0);
-    box-shadow: none;
+    background: var(--secondary-brand); /* Muted Steel Blue on hover */
+    border-color: var(--secondary-brand);
 }
 
 .modal-divider {
     text-align: center;
     margin: 20px 0;
     position: relative;
+    font-family: var(--font-body);
     font-size: 11px;
-    color: #1c1b1b;
+    color: var(--secondary-text);
     letter-spacing: 2px;
-    font-weight: 800;
     text-transform: uppercase;
 }
 
 .modal-divider span {
-    background: #fcf9f8; /* Match modal background */
+    background: var(--surface-color); /* Match modal surface */
     padding: 0 10px;
     position: relative;
     z-index: 2;
@@ -240,33 +230,32 @@
     top: 50%;
     left: 0;
     right: 0;
-    height: 1.5px;
-    background: #cfc4c5; /* Thin grey line */
+    height: 1px;
+    background: var(--border-color); /* Thin divider */
     z-index: 1;
 }
 
 .modal-register-cta {
     text-align: center;
-    font-size: 14px;
-    color: #1c1b1b;
-    opacity: 0.6;
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: var(--secondary-text);
     margin-bottom: 26px;
-    font-weight: 600;
 }
 
 .modal-register-cta a {
-    color: #718063;
-    font-weight: 800;
+    color: var(--error-color); /* Deep burgundy color for registration trigger */
+    font-weight: 700;
     text-decoration: none;
     margin-left: 4px;
-    border-bottom: 1.5px solid #718063;
+    border-bottom: 1px solid var(--error-color);
     padding-bottom: 2px;
-    transition: color 0.2s, border-color 0.2s;
+    transition: color var(--transition-fast), border-color var(--transition-fast);
 }
 
 .modal-register-cta a:hover {
-    color: #1c1b1b;
-    border-color: #1c1b1b;
+    color: var(--primary-brand);
+    border-color: var(--primary-brand);
 }
 
 .modal-perks {
@@ -274,27 +263,25 @@
     flex-direction: column;
     gap: 8px;
     padding-top: 22px;
-    border-top: 1.5px solid #cfc4c5;
+    border-top: 1px solid var(--border-color);
 }
 
 .modal-perks span {
-    font-size: 12px;
-    color: #1c1b1b;
+    font-family: var(--font-body);
+    font-size: 11px;
+    color: var(--secondary-text);
     display: flex;
     align-items: center;
     gap: 8px;
-    font-weight: 700;
     text-transform: uppercase;
 }
 
 @media (max-width: 480px) {
     .login-modal {
         padding: 32px 20px;
-        box-shadow: 4px 4px 0px #1c1b1b;
     }
     .modal-close {
         top: 12px;
         right: 12px;
     }
 }
-

@@ -6,18 +6,18 @@
 
 /* ---- CSS VARIABLES ---- */
 :root {
-    --wl-bg: #fcf9f8;
-    --wl-surface-low: #f6f3f2;
-    --wl-surface-container: #f0eded;
-    --wl-surface-high: #eae7e7;
-    --wl-on-surface: #1c1b1b;
-    --wl-on-surface-variant: #4c4546;
-    --wl-primary: #000000;
-    --wl-on-primary: #ffffff;
-    --wl-outline: #7e7576;
-    --wl-outline-variant: #cfc4c5;
-    --wl-secondary: #546348;
-    --wl-error: #ba1a1a;
+    --wl-bg: var(--bg-color);
+    --wl-surface-low: var(--surface-color);
+    --wl-surface-container: var(--border-color);
+    --wl-surface-high: var(--border-color);
+    --wl-on-surface: var(--primary-text);
+    --wl-on-surface-variant: var(--secondary-text);
+    --wl-primary: var(--primary-brand);
+    --wl-on-primary: var(--bg-color);
+    --wl-outline: var(--border-color);
+    --wl-outline-variant: var(--border-color);
+    --wl-secondary: var(--secondary-brand);
+    --wl-error: var(--error-color);
 }
 
 /* ---- BASE ---- */

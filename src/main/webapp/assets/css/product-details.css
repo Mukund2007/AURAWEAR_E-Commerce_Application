@@ -5,20 +5,20 @@
 
 /* ---- CSS VARIABLES ---- */
 :root {
-    --pd-bg: #fcf9f8;
-    --pd-surface-low: #f6f3f2;
-    --pd-surface-container: #f0eded;
-    --pd-surface-high: #eae7e7;
-    --pd-on-surface: #1c1b1b;
-    --pd-on-surface-variant: #4c4546;
-    --pd-primary: #000000;
-    --pd-on-primary: #ffffff;
-    --pd-outline: #7e7576;
-    --pd-outline-variant: #cfc4c5;
-    --pd-accent: #718063; /* Muted Sage */
-    --pd-accent-hover: #5d6b52;
-    --pd-error: #ba1a1a;
-    --radius-default: 4px;
+    --pd-bg: var(--bg-color);
+    --pd-surface-low: var(--surface-color);
+    --pd-surface-container: var(--border-color);
+    --pd-surface-high: var(--border-color);
+    --pd-on-surface: var(--primary-text);
+    --pd-on-surface-variant: var(--secondary-text);
+    --pd-primary: var(--primary-brand);
+    --pd-on-primary: var(--bg-color);
+    --pd-outline: var(--border-color);
+    --pd-outline-variant: var(--border-color);
+    --pd-accent: var(--primary-brand);
+    --pd-accent-hover: var(--secondary-brand);
+    --pd-error: var(--error-color);
+    --radius-default: var(--radius-card);
 }
 
 /* ---- BASE ---- */

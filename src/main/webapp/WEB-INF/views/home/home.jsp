@@ -23,59 +23,28 @@
           theme: {
             extend: {
               "colors": {
-                      "on-secondary-fixed-variant": "#3d4b32",
-                      "surface-dim": "#dcd9d9",
-                      "surface": "#fcf9f8",
-                      "surface-container-lowest": "#ffffff",
-                      "on-error": "#ffffff",
-                      "error": "#ba1a1a",
-                      "surface-container": "#f0eded",
-                      "on-error-container": "#93000a",
-                      "on-background": "#1c1b1b",
-                      "primary-fixed-dim": "#c6c6c6",
-                      "inverse-on-surface": "#f3f0ef",
-                      "on-primary-fixed-variant": "#474747",
-                      "primary-fixed": "#e2e2e2",
-                      "surface-container-highest": "#e5e2e1",
-                      "primary": "#000000",
-                      "on-tertiary": "#ffffff",
-                      "secondary-container": "#d5e5c3",
-                      "tertiary-container": "#1b1b1b",
-                      "outline-variant": "#cfc4c5",
-                      "surface-bright": "#fcf9f8",
-                      "on-primary": "#ffffff",
-                      "secondary": "#546348",
-                      "inverse-primary": "#c6c6c6",
-                      "on-tertiary-fixed-variant": "#474747",
-                      "surface-container-high": "#eae7e7",
-                      "surface-container-low": "#f6f3f2",
-                      "secondary-fixed": "#d8e8c6",
-                      "on-secondary-container": "#59674c",
-                      "on-primary-container": "#848484",
-                      "inverse-surface": "#313030",
-                      "primary-container": "#1b1b1b",
-                      "background": "#fcf9f8",
-                      "tertiary-fixed": "#e2e2e2",
-                      "error-container": "#ffdad6",
-                      "on-secondary-fixed": "#131f0a",
-                      "tertiary": "#000000",
-                      "surface-variant": "#e5e2e1",
-                      "outline": "#7e7576",
-                      "on-surface-variant": "#4c4546",
-                      "on-primary-fixed": "#1b1b1b",
-                      "tertiary-fixed-dim": "#c6c6c6",
-                      "on-tertiary-container": "#848484",
-                      "on-secondary": "#ffffff",
-                      "on-surface": "#1c1b1b",
-                      "secondary-fixed-dim": "#bcccab",
-                      "on-tertiary-fixed": "#1b1b1b",
-                      "surface-tint": "#5e5e5e"
+                      "surface": "#D9CDC2",             /* Warm Stone */
+                      "background": "#F7F2EC",          /* Warm Ivory */
+                      "primary": "#1C2E4A",             /* Deep Navy */
+                      "secondary": "#465F7D",           /* Muted Steel Blue */
+                      "accent": "#B89A63",              /* Champagne Gold */
+                      "on-surface": "#1B1B1B",          /* Primary Text */
+                      "on-background": "#1B1B1B",
+                      "on-primary": "#F7F2EC",
+                      "on-secondary": "#F7F2EC",
+                      "outline": "#D8D1CA",             /* Border Color */
+                      "outline-variant": "#D8D1CA",
+                      "error": "#8C3B3B",               /* Burgundy / Wishlist */
+                      "success": "#5B7358",             /* Success */
+                      "surface-container-low": "#D9CDC2",
+                      "surface-container-high": "#C7B9AC",
+                      "surface-container-highest": "#B5A799"
               },
               "borderRadius": {
-                      "DEFAULT": "0.125rem",
-                      "lg": "0.25rem",
-                      "xl": "0.5rem",
-                      "full": "0.75rem"
+                      "DEFAULT": "8px",
+                      "lg": "8px",
+                      "xl": "8px",
+                      "full": "999px"
               },
               "spacing": {
                       "margin-desktop": "80px",
@@ -89,14 +58,14 @@
                       "stack-md": "16px"
               },
               "fontFamily": {
-                      "headline-md": ["Outfit"],
-                      "headline-sm": ["Outfit"],
-                      "display-lg-mobile": ["Outfit"],
-                      "label-md": ["Inter"],
-                      "label-caps": ["Inter"],
-                      "display-lg": ["Outfit"],
-                      "body-md": ["Inter"],
-                      "body-lg": ["Inter"],
+                      "headline-md": ["TAN MON CHERI", "Georgia", "serif"],
+                      "headline-sm": ["DM Sans", "sans-serif"],
+                      "display-lg-mobile": ["TAN MON CHERI", "Georgia", "serif"],
+                      "label-md": ["DM Sans", "sans-serif"],
+                      "label-caps": ["DM Sans", "sans-serif"],
+                      "display-lg": ["TAN MON CHERI", "Georgia", "serif"],
+                      "body-md": ["DM Sans", "sans-serif"],
+                      "body-lg": ["DM Sans", "sans-serif"],
                       "mono": ["JetBrains Mono"]
               },
               "fontSize": {
@@ -115,7 +84,7 @@
     </script>
     <style>
         body {
-            background-color: theme('colors.surface');
+            background-color: theme('colors.background');
             color: theme('colors.on-surface');
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;

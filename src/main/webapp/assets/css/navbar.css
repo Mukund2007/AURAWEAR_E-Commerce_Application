@@ -1,17 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap');
-
-/* ── GLOBAL THEMATIC VARIABLES & OVERRIDES ───────────────────── */
-:root {
-    --bg-color: #fcf9f8;
-    --text-color: #1c1b1b;
-    --text-muted: #4c4546;
-    --border-color: #cfc4c5;
-    --border-color-solid: #1c1b1b;
-    --accent-color: #718063;
-    --card-bg: #f6f3f2;
-    --navbar-bg: #fcf9f8;
-    --input-bg: #ffffff;
-}
+/* ── GLOBAL THEMATIC VARIABLES & OVERRIDES (Inherited from design-tokens.css) ── */
 
 
 
@@ -397,22 +384,22 @@ footer, .footer, .footer-section {
     left: 0;
     width: 8px;
     height: 8px;
-    background-color: #ff0001;
+    background-color: var(--primary-brand);
     border-radius: 50%;
     pointer-events: none;
     z-index: 999999;
     transform: translate(-50%, -50%);
-    transition: width 0.3s cubic-bezier(0.25, 1, 0.5, 1), 
-                height 0.3s cubic-bezier(0.25, 1, 0.5, 1), 
-                background-color 0.3s cubic-bezier(0.25, 1, 0.5, 1),
-                border 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    transition: width var(--transition-normal), 
+                height var(--transition-normal), 
+                background-color var(--transition-normal),
+                border var(--transition-normal);
 }
 
 .custom-cursor-follower.hovered {
     width: 28px;
     height: 28px;
-    background-color: rgba(255, 0, 1, 0.15);
-    border: 1px solid #ff0001;
+    background-color: rgba(28, 46, 74, 0.15);
+    border: 1px solid var(--primary-brand);
 }
 
 /* Gracefully disable the cursor follower on touch-based mobile devices */
@@ -610,7 +597,7 @@ footer, .footer, .footer-section {
     position: fixed;
     width: 20px;
     height: 20px;
-    background: radial-gradient(circle, rgba(255, 0, 1, 0.6) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(28, 46, 74, 0.4) 0%, transparent 70%);
     border-radius: 50%;
     pointer-events: none;
     z-index: 99999;

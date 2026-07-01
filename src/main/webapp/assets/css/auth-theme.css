@@ -5,13 +5,13 @@
    ──────────────────────────────────────────────────────────── */
 
 :root {
-    --bg-color: #fcf9f8;            /* Stitch cream background */
-    --text-color: #1c1b1b;          /* Near-black text */
-    --border-color: #cfc4c5;        /* Thin grey border */
-    --border-color-solid: #1c1b1b;  /* Charcoal border */
-    --accent-color: #718063;        /* Sage accent */
-    --card-bg: #ffffff;
-    --input-bg: #ffffff;
+    --bg-color: var(--bg-color);
+    --text-color: var(--primary-text);
+    --border-color: var(--border-color);
+    --border-color-solid: var(--primary-brand);
+    --accent-color: var(--primary-brand);
+    --card-bg: var(--surface-color);
+    --input-bg: var(--surface-color);
     --section-gap: 80px;
     --section-gap-mobile: 48px;
     --margin-desktop: 80px;
@@ -20,8 +20,8 @@
     --gutter: 32px;
     --stack-md: 20px;
     --stack-lg: 40px;
-    --font-headline: 'Outfit', sans-serif;
-    --font-body: 'Outfit', sans-serif;
+    --font-headline: var(--font-headline);
+    --font-body: var(--font-body);
 }
 
 *, *::before, *::after {

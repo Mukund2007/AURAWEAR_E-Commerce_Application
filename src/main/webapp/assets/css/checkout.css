@@ -4,20 +4,20 @@
    ======================================================= */
 
 :root {
-    --co-bg: #fcf9f8;
-    --co-surface-low: #f6f3f2;
-    --co-surface-container: #f0eded;
-    --co-surface-high: #eae7e7;
-    --co-on-surface: #1c1b1b;
-    --co-on-surface-variant: #4c4546;
-    --co-primary: #000000;
-    --co-on-primary: #ffffff;
-    --co-outline: #7e7576;
-    --co-outline-variant: #cfc4c5;
-    --co-accent: #718063;
-    --co-accent-hover: #5d6b52;
-    --co-error: #ba1a1a;
-    --radius-default: 4px;
+    --co-bg: var(--bg-color);
+    --co-surface-low: var(--surface-color);
+    --co-surface-container: var(--border-color);
+    --co-surface-high: var(--border-color);
+    --co-on-surface: var(--primary-text);
+    --co-on-surface-variant: var(--secondary-text);
+    --co-primary: var(--primary-brand);
+    --co-on-primary: var(--bg-color);
+    --co-outline: var(--border-color);
+    --co-outline-variant: var(--border-color);
+    --co-accent: var(--primary-brand);
+    --co-accent-hover: var(--secondary-brand);
+    --co-error: var(--error-color);
+    --radius-default: var(--radius-card);
 }
 
 body {

@@ -2,7 +2,7 @@
    AURAWEAR — HOME.CSS  (Stitch Redesign Visual Stylesheet)
    ============================================================ */
 
-/* ── DESIGN TOKENS / SPACING VARIABLES ──────────────────────── */
+/* ── DESIGN TOKENS / SPACING VARIABLES (Inherited from design-tokens.css) ── */
 :root {
     --margin-desktop: 80px;
     --margin-mobile: 20px;
@@ -10,14 +10,13 @@
     --gutter: 24px;
     --section-gap: 120px;
     --section-gap-mobile: 64px;
-    --stack-sm: 8px;
-    --stack-md: 16px;
-    --stack-lg: 32px;
-    --border-radius: 0px;
+    --stack-sm: var(--space-xs);
+    --stack-md: var(--space-sm);
+    --stack-lg: var(--space-lg);
+    --border-radius: var(--radius-card);
     
-    /* Default Fonts (inheriting from imports in JSP/Navbar) */
-    --font-headline: 'Outfit', sans-serif;
-    --font-body: 'Inter', sans-serif;
+    --font-headline: var(--font-headline);
+    --font-body: var(--font-body);
 }
 
 /* ── RESET & BASE STYLES ────────────────────────────────────── */
@@ -311,9 +310,9 @@ img {
 }
 
 .badge-low-stock {
-    background-color: #ba1a1a;
-    color: #ffffff;
-    border-color: #ba1a1a;
+    background-color: var(--error-color);
+    color: var(--bg-color);
+    border-color: var(--error-color);
 }
 
 .badge-oos {

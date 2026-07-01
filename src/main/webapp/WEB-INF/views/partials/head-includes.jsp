@@ -26,6 +26,7 @@ gtag('config', 'G-EG16LNFXMK');
 </c:if>
 
 <!-- Global Resource Links -->
+<link rel="stylesheet" href="${ctx}/assets/css/design-tokens.css?v=100">
 <link rel="stylesheet" href="${ctx}/assets/css/navbar.css?v=125">
 <link rel="stylesheet" href="${ctx}/assets/css/login-modal.css?v=120">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
@@ -178,7 +179,7 @@ document.addEventListener("keydown", function(e) {
         document.head.appendChild(link);
     }
     link.type = 'image/svg+xml';
-    link.href = 'data:image/svg+xml;utf8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"%3E%3Ccircle cx="16" cy="16" r="16" fill="%230d0d0d"/%3E%3Ctext x="50%" y="58%" dominant-baseline="middle" text-anchor="middle" font-family="%27Outfit%27, sans-serif" font-weight="900" font-size="13" fill="%23ede4dd" letter-spacing="-0.5"%3EAW%3C/text%3E%3C/svg%3E';
+    link.href = 'data:image/svg+xml;utf8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"%3E%3Ccircle cx="16" cy="16" r="16" fill="%231C2E4A"/%3E%3Ctext x="50%" y="58%" dominant-baseline="middle" text-anchor="middle" font-family="%27DM Sans%27, sans-serif" font-weight="900" font-size="12" fill="%23F7F2EC" letter-spacing="-0.5"%3EAW%3C/text%3E%3C/svg%3E';
 })();
 
 // ── LOGIN MODAL FUNCTIONS ─────────────────────────────────────

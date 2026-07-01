@@ -6,14 +6,14 @@
 
 /* Design Tokens & Variables */
 :root {
-    --orders-bg: #fcf9f8;
-    --orders-text: #1c1b1b;
-    --orders-text-muted: #4c4546;
-    --orders-outline: #cfc4c5;
-    --orders-outline-light: rgba(207, 196, 197, 0.3);
-    --orders-surface-low: #f6f3f2;
-    --orders-surface-lowest: #ffffff;
-    --orders-primary: #000000;
+    --orders-bg: var(--bg-color);
+    --orders-text: var(--primary-text);
+    --orders-text-muted: var(--secondary-text);
+    --orders-outline: var(--border-color);
+    --orders-outline-light: rgba(216, 209, 202, 0.3);
+    --orders-surface-low: var(--surface-color);
+    --orders-surface-lowest: var(--bg-color);
+    --orders-primary: var(--primary-brand);
     
     /* Spacings */
     --orders-container-max: 900px; /* Tighter layout for orders view */

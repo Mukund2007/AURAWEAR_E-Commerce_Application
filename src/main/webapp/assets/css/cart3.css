@@ -5,20 +5,20 @@
 
 /* ---- CSS VARIABLES ---- */
 :root {
-    --cart-bg: #fcf9f8;
-    --cart-surface-low: #f6f3f2;
-    --cart-surface-container: #f0eded;
-    --cart-surface-high: #eae7e7;
-    --cart-on-surface: #1c1b1b;
-    --cart-on-surface-variant: #4c4546;
-    --cart-primary: #000000;
-    --cart-on-primary: #ffffff;
-    --cart-outline: #7e7576;
-    --cart-outline-variant: #cfc4c5;
-    --cart-accent: #718063; /* Muted Sage */
-    --cart-accent-hover: #5d6b52;
-    --cart-error: #ba1a1a;
-    --radius-default: 4px;
+    --cart-bg: var(--bg-color);
+    --cart-surface-low: var(--surface-color);
+    --cart-surface-container: var(--border-color);
+    --cart-surface-high: var(--border-color);
+    --cart-on-surface: var(--primary-text);
+    --cart-on-surface-variant: var(--secondary-text);
+    --cart-primary: var(--primary-brand);
+    --cart-on-primary: var(--bg-color);
+    --cart-outline: var(--border-color);
+    --cart-outline-variant: var(--border-color);
+    --cart-accent: var(--primary-brand);
+    --cart-accent-hover: var(--secondary-brand);
+    --cart-error: var(--error-color);
+    --radius-default: var(--radius-card);
 }
 
 /* ---- BASE ---- */

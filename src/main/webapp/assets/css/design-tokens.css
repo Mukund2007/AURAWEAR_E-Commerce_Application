@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+
+@font-face {
+    font-family: 'TAN MON CHERI';
+    src: local('TAN MON CHERI'), local('TAN-MON-CHERI');
+}
+
+:root {
+    /* Fonts */
+    --font-headline: 'TAN MON CHERI', Georgia, serif;
+    --font-body: 'DM Sans', sans-serif;
+
+    /* Color Palette */
+    --primary-brand: #1C2E4A;       /* Deep Navy */
+    --secondary-brand: #465F7D;     /* Muted Steel Blue */
+    --surface-color: #D9CDC2;       /* Warm Stone */
+    --bg-color: #F7F2EC;            /* Warm Ivory */
+    --primary-text: #1B1B1B;
+    --secondary-text: #66635E;
+    --disabled-text: #A39D97;
+    --border-color: #D8D1CA;
+    --success-color: #5B7358;
+    --error-color: #8C3B3B;         /* Burgundy / Wishlist */
+    --premium-accent: #B89A63;      /* Champagne Gold */
+
+    /* Legacy compatibility mappings to prevent breaking existing classes */
+    --bg-color-solid: var(--primary-brand);
+    --border-color-solid: var(--border-color);
+    --accent-color: var(--primary-brand);
+    --text-color: var(--primary-text);
+    --text-muted: var(--secondary-text);
+    --card-bg: var(--surface-color);
+    --navbar-bg: var(--bg-color);
+    --input-bg: var(--surface-color);
+
+    /* Spacing Grid (8-point grid) */
+    --space-2xs: 4px;
+    --space-xs: 8px;
+    --space-sm: 16px;
+    --space-md: 24px;
+    --space-lg: 32px;
+    --space-xl: 48px;
+    --space-2xl: 64px;
+    --space-3xl: 96px;
+
+    /* Border Radius */
+    --radius-card: 8px;
+    --radius-button: 8px;
+    --radius-input: 8px;
+    --radius-image: 6px;
+    --radius-pill: 999px;
+
+    /* Shadows */
+    --shadow-subtle: 0 2px 12px rgba(28, 46, 74, 0.04);
+    --shadow-hover: 0 8px 24px rgba(28, 46, 74, 0.08);
+
+    /* Transitions */
+    --transition-fast: 150ms cubic-bezier(.22,.61,.36,1);
+    --transition-normal: 250ms cubic-bezier(.22,.61,.36,1);
+    --transition-slow: 350ms cubic-bezier(.22,.61,.36,1);
+}

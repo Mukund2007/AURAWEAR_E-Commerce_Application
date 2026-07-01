@@ -23,6 +23,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="${ctx}/assets/css/design-tokens.css?v=100">
     <link rel="stylesheet" href="${ctx}/assets/css/auth-theme.css">
 
     <script id="tailwind-config">
@@ -31,59 +32,28 @@
         theme: {
           extend: {
             "colors": {
-                    "tertiary": "#000000",
-                    "primary-fixed-dim": "#c6c6c6",
-                    "on-secondary-container": "#59674c",
-                    "on-error-container": "#93000a",
-                    "surface-container-low": "#f6f3f2",
-                    "on-background": "#1c1b1b",
-                    "surface-tint": "#5e5e5e",
-                    "inverse-primary": "#c6c6c6",
-                    "surface-container-highest": "#e5e2e1",
-                    "primary": "#000000",
-                    "primary-container": "#1b1b1b",
-                    "inverse-surface": "#313030",
-                    "tertiary-fixed": "#e2e2e2",
-                    "surface-container-high": "#eae7e7",
-                    "on-secondary": "#ffffff",
-                    "surface-dim": "#dcd9d9",
-                    "on-primary": "#ffffff",
-                    "on-primary-fixed-variant": "#474747",
-                    "on-error": "#ffffff",
-                    "secondary-fixed-dim": "#bcccab",
-                    "secondary-container": "#d5e5c3",
-                    "outline": "#7e7576",
-                    "on-tertiary-fixed": "#1b1b1b",
-                    "on-secondary-fixed-variant": "#3d4b32",
-                    "inverse-on-surface": "#f3f0ef",
-                    "background": "#fcf9f8",
-                    "surface-variant": "#e5e2e1",
-                    "on-tertiary": "#ffffff",
-                    "outline-variant": "#cfc4c5",
-                    "on-surface": "#1c1b1b",
-                    "on-primary-fixed": "#1b1b1b",
-                    "on-tertiary-fixed-variant": "#474747",
-                    "surface-container-lowest": "#ffffff",
-                    "surface-bright": "#fcf9f8",
-                    "surface": "#fcf9f8",
-                    "primary-fixed": "#e2e2e2",
-                    "on-secondary-fixed": "#131f0a",
-                    "on-primary-container": "#848484",
-                    "error-container": "#ffdad6",
-                    "tertiary-container": "#1b1b1b",
-                    "surface-container": "#f0eded",
-                    "secondary": "#546348",
-                    "tertiary-fixed-dim": "#c6c6c6",
-                    "on-tertiary-container": "#848484",
-                    "on-surface-variant": "#4c4546",
-                    "error": "#ba1a1a",
-                    "secondary-fixed": "#d8e8c6"
+                    "surface": "#D9CDC2",             /* Warm Stone */
+                    "background": "#F7F2EC",          /* Warm Ivory */
+                    "primary": "#1C2E4A",             /* Deep Navy */
+                    "secondary": "#465F7D",           /* Muted Steel Blue */
+                    "accent": "#B89A63",              /* Champagne Gold */
+                    "on-surface": "#1B1B1B",          /* Primary Text */
+                    "on-background": "#1B1B1B",
+                    "on-primary": "#F7F2EC",
+                    "on-secondary": "#F7F2EC",
+                    "outline": "#D8D1CA",             /* Border Color */
+                    "outline-variant": "#D8D1CA",
+                    "error": "#8C3B3B",               /* Burgundy / Wishlist */
+                    "success": "#5B7358",             /* Success */
+                    "surface-container-low": "#D9CDC2",
+                    "surface-container-high": "#C7B9AC",
+                    "surface-container-highest": "#B5A799"
             },
             "borderRadius": {
-                    "DEFAULT": "0.125rem",
-                    "lg": "0.25rem",
-                    "xl": "0.5rem",
-                    "full": "0.75rem"
+                    "DEFAULT": "8px",
+                    "lg": "8px",
+                    "xl": "8px",
+                    "full": "999px"
             },
             "spacing": {
                     "margin-desktop": "80px",
@@ -97,14 +67,14 @@
                     "stack-sm": "8px"
             },
             "fontFamily": {
-                    "label-md": ["Inter"],
-                    "display-lg": ["Outfit"],
-                    "body-md": ["Inter"],
-                    "headline-md": ["Outfit"],
-                    "body-lg": ["Inter"],
-                    "display-lg-mobile": ["Outfit"],
-                    "headline-sm": ["Outfit"],
-                    "label-caps": ["Inter"]
+                    "label-md": ["DM Sans", "sans-serif"],
+                    "display-lg": ["TAN MON CHERI", "Georgia", "serif"],
+                    "body-md": ["DM Sans", "sans-serif"],
+                    "headline-md": ["TAN MON CHERI", "Georgia", "serif"],
+                    "body-lg": ["DM Sans", "sans-serif"],
+                    "display-lg-mobile": ["TAN MON CHERI", "Georgia", "serif"],
+                    "headline-sm": ["DM Sans", "sans-serif"],
+                    "label-caps": ["DM Sans", "sans-serif"]
             },
             "fontSize": {
                     "label-md": ["14px", {"lineHeight": "1.4", "fontWeight": "500"}],
@@ -127,9 +97,9 @@
             vertical-align: middle;
         }
         .interest-chip:checked + label {
-            background-color: #000000;
-            color: #ffffff;
-            border-color: #000000;
+            background-color: var(--primary-brand);
+            color: var(--bg-color);
+            border-color: var(--primary-brand);
         }
         input:focus {
             outline: none !important;
