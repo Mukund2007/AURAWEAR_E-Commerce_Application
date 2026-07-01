@@ -185,7 +185,7 @@
                 <!-- Product 1 -->
                 <div class="product-card" onclick="window.location.href='${ctx}/product?id=6'" style="cursor:pointer; display:flex; flex-direction:column; gap:16px;">
                     <div class="product-image-wrapper" style="position:relative; width:100%; aspect-ratio:4/5; background:var(--cart-surface-low); overflow:hidden;">
-                        <img src="${ctx}/assets/images/track1.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'" alt="Classic Tracksuit" style="width:100%; height:100%; object-fit:cover; transition:transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);">
+                        <img src="${ctx}/assets/images/track-jacket.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'" alt="Classic Tracksuit" style="width:100%; height:100%; object-fit:cover; transition:transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);">
                     </div>
                     <div class="product-info" style="display:flex; flex-direction:column; gap:4px;">
                         <h3 style="font-family: 'Outfit', sans-serif; font-size: 16px; font-weight: 500; color: var(--cart-primary);">Classic Tracksuit</h3>
@@ -195,7 +195,7 @@
                 <!-- Product 2 -->
                 <div class="product-card" onclick="window.location.href='${ctx}/product?id=1'" style="cursor:pointer; display:flex; flex-direction:column; gap:16px;">
                     <div class="product-image-wrapper" style="position:relative; width:100%; aspect-ratio:4/5; background:var(--cart-surface-low); overflow:hidden;">
-                        <img src="${ctx}/assets/images/sneak1.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'" alt="Classic Sneaker White" style="width:100%; height:100%; object-fit:cover; transition:transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);">
+                        <img src="${ctx}/assets/images/sneak-alpha.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'" alt="Classic Sneaker White" style="width:100%; height:100%; object-fit:cover; transition:transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);">
                     </div>
                     <div class="product-info" style="display:flex; flex-direction:column; gap:4px;">
                         <h3 style="font-family: 'Outfit', sans-serif; font-size: 16px; font-weight: 500; color: var(--cart-primary);">Classic Sneaker White</h3>
@@ -205,7 +205,7 @@
                 <!-- Product 3 -->
                 <div class="product-card" onclick="window.location.href='${ctx}/product?id=3'" style="cursor:pointer; display:flex; flex-direction:column; gap:16px;">
                     <div class="product-image-wrapper" style="position:relative; width:100%; aspect-ratio:4/5; background:var(--cart-surface-low); overflow:hidden;">
-                        <img src="${ctx}/assets/images/cap1.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'" alt="Leather Cap" style="width:100%; height:100%; object-fit:cover; transition:transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);">
+                        <img src="${ctx}/assets/images/beanie-v2.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'" alt="Leather Cap" style="width:100%; height:100%; object-fit:cover; transition:transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);">
                     </div>
                     <div class="product-info" style="display:flex; flex-direction:column; gap:4px;">
                         <h3 style="font-family: 'Outfit', sans-serif; font-size: 16px; font-weight: 500; color: var(--cart-primary);">Leather Cap</h3>

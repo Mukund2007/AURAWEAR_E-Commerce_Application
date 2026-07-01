@@ -37,10 +37,10 @@
             <div class="col-col-half reveal">
                 <div class="col-images-grid-2">
                     <div class="col-img-wrapper">
-                        <img src="${ctx}/assets/images/over1.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'" alt="The Essentials — Linen Overshirt">
+                        <img src="${ctx}/assets/images/linen-overshirt.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'" alt="The Essentials — Linen Overshirt">
                     </div>
                     <div class="col-img-wrapper col-img-offset">
-                        <img src="${ctx}/assets/images/ls1.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'" alt="The Essentials — Ribbed Long Sleeve">
+                        <img src="${ctx}/assets/images/base-mock.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'" alt="The Essentials — Ribbed Long Sleeve">
                     </div>
                 </div>
             </div>
@@ -79,14 +79,14 @@
             <div class="col-col-half reveal">
                 <div class="col-images-composite">
                     <div class="col-img-composite-main">
-                        <img src="${ctx}/assets/images/wind1.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'" alt="Modular Layering — Classic Windbreaker">
+                        <img src="${ctx}/assets/images/tech-windbreaker.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'" alt="Modular Layering — Classic Windbreaker">
                     </div>
                     <div class="col-img-composite-stack">
                         <div class="col-img-composite-sub">
-                            <img src="${ctx}/assets/images/vest2.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'" alt="Modular Layering — Quilted Vest">
+                            <img src="${ctx}/assets/images/utility-vest.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'" alt="Modular Layering — Quilted Vest">
                         </div>
                         <div class="col-img-composite-sub">
-                            <img src="${ctx}/assets/images/vest1.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'" alt="Modular Layering — Puffer Vest">
+                            <img src="${ctx}/assets/images/feature-drop-new.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'" alt="Modular Layering — Puffer Vest">
                         </div>
                     </div>
                 </div>
@@ -100,10 +100,10 @@
             <div class="col-col-half reveal">
                 <div class="col-images-relative">
                     <div class="col-img-square">
-                        <img src="${ctx}/assets/images/track1.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'" alt="Soft Sculptures — Classic Tracksuit">
+                        <img src="${ctx}/assets/images/track-jacket.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'" alt="Soft Sculptures — Classic Tracksuit">
                     </div>
                     <div class="col-img-overlapping">
-                        <img src="${ctx}/assets/images/coord2.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'" alt="Soft Sculptures — Knit Co-ord Set">
+                        <img src="${ctx}/assets/images/knit-coord.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'" alt="Soft Sculptures — Knit Co-ord Set">
                     </div>
                 </div>
             </div>
