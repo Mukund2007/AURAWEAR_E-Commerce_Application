@@ -23,7 +23,7 @@
     <style>
         :root {
             --bg-color: #F7F2EC;
-            --text-color: #1B1B1B;
+            --text-color: #000000;
             --border-color: #D8D1CA;
             --border-color-solid: #1C2E4A;
             --accent-color: #1C2E4A;

@@ -27,8 +27,8 @@
                       "primary": "#1C2E4A",             /* Deep Navy */
                       "secondary": "#465F7D",           /* Muted Steel Blue */
                       "accent": "#B89A63",              /* Champagne Gold */
-                      "on-surface": "#1B1B1B",          /* Primary Text */
-                      "on-background": "#1B1B1B",
+                      "on-surface": "#000000",          /* Primary Text */
+                      "on-background": "#000000",
                       "on-primary": "#F7F2EC",
                       "on-secondary": "#F7F2EC",
                       "outline": "#D8D1CA",             /* Border Color */
