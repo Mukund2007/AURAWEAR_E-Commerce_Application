@@ -10,7 +10,7 @@
 }
 
 body {
-    font-family: 'Outfit', 'DM Sans', Arial, sans-serif;
+    font-family: var(--font-body);
     background: var(--bg-color);
     color: var(--text-color);
     -webkit-font-smoothing: antialiased;

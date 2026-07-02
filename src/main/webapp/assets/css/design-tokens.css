@@ -2,7 +2,10 @@
 
 @font-face {
     font-family: 'TAN MON CHERI';
-    src: local('TAN MON CHERI'), local('TAN-MON-CHERI');
+    src: url('../fonts/TAN-MON%20CHERI-Regular.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
 }
 
 :root {
@@ -60,4 +63,11 @@
     --transition-fast: 150ms cubic-bezier(.22,.61,.36,1);
     --transition-normal: 250ms cubic-bezier(.22,.61,.36,1);
     --transition-slow: 350ms cubic-bezier(.22,.61,.36,1);
+}
+
+html, body {
+    font-optical-sizing: auto;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }

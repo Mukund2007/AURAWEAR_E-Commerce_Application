@@ -24,7 +24,7 @@
 .wishlist-page {
     min-height: 100vh;
     background: var(--wl-bg);
-    font-family: 'Outfit', 'Inter', sans-serif;
+    font-family: var(--font-body);
     color: var(--wl-on-surface);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -44,7 +44,7 @@
 }
 
 .wishlist-header h1 {
-    font-family: 'Outfit', sans-serif;
+    font-family: var(--font-headline);
     font-size: clamp(36px, 5vw, 64px);
     font-weight: 500;
     line-height: 1.1;
@@ -54,7 +54,7 @@
 }
 
 .wishlist-header .wl-subtitle {
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-body);
     font-size: 16px;
     line-height: 1.6;
     color: var(--wl-on-surface-variant);
@@ -162,7 +162,7 @@
 }
 
 .wl-name {
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-body);
     font-size: 16px;
     line-height: 1.6;
     font-weight: 500;
@@ -174,7 +174,7 @@
 }
 
 .wl-category {
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-body);
     font-size: 14px;
     line-height: 1.4;
     font-weight: 500;
@@ -183,7 +183,7 @@
 }
 
 .wl-price {
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-body);
     font-size: 14px;
     line-height: 1.4;
     font-weight: 700;
@@ -199,7 +199,7 @@
     color: var(--wl-on-primary);
     border: none;
     border-radius: 2px;
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-body);
     font-size: 14px;
     font-weight: 500;
     line-height: 1.4;
@@ -248,7 +248,7 @@
 }
 
 .wl-empty-slot p {
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-body);
     font-size: 14px;
     line-height: 1.4;
     font-weight: 500;
@@ -258,7 +258,7 @@
 
 .wl-empty-slot a {
     margin-top: 16px;
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-body);
     font-size: 14px;
     font-weight: 500;
     color: var(--wl-primary);
@@ -296,7 +296,7 @@
 }
 
 .wishlist-empty h3 {
-    font-family: 'Outfit', sans-serif;
+    font-family: var(--font-body);
     font-size: 32px;
     font-weight: 400;
     line-height: 1.3;
@@ -306,7 +306,7 @@
 }
 
 .wishlist-empty p {
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-body);
     font-size: 16px;
     line-height: 1.6;
     color: var(--wl-on-surface-variant);
@@ -321,7 +321,7 @@
     border: none;
     border-radius: 2px;
     text-decoration: none;
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-body);
     font-size: 14px;
     font-weight: 500;
     transition: opacity 0.2s ease, transform 0.15s ease;
@@ -344,7 +344,7 @@
 }
 
 .wl-recommendations h2 {
-    font-family: 'Outfit', sans-serif;
+    font-family: var(--font-body);
     font-size: 32px;
     font-weight: 400;
     line-height: 1.3;
@@ -367,7 +367,7 @@
 }
 
 .wl-rec-chip {
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-body);
     font-size: 12px;
     font-weight: 600;
     line-height: 1;
@@ -393,7 +393,7 @@
 }
 
 .wishlist-strip span {
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-body);
     font-size: 14px;
     font-weight: 500;
     color: var(--wl-on-surface-variant);
@@ -403,7 +403,7 @@
 }
 
 .wishlist-strip a {
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-body);
     font-size: 14px;
     font-weight: 500;
     color: var(--wl-primary);
@@ -441,7 +441,7 @@
 }
 
 .wl-footer-brand .brand-name {
-    font-family: 'Outfit', sans-serif;
+    font-family: var(--font-body);
     font-size: 24px;
     font-weight: 400;
     line-height: 1.4;
@@ -450,7 +450,7 @@
 }
 
 .wl-footer-brand .brand-copy {
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-body);
     font-size: 14px;
     font-weight: 500;
     color: var(--wl-on-surface-variant);
@@ -463,7 +463,7 @@
 }
 
 .wl-footer-links a {
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-body);
     font-size: 14px;
     font-weight: 500;
     color: var(--wl-on-surface-variant);
@@ -485,7 +485,7 @@
     color: var(--wl-bg);
     padding: 14px 28px;
     border-radius: 2px;
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-body);
     font-size: 14px;
     font-weight: 500;
     opacity: 0;

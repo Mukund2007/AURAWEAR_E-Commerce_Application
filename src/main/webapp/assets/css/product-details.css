@@ -29,7 +29,7 @@
 }
 
 body {
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-body);
     background-color: var(--pd-bg);
     color: var(--pd-on-surface);
     -webkit-font-smoothing: antialiased;
@@ -50,7 +50,7 @@ a {
 
 /* ---- BREADCRUMB ---- */
 .breadcrumb {
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-body);
     font-size: 12px;
     font-weight: 500;
     color: var(--pd-on-surface-variant);
@@ -123,7 +123,7 @@ a {
 }
 
 .product-category {
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-body);
     font-size: 12px;
     font-weight: 600;
     letter-spacing: 0.20em;
@@ -132,7 +132,7 @@ a {
 }
 
 .info-section h1 {
-    font-family: 'Outfit', sans-serif;
+    font-family: var(--font-body);
     font-size: 48px;
     font-weight: 500;
     letter-spacing: -0.02em;
@@ -173,14 +173,14 @@ a {
 }
 
 .price {
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-body);
     font-size: 24px;
     font-weight: 600;
     color: var(--pd-primary);
 }
 
 .original-price {
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-body);
     font-size: 18px;
     color: var(--pd-on-surface-variant);
     text-decoration: line-through;
@@ -211,7 +211,7 @@ a {
 }
 
 .size-label {
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-body);
     font-size: 12px;
     font-weight: 600;
     letter-spacing: 0.08em;
@@ -219,7 +219,7 @@ a {
 }
 
 .size-guide-link {
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-body);
     font-size: 12px;
     font-weight: 500;
     color: var(--pd-on-surface-variant);
@@ -246,7 +246,7 @@ a {
     border: 1px solid var(--pd-outline-variant);
     border-radius: var(--radius-default);
     background: transparent;
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-body);
     font-size: 14px;
     font-weight: 500;
     color: var(--pd-on-surface-variant);
@@ -277,7 +277,7 @@ a {
     display: flex;
     align-items: center;
     gap: 8px;
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-body);
     font-size: 12px;
     font-weight: 600;
     letter-spacing: 0.08em;
@@ -312,7 +312,7 @@ a {
 
 /* ---- ACTION BUTTONS & QTY ---- */
 .qty-label-row {
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-body);
     font-size: 12px;
     font-weight: 600;
     letter-spacing: 0.08em;
@@ -379,7 +379,7 @@ a {
     color: var(--pd-on-primary);
     border: none;
     border-radius: var(--radius-default);
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-body);
     font-size: 14px;
     font-weight: 500;
     text-transform: uppercase;
@@ -398,7 +398,7 @@ a {
     border: 1px solid var(--pd-outline-variant);
     border-radius: var(--radius-default);
     background: transparent;
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-body);
     font-size: 14px;
     font-weight: 500;
     color: var(--pd-primary);
@@ -432,7 +432,7 @@ a {
     color: var(--pd-on-surface-variant);
     border: 1px solid var(--pd-outline-variant);
     border-radius: var(--radius-default);
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-body);
     font-size: 14px;
     font-weight: 600;
     text-transform: uppercase;
@@ -503,7 +503,7 @@ a {
 }
 
 .specs-title {
-    font-family: 'Outfit', sans-serif;
+    font-family: var(--font-body);
     font-size: 16px;
     font-weight: 500;
     letter-spacing: 0.15em;
@@ -548,7 +548,7 @@ a {
 }
 
 .reviews-title {
-    font-family: 'Outfit', sans-serif;
+    font-family: var(--font-body);
     font-size: 32px;
     font-weight: 500;
     letter-spacing: -0.01em;
@@ -590,7 +590,7 @@ a {
 }
 
 .review-user {
-    font-family: 'Outfit', sans-serif;
+    font-family: var(--font-body);
     font-size: 16px;
     font-weight: 500;
     color: var(--pd-primary);
@@ -633,7 +633,7 @@ a {
 }
 
 .review-form-title {
-    font-family: 'Outfit', sans-serif;
+    font-family: var(--font-headline);
     font-size: 24px;
     font-weight: 500;
     margin-bottom: 24px;
@@ -648,7 +648,7 @@ a {
 }
 
 .review-form-group label {
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-body);
     font-size: 13px;
     font-weight: 600;
     letter-spacing: 0.05em;
@@ -707,7 +707,7 @@ a {
     color: var(--pd-on-primary);
     border: none;
     border-radius: var(--radius-default);
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-body);
     font-size: 14px;
     font-weight: 500;
     text-transform: uppercase;
@@ -738,7 +738,7 @@ a {
 }
 
 .related-title {
-    font-family: 'Outfit', sans-serif;
+    font-family: var(--font-headline);
     font-size: 32px;
     font-weight: 500;
     letter-spacing: -0.01em;
@@ -773,7 +773,7 @@ a {
     left: 12px;
     background-color: var(--pd-primary);
     color: var(--pd-on-primary);
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-body);
     font-size: 10px;
     font-weight: 700;
     padding: 4px 8px;
@@ -801,7 +801,7 @@ a {
 }
 
 .related-category {
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-body);
     font-size: 11px;
     font-weight: 500;
     color: var(--pd-on-surface-variant);
@@ -809,7 +809,7 @@ a {
 }
 
 .related-name {
-    font-family: 'Outfit', sans-serif;
+    font-family: var(--font-body);
     font-size: 16px;
     font-weight: 500;
     color: var(--pd-primary);
@@ -829,14 +829,14 @@ a {
 }
 
 .related-price {
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-body);
     font-size: 14px;
     font-weight: 600;
     color: var(--pd-primary);
 }
 
 .related-original-price {
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-body);
     font-size: 12px;
     color: var(--pd-on-surface-variant);
     text-decoration: line-through;

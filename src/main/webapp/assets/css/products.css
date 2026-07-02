@@ -12,7 +12,7 @@
 body.products-page {
     background-color: var(--bg-color);
     color: var(--text-color);
-    font-family: var(--font-body, 'Inter', sans-serif);
+    font-family: var(--font-body);
     -webkit-font-smoothing: antialiased;
 }
 
@@ -63,7 +63,7 @@ body.products-page {
 }
 
 .products-header .page-title {
-    font-family: var(--font-headline, 'Outfit', sans-serif);
+    font-family: var(--font-headline);
     font-size: clamp(36px, 5vw, 64px);
     font-weight: 500;
     line-height: 1.1;
@@ -126,7 +126,7 @@ body.products-page {
     background: none;
     border: none;
     outline: none;
-    font-family: var(--font-body, 'Inter', sans-serif);
+    font-family: var(--font-body);
     font-size: 12px;
     font-weight: 600;
     text-transform: uppercase;
@@ -536,7 +536,7 @@ body.products-page {
     color: var(--bg-color);
     border: none;
     padding: 12px;
-    font-family: var(--font-body, 'Inter', sans-serif);
+    font-family: var(--font-body);
     font-size: 11px;
     font-weight: 600;
     letter-spacing: 0.08em;
