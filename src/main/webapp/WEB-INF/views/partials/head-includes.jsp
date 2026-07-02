@@ -182,7 +182,7 @@ document.addEventListener("keydown", function(e) {
         document.head.appendChild(link);
     }
     link.type = 'image/svg+xml';
-    link.href = 'data:image/svg+xml;utf8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"%3E%3Ccircle cx="16" cy="16" r="16" fill="%231C2E4A"/%3E%3Ctext x="50%" y="58%" dominant-baseline="middle" text-anchor="middle" font-family="%27DM Sans%27, sans-serif" font-weight="900" font-size="12" fill="%23F7F2EC" letter-spacing="-0.5"%3EAW%3C/text%3E%3C/svg%3E';
+    link.href = 'data:image/svg+xml;utf8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"%3E%3Ccircle cx="16" cy="16" r="16" fill="%23000000"/%3E%3Ctext x="50%" y="58%" dominant-baseline="middle" text-anchor="middle" font-family="%27DM Sans%27, sans-serif" font-weight="900" font-size="12" fill="%23F7F2EC" letter-spacing="-0.5"%3EAW%3C/text%3E%3C/svg%3E';
 })();
 
 // ── LOGIN MODAL FUNCTIONS ─────────────────────────────────────

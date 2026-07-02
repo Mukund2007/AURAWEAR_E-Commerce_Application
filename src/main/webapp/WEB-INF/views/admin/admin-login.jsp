@@ -24,8 +24,8 @@
             --bg-color: #F7F2EC;
             --text-color: #000000;
             --border-color: #D8D1CA;
-            --border-color-solid: #1C2E4A;
-            --accent-color: #1C2E4A;
+            --border-color-solid: #000000;
+            --accent-color: #000000;
             --input-bg: #D9CDC2;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }

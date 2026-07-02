@@ -33,7 +33,7 @@
             "colors": {
                     "surface": "#D9CDC2",             /* Warm Stone */
                     "background": "#F7F2EC",          /* Warm Ivory */
-                    "primary": "#1C2E4A",             /* Deep Navy */
+                    "primary": "#000000",             /* Deep Navy */
                     "secondary": "#465F7D",           /* Muted Steel Blue */
                     "accent": "#B89A63",              /* Champagne Gold */
                     "on-surface": "#000000",          /* Primary Text */

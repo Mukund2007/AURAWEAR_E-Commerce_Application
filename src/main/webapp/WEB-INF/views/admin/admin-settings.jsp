@@ -24,8 +24,8 @@
             --bg-color: #F7F2EC;
             --text-color: #000000;
             --border-color: #D8D1CA;
-            --border-color-solid: #1C2E4A;
-            --accent-color: #1C2E4A;
+            --border-color-solid: #000000;
+            --accent-color: #000000;
             --card-bg: #D9CDC2;
             --input-bg: #D9CDC2;
         }
@@ -43,7 +43,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            background-color: #1C2E4A;
+            background-color: #000000;
         }
         .nav-brand {
             font-size: 20px;
