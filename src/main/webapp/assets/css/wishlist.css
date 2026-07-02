@@ -1,6 +1,6 @@
 /* ============================================
    AURAWEAR — WISHLIST.CSS  v3  (Stitch Design)
-   Outfit + Inter typography, sharp corners,
+   DM Sans + TAN MON CHERI typography, sharp corners,
    minimal luxury aesthetic
    ============================================ */
 
@@ -83,7 +83,7 @@
     position: relative;
     opacity: 1;
     transform: translateY(0);
-    transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+    transition: opacity var(--transition-normal), transform var(--transition-normal);
 }
 
 .wishlist-card.removing {
@@ -105,7 +105,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: transform var(--transition-luxe);
 }
 
 .wishlist-card:hover .wl-image-wrap img {
@@ -138,7 +138,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background 0.2s ease, transform 0.2s ease;
+    transition: background var(--transition-fast), transform var(--transition-fast);
     z-index: 2;
 }
 
@@ -208,7 +208,7 @@
     align-items: center;
     justify-content: center;
     gap: 6px;
-    transition: opacity 0.2s ease, transform 0.15s ease, background 0.3s ease;
+    transition: opacity var(--transition-fast), transform var(--transition-fast), background var(--transition-normal);
 }
 
 .wl-add-btn:hover {
@@ -263,7 +263,7 @@
     font-weight: 500;
     color: var(--wl-primary);
     text-decoration: underline;
-    transition: opacity 0.2s;
+    transition: opacity var(--transition-fast);
 }
 
 .wl-empty-slot a:hover {
@@ -324,7 +324,7 @@
     font-family: var(--font-body);
     font-size: 14px;
     font-weight: 500;
-    transition: opacity 0.2s ease, transform 0.15s ease;
+    transition: opacity var(--transition-fast), transform var(--transition-fast);
 }
 
 .wishlist-browse-btn:hover {
@@ -359,7 +359,7 @@
     justify-content: center;
     gap: 32px;
     opacity: 0.6;
-    transition: opacity 0.3s;
+    transition: opacity var(--transition-normal);
 }
 
 .wl-rec-chips:hover {
@@ -375,7 +375,7 @@
     color: var(--wl-on-surface);
     text-decoration: none;
     cursor: pointer;
-    transition: color 0.2s;
+    transition: color var(--transition-fast);
 }
 
 .wl-rec-chip:hover {
@@ -411,7 +411,7 @@
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    transition: opacity 0.2s;
+    transition: opacity var(--transition-fast);
 }
 
 .wishlist-strip a:hover {
@@ -468,7 +468,7 @@
     font-weight: 500;
     color: var(--wl-on-surface-variant);
     text-decoration: underline;
-    transition: color 0.2s;
+    transition: color var(--transition-fast);
 }
 
 .wl-footer-links a:hover {
@@ -490,7 +490,7 @@
     font-weight: 500;
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.3s ease, transform 0.3s ease;
+    transition: opacity var(--transition-normal), transform var(--transition-normal);
     z-index: 9999;
     white-space: nowrap;
 }

@@ -1,16 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
 
-@font-face {
-    font-family: 'TAN MON CHERI';
-    src: url('../fonts/TAN-MON%20CHERI-Regular.otf') format('opentype');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-}
-
 :root {
     /* Fonts */
-    --font-headline: 'TAN MON CHERI', Georgia, serif;
+    --font-headline: 'DM Sans', sans-serif;
     --font-body: 'DM Sans', sans-serif;
 
     /* Color Palette */
@@ -49,6 +41,7 @@
     --space-3xl: 96px;
 
     /* Border Radius */
+    --radius-default: 8px;
     --radius-card: 8px;
     --radius-button: 8px;
     --radius-input: 8px;
@@ -59,15 +52,56 @@
     --shadow-subtle: 0 2px 12px rgba(28, 46, 74, 0.04);
     --shadow-hover: 0 8px 24px rgba(28, 46, 74, 0.08);
 
+    /* Layout */
+    --container-max: 1440px;
+    --margin-desktop: 80px;
+    --margin-mobile: 20px;
+    --gutter: 24px;
+    --section-gap: 120px;
+    --section-gap-mobile: 64px;
+
+    /* On-dark (text on image/primary backgrounds) */
+    --color-on-dark: #ffffff;
+
+    /* Overlays */
+    --overlay-light: rgba(0, 0, 0, 0.25);
+    --overlay-medium: rgba(0, 0, 0, 0.4);
+
     /* Transitions */
     --transition-fast: 150ms cubic-bezier(.22,.61,.36,1);
     --transition-normal: 250ms cubic-bezier(.22,.61,.36,1);
     --transition-slow: 350ms cubic-bezier(.22,.61,.36,1);
+    --transition-luxe: 0.8s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 html, body {
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: 0.01em;
     font-optical-sizing: auto;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--primary-text);
+}
+
+h1, h2, h3, h4, h5, h6, .site-title, .navbar-brand, .product-title, .heading {
+    font-family: var(--font-headline);
+    font-weight: 600;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+}
+
+button, .btn, input, select, textarea, .small, .text-sm {
+    font-family: var(--font-body);
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
 }

@@ -15,7 +15,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="${ctx}/assets/css/home.css?v=118">
     <link rel="stylesheet" href="${ctx}/assets/css/checkout.css?v=4">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 </head>
 <body>
@@ -31,7 +30,7 @@
                 <h1 class="checkout-title">Checkout</h1>
 
                 <c:if test="${not empty errorMsg}">
-                    <div class="error-banner" style="background: rgba(186, 26, 26, 0.1); border: 1px solid var(--co-error); color: var(--co-error); padding: 16px; font-family: 'Inter', sans-serif; font-weight: 600; text-transform: uppercase; font-size: 12px; margin-bottom: 24px; letter-spacing: 0.5px; display: inline-flex; align-items: center; gap: 8px;">
+                    <div class="error-banner" style="background: rgba(186, 26, 26, 0.1); border: 1px solid var(--co-error); color: var(--co-error); padding: 16px; font-family: var(--font-body); font-weight: 600; text-transform: uppercase; font-size: 12px; margin-bottom: 24px; letter-spacing: 0.5px; display: inline-flex; align-items: center; gap: 8px;">
                         <span class="material-symbols-outlined" style="font-size: 18px;">warning</span> <c:out value="${errorMsg}" />
                     </div>
                 </c:if>
@@ -42,7 +41,7 @@
                         <span class="material-symbols-outlined">local_shipping</span> Shipping Address
                     </h3>
                     
-                    <p style="font-size: 13px; opacity: 0.7; margin-bottom: 20px; line-height: 1.5; text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px; font-family: 'Inter', sans-serif;">
+                    <p style="font-size: 13px; opacity: 0.7; margin-bottom: 20px; line-height: 1.5; text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px; font-family: var(--font-body);">
                         Where should we deliver your premium selection?
                     </p>
 
@@ -83,7 +82,7 @@
                         </div>
                     </div>
 
-                    <div id="shippingError" style="display: none; background: rgba(186, 26, 26, 0.1); border: 1px solid var(--co-error); color: var(--co-error); padding: 12px; font-family: 'Inter', sans-serif; font-weight: 600; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px; margin-top: 12px; display: inline-flex; align-items: center; gap: 6px;">
+                    <div id="shippingError" style="display: none; background: rgba(186, 26, 26, 0.1); border: 1px solid var(--co-error); color: var(--co-error); padding: 12px; font-family: var(--font-body); font-weight: 600; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px; margin-top: 12px; display: inline-flex; align-items: center; gap: 6px;">
                         <span class="material-symbols-outlined" style="font-size: 16px;">warning</span> Please complete all shipping address fields.
                     </div>
                 </div>
@@ -94,7 +93,7 @@
                         <span class="material-symbols-outlined">payments</span> Payment Method
                     </h3>
                     
-                    <p style="font-size: 13px; opacity: 0.7; margin-bottom: 20px; line-height: 1.5; text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px; font-family: 'Inter', sans-serif;">
+                    <p style="font-size: 13px; opacity: 0.7; margin-bottom: 20px; line-height: 1.5; text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px; font-family: var(--font-body);">
                         Select how you would like to complete your premium acquisition.
                     </p>
 
@@ -112,7 +111,7 @@
 
                     <!-- PREFILLED BILLING SUMMARY -->
                     <div class="customer-info-box" style="background: var(--co-surface-container); border: 1px solid var(--co-outline-variant); padding: 20px; border-radius: var(--radius-default); margin-bottom: 24px; display: flex; flex-direction: column; gap: 12px;">
-                        <h4 style="font-family: 'Outfit', sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; border-bottom: 1px dashed var(--co-outline-variant); padding-bottom: 8px; color: var(--co-primary); margin: 0;">Customer Information</h4>
+                        <h4 style="font-family: var(--font-body); font-size: 12px; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; border-bottom: 1px dashed var(--co-outline-variant); padding-bottom: 8px; color: var(--co-primary); margin: 0;">Customer Information</h4>
                         <div class="customer-info-row" style="display: flex; justify-content: space-between; font-size: 13px; font-weight: 500; text-transform: uppercase;">
                             <span style="color: var(--co-on-surface-variant); opacity: 0.7;">Name</span>
                             <span style="color: var(--co-primary); font-weight: 600;"><c:out value="${user.name}" /></span>

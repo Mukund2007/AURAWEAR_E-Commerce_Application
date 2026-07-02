@@ -1,6 +1,6 @@
 /* =======================================================
    AURAWEAR — CHECKOUT.CSS
-   Outfit + Inter typography, quiet luxury minimal checkout
+   DM Sans + TAN MON CHERI typography, quiet luxury minimal checkout
    ======================================================= */
 
 :root {
@@ -17,7 +17,6 @@
     --co-accent: var(--primary-brand);
     --co-accent-hover: var(--secondary-brand);
     --co-error: var(--error-color);
-    --radius-default: var(--radius-card);
 }
 
 body {
@@ -116,7 +115,7 @@ body {
     color: var(--co-primary);
     background-color: transparent;
     outline: none;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
     width: 100%;
 }
 
@@ -151,7 +150,7 @@ body {
     font-weight: 500;
     color: var(--co-on-surface-variant);
     background-color: transparent;
-    transition: all 0.2s ease;
+    transition: all var(--transition-fast);
     text-transform: uppercase;
     user-select: none;
 }
@@ -185,7 +184,7 @@ body {
     text-transform: uppercase;
     letter-spacing: 0.1em;
     cursor: pointer;
-    transition: opacity 0.2s ease;
+    transition: opacity var(--transition-fast);
 }
 
 .place-order-btn:hover {

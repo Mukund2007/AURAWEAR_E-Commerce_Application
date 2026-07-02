@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
-<html class="theme-noir">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,24 +18,22 @@
         gtag('js', new Date());
         gtag('config', 'G-EG16LNFXMK');
     </script>
-
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="${ctx}/assets/css/admin-responsive.css">
 
     <style>
         :root {
-            --bg-color: #0d0d0d;
-            --text-color: #ede4dd;
-            --border-color: rgba(237, 228, 221, 0.15);
-            --border-color-solid: #ede4dd;
-            --accent-color: #ff0001;
-            --card-bg: #121212;
-            --input-bg: #1a1a1a;
+            --bg-color: #F7F2EC;
+            --text-color: #1B1B1B;
+            --border-color: #D8D1CA;
+            --border-color-solid: #1C2E4A;
+            --accent-color: #1C2E4A;
+            --card-bg: #D9CDC2;
+            --input-bg: #D9CDC2;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
-            font-family: 'Outfit', sans-serif;
+            font-family: var(--font-body);
             background-color: var(--bg-color);
             color: var(--text-color);
             min-height: 100vh;
@@ -47,7 +45,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            background-color: #090909;
+            background-color: #1C2E4A;
         }
         .nav-brand {
             font-size: 20px;
@@ -72,7 +70,7 @@
             letter-spacing: 1.5px;
             text-transform: uppercase;
             opacity: 0.7;
-            transition: opacity 0.3s, color 0.3s;
+            transition: opacity 0.25s, color 0.3s;
         }
         .nav-links a:hover, .nav-links .active a {
             opacity: 1;
@@ -81,7 +79,7 @@
         .btn-logout {
             border: 1px solid var(--border-color);
             padding: 8px 16px;
-            transition: border-color 0.3s;
+            transition: border-color 0.25s;
         }
         .btn-logout:hover {
             border-color: var(--accent-color);
@@ -106,7 +104,7 @@
         }
         .page-subtitle {
             font-size: 12px;
-            color: #888888;
+            color: #66635E;
             letter-spacing: 2px;
             text-transform: uppercase;
             margin-top: 4px;
@@ -135,7 +133,7 @@
             font-weight: 700;
             letter-spacing: 1px;
             text-transform: uppercase;
-            color: #aaaaaa;
+            color: #66635E;
             margin-bottom: 6px;
         }
         .form-group input, .form-group select {
@@ -143,10 +141,10 @@
             border: 1px solid var(--border-color);
             padding: 10px 14px;
             color: var(--text-color);
-            font-family: 'Outfit', sans-serif;
+            font-family: var(--font-body);
             font-size: 13px;
             outline: none;
-            transition: border-color 0.3s;
+            transition: border-color 0.25s;
         }
         .form-group input:focus, .form-group select:focus {
             border-color: var(--border-color-solid);
@@ -157,13 +155,13 @@
             color: var(--text-color);
             border: 1px solid var(--border-color-solid);
             padding: 10px 20px;
-            font-family: 'Outfit', sans-serif;
+            font-family: var(--font-body);
             font-size: 11px;
             font-weight: 700;
             letter-spacing: 1.5px;
             text-transform: uppercase;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.25s;
         }
         .btn-action:hover {
             background-color: var(--text-color);
@@ -172,7 +170,7 @@
         .btn-accent {
             background-color: var(--accent-color);
             border-color: var(--accent-color);
-            color: #ffffff;
+            color: #F7F2EC;
         }
         .btn-accent:hover {
             background-color: transparent;
@@ -188,7 +186,7 @@
             font-weight: 700;
             text-transform: uppercase;
             cursor: pointer;
-            transition: border-color 0.3s;
+            transition: border-color 0.25s;
             margin-right: 5px;
         }
         .btn-edit:hover {
@@ -196,17 +194,17 @@
         }
         .btn-delete {
             background-color: transparent;
-            color: #ff4d4d;
+            color: #8C3B3B;
             border: 1px solid rgba(255, 77, 77, 0.3);
             padding: 6px 12px;
             font-size: 11px;
             font-weight: 700;
             text-transform: uppercase;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.25s;
         }
         .btn-delete:hover {
-            border-color: #ff4d4d;
+            border-color: #8C3B3B;
             background-color: rgba(255, 77, 77, 0.1);
         }
         /* Tables */
@@ -227,15 +225,15 @@
             vertical-align: middle;
         }
         .admin-table th {
-            background-color: #171717;
+            background-color: #1C2E4A;
             font-size: 11px;
             font-weight: 700;
             letter-spacing: 1.5px;
             text-transform: uppercase;
-            color: #aaaaaa;
+            color: #66635E;
         }
         .admin-table tbody tr:hover {
-            background-color: #161616;
+            background-color: rgba(28, 46, 74, 0.05);
         }
         .product-thumbnail {
             width: 40px;
@@ -255,7 +253,7 @@
             padding: 20px;
         }
         .modal-content {
-            background-color: #121212;
+            background-color: var(--card-bg);
             border: 1.5px solid var(--border-color);
             padding: 40px;
             width: 100%;
@@ -265,7 +263,7 @@
         .modal-close {
             position: absolute;
             top: 20px; right: 20px;
-            color: #888888;
+            color: #66635E;
             font-size: 24px;
             cursor: pointer;
             background: none;
@@ -279,7 +277,7 @@
             border-left: 3px solid #4cd137;
             padding: 14px 20px;
             font-size: 14px;
-            color: #4cd137;
+            color: #5B7358;
             margin-bottom: 24px;
         }
     </style>
@@ -424,13 +422,13 @@
                         <td>
                             <c:choose>
                                 <c:when test="${prod.stockQuantity > 5}">
-                                    <span style="color: #4cd137;"><i class="fa-solid fa-circle" style="font-size: 8px; vertical-align: middle; margin-right: 4px;"></i> In Stock (${prod.stockQuantity})</span>
+                                    <span style="color: #5B7358;"><i class="fa-solid fa-circle" style="font-size: 8px; vertical-align: middle; margin-right: 4px;"></i> In Stock (${prod.stockQuantity})</span>
                                 </c:when>
                                 <c:when test="${prod.stockQuantity > 0}">
-                                    <span style="color: #ff9800;"><i class="fa-solid fa-circle" style="font-size: 8px; vertical-align: middle; margin-right: 4px;"></i> Low Stock (${prod.stockQuantity})</span>
+                                    <span style="color: #B89A63;"><i class="fa-solid fa-circle" style="font-size: 8px; vertical-align: middle; margin-right: 4px;"></i> Low Stock (${prod.stockQuantity})</span>
                                 </c:when>
                                 <c:otherwise>
-                                    <span style="color: #ff4d4d;"><i class="fa-solid fa-circle" style="font-size: 8px; vertical-align: middle; margin-right: 4px;"></i> Out of Stock</span>
+                                    <span style="color: #8C3B3B;"><i class="fa-solid fa-circle" style="font-size: 8px; vertical-align: middle; margin-right: 4px;"></i> Out of Stock</span>
                                 </c:otherwise>
                             </c:choose>
                         </td>

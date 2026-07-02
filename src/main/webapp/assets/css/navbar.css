@@ -6,7 +6,7 @@
 html {
     background-color: var(--bg-color) !important;
     color: var(--text-color) !important;
-    transition: background-color 0.8s cubic-bezier(0.76, 0, 0.24, 1), color 0.8s cubic-bezier(0.76, 0, 0.24, 1);
+    transition: background-color var(--transition-luxe), color var(--transition-luxe);
 }
 
 body {
@@ -16,7 +16,7 @@ body {
 
 /* Smooth interpolation for all standard typography and elements */
 h1, h2, h3, h4, h5, h6, p, span, a, div, section, label, input, select, textarea, button {
-    transition: color 0.8s cubic-bezier(0.76, 0, 0.24, 1), background-color 0.8s cubic-bezier(0.76, 0, 0.24, 1), border-color 0.8s cubic-bezier(0.76, 0, 0.24, 1);
+    transition: color var(--transition-luxe), background-color var(--transition-luxe), border-color var(--transition-luxe);
 }
 
 .navbar {
@@ -25,18 +25,15 @@ h1, h2, h3, h4, h5, h6, p, span, a, div, section, label, input, select, textarea
     z-index: 999;
     width: 100%;
     height: 80px;
-    background: rgba(255, 255, 255, 0.75) !important;
+    background: rgba(247, 242, 236, 0.85) !important;
     border-bottom: 1.5px solid rgba(0, 0, 0, 0.05) !important;
     box-sizing: border-box;
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    transition: background 0.8s cubic-bezier(0.76, 0, 0.24, 1), border-bottom 0.8s cubic-bezier(0.76, 0, 0.24, 1) !important;
+    transition: background var(--transition-luxe), border-bottom var(--transition-luxe) !important;
 }
 
-body.theme-noir .navbar {
-    background: rgba(13, 13, 13, 0.75) !important;
-    border-bottom: 1.5px solid rgba(255, 255, 255, 0.05) !important;
-}
+
 
 .navbar-container {
     position: relative; /* Support absolute centering of logo */
@@ -65,7 +62,7 @@ body.theme-noir .navbar {
 }
 
 .brand a {
-    font-family: var(--font-headline, 'Outfit', sans-serif);
+    font-family: var(--font-headline);
     font-size: 24px;
     font-weight: 500;
     letter-spacing: -0.02em;
@@ -86,7 +83,7 @@ body.theme-noir .navbar {
 }
 
 .nav-links a {
-    font-family: var(--font-body, 'Inter', sans-serif);
+    font-family: var(--font-body);
     font-size: 16px;
     font-weight: 500;
     text-transform: none;
@@ -95,7 +92,7 @@ body.theme-noir .navbar {
     text-decoration: none;
     padding: 6px 0;
     padding-bottom: 4px;
-    transition: color 0.3s, border-color 0.3s;
+    transition: color var(--transition-normal), border-color var(--transition-normal);
     border-bottom: 2px solid transparent;
     white-space: nowrap;
     flex-shrink: 0;
@@ -128,7 +125,7 @@ body.theme-noir .navbar {
     cursor: pointer;
     position: relative;
     overflow: hidden;
-    transition: all 0.4s cubic-bezier(0.76, 0, 0.24, 1) !important;
+    transition: all var(--transition-slow) !important;
     z-index: 1;
 }
 
@@ -148,7 +145,7 @@ body.theme-noir .navbar {
     width: 100%;
     height: 2px;
     background: var(--text-color);
-    transition: transform 0.4s cubic-bezier(0.76, 0, 0.24, 1), width 0.4s cubic-bezier(0.76, 0, 0.24, 1), background-color 0.4s cubic-bezier(0.76, 0, 0.24, 1);
+    transition: transform var(--transition-slow), width var(--transition-slow), background-color var(--transition-slow);
     transform-origin: left center;
 }
 
@@ -175,7 +172,7 @@ body.theme-noir .navbar {
     top: 0; left: 0; width: 100%; height: 100%;
     background: var(--text-color);
     transform: translateY(100%);
-    transition: transform 0.4s cubic-bezier(0.76, 0, 0.24, 1);
+    transition: transform var(--transition-slow);
     z-index: 0;
 }
 
@@ -223,7 +220,7 @@ body.theme-noir .navbar {
     border: none !important;
     background: transparent !important;
     outline: none !important;
-    font-family: var(--font-body, 'Inter', sans-serif) !important;
+    font-family: var(--font-body) !important;
     font-size: 13px !important;
     width: 100% !important;
     padding: 0 !important;
@@ -246,7 +243,7 @@ body.theme-noir .navbar {
     align-items: center !important;
     justify-content: center !important;
     color: var(--text-color) !important;
-    transition: opacity 0.2s;
+    transition: opacity var(--transition-fast);
 }
 
 .search-box button span {
@@ -278,9 +275,7 @@ body.theme-noir .navbar {
 }
 
 /* Toggles & indicators overrides */
-.top-strip {
-    display: none !important;
-}
+
 
 /* General button states */
 .cta-primary {
@@ -325,13 +320,13 @@ footer, .footer, .footer-section {
     justify-content: center;
     color: var(--text-color) !important;
     text-decoration: none;
-    transition: color 0.3s;
+    transition: color var(--transition-normal);
 }
 
 .nav-icons .material-symbols-outlined {
     font-size: 20px;
     font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
-    transition: font-variation-settings 0.3s;
+    transition: font-variation-settings var(--transition-normal);
 }
 
 .nav-icons a:hover {
@@ -353,7 +348,7 @@ footer, .footer, .footer-section {
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.4s cubic-bezier(0.76, 0, 0.24, 1) !important;
+    transition: all var(--transition-slow) !important;
 }
 
 
@@ -402,7 +397,7 @@ footer, .footer, .footer-section {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    transition: all 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+    transition: all var(--transition-slow);
 }
 
 
@@ -422,7 +417,7 @@ footer, .footer, .footer-section {
     display: flex;
     align-items: center;
     gap: 6px;
-    transition: color 0.3s;
+    transition: color var(--transition-normal);
 }
 
 .acet-menu-item:hover .acet-menu-title {
@@ -443,7 +438,7 @@ footer, .footer, .footer-section {
     visibility: hidden;
     pointer-events: none;
     z-index: 1000;
-    transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.4s;
+    transition: opacity var(--transition-slow), transform var(--transition-slow), visibility var(--transition-slow);
     border-radius: 0px;
 }
 
@@ -498,7 +493,7 @@ footer, .footer, .footer-section {
     letter-spacing: 1px;
     color: var(--text-color) !important;
     text-decoration: none;
-    transition: color 0.3s, transform 0.3s;
+    transition: color var(--transition-normal), transform var(--transition-normal);
     display: inline-block;
 }
 
@@ -527,7 +522,7 @@ footer, .footer, .footer-section {
     gap: 16px;
     align-items: center;
     text-decoration: none;
-    transition: transform 0.3s cubic-bezier(0.76, 0, 0.24, 1);
+    transition: transform var(--transition-normal);
 }
 
 .acet-product-item:hover {
@@ -539,7 +534,7 @@ footer, .footer, .footer-section {
     height: 60px;
     object-fit: cover;
     border: 1px solid var(--border-color-solid);
-    transition: transform 0.3s;
+    transition: transform var(--transition-normal);
     filter: grayscale(0.25) contrast(1.15) brightness(0.88) sepia(0.08);
 }
 
@@ -621,7 +616,7 @@ footer, .footer, .footer-section {
 [data-scroll-reveal] {
     opacity: 0;
     transform: translateY(28px) scale(0.99);
-    transition: opacity 1s cubic-bezier(0.25, 1, 0.5, 1), transform 1s cubic-bezier(0.25, 1, 0.5, 1);
+    transition: opacity var(--transition-luxe), transform var(--transition-luxe);
     will-change: transform, opacity;
 }
 
@@ -637,7 +632,7 @@ footer, .footer, .footer-section {
 
 [data-scroll-reveal="line"] {
     width: 0% !important;
-    transition: width 1.2s cubic-bezier(0.25, 1, 0.5, 1) !important;
+    transition: width var(--transition-luxe) !important;
 }
 [data-scroll-reveal="line"].reveal-active {
     width: 100% !important;
@@ -662,7 +657,7 @@ footer, .footer, .footer-section {
     left: 0; top: 0;
     width: 0%; height: 100%;
     background: var(--primary-brand);
-    transition: width 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+    transition: width var(--transition-luxe);
 }
 .blueprint-line.reveal-active::after {
     width: 100%;
@@ -697,7 +692,7 @@ footer, .footer, .footer-section {
     opacity: 0;
     visibility: hidden;
     transform: translateY(-20px);
-    transition: opacity 0.5s cubic-bezier(0.76, 0, 0.24, 1), visibility 0.5s cubic-bezier(0.76, 0, 0.24, 1), transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+    transition: opacity var(--transition-slow), visibility var(--transition-slow), transform var(--transition-slow);
 }
 
 .menu-overlay.active {
@@ -726,7 +721,7 @@ footer, .footer, .footer-section {
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: all 0.3s;
+    transition: all var(--transition-normal);
 }
 
 .menu-close-btn:hover {
@@ -775,7 +770,7 @@ footer, .footer, .footer-section {
     letter-spacing: -1.5px;
     color: var(--primary-text);
     text-transform: uppercase;
-    transition: all 0.25s;
+    transition: all var(--transition-normal);
 }
 .menu-item:hover {
     color: var(--secondary-brand);
@@ -788,7 +783,7 @@ footer, .footer, .footer-section {
     color: var(--secondary-text);
     text-transform: uppercase;
     letter-spacing: 1px;
-    transition: color 0.2s;
+    transition: color var(--transition-fast);
 }
 .menu-item-sub:hover {
     color: var(--secondary-brand);
@@ -873,7 +868,7 @@ footer, .footer, .footer-section {
     padding: 20px;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
+    transition: opacity var(--transition-normal), visibility var(--transition-normal);
 }
 .size-overlay.active {
     opacity: 1 !important;
@@ -890,7 +885,7 @@ footer, .footer, .footer-section {
     overflow-y: auto;
     position: relative;
     transform: scale(0.94) translateY(12px);
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), background 0.8s, border-color 0.8s, color 0.8s;
+    transition: transform var(--transition-slow), background var(--transition-luxe), border-color var(--transition-luxe), color var(--transition-luxe);
     box-shadow: 8px 8px 0px var(--border-color-solid);
     color: var(--text-color);
 }
@@ -902,7 +897,7 @@ footer, .footer, .footer-section {
     border-bottom: 1.5px solid var(--border-color-solid);
     gap: 8px;
     margin-bottom: 24px;
-    transition: border-color 0.8s;
+    transition: border-color var(--transition-luxe);
 }
 .size-tab-btn {
     background: none;
@@ -916,7 +911,7 @@ footer, .footer, .footer-section {
     cursor: pointer;
     border-bottom: 3px solid transparent;
     opacity: 0.6;
-    transition: all 0.25s ease, color 0.8s;
+    transition: all var(--transition-normal), color var(--transition-luxe);
 }
 .size-tab-btn:hover {
     opacity: 1;
@@ -948,7 +943,7 @@ footer, .footer, .footer-section {
     padding: 12px 16px;
     border-bottom: 1.5px solid var(--border-color-solid);
     font-size: 13px;
-    transition: border-color 0.8s;
+    transition: border-color var(--transition-luxe);
 }
 .size-table th {
     font-weight: 800;
@@ -1014,7 +1009,7 @@ footer, .footer, .footer-section {
     padding: 10px 16px;
     align-items: center;
     gap: 10px;
-    transition: all 0.3s ease;
+    transition: all var(--transition-normal);
     margin: 16px 20px 24px 20px;
     border-radius: 0px;
 }
@@ -1112,7 +1107,7 @@ footer, .footer, .footer-section {
     padding: 20px;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
+    transition: opacity var(--transition-normal), visibility var(--transition-normal);
 }
 .search-overlay.active {
     opacity: 1 !important;
@@ -1127,7 +1122,7 @@ footer, .footer, .footer-section {
     padding: 44px 40px;
     position: relative;
     transform: scale(0.94) translateY(12px);
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), background 0.8s, border-color 0.8s, color 0.8s;
+    transition: transform var(--transition-slow), background var(--transition-luxe), border-color var(--transition-luxe), color var(--transition-luxe);
     box-shadow: 8px 8px 0px var(--border-color-solid);
     color: var(--text-color);
 }
@@ -1139,7 +1134,7 @@ footer, .footer, .footer-section {
     background: var(--card-bg); border: 1.5px solid var(--border-color-solid); font-size: 14px;
     cursor: pointer; color: var(--text-color); width: 34px; height: 34px;
     border-radius: 0%; display: flex; align-items: center;
-    justify-content: center; transition: all 0.2s ease, background 0.8s, border-color 0.8s, color 0.8s;
+    justify-content: center; transition: all var(--transition-fast), background var(--transition-luxe), border-color var(--transition-luxe), color var(--transition-luxe);
 }
 .search-modal-close:hover { background: var(--accent-color); color: var(--bg-color); border-color: var(--accent-color); transform: rotate(90deg); }
 .search-brand { display: flex; align-items: center; gap: 12px; margin-bottom: 28px; }
@@ -1149,18 +1144,18 @@ footer, .footer, .footer-section {
     border-radius: 0px; display: flex; align-items: center;
     justify-content: center; flex-shrink: 0;
     border: 1.5px solid var(--border-color-solid);
-    transition: background 0.8s, color 0.8s, border-color 0.8s;
+    transition: background var(--transition-luxe), color var(--transition-luxe), border-color var(--transition-luxe);
 }
-.search-brand-name { font-size: 16px; font-weight: 900; letter-spacing: 2px; color: var(--text-color); text-transform: uppercase; transition: color 0.8s; }
-.search-brand-sub  { font-size: 9px; letter-spacing: 3px; color: var(--text-color); opacity: 0.6; text-transform: uppercase; margin-top: 2px; transition: color 0.8s; }
-.search-title { font-size: 26px; font-weight: 900; letter-spacing: -1px; margin-bottom: 6px; color: var(--text-color); text-transform: uppercase; transition: color 0.8s; }
-.search-sub   { font-size: 14px; color: var(--text-color); opacity: 0.6; margin-bottom: 26px; font-weight: 600; transition: color 0.8s; }
+.search-brand-name { font-size: 16px; font-weight: 900; letter-spacing: 2px; color: var(--text-color); text-transform: uppercase; transition: color var(--transition-luxe); }
+.search-brand-sub  { font-size: 9px; letter-spacing: 3px; color: var(--text-color); opacity: 0.6; text-transform: uppercase; margin-top: 2px; transition: color var(--transition-luxe); }
+.search-title { font-size: 26px; font-weight: 900; letter-spacing: -1px; margin-bottom: 6px; color: var(--text-color); text-transform: uppercase; transition: color var(--transition-luxe); }
+.search-sub   { font-size: 14px; color: var(--text-color); opacity: 0.6; margin-bottom: 26px; font-weight: 600; transition: color var(--transition-luxe); }
 .search-field { margin-bottom: 18px; }
 .search-field label {
     display: block; font-size: 11px; font-weight: 800;
     letter-spacing: 1.5px; text-transform: uppercase;
     color: var(--text-color); margin-bottom: 8px;
-    transition: color 0.8s;
+    transition: color var(--transition-luxe);
 }
 .search-field-input-wrap {
     display: flex;
@@ -1171,7 +1166,7 @@ footer, .footer, .footer-section {
     width: 100%; padding: 13px 48px 13px 16px; font-size: 14px;
     border: 1.5px solid var(--border-color-solid); border-radius: 0px;
     background: var(--input-bg); color: var(--text-color); font-family: inherit;
-    outline: none; transition: all 0.25s ease, background 0.8s, border-color 0.8s, color 0.8s;
+    outline: none; transition: all var(--transition-normal), background var(--transition-luxe), border-color var(--transition-luxe), color var(--transition-luxe);
     font-weight: 600;
 }
 .search-field input:focus {
@@ -1192,7 +1187,7 @@ footer, .footer, .footer-section {
     align-items: center;
     justify-content: center;
     color: var(--text-color);
-    transition: color 0.2s;
+    transition: color var(--transition-fast);
 }
 .search-submit-btn:hover {
     color: var(--accent-color);
@@ -1200,8 +1195,8 @@ footer, .footer, .footer-section {
 .search-submit-btn span {
     font-size: 20px;
 }
-.search-overlay-perks { display: flex; flex-direction: column; gap: 8px; padding-top: 22px; border-top: 1.5px solid var(--border-color-solid); transition: border-color 0.8s; }
-.search-overlay-perks span { font-size: 12px; color: var(--text-color); display: flex; align-items: center; gap: 8px; font-weight: 700; text-transform: uppercase; transition: color 0.8s; }
+.search-overlay-perks { display: flex; flex-direction: column; gap: 8px; padding-top: 22px; border-top: 1.5px solid var(--border-color-solid); transition: border-color var(--transition-luxe); }
+.search-overlay-perks span { font-size: 12px; color: var(--text-color); display: flex; align-items: center; gap: 8px; font-weight: 700; text-transform: uppercase; transition: color var(--transition-luxe); }
 
 /* ── NEW MINIMALIST NAVBAR STYLES ──────────────────────────────── */
 .nav-links-left {
@@ -1211,14 +1206,14 @@ footer, .footer, .footer-section {
 }
 
 .nav-links-left a {
-    font-family: var(--font-body, 'Inter', sans-serif);
+    font-family: var(--font-body);
     font-size: 11px;
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.18em;
     color: var(--text-color) !important;
     text-decoration: none;
-    transition: opacity 0.3s;
+    transition: opacity var(--transition-normal);
 }
 
 .nav-links-left a:hover {
@@ -1235,7 +1230,7 @@ footer, .footer, .footer-section {
 }
 
 .nav-logo-center .brand-text {
-    font-family: var(--font-headline, 'Outfit', sans-serif);
+    font-family: var(--font-headline);
     font-size: 10px;
     font-weight: 700;
     letter-spacing: 0.45em;
@@ -1252,14 +1247,14 @@ footer, .footer, .footer-section {
 }
 
 .nav-actions-right .nav-text-action {
-    font-family: var(--font-body, 'Inter', sans-serif);
+    font-family: var(--font-body);
     font-size: 11px;
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.18em;
     color: var(--text-color) !important;
     text-decoration: none;
-    transition: opacity 0.3s;
+    transition: opacity var(--transition-normal);
 }
 
 .nav-actions-right .nav-text-action:hover {
@@ -1307,7 +1302,7 @@ footer, .footer, .footer-section {
     align-items: center;
     color: var(--text-color) !important;
     text-decoration: none;
-    transition: opacity 0.3s;
+    transition: opacity var(--transition-normal);
 }
 
 .wishlist-link-wrap:hover {
@@ -1346,7 +1341,7 @@ footer, .footer, .footer-section {
 }
 
 .menu-logo-center .brand-text {
-    font-family: var(--font-headline, 'Outfit', sans-serif);
+    font-family: var(--font-headline);
     font-size: 11px;
     font-weight: 700;
     letter-spacing: 0.35em;
@@ -1367,13 +1362,13 @@ footer, .footer, .footer-section {
 }
 
 .menu-item-new {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: var(--font-headline);
     font-size: 38px;
     font-weight: 400;
     color: var(--text-color) !important;
     margin-bottom: 24px;
     text-decoration: none;
-    transition: opacity 0.3s;
+    transition: opacity var(--transition-normal);
     text-align: center;
 }
 
@@ -1387,7 +1382,7 @@ footer, .footer, .footer-section {
 }
 
 .menu-item-bottom {
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-body);
     font-size: 14px;
     font-weight: 500;
     letter-spacing: 0.15em;
@@ -1395,7 +1390,7 @@ footer, .footer, .footer-section {
     color: var(--text-color) !important;
     margin-bottom: 24px;
     text-decoration: none;
-    transition: opacity 0.3s;
+    transition: opacity var(--transition-normal);
     text-align: center;
 }
 

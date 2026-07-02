@@ -1,6 +1,6 @@
 /* =======================================================
    AURAWEAR — CART3.CSS  v5  (Stitch Design System)
-   Outfit + Inter typography, minimal luxury aesthetic
+   DM Sans + TAN MON CHERI typography, minimal luxury aesthetic
    ======================================================= */
 
 /* ---- CSS VARIABLES ---- */
@@ -18,7 +18,6 @@
     --cart-accent: var(--primary-brand);
     --cart-accent-hover: var(--secondary-brand);
     --cart-error: var(--error-color);
-    --radius-default: var(--radius-card);
 }
 
 /* ---- BASE ---- */
@@ -109,7 +108,7 @@ a {
     color: var(--cart-primary);
     border-bottom: 2px solid var(--cart-primary);
     padding-bottom: 4px;
-    transition: all 0.2s ease;
+    transition: all var(--transition-fast);
 }
 
 .go-shopping-link:hover {
@@ -128,7 +127,7 @@ a {
     gap: 32px;
     border-bottom: 1px solid var(--cart-outline-variant);
     padding: 32px 0;
-    transition: opacity 0.3s ease, transform 0.3s ease;
+    transition: opacity var(--transition-normal), transform var(--transition-normal);
 }
 
 /* ---- ITEM IMAGE ---- */
@@ -146,7 +145,7 @@ a {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: transform var(--transition-luxe);
 }
 
 .cart-item:hover .cart-item-image-wrap img {
@@ -222,7 +221,7 @@ a {
     font-size: 14px;
     cursor: pointer;
     color: var(--cart-on-surface-variant);
-    transition: all 0.2s ease;
+    transition: all var(--transition-fast);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -265,7 +264,7 @@ a {
     padding: 6px 0;
     text-decoration: underline;
     text-underline-offset: 4px;
-    transition: color 0.2s ease;
+    transition: color var(--transition-fast);
 }
 
 .remove-item-btn:hover {
@@ -284,7 +283,7 @@ a {
     font-size: 14px;
     font-weight: 500;
     color: var(--cart-on-surface-variant);
-    transition: color 0.2s ease;
+    transition: color var(--transition-fast);
 }
 
 .continue-shopping-link i {
@@ -389,7 +388,7 @@ a {
     font-family: inherit;
     background: transparent;
     color: var(--cart-primary);
-    transition: border-color 0.2s ease;
+    transition: border-color var(--transition-fast);
 }
 
 .coupon-input-group input:focus {
@@ -406,7 +405,7 @@ a {
     font-weight: 500;
     cursor: pointer;
     font-family: inherit;
-    transition: all 0.2s ease;
+    transition: all var(--transition-fast);
 }
 
 .apply-coupon-btn:hover {
@@ -430,7 +429,7 @@ a {
     text-transform: uppercase;
     letter-spacing: 0.08em;
     cursor: pointer;
-    transition: background-color 0.2s ease, opacity 0.2s ease;
+    transition: background-color var(--transition-fast), opacity var(--transition-fast);
 }
 
 .checkout-btn:hover {

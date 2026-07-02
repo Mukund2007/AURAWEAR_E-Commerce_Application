@@ -12,14 +12,13 @@
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title>AuraWear - High-End Minimalist Apparel</title>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <script id="tailwind-config">
         tailwind.config = {
-          darkMode: "class",
+          
           theme: {
             extend: {
               "colors": {
@@ -58,15 +57,15 @@
                       "stack-md": "16px"
               },
               "fontFamily": {
-                      "headline-md": ["TAN MON CHERI", "Georgia", "serif"],
+                      "headline-md": ["DM Sans", "sans-serif"],
                       "headline-sm": ["DM Sans", "sans-serif"],
-                      "display-lg-mobile": ["TAN MON CHERI", "Georgia", "serif"],
+                      "display-lg-mobile": ["DM Sans", "sans-serif"],
                       "label-md": ["DM Sans", "sans-serif"],
                       "label-caps": ["DM Sans", "sans-serif"],
-                      "display-lg": ["TAN MON CHERI", "Georgia", "serif"],
+                      "display-lg": ["DM Sans", "sans-serif"],
                       "body-md": ["DM Sans", "sans-serif"],
                       "body-lg": ["DM Sans", "sans-serif"],
-                      "mono": ["JetBrains Mono"]
+
               },
               "fontSize": {
                       "headline-md": ["32px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "400"}],
@@ -141,13 +140,13 @@
             </video>
             <div class="absolute inset-0 bg-black/15 z-10"></div>
             <div class="relative z-20 text-center px-margin-mobile flex flex-col items-center select-none">
-                <h1 class="text-white font-light tracking-[0.05em] uppercase mb-4 leading-[0.85] text-center" style="font-family: 'Cormorant Garamond', serif; font-size: clamp(80px, 15vw, 220px);">
+                <h1 class="text-white font-light tracking-[0.05em] uppercase mb-4 leading-[0.85] text-center" style="font-family: var(--font-headline); font-size: clamp(80px, 15vw, 220px);">
                     AURA
                 </h1>
                 <p class="font-sans text-white text-xs sm:text-sm md:text-base tracking-[0.45em] uppercase mb-12 font-light">
                     AUTUMN / WINTER 2026
                 </p>
-                <a class="inline-flex items-center justify-center px-8 py-3.5 md:px-12 md:py-4 border border-white text-white font-sans text-xs md:text-sm tracking-[0.2em] uppercase rounded-none bg-transparent hover:bg-white hover:text-black transition-all duration-500 ease-in-out" href="${ctx}/products">
+                <a class="inline-flex items-center justify-center px-8 py-3.5 md:px-12 md:py-4 border border-white text-white font-sans text-xs md:text-sm tracking-[0.2em] uppercase rounded-none bg-transparent hover:bg-background hover:text-primary transition-all duration-500 ease-in-out" href="${ctx}/products">
                     DISCOVER COLLECTION
                 </a>
             </div>
@@ -172,7 +171,7 @@
             <div class="bg-surface-container-highest overflow-hidden">
                 <img alt="Macro fabric texture" class="w-full h-full object-cover hover:scale-110 duration-[2000ms]" src="${ctx}/assets/images/innovation-macro.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'"/>
             </div>
-            <div class="flex flex-col justify-center p-margin-mobile md:p-32 bg-white">
+            <div class="flex flex-col justify-center p-margin-mobile md:p-32 bg-background">
                 <span class="font-label-caps text-label-caps text-on-surface-variant tracking-[0.2em] uppercase mb-stack-md">Innovation</span>
                 <h3 class="font-headline-md text-headline-md mb-stack-lg">V-01 Technical Weave</h3>
                 <p class="font-body-md text-on-surface-variant leading-relaxed mb-12">
@@ -256,7 +255,7 @@
                                         </c:when>
                                     </c:choose>
 
-                                    <button class="absolute top-4 right-4 bg-white/80 hover:bg-white text-primary w-8 h-8 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-20 wishlist-btn ${not empty wishlistNames and wishlistNames.contains(p.id) ? 'active' : ''}"
+                                    <button class="absolute top-4 right-4 bg-background/80 hover:bg-background text-primary w-8 h-8 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-20 wishlist-btn ${not empty wishlistNames and wishlistNames.contains(p.id) ? 'active' : ''}"
                                             data-id="${p.id}"
                                             onclick="toggleWishlist(event, this)">
                                         <span class="material-symbols-outlined" style="${not empty wishlistNames and wishlistNames.contains(p.id) ? 'font-variation-settings: \'FILL\' 1;' : ''}">favorite</span>

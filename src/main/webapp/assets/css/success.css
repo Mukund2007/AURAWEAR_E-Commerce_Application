@@ -4,7 +4,7 @@ body {
     background: var(--bg-color);
     color: var(--text-color);
     -webkit-font-smoothing: antialiased;
-    transition: background-color 0.8s cubic-bezier(0.76, 0, 0.24, 1), color 0.8s cubic-bezier(0.76, 0, 0.24, 1);
+    transition: background-color var(--transition-luxe), color var(--transition-luxe);
 }
 
 .success-wrap {
@@ -16,7 +16,7 @@ body {
     border: 1.5px solid var(--border-color-solid);
     border-radius: 0px;
     box-shadow: 8px 8px 0px var(--border-color-solid);
-    transition: background 0.8s, border-color 0.8s, box-shadow 0.8s;
+    transition: background var(--transition-luxe), border-color var(--transition-luxe), box-shadow var(--transition-luxe);
 }
 
 .success-icon {
@@ -30,7 +30,7 @@ body {
     justify-content: center;
     margin: 0 auto 28px;
     box-shadow: 4px 4px 0px var(--border-color-solid);
-    transition: border-color 0.8s, box-shadow 0.8s;
+    transition: border-color var(--transition-luxe), box-shadow var(--transition-luxe);
 }
 
 .success-icon i {
@@ -55,7 +55,7 @@ body {
     text-transform: uppercase;
     line-height: 1.6;
     margin-bottom: 40px;
-    transition: color 0.8s;
+    transition: color var(--transition-luxe);
 }
 
 .success-actions {
@@ -74,7 +74,7 @@ body {
     font-size: 12px;
     font-weight: 800;
     letter-spacing: 1px;
-    transition: all 0.2s ease, background 0.8s, color 0.8s, border-color 0.8s;
+    transition: all var(--transition-fast), background var(--transition-luxe), color var(--transition-luxe), border-color var(--transition-luxe);
     text-decoration: none;
     text-transform: uppercase;
 }
@@ -94,7 +94,7 @@ body {
     font-size: 12px;
     font-weight: 800;
     letter-spacing: 1px;
-    transition: all 0.2s ease, background 0.8s, color 0.8s, border-color 0.8s;
+    transition: all var(--transition-fast), background var(--transition-luxe), color var(--transition-luxe), border-color var(--transition-luxe);
     text-decoration: none;
     text-transform: uppercase;
 }

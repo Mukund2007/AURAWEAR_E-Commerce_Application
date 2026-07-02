@@ -23,7 +23,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="${ctx}/assets/css/home.css?v=120">
     <link rel="stylesheet" href="${ctx}/assets/css/products.css?v=120">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 </head>
 <body class="products-page">
@@ -229,8 +228,8 @@
                                 <div class="price-row" style="display: flex; align-items: center; gap: 8px; margin-top: 4px;">
                                     <div class="price-tag" style="font-size: 14px; font-weight: 500; color: var(--text-color);">₹<fmt:formatNumber value="${p.price}" maxFractionDigits="0"/></div>
                                     <c:if test="${p.discount > 0}">
-                                        <span class="original-price" style="font-size: 12px; color: var(--text-muted); text-decoration: line-through; font-family: 'Inter', sans-serif;">₹<fmt:formatNumber value="${p.originalPrice}" maxFractionDigits="0"/></span>
-                                        <span class="discount-badge" style="display: inline-block; background-color: rgba(140, 59, 59, 0.08); color: var(--error-color, #8C3B3B); font-size: 11px; font-weight: 600; padding: 2px 6px; border-radius: 4px; font-family: 'DM Sans', sans-serif; letter-spacing: 0.02em;">${p.discount}% OFF</span>
+                                        <span class="original-price" style="font-size: 12px; color: var(--text-muted); text-decoration: line-through; font-family: var(--font-body);">₹<fmt:formatNumber value="${p.originalPrice}" maxFractionDigits="0"/></span>
+                                        <span class="discount-badge" style="display: inline-block; background-color: rgba(140, 59, 59, 0.08); color: var(--error-color); font-size: 11px; font-weight: 600; padding: 2px 6px; border-radius: 4px; font-family: var(--font-body); letter-spacing: 0.02em;">${p.discount}% OFF</span>
                                     </c:if>
                                 </div>
                             </div>

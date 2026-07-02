@@ -3,15 +3,7 @@
 <%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 
-<div class="top-strip">
-    <div>Shipping on all orders above ₹999</div>
-    <div class="top-right">
-        <a href="${ctx}/my-orders">Track Order</a>
-        <a href="${ctx}/my-orders">Returns</a>
-        <a href="javascript:void(0)" onclick="openSizeGuide()">Size Guide</a>
-        <a href="mailto:support@aurawear.com">Contact</a>
-    </div>
-</div>
+
 
 <!-- NAVBAR -->
 <nav class="navbar">
@@ -138,7 +130,7 @@
         
         <div class="menu-search-inline" id="menuSearchInline" style="display: none; width: 100%; max-width: 320px; margin-top: -12px; margin-bottom: 24px; box-sizing: border-box;">
             <form action="${ctx}/products" method="get" style="display: flex; border: 1.5px solid var(--border-color-solid); padding: 8px 12px; background: var(--input-bg); width: 100%; align-items: center; justify-content: space-between;">
-                <input type="text" name="keyword" placeholder="Search..." style="border: none; background: transparent; outline: none; width: 100%; font-size: 13px; font-family: 'Inter', sans-serif;">
+                <input type="text" name="keyword" placeholder="Search..." style="border: none; background: transparent; outline: none; width: 100%; font-size: 13px; font-family: var(--font-body);">
                 <button type="submit" style="background: none; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center;"><span class="material-symbols-outlined" style="font-size: 18px; color: var(--text-color);">search</span></button>
             </form>
         </div>

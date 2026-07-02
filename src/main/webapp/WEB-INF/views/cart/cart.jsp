@@ -27,7 +27,6 @@
     <link rel="stylesheet" href="${ctx}/assets/css/home.css?v=118">
     <link rel="stylesheet" href="${ctx}/assets/css/cart3.css?v=25">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
     <style>
         .material-symbols-outlined {
@@ -77,8 +76,8 @@
                                 <img src="<%= imgUrl %>"
                                      onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
                                      alt="<%= item.getProductName() %>">
-                                <div class="wl-img-fallback" style="display:none; width:100%; height:100%; align-items:center; justify-content:center; background:#f0eded;">
-                                    <i class="fa-solid fa-shirt" style="font-size:24px; color:#7e7576;"></i>
+                                <div class="wl-img-fallback" style="display:none; width:100%; height:100%; align-items:center; justify-content:center; background:var(--surface-color);">
+                                    <i class="fa-solid fa-shirt" style="font-size:24px; color:var(--secondary-text);"></i>
                                 </div>
                             </div>
 
@@ -180,7 +179,7 @@
 
         <!-- ===== YOU MAY ALSO LIKE ===== -->
         <section class="home-products-section" style="margin-top: 120px; border-top: 1px solid var(--cart-outline-variant); padding-top: 80px;">
-            <h2 class="section-title" style="font-family: 'Outfit', sans-serif; font-size: 32px; font-weight: 500; text-align: center; margin-bottom: 48px; letter-spacing: -0.01em;">You May Also Like</h2>
+            <h2 class="section-title" style="font-family: var(--font-body); font-size: 32px; font-weight: 500; text-align: center; margin-bottom: 48px; letter-spacing: -0.01em;">You May Also Like</h2>
             <div class="products-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px; max-width: 1200px; margin: 0 auto;">
                 <!-- Product 1 -->
                 <div class="product-card" onclick="window.location.href='${ctx}/product?id=6'" style="cursor:pointer; display:flex; flex-direction:column; gap:16px;">
@@ -188,8 +187,8 @@
                         <img src="${ctx}/assets/images/track-jacket.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'" alt="Classic Tracksuit" style="width:100%; height:100%; object-fit:cover; transition:transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);">
                     </div>
                     <div class="product-info" style="display:flex; flex-direction:column; gap:4px;">
-                        <h3 style="font-family: 'Outfit', sans-serif; font-size: 16px; font-weight: 500; color: var(--cart-primary);">Classic Tracksuit</h3>
-                        <p style="font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; color: var(--cart-primary);">₹2,499</p>
+                        <h3 style="font-family: var(--font-body); font-size: 16px; font-weight: 500; color: var(--cart-primary);">Classic Tracksuit</h3>
+                        <p style="font-family: var(--font-body); font-size: 14px; font-weight: 600; color: var(--cart-primary);">₹2,499</p>
                     </div>
                 </div>
                 <!-- Product 2 -->
@@ -198,8 +197,8 @@
                         <img src="${ctx}/assets/images/sneak-alpha.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'" alt="Classic Sneaker White" style="width:100%; height:100%; object-fit:cover; transition:transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);">
                     </div>
                     <div class="product-info" style="display:flex; flex-direction:column; gap:4px;">
-                        <h3 style="font-family: 'Outfit', sans-serif; font-size: 16px; font-weight: 500; color: var(--cart-primary);">Classic Sneaker White</h3>
-                        <p style="font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; color: var(--cart-primary);">₹2,999</p>
+                        <h3 style="font-family: var(--font-body); font-size: 16px; font-weight: 500; color: var(--cart-primary);">Classic Sneaker White</h3>
+                        <p style="font-family: var(--font-body); font-size: 14px; font-weight: 600; color: var(--cart-primary);">₹2,999</p>
                     </div>
                 </div>
                 <!-- Product 3 -->
@@ -208,8 +207,8 @@
                         <img src="${ctx}/assets/images/beanie-v2.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'" alt="Leather Cap" style="width:100%; height:100%; object-fit:cover; transition:transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);">
                     </div>
                     <div class="product-info" style="display:flex; flex-direction:column; gap:4px;">
-                        <h3 style="font-family: 'Outfit', sans-serif; font-size: 16px; font-weight: 500; color: var(--cart-primary);">Leather Cap</h3>
-                        <p style="font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; color: var(--cart-primary);">₹799</p>
+                        <h3 style="font-family: var(--font-body); font-size: 16px; font-weight: 500; color: var(--cart-primary);">Leather Cap</h3>
+                        <p style="font-family: var(--font-body); font-size: 14px; font-weight: 600; color: var(--cart-primary);">₹799</p>
                     </div>
                 </div>
             </div>

@@ -26,9 +26,12 @@ gtag('config', 'G-EG16LNFXMK');
 </c:if>
 
 <!-- Global Resource Links -->
-<link rel="stylesheet" href="${ctx}/assets/css/design-tokens.css?v=100">
+<link rel="stylesheet" href="${ctx}/assets/css/design-tokens.css?v=101">
 <link rel="stylesheet" href="${ctx}/assets/css/navbar.css?v=125">
 <link rel="stylesheet" href="${ctx}/assets/css/login-modal.css?v=120">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
 
 <script>

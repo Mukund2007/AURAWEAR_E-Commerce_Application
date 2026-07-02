@@ -20,7 +20,6 @@
 
     
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="${ctx}/assets/css/design-tokens.css?v=100">
@@ -28,7 +27,7 @@
 
     <script id="tailwind-config">
       tailwind.config = {
-        darkMode: "class",
+        
         theme: {
           extend: {
             "colors": {
@@ -68,11 +67,11 @@
             },
             "fontFamily": {
                     "label-md": ["DM Sans", "sans-serif"],
-                    "display-lg": ["TAN MON CHERI", "Georgia", "serif"],
+                    "display-lg": ["DM Sans", "sans-serif"],
                     "body-md": ["DM Sans", "sans-serif"],
-                    "headline-md": ["TAN MON CHERI", "Georgia", "serif"],
+                    "headline-md": ["DM Sans", "sans-serif"],
                     "body-lg": ["DM Sans", "sans-serif"],
-                    "display-lg-mobile": ["TAN MON CHERI", "Georgia", "serif"],
+                    "display-lg-mobile": ["DM Sans", "sans-serif"],
                     "headline-sm": ["DM Sans", "sans-serif"],
                     "label-caps": ["DM Sans", "sans-serif"]
             },
@@ -168,11 +167,11 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-stack-md">
                         <div class="space-y-1">
                             <label class="font-label-caps text-label-caps text-on-surface-variant" for="firstName">FIRST NAME</label>
-                            <input class="w-full bg-white border border-outline-variant py-3 px-4 rounded-none font-body-md transition-all text-on-background" id="firstName" name="firstName" required="" type="text"/>
+                            <input class="w-full bg-surface border border-outline py-3 px-4 rounded-none font-body-md transition-all text-on-background" id="firstName" name="firstName" required="" type="text"/>
                         </div>
                         <div class="space-y-1">
                             <label class="font-label-caps text-label-caps text-on-surface-variant" for="lastName">LAST NAME</label>
-                            <input class="w-full bg-white border border-outline-variant py-3 px-4 rounded-none font-body-md transition-all text-on-background" id="lastName" name="lastName" required="" type="text"/>
+                            <input class="w-full bg-surface border border-outline py-3 px-4 rounded-none font-body-md transition-all text-on-background" id="lastName" name="lastName" required="" type="text"/>
                         </div>
                     </div>
                     
@@ -180,20 +179,20 @@
                     <div class="space-y-stack-md">
                         <div class="space-y-1">
                             <label class="font-label-caps text-label-caps text-on-surface-variant" for="email">EMAIL ADDRESS</label>
-                            <input class="w-full bg-white border border-outline-variant py-3 px-4 rounded-none font-body-md transition-all text-on-background" id="email" name="email" required="" type="email"/>
+                            <input class="w-full bg-surface border border-outline py-3 px-4 rounded-none font-body-md transition-all text-on-background" id="email" name="email" required="" type="email"/>
                         </div>
                         <div class="space-y-1">
                             <label class="font-label-caps text-label-caps text-on-surface-variant" for="username">USERNAME</label>
-                            <input class="w-full bg-white border border-outline-variant py-3 px-4 rounded-none font-body-md transition-all text-on-background" id="username" name="username" required="" type="text"/>
+                            <input class="w-full bg-surface border border-outline py-3 px-4 rounded-none font-body-md transition-all text-on-background" id="username" name="username" required="" type="text"/>
                         </div>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-stack-md">
                             <div class="space-y-1">
                                 <label class="font-label-caps text-label-caps text-on-surface-variant" for="password">PASSWORD</label>
-                                <input class="w-full bg-white border border-outline-variant py-3 px-4 rounded-none font-body-md transition-all text-on-background" id="password" name="password" required="" type="password"/>
+                                <input class="w-full bg-surface border border-outline py-3 px-4 rounded-none font-body-md transition-all text-on-background" id="password" name="password" required="" type="password"/>
                             </div>
                             <div class="space-y-1">
                                 <label class="font-label-caps text-label-caps text-on-surface-variant" for="confirmPassword">CONFIRM PASSWORD</label>
-                                <input class="w-full bg-white border border-outline-variant py-3 px-4 rounded-none font-body-md transition-all text-on-background" id="confirmPassword" name="confirmPassword" required="" type="password"/>
+                                <input class="w-full bg-surface border border-outline py-3 px-4 rounded-none font-body-md transition-all text-on-background" id="confirmPassword" name="confirmPassword" required="" type="password"/>
                             </div>
                         </div>
                     </div>
@@ -204,19 +203,19 @@
                         <div class="flex flex-wrap gap-stack-sm">
                             <div class="relative">
                                 <input class="interest-chip sr-only" id="streetwear" name="interests" type="checkbox" value="Streetwear"/>
-                                <label class="inline-block px-4 py-2 border border-outline-variant text-label-md font-label-md cursor-pointer transition-all hover:bg-surface-container-high active:scale-[0.98] text-on-background bg-white" for="streetwear">Streetwear</label>
+                                <label class="inline-block px-4 py-2 border border-outline-variant text-label-md font-label-md cursor-pointer transition-all hover:bg-surface-container-high active:scale-[0.98] text-on-background bg-surface" for="streetwear">Streetwear</label>
                             </div>
                             <div class="relative">
                                 <input class="interest-chip sr-only" id="accessories" name="interests" type="checkbox" value="Accessories"/>
-                                <label class="inline-block px-4 py-2 border border-outline-variant text-label-md font-label-md cursor-pointer transition-all hover:bg-surface-container-high active:scale-[0.98] text-on-background bg-white" for="accessories">Accessories</label>
+                                <label class="inline-block px-4 py-2 border border-outline-variant text-label-md font-label-md cursor-pointer transition-all hover:bg-surface-container-high active:scale-[0.98] text-on-background bg-surface" for="accessories">Accessories</label>
                             </div>
                             <div class="relative">
                                 <input class="interest-chip sr-only" id="outerwear" name="interests" type="checkbox" value="Outerwear"/>
-                                <label class="inline-block px-4 py-2 border border-outline-variant text-label-md font-label-md cursor-pointer transition-all hover:bg-surface-container-high active:scale-[0.98] text-on-background bg-white" for="outerwear">Outerwear</label>
+                                <label class="inline-block px-4 py-2 border border-outline-variant text-label-md font-label-md cursor-pointer transition-all hover:bg-surface-container-high active:scale-[0.98] text-on-background bg-surface" for="outerwear">Outerwear</label>
                             </div>
                             <div class="relative">
                                 <input class="interest-chip sr-only" id="footwear" name="interests" type="checkbox" value="Footwear"/>
-                                <label class="inline-block px-4 py-2 border border-outline-variant text-label-md font-label-md cursor-pointer transition-all hover:bg-surface-container-high active:scale-[0.98] text-on-background bg-white" for="footwear">Footwear</label>
+                                <label class="inline-block px-4 py-2 border border-outline-variant text-label-md font-label-md cursor-pointer transition-all hover:bg-surface-container-high active:scale-[0.98] text-on-background bg-surface" for="footwear">Footwear</label>
                             </div>
                         </div>
                     </div>
@@ -264,19 +263,19 @@
                     </p>
 
                     <div class="otp-boxes flex justify-center gap-3 mb-stack-lg">
-                        <input maxlength="1" inputmode="numeric" class="w-12 h-14 bg-white border border-outline-variant text-center font-headline-md text-headline-md focus:border-primary transition-all rounded-none text-on-background"/>
-                        <input maxlength="1" inputmode="numeric" class="w-12 h-14 bg-white border border-outline-variant text-center font-headline-md text-headline-md focus:border-primary transition-all rounded-none text-on-background"/>
-                        <input maxlength="1" inputmode="numeric" class="w-12 h-14 bg-white border border-outline-variant text-center font-headline-md text-headline-md focus:border-primary transition-all rounded-none text-on-background"/>
-                        <input maxlength="1" inputmode="numeric" class="w-12 h-14 bg-white border border-outline-variant text-center font-headline-md text-headline-md focus:border-primary transition-all rounded-none text-on-background"/>
-                        <input maxlength="1" inputmode="numeric" class="w-12 h-14 bg-white border border-outline-variant text-center font-headline-md text-headline-md focus:border-primary transition-all rounded-none text-on-background"/>
-                        <input maxlength="1" inputmode="numeric" class="w-12 h-14 bg-white border border-outline-variant text-center font-headline-md text-headline-md focus:border-primary transition-all rounded-none text-on-background"/>
+                        <input maxlength="1" inputmode="numeric" class="w-12 h-14 bg-surface border border-outline text-center font-headline-md text-headline-md focus:border-primary transition-all rounded-none text-on-background"/>
+                        <input maxlength="1" inputmode="numeric" class="w-12 h-14 bg-surface border border-outline text-center font-headline-md text-headline-md focus:border-primary transition-all rounded-none text-on-background"/>
+                        <input maxlength="1" inputmode="numeric" class="w-12 h-14 bg-surface border border-outline text-center font-headline-md text-headline-md focus:border-primary transition-all rounded-none text-on-background"/>
+                        <input maxlength="1" inputmode="numeric" class="w-12 h-14 bg-surface border border-outline text-center font-headline-md text-headline-md focus:border-primary transition-all rounded-none text-on-background"/>
+                        <input maxlength="1" inputmode="numeric" class="w-12 h-14 bg-surface border border-outline text-center font-headline-md text-headline-md focus:border-primary transition-all rounded-none text-on-background"/>
+                        <input maxlength="1" inputmode="numeric" class="w-12 h-14 bg-surface border border-outline text-center font-headline-md text-headline-md focus:border-primary transition-all rounded-none text-on-background"/>
                     </div>
 
                     <div class="otp-resend text-center font-label-md text-label-md text-on-surface-variant mb-stack-lg">
                         Resend code in <span id="timer" class="text-primary font-bold">30</span>s
                     </div>
 
-                    <button id="resendBtn" class="w-full border border-primary text-primary py-4 font-label-md text-label-md tracking-wider hover:bg-surface-container-high transition-all active:scale-[0.99] uppercase mb-stack-md bg-white" type="button" onclick="window.location='${ctx}/register?resend=true'" style="display:none;">
+                    <button id="resendBtn" class="w-full border border-primary text-primary py-4 font-label-md text-label-md tracking-wider hover:bg-surface-container-high transition-all active:scale-[0.99] uppercase mb-stack-md bg-surface" type="button" onclick="window.location='${ctx}/register?resend=true'" style="display:none;">
                         Resend Code
                     </button>
 
@@ -388,7 +387,7 @@
         if (pass !== confirm) {
             errEl.innerText = "Passwords do not match!";
             errEl.style.display = "block";
-            document.getElementById("confirmPassword").style.borderColor = "#c00";
+            document.getElementById("confirmPassword").style.borderColor = "var(--error-color)";
             return false;
         }
 
@@ -402,7 +401,7 @@
         input.addEventListener('focus', () => {
             const label = input.previousElementSibling;
             if(label && label.tagName === 'LABEL') {
-                label.style.color = '#000000';
+                label.style.color = 'var(--primary-text)';
             }
         });
         input.addEventListener('blur', () => {

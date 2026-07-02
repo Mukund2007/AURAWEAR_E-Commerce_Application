@@ -13,7 +13,7 @@
     <title>My Orders — AuraWear</title>
     <link rel="stylesheet" href="${ctx}/assets/css/home.css?v=118">
     <link rel="stylesheet" href="${ctx}/assets/css/orders.css?v=1.0.4">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@400;500;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
 </head>
 <body class="bg-background text-on-background min-h-screen flex flex-col font-body-md antialiased">
 

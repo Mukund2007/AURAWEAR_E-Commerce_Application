@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
-<html class="theme-noir">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,24 +16,22 @@
         gtag('js', new Date());
         gtag('config', 'G-EG16LNFXMK');
     </script>
-
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="${ctx}/assets/css/admin-responsive.css">
 
     <style>
         :root {
-            --bg-color: #0d0d0d;
-            --text-color: #ede4dd;
-            --border-color: rgba(237, 228, 221, 0.15);
-            --border-color-solid: #ede4dd;
-            --accent-color: #ff0001;
-            --card-bg: #121212;
-            --input-bg: #1a1a1a;
+            --bg-color: #F7F2EC;
+            --text-color: #1B1B1B;
+            --border-color: #D8D1CA;
+            --border-color-solid: #1C2E4A;
+            --accent-color: #1C2E4A;
+            --card-bg: #D9CDC2;
+            --input-bg: #D9CDC2;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
-            font-family: 'Outfit', sans-serif;
+            font-family: var(--font-body);
             background-color: var(--bg-color);
             color: var(--text-color);
             min-height: 100vh;
@@ -45,7 +43,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            background-color: #090909;
+            background-color: #1C2E4A;
         }
         .nav-brand {
             font-size: 20px;
@@ -70,7 +68,7 @@
             letter-spacing: 1.5px;
             text-transform: uppercase;
             opacity: 0.7;
-            transition: opacity 0.3s, color 0.3s;
+            transition: opacity 0.25s, color 0.3s;
         }
         .nav-links a:hover, .nav-links .active a {
             opacity: 1;
@@ -79,7 +77,7 @@
         .btn-logout {
             border: 1px solid var(--border-color);
             padding: 8px 16px;
-            transition: border-color 0.3s;
+            transition: border-color 0.25s;
         }
         .btn-logout:hover {
             border-color: var(--accent-color);
@@ -101,7 +99,7 @@
         }
         .page-subtitle {
             font-size: 12px;
-            color: #888888;
+            color: #66635E;
             letter-spacing: 2px;
             text-transform: uppercase;
             margin-top: 4px;
@@ -132,7 +130,7 @@
             font-weight: 700;
             letter-spacing: 1.5px;
             text-transform: uppercase;
-            color: #aaaaaa;
+            color: #66635E;
             margin-bottom: 8px;
         }
         .form-group input {
@@ -140,10 +138,10 @@
             border: 1px solid var(--border-color);
             padding: 14px 16px;
             color: var(--text-color);
-            font-family: 'Outfit', sans-serif;
+            font-family: var(--font-body);
             font-size: 14px;
             outline: none;
-            transition: border-color 0.3s;
+            transition: border-color 0.25s;
         }
         .form-group input:focus {
             border-color: var(--border-color-solid);
@@ -152,16 +150,16 @@
         .btn-save {
             width: 100%;
             background-color: var(--accent-color);
-            color: #ffffff;
+            color: #F7F2EC;
             border: none;
             padding: 16px;
-            font-family: 'Outfit', sans-serif;
+            font-family: var(--font-body);
             font-size: 12px;
             font-weight: 900;
             letter-spacing: 2.5px;
             text-transform: uppercase;
             cursor: pointer;
-            transition: opacity 0.3s;
+            transition: opacity 0.25s;
         }
         .btn-save:hover {
             opacity: 0.9;
@@ -171,7 +169,7 @@
             border-left: 3px solid #4cd137;
             padding: 14px 20px;
             font-size: 14px;
-            color: #4cd137;
+            color: #5B7358;
             margin-bottom: 24px;
         }
         .alert-error {
@@ -179,7 +177,7 @@
             border-left: 3px solid #e84118;
             padding: 14px 20px;
             font-size: 14px;
-            color: #e84118;
+            color: #8C3B3B;
             margin-bottom: 24px;
         }
     </style>

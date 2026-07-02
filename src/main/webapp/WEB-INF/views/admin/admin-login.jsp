@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
-<html class="theme-noir">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,23 +16,21 @@
         gtag('js', new Date());
         gtag('config', 'G-EG16LNFXMK');
     </script>
-
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="${ctx}/assets/css/admin-responsive.css">
 
     <style>
         :root {
-            --bg-color: #0d0d0d;
-            --text-color: #ede4dd;
-            --border-color: rgba(237, 228, 221, 0.15);
-            --border-color-solid: #ede4dd;
-            --accent-color: #ff0001;
-            --input-bg: #1a1a1a;
+            --bg-color: #F7F2EC;
+            --text-color: #1B1B1B;
+            --border-color: #D8D1CA;
+            --border-color-solid: #1C2E4A;
+            --accent-color: #1C2E4A;
+            --input-bg: #D9CDC2;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
-            font-family: 'Outfit', sans-serif;
+            font-family: var(--font-body);
             background-color: var(--bg-color);
             color: var(--text-color);
             display: flex;
@@ -42,7 +40,7 @@
             padding: 20px;
         }
         .login-card {
-            background-color: #121212;
+            background-color: var(--card-bg);
             border: 1.5px solid var(--border-color);
             width: 100%;
             max-width: 400px;
@@ -71,7 +69,7 @@
         }
         .subtitle {
             font-size: 11px;
-            color: #888888;
+            color: #66635E;
             letter-spacing: 3px;
             text-transform: uppercase;
             text-align: center;
@@ -86,7 +84,7 @@
             font-weight: 700;
             letter-spacing: 1.5px;
             text-transform: uppercase;
-            color: #aaaaaa;
+            color: #66635E;
             margin-bottom: 8px;
         }
         .form-group input {
@@ -95,10 +93,10 @@
             border: 1px solid var(--border-color);
             padding: 14px 16px;
             color: var(--text-color);
-            font-family: 'Outfit', sans-serif;
+            font-family: var(--font-body);
             font-size: 14px;
             outline: none;
-            transition: border-color 0.3s;
+            transition: border-color 0.25s;
         }
         .form-group input:focus {
             border-color: var(--border-color-solid);
@@ -106,27 +104,27 @@
         .btn-submit {
             width: 100%;
             background-color: var(--accent-color);
-            color: #ffffff;
+            color: #F7F2EC;
             border: none;
             padding: 16px;
-            font-family: 'Outfit', sans-serif;
+            font-family: var(--font-body);
             font-size: 12px;
             font-weight: 900;
             letter-spacing: 2.5px;
             text-transform: uppercase;
             cursor: pointer;
-            transition: opacity 0.3s;
+            transition: opacity 0.25s;
             margin-top: 10px;
         }
         .btn-submit:hover {
             opacity: 0.9;
         }
         .error-message {
-            background-color: rgba(255, 0, 1, 0.1);
+            background-color: rgba(140, 59, 59, 0.1);
             border-left: 3px solid var(--accent-color);
             padding: 12px;
             font-size: 13px;
-            color: #ff4d4d;
+            color: #8C3B3B;
             margin-bottom: 24px;
         }
         .back-to-store {
@@ -136,9 +134,9 @@
             font-size: 11px;
             letter-spacing: 1.5px;
             text-transform: uppercase;
-            color: #888888;
+            color: #66635E;
             text-decoration: none;
-            transition: color 0.3s;
+            transition: color 0.25s;
         }
         .back-to-store:hover {
             color: var(--text-color);
