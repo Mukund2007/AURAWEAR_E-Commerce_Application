@@ -31,8 +31,8 @@
 }
 
 ::selection {
-    background: #d5e5c3;
-    color: #59674c;
+    background: var(--surface-color);
+    color: var(--primary-brand);
 }
 
 /* ---- HEADER ---- */

@@ -101,16 +101,16 @@
             position: fixed;
             bottom: 40px;
             right: 40px;
-            background: #1c1b1b;
-            color: #fcf9f8;
+            background: var(--primary-brand);
+            color: var(--bg-color);
             padding: 16px 28px;
             font-size: 11px;
             font-weight: 800;
             letter-spacing: 2px;
             z-index: 99999;
             text-transform: uppercase;
-            box-shadow: 6px 6px 0px #546348;
-            border: 2px solid #1c1b1b;
+            box-shadow: 6px 6px 0px var(--secondary-brand);
+            border: 2px solid var(--border-color);
             transform: translateY(20px);
             opacity: 0;
             pointer-events: none;
@@ -125,11 +125,11 @@
         /* Wishlist button active state */
         .wishlist-btn.active span {
             font-variation-settings: 'FILL' 1 !important;
-            color: #ba1a1a !important;
+            color: var(--error-color) !important;
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col bg-surface">
+<body class="min-h-screen flex flex-col bg-background">
     <c:set var="isHome" value="true" scope="request" />
     <jsp:include page="../partials/navbar.jsp" />
 

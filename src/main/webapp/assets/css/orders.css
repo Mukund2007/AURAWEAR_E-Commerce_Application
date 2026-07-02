@@ -314,12 +314,12 @@
 
 /* Status state variants */
 .order-badge.shipped {
-    background-color: #e0f2fe;
-    color: #0369a1;
-    border: 1px solid #bae6fd;
+    background-color: rgba(70, 95, 125, 0.1);
+    color: var(--secondary-brand, #465F7D);
+    border: 1px solid rgba(70, 95, 125, 0.2);
 }
 .order-badge.shipped .badge-dot {
-    background-color: #0284c7;
+    background-color: var(--secondary-brand, #465F7D);
     animation: statusPulse 2s infinite ease-in-out;
 }
 
@@ -339,24 +339,24 @@
 
 .order-badge.paid,
 .order-badge.delivered {
-    background-color: #f3f4f6;
-    color: #4b5563;
-    border: 1px solid #e5e7eb;
+    background-color: rgba(91, 115, 88, 0.1);
+    color: var(--success-color, #5B7358);
+    border: 1px solid rgba(91, 115, 88, 0.2);
 }
 .order-badge.paid .badge-dot,
 .order-badge.delivered .badge-dot {
-    background-color: #9ca3af;
+    background-color: var(--success-color, #5B7358);
 }
 
 .order-badge.cancelled,
 .order-badge.returned {
-    background-color: #fee2e2;
-    color: #b91c1c;
-    border: 1px solid #fecaca;
+    background-color: rgba(140, 59, 59, 0.1);
+    color: var(--error-color, #8C3B3B);
+    border: 1px solid rgba(140, 59, 59, 0.2);
 }
 .order-badge.cancelled .badge-dot,
 .order-badge.returned .badge-dot {
-    background-color: #dc2626;
+    background-color: var(--error-color, #8C3B3B);
 }
 
 @keyframes statusPulse {

@@ -602,7 +602,7 @@ a {
     gap: 4px;
     font-size: 12px;
     font-weight: 500;
-    color: #2ecc71; /* Green verification */
+    color: var(--success-color, #5B7358); /* Green verification */
 }
 
 .verified-badge i {

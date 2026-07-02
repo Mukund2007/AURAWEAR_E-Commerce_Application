@@ -188,46 +188,27 @@ body.theme-noir .navbar {
     background: var(--border-color) !important;
 }
 
-/* search box transitions (Nike Style Inline) */
 .search-box {
-    background: #f5f5f5 !important;
-    border: none !important;
-    border-radius: 100px !important;
+    background: var(--surface-color) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: var(--radius-pill) !important;
     padding: 6px 14px 6px 10px !important;
     width: 140px !important;
     height: 36px !important;
     display: flex;
     align-items: center;
-    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1), background 0.3s;
+    transition: width var(--transition-normal), background var(--transition-normal);
     box-sizing: border-box;
 }
 
-/* Dark theme support */
-html.dark-theme .search-box,
-html.theme-noir .search-box,
-body.theme-noir .search-box {
-    background: #222222 !important;
-}
-
 .search-box:hover {
-    background: #eeeeee !important;
-}
-
-html.dark-theme .search-box:hover,
-html.theme-noir .search-box:hover,
-body.theme-noir .search-box:hover {
-    background: #2e2e2e !important;
+    background: var(--border-color) !important;
 }
 
 .search-box:focus-within {
     width: 200px !important;
-    background: #eeeeee !important;
-}
-
-html.dark-theme .search-box:focus-within,
-html.theme-noir .search-box:focus-within,
-body.theme-noir .search-box:focus-within {
-    background: #2e2e2e !important;
+    background: var(--border-color) !important;
+    border-color: var(--primary-brand) !important;
 }
 
 .search-box form {
@@ -670,7 +651,7 @@ footer, .footer, .footer-section {
 .blueprint-line {
     width: 100%;
     height: 1px;
-    background: rgba(13, 13, 13, 0.12);
+    background: var(--border-color);
     position: relative;
     overflow: hidden;
     margin: 0;
@@ -680,15 +661,15 @@ footer, .footer, .footer-section {
     position: absolute;
     left: 0; top: 0;
     width: 0%; height: 100%;
-    background: #ff0001;
+    background: var(--primary-brand);
     transition: width 1.2s cubic-bezier(0.25, 1, 0.5, 1);
 }
 .blueprint-line.reveal-active::after {
     width: 100%;
 }
 .blueprint-line:hover::after {
-    background: #ff0001;
-    box-shadow: 0 0 8px rgba(255, 0, 1, 0.8);
+    background: var(--primary-brand);
+    box-shadow: 0 0 8px rgba(28, 46, 74, 0.4);
 }
 
 /* ── OVERLAY MENU LOGO ────────────────────────────────────────── */
@@ -777,7 +758,7 @@ footer, .footer, .footer-section {
     font-size: 10px;
     font-weight: 800;
     letter-spacing: 4px;
-    color: #ff0001;
+    color: var(--secondary-brand);
     text-transform: uppercase;
     margin-bottom: 10px;
 }
@@ -792,32 +773,31 @@ footer, .footer, .footer-section {
     font-size: 38px;
     font-weight: 900;
     letter-spacing: -1.5px;
-    color: #ede4dd;
+    color: var(--primary-text);
     text-transform: uppercase;
     transition: all 0.25s;
 }
 .menu-item:hover {
-    color: #ff0001;
+    color: var(--secondary-brand);
     transform: translateX(10px);
-    text-shadow: 0 0 15px rgba(255, 0, 1, 0.3);
 }
 
 .menu-item-sub {
     font-size: 13px;
     font-weight: 600;
-    color: rgba(237, 228, 221, 0.4);
+    color: var(--secondary-text);
     text-transform: uppercase;
     letter-spacing: 1px;
     transition: color 0.2s;
 }
 .menu-item-sub:hover {
-    color: #ff0001;
+    color: var(--secondary-brand);
 }
 
 .menu-poetics {
     font-size: 14px;
     line-height: 1.8;
-    color: rgba(237, 228, 221, 0.55);
+    color: var(--secondary-text);
     max-width: 320px;
 }
 
@@ -828,10 +808,10 @@ footer, .footer, .footer-section {
     font-size: 11px;
     letter-spacing: 1.5px;
     text-transform: uppercase;
-    color: rgba(237, 228, 221, 0.3);
+    color: var(--secondary-text);
 }
 .menu-footer a:hover {
-    color: #ff0001;
+    color: var(--secondary-brand);
 }
 
 .mobile-menu-trigger {
@@ -1302,8 +1282,8 @@ footer, .footer, .footer-section {
     position: absolute !important;
     top: -5px !important;
     right: -6px !important;
-    background: #000000 !important;
-    color: #ffffff !important;
+    background: var(--primary-brand) !important;
+    color: var(--bg-color) !important;
     border: none !important;
     border-radius: 50% !important;
     width: 12px !important;
@@ -1315,22 +1295,10 @@ footer, .footer, .footer-section {
     justify-content: center !important;
 }
 
-body.theme-noir .cart-badge {
-    background: #ffffff !important;
-    color: #000000 !important;
-}
-
 /* Specific selectors to override .navbar span rule and fix cart badge text visibility */
 .navbar-container .cart-badge,
 .navbar-container #cart-count {
-    color: #ffffff !important;
-}
-
-body.theme-noir .navbar-container .cart-badge,
-body.theme-noir .navbar-container #cart-count,
-.theme-noir .navbar-container .cart-badge,
-.theme-noir .navbar-container #cart-count {
-    color: #000000 !important;
+    color: var(--bg-color) !important;
 }
 
 /* Wishlist Link Sizing & Layout */

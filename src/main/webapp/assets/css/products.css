@@ -459,7 +459,7 @@ body.products-page {
 }
 
 .badge-oos {
-    background-color: var(--error, #ba1a1a) !important;
+    background-color: var(--error-color, #8C3B3B) !important;
 }
 
 .badge-limited {

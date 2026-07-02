@@ -32,6 +32,8 @@
     --card-bg: var(--surface-color);
     --navbar-bg: var(--bg-color);
     --input-bg: var(--surface-color);
+    --error: var(--error-color);
+    --success: var(--success-color);
 
     /* Spacing Grid (8-point grid) */
     --space-2xs: 4px;

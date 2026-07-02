@@ -269,12 +269,12 @@
             
             <!-- review success/error messages -->
             <c:if test="${not empty param.reviewError}">
-                <div class="error-banner" style="background: rgba(186, 26, 26, 0.1); border: 1.5px solid var(--pd-error); color: var(--pd-error); padding: 16px; font-family: 'Inter', sans-serif; font-weight: 600; text-transform: uppercase; font-size: 12px; margin-bottom: 24px; letter-spacing: 0.5px; display: inline-flex; align-items: center; gap: 8px;">
+                <div class="error-banner" style="background: rgba(140, 59, 59, 0.1); border: 1.5px solid var(--error-color); color: var(--error-color); padding: 16px; font-family: 'DM Sans', sans-serif; font-weight: 600; text-transform: uppercase; font-size: 12px; margin-bottom: 24px; letter-spacing: 0.5px; display: inline-flex; align-items: center; gap: 8px;">
                     <span class="material-symbols-outlined" style="font-size: 18px;">warning</span> <c:out value="${param.reviewError}" />
                 </div>
             </c:if>
             <c:if test="${not empty param.reviewSuccess}">
-                <div class="success-banner" style="background: rgba(46, 204, 113, 0.1); border: 1.5px solid #2ecc71; color: #2ecc71; padding: 16px; font-family: 'Inter', sans-serif; font-weight: 600; text-transform: uppercase; font-size: 12px; margin-bottom: 24px; letter-spacing: 0.5px; display: inline-flex; align-items: center; gap: 8px;">
+                <div class="success-banner" style="background: rgba(91, 115, 88, 0.1); border: 1.5px solid var(--success-color, #5B7358); color: var(--success-color, #5B7358); padding: 16px; font-family: 'DM Sans', sans-serif; font-weight: 600; text-transform: uppercase; font-size: 12px; margin-bottom: 24px; letter-spacing: 0.5px; display: inline-flex; align-items: center; gap: 8px;">
                     <span class="material-symbols-outlined" style="font-size: 18px;">check_circle</span> <c:out value="${param.reviewSuccess}" />
                 </div>
             </c:if>
@@ -296,7 +296,7 @@
                                         <div class="review-user-row">
                                             <span class="review-user"><c:out value="${rev.userName}" /></span>
                                             <span class="verified-badge">
-                                                <span class="material-symbols-outlined" style="font-size: 14px; font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 0, 'opsz' 24; color: #2ecc71;">verified</span>
+                                                <span class="material-symbols-outlined" style="font-size: 14px; font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 0, 'opsz' 24; color: var(--success-color, #5B7358);">verified</span>
                                                 Verified Purchase
                                             </span>
                                         </div>

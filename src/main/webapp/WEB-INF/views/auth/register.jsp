@@ -103,7 +103,7 @@
         }
         input:focus {
             outline: none !important;
-            border-color: #1c1b1b !important;
+            border-color: var(--primary-brand) !important;
             box-shadow: none !important;
         }
         ::-webkit-scrollbar {
@@ -113,7 +113,7 @@
             background: transparent;
         }
         ::-webkit-scrollbar-thumb {
-            background: #cfc4c5;
+            background: var(--border-color);
         }
     </style>
 </head>

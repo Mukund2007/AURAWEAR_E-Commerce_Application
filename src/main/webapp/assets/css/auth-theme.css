@@ -279,10 +279,10 @@ body {
 .auth-btn {
     width: 100%;
     padding: 15px;
-    background: #1c1b1b;
-    color: #fcf9f8;
-    border: 1.5px solid #1c1b1b;
-    border-radius: 0px;
+    background: var(--primary-brand);
+    color: var(--bg-color);
+    border: 1.5px solid var(--primary-brand);
+    border-radius: var(--radius-button);
     font-size: 12px;
     font-weight: 900;
     letter-spacing: 1.5px;

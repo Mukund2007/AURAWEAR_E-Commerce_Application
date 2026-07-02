@@ -230,7 +230,7 @@
                                     <div class="price-tag" style="font-size: 14px; font-weight: 500; color: var(--text-color);">₹<fmt:formatNumber value="${p.price}" maxFractionDigits="0"/></div>
                                     <c:if test="${p.discount > 0}">
                                         <span class="original-price" style="font-size: 12px; color: var(--text-muted); text-decoration: line-through; font-family: 'Inter', sans-serif;">₹<fmt:formatNumber value="${p.originalPrice}" maxFractionDigits="0"/></span>
-                                        <span class="discount-badge" style="display: inline-block; background-color: rgba(255, 0, 1, 0.08); color: #ff0001; font-size: 11px; font-weight: 600; padding: 2px 6px; border-radius: 4px; font-family: 'Inter', sans-serif; letter-spacing: 0.02em;">${p.discount}% OFF</span>
+                                        <span class="discount-badge" style="display: inline-block; background-color: rgba(140, 59, 59, 0.08); color: var(--error-color, #8C3B3B); font-size: 11px; font-weight: 600; padding: 2px 6px; border-radius: 4px; font-family: 'DM Sans', sans-serif; letter-spacing: 0.02em;">${p.discount}% OFF</span>
                                     </c:if>
                                 </div>
                             </div>
